@@ -359,7 +359,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:layout_marginStart="24dp"
-                            android:layout_margin="24dp"
+                            android:layout_marginEnd="24dp"
                             android:orientation="horizontal"
                             android:visibility="gone"
                             app:layout_constraintStart_toStartOf="parent"
@@ -393,12 +393,12 @@
                                 </FrameLayout>
 
                                 <TextView
-                                    style="@style/Models18BoldText"
+                                    style="@style/Models18Text"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
                                     android:maxLines="1"
-                                    android:autoSizeTextType="uniform"
+                                    app:autoSizeTextType="uniform"
                                     android:text="@string/collection" />
                             </LinearLayout>
 
@@ -430,10 +430,10 @@
                                 </FrameLayout>
 
                                 <TextView
-                                    style="@style/Models18BoldText"
+                                    style="@style/Models18Text"
                                     android:layout_width="match_parent"
                                     android:maxLines="1"
-                                    android:autoSizeTextType="uniform"
+                                    app:autoSizeTextType="uniform"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
                                     android:text="@string/shipment" />
@@ -466,10 +466,10 @@
                                 </FrameLayout>
 
                                 <TextView
-                                    style="@style/Models18BoldText"
+                                    style="@style/Models18Text"
                                     android:layout_width="match_parent"
                                     android:maxLines="1"
-                                    android:autoSizeTextType="uniform"
+                                    app:autoSizeTextType="uniform"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
                                     android:text="@string/purchase" />

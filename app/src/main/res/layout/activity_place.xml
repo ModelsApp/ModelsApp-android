@@ -494,8 +494,8 @@
 
         <ImageView
             android:id="@+id/placeBookingImv"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="@dimen/ac_place_default_margin"
             android:layout_marginTop="20dp"
             android:src="@drawable/r_calendar"
@@ -520,7 +520,7 @@
 
         <TextView
             android:id="@+id/placeBookingDate"
-            style="@style/Models16Text"
+            style="@style/Models15Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

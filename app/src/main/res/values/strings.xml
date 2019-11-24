@@ -196,6 +196,7 @@
     <string name="about">About</string>
     <string name="requirements">Requirements</string>
     <string name="timeframes">Timeframes</string>
+    <string name="timeframe">Timeframe</string>
     <string name="offers">Offers</string>
     <string name="services">Services</string>
     <string name="dinner">Dinner</string>
@@ -210,6 +211,7 @@
     <string name="others">Others</string>
 
     <string name="select_timeframe">Select your timeframe</string>
+    <string name="location">Location</string>
 
     <string name="spot_format">%d Spots</string>
     <string name="spot_one_format">%d Spot</string>
@@ -668,4 +670,7 @@
     <string name="youtube_tutorial">https://www.youtube.com/watch?v=6VCsX_Hw9js</string>
     <string name="select_a_spot">Select a spot:</string>
     <string name="select_a_place">Select a place:</string>
+
+    <string name="select_the_method">Select the method you prefer to get the item</string>
+
 </resources>
