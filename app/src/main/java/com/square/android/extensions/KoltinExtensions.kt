@@ -17,8 +17,14 @@ fun Int.toOrdinalString() =
             else -> "th"
         }
 
+//TODO check date formatting in RedemptionInfo.date and CampaignBooking.pickUpDate and use one of the below methods to format it(RedemptionsPresenter, RedemptionsAdapter)
 fun String.toDate(): Date {
     val format = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+    return format.parse(this)
+}
+fun String.toDateYMD(): Date {
+    val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     return format.parse(this)
 }
@@ -31,10 +37,7 @@ fun Calendar.relativeTimeString(now: Calendar) : String {
 
     if (now.isTomorrow(this)) return App.getString(R.string.tomorrow)
 
-    val day = get(Calendar.DAY_OF_MONTH).toOrdinalString()
-    val month = getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
-
-    return App.INSTANCE.getString(R.string.date_format, day, month)
+    return getStringDate()
 }
 
 fun Calendar.isToday(other: Calendar): Boolean {
@@ -42,7 +45,11 @@ fun Calendar.isToday(other: Calendar): Boolean {
 }
 
 fun Calendar.isTomorrow(other: Calendar): Boolean {
-    return get(Calendar.DATE) - other.get(Calendar.DATE) == 1
+    val futureCal: Calendar = Calendar.getInstance()
+    futureCal.timeInMillis = timeInMillis
+    futureCal.add(Calendar.DAY_OF_YEAR, 1)
+
+    return futureCal.get(Calendar.YEAR) == other.get(Calendar.YEAR) && futureCal.get(Calendar.MONTH) == other.get(Calendar.MONTH) && futureCal.get(Calendar.DAY_OF_MONTH) == other.get(Calendar.DAY_OF_MONTH)
 }
 
 fun String?.isUrl() : Boolean {

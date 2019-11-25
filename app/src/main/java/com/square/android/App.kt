@@ -17,6 +17,7 @@ import com.square.android.utils.AppLifecycleTracker
 import com.squareup.picasso.OkHttp3Downloader
 import org.greenrobot.eventbus.EventBus
 import com.squareup.picasso.Picasso
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 class App : Application() {
 
@@ -38,6 +39,13 @@ class App : Application() {
         builder.downloader(OkHttp3Downloader(this, Long.MAX_VALUE))
         val built = builder.build()
         Picasso.setSingletonInstance(built)
+
+        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
+                .setDefaultFontPath(getString(R.string.font_opensans_regular))
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        )
+
     }
 
     companion object {

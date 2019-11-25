@@ -8,9 +8,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.daimajia.swipe.SwipeLayout
 import com.square.android.R
 import com.square.android.data.pojo.RedemptionInfo
-import com.square.android.extensions.loadImage
-import com.square.android.extensions.makeBlackWhite
-import com.square.android.extensions.removeFilters
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_redemption_active.*
 import kotlinx.android.synthetic.main.redemption_header.*
@@ -19,7 +16,11 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.view.animation.DecelerateInterpolator
 import android.webkit.URLUtil
+import com.square.android.App
 import com.square.android.data.pojo.CampaignBooking
+import com.square.android.extensions.*
+import java.lang.Exception
+import java.util.*
 
 private const val TYPE_HEADER = R.layout.redemption_header
 private const val TYPE_REDEMPTION = R.layout.item_redemption_active
@@ -251,7 +252,18 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
         }
 
         private fun bindHeader(header: String) {
-            redemptionHeader.text = header
+            val calendar = Calendar.getInstance()
+            try{
+                calendar.timeInMillis = header.toDateYMD().time
+
+                val day = calendar.get(Calendar.DAY_OF_MONTH).toOrdinalString()
+                val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+
+                redemptionHeader.text = App.INSTANCE.getString(R.string.date_format, day, month)
+
+            } catch (e: Exception){
+                redemptionHeader.text = header
+            }
         }
     }
 

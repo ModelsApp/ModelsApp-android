@@ -7,16 +7,12 @@ import com.square.android.R
 import com.square.android.SCREENS
 import com.square.android.data.pojo.CampaignBooking
 import com.square.android.data.pojo.RedemptionInfo
-import com.square.android.extensions.distanceTo
 import com.square.android.extensions.relativeTimeString
-import com.square.android.extensions.toDate
+import com.square.android.extensions.toDateYMD
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
 import com.square.android.presentation.view.redemptions.RedemptionsView
 import com.square.android.ui.activity.claimedRedemption.ClaimedExtras
-import com.square.android.utils.AnalyticsEvent
-import com.square.android.utils.AnalyticsEvents
-import com.square.android.utils.AnalyticsManager
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -191,7 +187,6 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
     }
 
     private fun addHeaders(data: List<Any>): Deferred<List<Any>> = GlobalScope.async {
-
         val today = Calendar.getInstance()
         val itemCalendar = Calendar.getInstance()
 
@@ -200,8 +195,13 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
         val closedTitle = App.getString(R.string.closed)
         val claimedTitle = App.getString(R.string.claimed)
 
-        groups = data.groupByTo(mutableMapOf()) {
+//        val data2 = listOf(RedemptionInfo().apply { date = "2019-11-22"; claimed = true}, RedemptionInfo().apply {date = "2019-11-22" }, RedemptionInfo().apply { date = "2019-11-26" },
+//                CampaignBooking().apply { pickUpDate = "2019-11-25" }, CampaignBooking().apply { pickUpDate = "2019-11-25" }, CampaignBooking().apply { pickUpDate = "2019-11-28" },
+//                CampaignBooking().apply { pickUpDate = "2019-11-27" }, CampaignBooking().apply { pickUpDate = "2019-11-30" }, CampaignBooking().apply { pickUpDate = "2019-11-29" },
+//                CampaignBooking().apply { pickUpDate = "2019-11-27" }, CampaignBooking().apply { pickUpDate = "2019-12-12" }, CampaignBooking().apply { pickUpDate = "2019-11-24" },
+//                CampaignBooking().apply { pickUpDate = "2019-11-21" }, CampaignBooking().apply { pickUpDate = "2019-11-22" })
 
+        groups = data.groupByTo(mutableMapOf()) {
            if(it is RedemptionInfo){
                if (it.closed) {
                    return@groupByTo closedTitle
@@ -211,23 +211,36 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
                    return@groupByTo claimedTitle
                }
 
-               val date = it.date.toDate()
+               val date = it.date.toDateYMD()
                itemCalendar.time = date
            }
 
             if(it is CampaignBooking){
                 if(it.pickUpDate != null){
-                    val date = it.pickUpDate!!.toDate()
+                    val date = it.pickUpDate!!.toDateYMD()
                     itemCalendar.time = date
                 }
             }
-
             itemCalendar.relativeTimeString(today)
         }
 
-        groups!!.forEach { (title, list) ->
-            result.addAll(0, list)
-            result.add(0, title)
+        val sorted = groups!!.toSortedMap(compareByDescending<String> { titleToIndex(it) }.thenByDescending {
+            if(titleToIndex(it) == 2){
+                it.toDateYMD()
+            } else{
+                it
+            }
+        })
+
+        sorted.forEach { (title, list) ->
+                result.addAll(0, list.sortedByDescending {
+                    if(it is RedemptionInfo){
+                        it.date.toDateYMD()
+                    } else{
+                        (it as CampaignBooking).pickUpDate?.toDateYMD()
+                    }
+                })
+                result.add(0, title)
         }
 
         result
@@ -235,6 +248,16 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 
     fun locationGotten(location: Location?) {
         lastLocation = location
+    }
 
+    private fun titleToIndex(title: String): Int {
+        return when(title){
+            App.getString(R.string.today) -> 0
+            App.getString(R.string.tomorrow) -> 1
+            App.getString(R.string.past) -> 3
+            App.getString(R.string.claimed) -> 4
+            App.getString(R.string.closed) -> 5
+            else -> 2
+        }
     }
 }

@@ -134,6 +134,7 @@
         <item name="android:textColor">@color/models_text_color</item>
         <item name="android:textColorHint">@color/gray_hint</item>
         <item name="android:lineSpacingMultiplier">1</item>
+        <item name="fontPath">@string/font_poppins_regular</item>
     </style>
 
     <style name="Models10Text" parent="ModelsText">
@@ -146,7 +147,7 @@
 
     <style name="Models12BoldText" parent="ModelsText">
         <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models13Text" parent="ModelsText">
@@ -155,7 +156,7 @@
 
     <style name="Models13BoldText" parent="ModelsText">
         <item name="android:textSize">13sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models14Text" parent="ModelsText">
@@ -164,7 +165,7 @@
 
     <style name="Models14BoldText" parent="ModelsText">
         <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models15Text" parent="ModelsText">
@@ -173,7 +174,7 @@
 
     <style name="Models15BoldText" parent="ModelsText">
         <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models16Text" parent="ModelsText">
@@ -182,7 +183,7 @@
 
     <style name="Models16BoldText" parent="ModelsText">
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models18Text" parent="ModelsText">
@@ -191,7 +192,7 @@
 
     <style name="Models18BoldText" parent="ModelsText">
         <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models20Text" parent="ModelsText">
@@ -200,12 +201,12 @@
 
     <style name="Models20BoldText" parent="ModelsText">
         <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models22BoldText" parent="ModelsText">
         <item name="android:textSize">22sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models22Text" parent="ModelsText">
@@ -218,21 +219,21 @@
 
     <style name="Models24BoldText" parent="ModelsText">
         <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models30BoldText" parent="ModelsText">
         <item name="android:textSize">30sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="Models38BoldText" parent="ModelsText">
         <item name="android:textSize">38sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
     <style name="Models40BoldText" parent="ModelsText">
         <item name="android:textSize">40sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_poppins_semi_bold</item>
     </style>
 
     <style name="RadioButton">

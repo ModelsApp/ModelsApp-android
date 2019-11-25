@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="font_robo_regular">fonts/RobotoCondensed-Regular.ttf</string>
+    <string name="font_robo_light">fonts/RobotoCondensed-Light.ttf</string>
+    <string name="font_robo_bold">fonts/RobotoCondensed-Bold.ttf</string>
+
+    <string name="font_opensans_regular">fonts/OpenSans-Regular.ttf</string>
+    <string name="font_opensans_light">fonts/OpenSans-Light.ttf</string>
+    <string name="font_opensans_bold">fonts/OpenSans-Bold.ttf</string>
+    <string name="font_opensans_semibold">fonts/OpenSans-SemiBold.ttf</string>
+    <string name="font_opensans_italic">fonts/OpenSans-Italic.ttf</string>
+
+    <string name="font_sans_pro_semi_bold">fonts/SourceSansPro-SemiBold.ttf</string>
+
+    <string name="font_poppins_regular">fonts/Poppins-Regular.ttf</string>
+    <string name="font_poppins_italics">fonts/Poppins-Italic.ttf</string>
+    <string name="font_poppins_bold">fonts/Poppins-Bold.ttf</string>
+    <string name="font_poppins_bold_italics">fonts/Poppins-BoldItalic.ttf</string>
+    <string name="font_poppins_medium">fonts/Poppins-Medium.ttf</string>
+    <string name="font_poppins_medium_italics">fonts/Poppins-MediumItalic.ttf</string>
+    <string name="font_poppins_semi_bold">fonts/Poppins-SemiBold.ttf</string>
+    <string name="font_poppins_semi_bold_italics">fonts/Poppins-SemiBoldItalic.ttf</string>
+
+</resources>

@@ -176,6 +176,9 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:16.0.1'
 
+    //CALLIGRAPHY
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
 

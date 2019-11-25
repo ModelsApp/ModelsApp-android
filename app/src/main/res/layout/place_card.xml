@@ -17,13 +17,14 @@
         android:layout_height="wrap_content"
         android:paddingBottom="16dp" >
 
+<!--    from  app:layout_constraintDimensionRatio="16:9"   -->
         <ImageView
             android:id="@+id/placeInfoImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
             tools:src="@drawable/fill_profile_header_1"
             tools:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintDimensionRatio="20:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -123,7 +123,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline4"
             android:background="@color/login_background"
             android:animateLayoutChanges="true"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="0dp"
             android:layout_height="0dp">
             <EditText
