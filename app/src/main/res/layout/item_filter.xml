@@ -5,8 +5,8 @@
     android:id="@+id/itemFilterContainer"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="43dp"
-    android:padding="12dp"
+    android:layout_height="36dp"
+    android:padding="8dp"
     android:minWidth="88dp"
     android:background="@drawable/interval_background" >
 
