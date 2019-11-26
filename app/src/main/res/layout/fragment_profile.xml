@@ -127,7 +127,7 @@
 
         <TextView
             android:id="@+id/profilePremium"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:textColor="@color/status_orange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

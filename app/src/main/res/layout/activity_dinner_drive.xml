@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/dinnerChatTitle"
-            style="@style/Models20BoldText"
+            style="@style/Models20SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/dinnerChatUserName"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -146,7 +146,7 @@
 
             <TextView
                 android:id="@+id/dinnerChatDate"
-                style="@style/Models14BoldText"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -174,7 +174,7 @@
 
         <TextView
             android:id="@+id/dinnerChatCheckedAt"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -210,7 +210,7 @@
 
         <TextView
             android:id="@+id/dinnerChatCreditsValue"
-            style="@style/Models14BoldText"
+            style="@style/Models14SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -319,7 +319,7 @@
 
         <Button
             android:id="@+id/dinnerChatBtn"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

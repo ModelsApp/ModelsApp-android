@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/name"
-        style="@style/Models14BoldText"
+        style="@style/Models14SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -34,7 +34,7 @@
         tools:text="Product 1" />
 
     <TextView
-        style="@style/Models14BoldText"
+        style="@style/Models14SemiBoldText"
         android:id="@+id/quantity"
         android:textColor="@color/nice_pink"
         android:layout_width="wrap_content"

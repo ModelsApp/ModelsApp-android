@@ -34,7 +34,7 @@
         android:orientation="horizontal" >
         <TextView
             android:id="@+id/placesCity"
-            style="@style/Models20BoldText"
+            style="@style/Models20SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"

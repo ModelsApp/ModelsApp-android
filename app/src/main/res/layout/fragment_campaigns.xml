@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/campaignsTitle"
-        style="@style/Models22BoldText"
+        style="@style/Models22SemiBoldText"
         android:textColor="@color/nice_pink"
         android:layout_width="0dp"
         android:maxLines="1"

@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/addPhotoLabel"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="64dp"
@@ -60,7 +60,7 @@
 
         <Button
             android:id="@+id/addPhotoUpload"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="172dp"
             android:layout_height="42dp"
             android:layout_marginTop="40dp"

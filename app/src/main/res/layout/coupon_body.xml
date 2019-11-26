@@ -166,7 +166,7 @@
 
     <Button
         android:id="@+id/bt_coupon_check_in"
-        style="@style/Models16BoldText"
+        style="@style/Models16SemiBoldText"
         android:layout_width="128dp"
         android:layout_height="38dp"
         android:layout_gravity="center_horizontal"

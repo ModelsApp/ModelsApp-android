@@ -478,7 +478,7 @@
 
         <Button
             android:id="@+id/passPayBtn"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:layout_width="@dimen/passPayBtnWidth"

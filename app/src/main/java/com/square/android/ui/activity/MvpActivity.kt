@@ -1,8 +1,10 @@
 package com.square.android.ui.activity
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.arellomobile.mvp.MvpDelegate
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class MvpActivity : AppCompatActivity() {
     private var mMvpDelegate: MvpDelegate<out MvpActivity>? = null
@@ -17,6 +19,10 @@ abstract class MvpActivity : AppCompatActivity() {
         super.onStart()
 
         getMvpDelegate().onAttach()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onResume() {

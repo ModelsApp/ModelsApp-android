@@ -92,7 +92,7 @@
 
                         <TextView
                             android:id="@+id/mainTitle"
-                            style="@style/Models24BoldText"
+                            style="@style/Models24SemiBoldText"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="24dp"
@@ -120,7 +120,7 @@
 
                         <TextView
                             android:id="@+id/mainType"
-                            style="@style/Models14BoldText"
+                            style="@style/Models14SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
@@ -210,7 +210,7 @@
                     android:padding="16dp" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -253,7 +253,7 @@
                     android:padding="16dp" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
 
                             <TextView
                                 android:id="@+id/cvRewardsCredits"
-                                style="@style/Models16BoldText"
+                                style="@style/Models16SemiBoldText"
                                 android:textColor="@android:color/white"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -364,7 +364,7 @@
                             android:src="@drawable/gold_medal" />
 
                         <TextView
-                            style="@style/Models20BoldText"
+                            style="@style/Models20SemiBoldText"
                             android:textAllCaps="true"
                             android:gravity="center_horizontal"
                             android:layout_toStartOf="@+id/medal2"
@@ -401,7 +401,7 @@
 
                             <TextView
                                 android:id="@+id/cvWinnerCredits"
-                                style="@style/Models16BoldText"
+                                style="@style/Models16SemiBoldText"
                                 android:textColor="@android:color/white"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -455,7 +455,7 @@
 
                     <TextView
                         android:id="@+id/cvDeadlinesLabel"
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -489,7 +489,7 @@
 
                     <TextView
                         android:id="@+id/cvDeadlinesDaysValue1"
-                        style="@style/Models30BoldText"
+                        style="@style/Models30SemiBoldText"
                         android:textColor="@color/nice_pink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -538,7 +538,7 @@
 
                     <TextView
                         android:id="@+id/cvDeadlinesDaysValue2"
-                        style="@style/Models30BoldText"
+                        style="@style/Models30SemiBoldText"
                         android:textColor="@color/nice_pink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -587,7 +587,7 @@
 
                     <TextView
                         android:id="@+id/cvDeadlinesDaysValue3"
-                        style="@style/Models30BoldText"
+                        style="@style/Models30SemiBoldText"
                         android:textColor="@color/nice_pink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -631,7 +631,7 @@
                     android:padding="16dp" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -672,7 +672,7 @@
                     android:padding="16dp" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -708,7 +708,7 @@
 
                         <TextView
                             android:id="@+id/cvTaskStories"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_marginStart="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -739,7 +739,7 @@
 
                         <TextView
                             android:id="@+id/cvTaskPosts"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_marginStart="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -770,7 +770,7 @@
 
                         <TextView
                             android:id="@+id/cvTaskPhotos"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_marginStart="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -814,7 +814,7 @@
                     android:padding="12dp" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:paddingTop="4dp"
                         android:paddingStart="4dp"
@@ -877,7 +877,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -929,7 +929,7 @@
                     android:padding="16dp" >
 
                     <TextView
-                        style="@style/Models20BoldText"
+                        style="@style/Models20SemiBoldText"
                         android:textAllCaps="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -943,7 +943,7 @@
 
                     <TextView
                         android:id="@+id/cvThanksLabel"
-                        style="@style/Models18BoldText"
+                        style="@style/Models18SemiBoldText"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal"

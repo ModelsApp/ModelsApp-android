@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/itemEventSummaryName"
-        style="@style/Models20BoldText"
+        style="@style/Models20SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginEnd="16dp"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/itemEventSummarySecondary"
-        style="@style/Models16BoldText"
+        style="@style/Models16SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
         android:gravity="center_vertical"
@@ -80,7 +80,7 @@
 
         <TextView
             android:id="@+id/itemEventSummaryDisabledLabel"
-            style="@style/Models14BoldText"
+            style="@style/Models14SemiBoldText"
             android:textColor="@color/gray_hint_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
 
                 <TextView
                     android:id="@+id/itemEventSummaryStatus"
-                    style="@style/Models14BoldText"
+                    style="@style/Models14SemiBoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"

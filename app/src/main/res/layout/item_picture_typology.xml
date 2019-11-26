@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/itemTypologyTitle"
-        style="@style/Models16BoldText"
+        style="@style/Models16SemiBoldText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Location" />

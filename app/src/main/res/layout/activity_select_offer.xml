@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/selectOfferTitle"
-        style="@style/Models22BoldText"
+        style="@style/Models22SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/selectOfferStep1"
-            style="@style/Models12BoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:includeFontPadding="false"
@@ -85,7 +85,7 @@
 
         <TextView
             android:id="@+id/selectOfferStep2"
-            style="@style/Models12BoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:includeFontPadding="false"
@@ -102,7 +102,7 @@
 
         <TextView
             android:id="@+id/selectOfferStep3"
-            style="@style/Models12BoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:includeFontPadding="false"

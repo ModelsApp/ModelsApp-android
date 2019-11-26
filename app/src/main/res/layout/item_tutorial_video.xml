@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/itemTutVideoLabel"
-        style="@style/Models20BoldText"
+        style="@style/Models20SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="How to..."

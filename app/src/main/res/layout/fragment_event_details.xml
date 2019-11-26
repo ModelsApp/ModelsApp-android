@@ -71,7 +71,7 @@
 
             <TextView
                 android:id="@+id/eventShowMore"
-                style="@style/Models16BoldText"
+                style="@style/Models16SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="end|bottom"
@@ -488,7 +488,7 @@
             app:layout_constraintTop_toTopOf="@+id/eventDetailImg">
 
             <TextView
-                style="@style/Models14BoldText"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -581,7 +581,7 @@
 
         <TextView
             android:id="@+id/eventDetailName"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -592,7 +592,7 @@
 
         <TextView
             android:id="@+id/eventDetailCredits"
-            style="@style/Models13BoldText"
+            style="@style/Models13SemiBoldText"
             android:layout_marginTop="3dp"
             android:textColor="@color/nice_pink"
             android:layout_width="wrap_content"

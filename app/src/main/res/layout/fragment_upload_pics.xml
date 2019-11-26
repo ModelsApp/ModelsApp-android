@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/picsLabel"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="64dp"
@@ -105,7 +105,7 @@
 
             <TextView
                 android:id="@+id/picsDaysValue1"
-                style="@style/Models30BoldText"
+                style="@style/Models30SemiBoldText"
                 android:textColor="@color/nice_pink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
 
             <TextView
                 android:id="@+id/picsDaysValue2"
-                style="@style/Models30BoldText"
+                style="@style/Models30SemiBoldText"
                 android:textColor="@color/nice_pink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
 
         <Button
             android:id="@+id/picsSend"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="192dp"
             android:layout_height="42dp"
             android:layout_marginTop="40dp"

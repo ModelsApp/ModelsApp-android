@@ -41,7 +41,7 @@ class App : Application() {
         Picasso.setSingletonInstance(built)
 
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-                .setDefaultFontPath(getString(R.string.font_opensans_regular))
+                .setDefaultFontPath(getString(R.string.font_poppins_regular))
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         )

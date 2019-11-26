@@ -155,7 +155,7 @@
 
         <TextView
             android:id="@+id/dinnerOfferCreditsLabel"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -167,7 +167,7 @@
 
         <TextView
             android:id="@+id/dinnerOfferCredits"
-            style="@style/Models22BoldText"
+            style="@style/Models22SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"

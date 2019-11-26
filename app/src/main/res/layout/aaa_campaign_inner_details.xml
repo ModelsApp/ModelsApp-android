@@ -117,7 +117,7 @@
 
                         <TextView
                             android:id="@+id/title"
-                            style="@style/Models24BoldText"
+                            style="@style/Models24SemiBoldText"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -145,7 +145,7 @@
 
                         <TextView
                             android:id="@+id/mainType"
-                            style="@style/Models14BoldText"
+                            style="@style/Models14SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
@@ -186,7 +186,7 @@
 
                         <TextView
                             android:id="@+id/descriptionLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -242,7 +242,7 @@
 
                             <TextView
                                 android:id="@+id/readMore"
-                                style="@style/Models16BoldText"
+                                style="@style/Models16SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/white"
@@ -267,7 +267,7 @@
 <!--         Products                   -->
                         <TextView
                             android:id="@+id/productsLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -340,7 +340,7 @@
 <!--         How to                 -->
                         <TextView
                             android:id="@+id/howToLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -507,7 +507,7 @@
 
                             <TextView
                                 android:id="@+id/readMoreHowTo"
-                                style="@style/Models16BoldText"
+                                style="@style/Models16SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/white"
@@ -533,7 +533,7 @@
 <!--         Application                 -->
                         <TextView
                             android:id="@+id/applicationLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -575,7 +575,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                style="@style/Models14BoldText"
+                                style="@style/Models14SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/end_date"
@@ -608,7 +608,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                style="@style/Models14BoldText"
+                                style="@style/Models14SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/from_"
@@ -650,7 +650,7 @@
 <!--         Typology                 -->
                         <TextView
                             android:id="@+id/typologyLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -715,7 +715,7 @@
 <!--         How it works                 -->
                         <TextView
                             android:id="@+id/howItWorksLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -758,7 +758,7 @@
 
                             <TextView
                                 android:id="@+id/readMoreHowItWorks"
-                                style="@style/Models16BoldText"
+                                style="@style/Models16SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/white"
@@ -784,7 +784,7 @@
 <!--         What to do                -->
                         <TextView
                             android:id="@+id/whatToDoLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -851,7 +851,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                style="@style/Models14BoldText"
+                                style="@style/Models14SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/insta_stories"
@@ -884,7 +884,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                style="@style/Models14BoldText"
+                                style="@style/Models14SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/insta_posts"
@@ -940,7 +940,7 @@
 
                             <TextView
                                 android:id="@+id/readMoreWhatToDo"
-                                style="@style/Models16BoldText"
+                                style="@style/Models16SemiBoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/white"
@@ -966,7 +966,7 @@
 <!--         References                -->
                         <TextView
                             android:id="@+id/referencesLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -1042,7 +1042,7 @@
 <!--         Captions details                -->
                         <TextView
                             android:id="@+id/captionsLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -1086,7 +1086,7 @@
 <!--         Rewards                -->
                         <TextView
                             android:id="@+id/rewardsLabel"
-                            style="@style/Models16BoldText"
+                            style="@style/Models16SemiBoldText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -1146,7 +1146,7 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/credits_"
@@ -1158,7 +1158,7 @@
 
                                 <TextView
                                     android:id="@+id/creditsNo1"
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="12dp"
@@ -1181,7 +1181,7 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/points_"
@@ -1193,7 +1193,7 @@
 
                                 <TextView
                                     android:id="@+id/pointsNo1"
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="12dp"
@@ -1257,7 +1257,7 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/credits_"
@@ -1269,7 +1269,7 @@
 
                                 <TextView
                                     android:id="@+id/creditsNo2"
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="12dp"
@@ -1292,7 +1292,7 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/points_"
@@ -1304,7 +1304,7 @@
 
                                 <TextView
                                     android:id="@+id/pointsNo2"
-                                    style="@style/Models14BoldText"
+                                    style="@style/Models14SemiBoldText"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="12dp"

@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/chevron_left" />
         <TextView
             android:id="@+id/tutorialVideosTitle"
-            style="@style/Models22BoldText"
+            style="@style/Models22SemiBoldText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

@@ -58,7 +58,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/campaignImage" />
 
             <TextView
-                style="@style/Models24BoldText"
+                style="@style/Models24SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -86,7 +86,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignNName"
-                style="@style/Models18BoldText"
+                style="@style/Models18SemiBoldText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -116,7 +116,7 @@
 
             <TextView
                 android:id="@+id/campaignNType"
-                style="@style/Models14BoldText"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/interval_checked"
@@ -148,7 +148,7 @@
 
                 <TextView
                     android:id="@+id/campaignNDate"
-                    style="@style/Models14BoldText"
+                    style="@style/Models14SemiBoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -219,7 +219,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignFName"
-                style="@style/Models18BoldText"
+                style="@style/Models18SemiBoldText"
                 android:layout_width="0dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="16dp"
@@ -253,7 +253,7 @@
 
             <TextView
                 android:id="@+id/campaignFType"
-                style="@style/Models14BoldText"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -325,7 +325,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                     <TextView
-                        style="@style/Models14BoldText"
+                        style="@style/Models14SemiBoldText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/starting" />
@@ -347,7 +347,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="vertical" >
                     <TextView
-                        style="@style/Models14BoldText"
+                        style="@style/Models14SemiBoldText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ending" />

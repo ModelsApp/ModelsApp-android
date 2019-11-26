@@ -72,7 +72,7 @@
 
                 <TextView
                     android:id="@+id/chatDriverName"
-                    style="@style/Models16BoldText"
+                    style="@style/Models16SemiBoldText"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
 
                 <TextView
                     android:id="@+id/chatRating"
-                    style="@style/Models14BoldText"
+                    style="@style/Models14SemiBoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"

@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/fillProfileName1"
-        style="@style/Models20BoldText"
+        style="@style/Models20SemiBoldText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -76,7 +76,7 @@
 
     <Button
         android:id="@+id/fillProfile1Next"
-        style="@style/Models18BoldText"
+        style="@style/Models18SemiBoldText"
         android:layout_width="180dp"
         android:layout_height="44dp"
         android:layout_gravity="center_horizontal"

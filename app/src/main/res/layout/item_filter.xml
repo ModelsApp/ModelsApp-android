@@ -12,7 +12,7 @@
 
     <CheckedTextView
         android:id="@+id/itemFilterName"
-        style="@style/Models16BoldText"
+        style="@style/Models16SemiBoldText"
         android:textColor="@color/interval_time_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

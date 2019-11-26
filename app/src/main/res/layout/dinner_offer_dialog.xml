@@ -28,7 +28,7 @@
 
         <Button
             android:id="@+id/dinnerOfferBtn"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="216dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"

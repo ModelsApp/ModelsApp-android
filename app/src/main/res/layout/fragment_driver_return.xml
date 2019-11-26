@@ -49,7 +49,7 @@
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/driverReturnRadioYes"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -63,7 +63,7 @@
 
         <RadioButton
             android:id="@+id/driverReturnRadioNo"
-            style="@style/Models16BoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -76,7 +76,7 @@
 
     <TextView
         android:id="@+id/driverReturnLabel"
-        style="@style/Models16BoldText"
+        style="@style/Models16SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -117,7 +117,7 @@
 
     <TextView
         android:id="@+id/driverReturnDepartureLabel"
-        style="@style/Models16BoldText"
+        style="@style/Models16SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"

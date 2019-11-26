@@ -36,7 +36,7 @@
 
         <CheckedTextView
             android:id="@+id/reviewItemTitle"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -76,7 +76,7 @@
 
             <CheckedTextView
                 android:id="@+id/reviewItemCoins"
-                style="@style/Models20BoldText"
+                style="@style/Models20SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

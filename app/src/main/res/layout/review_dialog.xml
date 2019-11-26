@@ -60,7 +60,7 @@
 
         <Button
             android:id="@+id/reviewBtnAction"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="224dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/dinnerInfoTitle"
-            style="@style/Models20BoldText"
+            style="@style/Models20SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

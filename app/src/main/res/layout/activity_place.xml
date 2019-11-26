@@ -231,7 +231,7 @@
 
                                 <TextView
                                     android:id="@+id/placeShowMore"
-                                    style="@style/Models16BoldText"
+                                    style="@style/Models16SemiBoldText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="end|bottom"
@@ -504,7 +504,7 @@
 
         <TextView
             android:id="@+id/placeBookingText"
-            style="@style/Models14BoldText"
+            style="@style/Models14SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

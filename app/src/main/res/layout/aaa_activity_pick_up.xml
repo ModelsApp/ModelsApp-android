@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/Models18BoldText"
+        style="@style/Models18SemiBoldText"
         android:layout_width="0dp"
         android:gravity="center_horizontal"
         android:layout_marginTop="16dp"
@@ -369,7 +369,7 @@
 
         <TextView
             android:id="@+id/bottomTvMain"
-            style="@style/Models15BoldText"
+            style="@style/Models15SemiBoldText"
             android:layout_width="0dp"
             android:paddingBottom="2dp"
             android:layout_height="wrap_content"

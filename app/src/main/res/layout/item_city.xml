@@ -15,7 +15,7 @@
 
         <CheckedTextView
             android:id="@+id/cityName"
-            style="@style/Models18BoldText"
+            style="@style/Models18SemiBoldText"
             android:gravity="center"
             android:paddingTop="16dp"
             android:textAlignment="gravity"

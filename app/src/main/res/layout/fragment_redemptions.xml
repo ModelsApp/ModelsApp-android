@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/redemptionsTitle"
-        style="@style/Models22BoldText"
+        style="@style/Models22SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
