@@ -11,10 +11,11 @@
 
     <CheckedTextView
         android:id="@+id/bookingInterval"
-        style="@style/Models16SemiBoldText"
+        style="@style/Models16BoldText"
         android:textColor="@color/interval_time_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
         tools:text="10:00 - 13:00" />
 
     <CheckedTextView
@@ -23,7 +24,8 @@
         android:textColor="@color/interval_spots_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:includeFontPadding="false"
         tools:text="2 Spots" />
 
 </com.square.android.utils.widget.CheckableLinearLayout>

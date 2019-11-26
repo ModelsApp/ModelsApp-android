@@ -203,7 +203,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
     }
 
     override fun updateMonthName(calendar: Calendar) {
-        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
         placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
         val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
@@ -284,7 +284,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
             placeOffersRv.addItemDecoration(GridItemDecoration(3,placeOffersRv.context.resources.getDimension(R.dimen.rv_item_decorator_12).toInt(), false))
         }
 
-        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
         placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
         val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()

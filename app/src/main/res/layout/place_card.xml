@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/placeInfoTitle"
-            style="@style/Models16SemiBoldText"
+            style="@style/Models16BoldText"
             android:layout_width="0dp"
             android:includeFontPadding="false"
             android:layout_height="wrap_content"

@@ -33,14 +33,14 @@
 
         <TextView
             android:id="@+id/profileName"
+            style="@style/Models22Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="6dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:includeFontPadding="false"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/profileLevel"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,11 +49,11 @@
 
         <TextView
             android:id="@+id/profileAgency"
+            style="@style/Models16Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:includeFontPadding="false"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="@+id/profileName"
             app:layout_constraintBottom_toTopOf="@+id/profileNationality"
@@ -85,12 +85,12 @@
 
         <TextView
             android:id="@+id/profileNationality"
+            style="@style/Models12Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:paddingStart="24dp"
             android:textColor="@color/white"
-            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintBottom_toTopOf="@+id/profilePremium"
@@ -110,6 +110,7 @@
 
         <TextView
             android:id="@+id/profileLevel"
+            style="@style/Models20SemiBoldText"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/level_drawable"
@@ -118,8 +119,6 @@
             android:visibility="gone"
             android:text="@string/level_default"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.86"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,6 +127,7 @@
         <TextView
             android:id="@+id/profilePremium"
             style="@style/Models16SemiBoldText"
+            android:includeFontPadding="false"
             android:textColor="@color/status_orange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,14 +157,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                style="@style/Models13Text"
                 android:id="@+id/profileAvailableLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:includeFontPadding="false"
                 android:textColor="@color/dark_purple"
-                android:textSize="13sp"
                 android:text="@string/available"/>
             <androidx.appcompat.widget.AppCompatImageView
                 app:srcCompat="@drawable/credits"
@@ -172,13 +172,12 @@
                 android:layout_height="24dp" />
             <TextView
                 android:id="@+id/profileCoins"
+                style="@style/Models13Text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:includeFontPadding="false"
                 android:textColor="@android:color/white"
-                android:textSize="13sp"
-                android:textStyle="bold"
                 tools:text="3500 credits" />
 
         </LinearLayout>
@@ -194,6 +193,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:padding="12dp"
+            android:gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
@@ -206,16 +206,16 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/profileInvite"
-                android:layout_width="match_parent"
+                style="@style/Models16SemiBoldText"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:drawablePadding="24dp"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
+                android:paddingTop="6dp"
+                android:includeFontPadding="false"
+                android:paddingBottom="6dp"
                 android:text="@string/invite_button_text"
                 android:textColor="@color/white"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:gravity="start|center"/>
+                android:layout_weight="1" />
             <View
                 android:background="@color/black_trans_75"
                 android:layout_width="1dp"
@@ -229,16 +229,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 <TextView
+                    style="@style/Models18BoldText"
                     android:text="150"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:includeFontPadding="false"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    style="@style/Models10Text"
                     android:text="@string/credits"
                     android:textColor="@color/white"
-                    android:textSize="10sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -303,126 +303,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dividerEnd" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/profileNationalityTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="48dp"-->
-<!--            android:text="@string/nationality"-->
-<!--            android:textColor="@color/grey_dark"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/profileInvite" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profileNationality"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:paddingStart="52dp"-->
-<!--            android:textColor="@color/grey_text_field"-->
-<!--            android:textSize="13sp"-->
-<!--            android:background="@drawable/background_field"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/profileNationalityTitle"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/profileMotherAgency"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/profileNationalityTitle"-->
-<!--            tools:text="Russian" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/formDialFlag"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/profileNationality"-->
-<!--            app:layout_constraintStart_toStartOf="@id/profileNationality"-->
-<!--            app:layout_constraintTop_toTopOf="@id/profileNationality"-->
-<!--            tools:src="@drawable/flag_ac" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profileMotherAgencyTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:text="@string/mother_agency"-->
-<!--            android:textColor="@color/grey_dark"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/profileNationalityTitle" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profileMotherAgency"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_marginStart="32dp"-->
-<!--            android:textSize="13sp"-->
-<!--            android:textColor="@color/grey_text_field"-->
-<!--            android:background="@drawable/background_field"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/profileMotherAgencyTitle"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/profileMotherAgencyTitle"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/profileMotherAgencyTitle"-->
-<!--            tools:text="Oriflame" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profileEmailTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:text="@string/email"-->
-<!--            android:textColor="@color/grey_dark"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/profileMotherAgencyTitle" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profileEmail"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:textSize="13sp"-->
-<!--            android:textColor="@color/grey_text_field"-->
-<!--            android:background="@drawable/background_field"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/profileEmailTitle"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/profileNationality"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/profileEmailTitle"-->
-<!--            tools:text="verylongemail@test.com" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profilePhoneTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:text="@string/phone"-->
-<!--            android:textColor="@color/grey_dark"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/profileEmailTitle" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/profilePhone"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:textSize="13sp"-->
-<!--            android:textColor="@color/grey_text_field"-->
-<!--            android:background="@drawable/background_field"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/profilePhoneTitle"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/profileNationality"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/profilePhoneTitle"-->
-<!--            tools:text="@tools:sample/us_phones" />-->
 
         <FrameLayout
             app:layout_constraintTop_toTopOf="parent"

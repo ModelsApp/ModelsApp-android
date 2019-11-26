@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp" >
+        android:paddingBottom="8dp" >
 
 <!--  was:  app:layout_constraintDimensionRatio="16:9"    -->
         <ImageView
@@ -34,12 +34,13 @@
 
         <TextView
             android:id="@+id/mapPlaceTitle"
-            style="@style/Models18SemiBoldText"
+            style="@style/Models16BoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
+            android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mapPlaceInfoImage"
             app:layout_constraintEnd_toStartOf="@+id/mapPlaceDistance"
@@ -47,7 +48,7 @@
 
         <TextView
             android:id="@+id/mapPlaceDistance"
-            style="@style/Models14Text"
+            style="@style/Models13Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -59,11 +60,12 @@
 
         <TextView
             android:id="@+id/mapPlaceAddress"
-            style="@style/Models14Text"
+            style="@style/Models13Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="16dp"
+            android:includeFontPadding="false"
             android:textColor="@color/secondary_text"
             app:layout_constraintEnd_toStartOf="@+id/mapPlaceExtrasRv"
             app:layout_constraintStart_toStartOf="@+id/mapPlaceTitle"
@@ -74,18 +76,18 @@
             android:id="@+id/mapPlaceAvailableValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Models18SemiBoldText"
+            style="@style/Models16SemiBoldText"
             android:textColor="@color/nice_pink"
             tools:text="No"
             android:includeFontPadding="false"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_marginStart="16dp"
             app:layout_constraintTop_toBottomOf="@+id/mapPlaceAddress"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/Models13SemiBoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"

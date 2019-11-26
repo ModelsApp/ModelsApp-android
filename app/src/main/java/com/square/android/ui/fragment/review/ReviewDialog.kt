@@ -63,8 +63,10 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
         super.onActivityCreated(savedInstanceState)
 
         val metrics = resources.displayMetrics
-        val screenWidth = (metrics.widthPixels * 0.9).toInt()
-        val screenHeight = (metrics.heightPixels * 0.9).toInt()
+        //TODO was 0.9
+        val screenWidth = (metrics.widthPixels * 0.8).toInt()
+        //TODO was 0.9
+        val screenHeight = (metrics.heightPixels * 0.7).toInt()
 
         dialog.window?.setLayout(screenWidth, screenHeight)
     }

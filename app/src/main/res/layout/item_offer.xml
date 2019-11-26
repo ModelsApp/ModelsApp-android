@@ -22,7 +22,7 @@
     
     <TextView
         android:id="@+id/itemOfferName"
-        style="@style/Models16SemiBoldText"
+        style="@style/Models15BoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/itemOfferCredits"
-        style="@style/Models14Text"
+        style="@style/Models14SemiBoldText"
         android:textColor="@color/nice_pink"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

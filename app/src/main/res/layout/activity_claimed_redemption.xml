@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/claimedRedemptionTitle"
+        style="@style/Models20SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -16,7 +17,6 @@
         android:layout_marginTop="16dp"
         android:includeFontPadding="false"
         android:text="@string/claimed_redemption_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@android:color/black"
         android:textAllCaps="true"
         app:layout_constraintStart_toEndOf="@+id/dividerStart"

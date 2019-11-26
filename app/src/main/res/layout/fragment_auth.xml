@@ -59,6 +59,7 @@
             android:layout_height="0dp">
             <TextView
                 android:id="@+id/authRegisterButton"
+                style="@style/Models12Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_button"
@@ -70,7 +71,6 @@
                 android:paddingBottom="10dp"
                 android:text="@string/register"
                 android:textColor="@color/white"
-                android:textSize="12sp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_or"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +78,7 @@
 
             <TextView
                 android:id="@+id/tv_or"
+                style="@style/Models12Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -85,7 +86,6 @@
                 android:paddingStart="16dp"
                 android:text="@string/or"
                 android:textColor="@color/white"
-                android:textSize="12sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,6 +94,7 @@
 
             <TextView
                 android:id="@+id/authButton"
+                style="@style/Models12Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_button"
@@ -105,13 +106,11 @@
                 android:paddingStart="16dp"
                 android:text="@string/login"
                 android:textColor="@color/white"
-                android:textSize="12sp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_or"
                 app:layout_constraintVertical_bias="0.36" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -128,6 +127,7 @@
             android:layout_height="0dp">
             <EditText
                 android:id="@+id/et_email"
+                style="@style/Models14Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="12dp"
@@ -136,7 +136,6 @@
                 android:hint="@string/email_label"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
-                android:textSize="14sp"
                 android:backgroundTint="@color/white"
                 android:maxLines="1"
                 android:inputType="textEmailAddress"
@@ -149,6 +148,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
             <EditText
                 android:id="@+id/et_password"
+                style="@style/Models14Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="12dp"
@@ -157,7 +157,6 @@
                 android:hint="@string/password_label"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
-                android:textSize="14sp"
                 android:backgroundTint="@color/white"
                 android:maxLines="1"
                 android:inputType="textPassword"
@@ -170,13 +169,13 @@
                 app:layout_constraintStart_toStartOf="parent"/>
             <EditText
                 android:id="@+id/et_confirm_password"
+                style="@style/Models14Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="12dp"
                 android:paddingStart="12dp"
                 android:paddingBottom="16dp"
                 android:hint="@string/confirm_password_label"
-                android:textSize="14sp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:backgroundTint="@color/white"
@@ -192,6 +191,7 @@
 
             <TextView
                 android:id="@+id/do_action_button"
+                style="@style/Models12Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_button"
@@ -203,7 +203,6 @@
                 android:paddingBottom="10dp"
                 android:text="@string/register"
                 android:textColor="@color/white"
-                android:textSize="12sp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 app:layout_constraintVertical_bias="0"
@@ -215,6 +214,7 @@
 
             <TextView
                 android:id="@+id/tv_already_user"
+                style="@style/Models13Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -222,7 +222,6 @@
                 android:paddingStart="16dp"
                 android:text="@string/already_a_user"
                 android:textColor="@color/white"
-                android:textSize="13sp"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:layout_marginTop="8dp"
@@ -233,8 +232,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tv_not_a_user"/>
+
             <TextView
                 android:id="@+id/tv_not_a_user"
+                style="@style/Models13Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -242,7 +243,6 @@
                 android:paddingStart="16dp"
                 android:text="@string/not_a_user_yet"
                 android:textColor="@color/white"
-                android:textSize="13sp"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:layout_marginTop="8dp"
@@ -253,8 +253,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tv_forgot_password"/>
+
             <TextView
                 android:id="@+id/tv_forgot_password"
+                style="@style/Models13Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -262,7 +264,6 @@
                 android:paddingStart="16dp"
                 android:text="@string/forgot_password"
                 android:textColor="@color/white"
-                android:textSize="13sp"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:layout_marginTop="8dp"
@@ -273,8 +274,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tv_want_to_login"/>
+
             <TextView
                 android:id="@+id/tv_want_to_login"
+                style="@style/Models13Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -282,7 +285,6 @@
                 android:paddingStart="16dp"
                 android:text="@string/want_to_login"
                 android:textColor="@color/white"
-                android:textSize="13sp"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:layout_marginTop="8dp"
@@ -294,7 +296,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <ProgressBar
             android:id="@+id/authProgress"
@@ -339,8 +340,7 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp" />
             <TextView
-                style="@style/Models18Text"
-                android:textStyle="bold"
+                style="@style/Models18BoldText"
                 android:text="@string/thank_you_for_interest"
                 android:gravity="center"
                 android:layout_marginTop="12dp"

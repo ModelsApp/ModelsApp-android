@@ -58,7 +58,7 @@
                 style="@style/Models12Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0.5dp"
+                android:includeFontPadding="false"
                 android:paddingStart="4dp"
                 android:text="@string/booked_for"
                 android:textColor="@color/pinkish_white" />
@@ -67,12 +67,13 @@
 
         <TextView
             android:id="@+id/campaignRedemptionTitle"
-            style="@style/Models16SemiBoldText"
+            style="@style/Models14SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="49dp"
             android:layout_marginEnd="16dp"
             android:ellipsize="end"
+            android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,10 +84,11 @@
 
         <TextView
             android:id="@+id/campaignRedemptionHours"
-            style="@style/Models14Text"
+            style="@style/Models13Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
             app:layout_constraintStart_toStartOf="@+id/linearLayout2"
             app:layout_constraintTop_toTopOf="@+id/guideline11"
@@ -100,6 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:textColor="@android:color/white"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
             app:layout_constraintStart_toStartOf="@+id/linearLayout2"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +112,7 @@
             android:id="@+id/divider"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="12dp"
             android:background="@color/white_20_alpha"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout2"

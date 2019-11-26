@@ -32,6 +32,7 @@
 
     <TextView
         android:id="@+id/congratulationsTitle"
+        style="@style/Models20SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -39,13 +40,13 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/review_done_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/placesPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/congratulationsImage" />
     <TextView
         android:id="@+id/congratulationsTitleSub"
+        style="@style/Models14Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -53,7 +54,6 @@
         android:layout_marginTop="12dp"
         android:gravity="center"
         android:text="@string/review_done_title_sub"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/grey_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +61,7 @@
 
     <TextView
         android:id="@+id/congratulationsSubmit"
+        style="@style/Models14SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -72,8 +73,6 @@
         android:padding="8dp"
         android:text="@string/ok"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

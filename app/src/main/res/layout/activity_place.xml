@@ -57,7 +57,7 @@
 
             <TextView
                 android:id="@+id/placeName"
-                style="@style/Models24Text"
+                style="@style/Models20SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -132,7 +132,7 @@
 
                         <TextView
                             android:id="@+id/placeDistance"
-                            style="@style/Models16Text"
+                            style="@style/Models14Text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -201,7 +201,7 @@
 
                             <TextView
                                 android:id="@+id/placeAbout"
-                                style="@style/Models16Text"
+                                style="@style/Models14Text"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/ac_place_default_margin"
@@ -209,6 +209,7 @@
                                 android:layout_marginEnd="@dimen/ac_place_default_margin"
                                 android:layout_marginBottom="20dp"
                                 android:lineSpacingExtra="6dp"
+                                android:includeFontPadding="false"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/placeAboutLabel"
@@ -217,7 +218,7 @@
                             <LinearLayout
                                 android:id="@+id/placeReadMore"
                                 android:layout_width="wrap_content"
-                                android:layout_height="26dp"
+                                android:layout_height="22dp"
                                 android:orientation="horizontal"
                                 android:visibility="gone"
                                 tools:visibility="visible"
@@ -231,13 +232,14 @@
 
                                 <TextView
                                     android:id="@+id/placeShowMore"
-                                    style="@style/Models16SemiBoldText"
+                                    style="@style/Models15BoldText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="end|bottom"
                                     android:background="@android:color/white"
-                                    android:paddingStart="6dp"
-                                    android:text="@string/show_more"
+                                    android:includeFontPadding="false"
+                                    android:paddingStart="12dp"
+                                    android:text="@string/read_more"
                                     android:textColor="@color/nice_pink" />
                             </LinearLayout>
 
@@ -278,7 +280,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            tools:visibility="visible"
+                            tools:visibility="gone"
                             android:clipChildren="false"
                             android:clipToPadding="false" >
 
@@ -297,7 +299,7 @@
                                 android:id="@+id/placeRequirementsRv"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="16dp"
                                 android:clipToPadding="false"
                                 android:overScrollMode="never"
                                 android:layout_marginStart="@dimen/ac_place_default_margin"
@@ -329,7 +331,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:clipToPadding="false"
-                            tools:visibility="visible"
+                            tools:visibility="gone"
                             android:paddingBottom="20dp" >
 
                             <TextView
@@ -338,11 +340,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
-                                android:textAllCaps="true"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:text="SEPTEMBER 2019" />
+                                tools:text="September 2019" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/placeBookingCalendar"
@@ -426,7 +427,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            tools:visibility="visible"
+                            tools:visibility="gone"
                             android:clipChildren="false"
                             android:clipToPadding="false"
                             android:paddingBottom="20dp" >
@@ -445,7 +446,7 @@
                                 android:id="@+id/placeOffersRv"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="16dp"
                                 android:clipToPadding="false"
                                 android:overScrollMode="never"
                                 android:paddingStart="@dimen/ac_place_default_margin"
@@ -478,9 +479,9 @@
 
         <Button
             android:id="@+id/placeBookingBtn"
-            style="@style/Models16Text"
-            android:layout_width="112dp"
-            android:layout_height="56dp"
+            style="@style/Models15Text"
+            android:layout_width="108dp"
+            android:layout_height="52dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginEnd="@dimen/ac_place_default_margin"
             android:background="@drawable/nice_button_red_pink_alpha"
@@ -488,14 +489,15 @@
             android:text="@string/book_now"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/placeBookingImv"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/placeBookingImv"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_marginStart="@dimen/ac_place_default_margin"
             android:layout_marginTop="20dp"
             android:src="@drawable/r_calendar"
@@ -504,15 +506,16 @@
 
         <TextView
             android:id="@+id/placeBookingText"
-            style="@style/Models14SemiBoldText"
+            style="@style/Models13SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:hint="@string/select_timeframe"
             android:maxLines="1"
+            android:includeFontPadding="false"
             android:textColorHint="@color/gray_hint_light"
             app:layout_constraintEnd_toStartOf="@+id/placeBookingBtn"
             app:layout_constraintStart_toEndOf="@+id/placeBookingImv"
@@ -525,12 +528,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="18dp"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintEnd_toStartOf="@+id/placeBookingBtn"
             app:layout_constraintStart_toEndOf="@+id/placeBookingImv"
-            app:layout_constraintTop_toTopOf="@+id/placeBookingImv"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Monday, May 7th" />
 
         <View

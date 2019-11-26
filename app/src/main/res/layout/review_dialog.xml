@@ -16,9 +16,9 @@
 
         <ImageView
             android:id="@+id/reviewDialogClose"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="24dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="20dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/close_x"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,9 +27,9 @@
 
         <ImageView
             android:id="@+id/reviewDialogBack"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="24dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
             android:src="@drawable/arrow_back"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +60,8 @@
 
         <Button
             android:id="@+id/reviewBtnAction"
-            style="@style/Models18SemiBoldText"
-            android:layout_width="224dp"
+            style="@style/Models16SemiBoldText"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="32dp"

@@ -43,13 +43,12 @@
 
     <TextView
         android:id="@+id/couponPlaceName"
+        style="@style/Models20Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="19sp"
         app:layout_constraintEnd_toStartOf="@+id/couponCoins"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/couponImage"
@@ -57,13 +56,12 @@
 
     <TextView
         android:id="@+id/couponCoins"
+        style="@style/Models16SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/placesPrimary"
-        android:textSize="16sp"
         android:layout_marginEnd="4dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/couponAddress"
         app:layout_constraintEnd_toStartOf="@id/couponCoinsLabel"
         app:layout_constraintTop_toTopOf="@+id/couponPlaceName"
@@ -71,12 +69,12 @@
 
     <TextView
         android:id="@+id/couponCoinsLabel"
+        style="@style/Models16Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:gravity="center"
         android:textColor="@color/placesPrimary"
-        android:textSize="16sp"
         android:text="@string/credits"
         app:layout_constraintBottom_toBottomOf="@+id/couponAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,10 +83,10 @@
 
     <TextView
         android:id="@+id/couponAddress"
+        style="@style/Models10Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:textSize="9sp"
         app:layout_constraintEnd_toStartOf="@+id/couponCoinsLabel"
         app:layout_constraintStart_toStartOf="@+id/couponPlaceName"
         app:layout_constraintTop_toBottomOf="@+id/couponPlaceName"
@@ -96,11 +94,10 @@
 
     <TextView
         android:id="@+id/couponPersonName"
+        style="@style/Models18Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/couponAddress"
@@ -119,14 +116,12 @@
 
     <TextView
         android:id="@+id/couponOfferName"
+        style="@style/Models18SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
-        android:textSize="18sp"
         android:textColor="@color/nice_pink"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/couponPersonName"
         app:layout_constraintTop_toBottomOf="@+id/separator"
@@ -134,12 +129,11 @@
 
     <TextView
         android:id="@+id/couponComponents"
+        style="@style/Models16Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/couponOfferName"
         app:layout_constraintTop_toBottomOf="@+id/couponOfferName"
@@ -148,6 +142,7 @@
 
     <TextView
         android:id="@+id/couponHint"
+        style="@style/Models16Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -158,8 +153,6 @@
         android:visibility="gone"
         tools:visibility="visible"
         android:text="@string/offer_dialog_hint"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/couponComponents" />

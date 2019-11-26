@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="40dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="@+id/introPageImage"
         app:layout_constraintStart_toStartOf="@id/introPageImage"
         app:layout_constraintTop_toBottomOf="@+id/introPageImage"

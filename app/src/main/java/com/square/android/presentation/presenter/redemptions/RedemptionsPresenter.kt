@@ -194,10 +194,10 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 
         val closedTitle = App.getString(R.string.closed)
         val claimedTitle = App.getString(R.string.claimed)
-
-//        val data2 = listOf(RedemptionInfo().apply { date = "2019-11-22"; claimed = true}, RedemptionInfo().apply {date = "2019-11-22" }, RedemptionInfo().apply { date = "2019-11-26" },
+        
+//        val data2 = listOf(RedemptionInfo().apply { date = "2019-11-22"; claimed = true; startTime ="14.00"; endTime="15.00"; place.name = "Nice redemption"; place.address = "Via Giorgio 2, 324 Milano"; }, RedemptionInfo().apply {date = "2019-11-22"; startTime ="14.00"; endTime="15.00"; place.name = "Nice redemption"; place.address = "Via Giorgio 2, 324 Milano"; }, RedemptionInfo().apply { date = "2019-11-26"; startTime ="14.00"; endTime="15.00"; place.name = "Nice redemption"; place.address = "Via Giorgio 2, 324 Milano"; },
 //                CampaignBooking().apply { pickUpDate = "2019-11-25" }, CampaignBooking().apply { pickUpDate = "2019-11-25" }, CampaignBooking().apply { pickUpDate = "2019-11-28" },
-//                CampaignBooking().apply { pickUpDate = "2019-11-27" }, CampaignBooking().apply { pickUpDate = "2019-11-30" }, CampaignBooking().apply { pickUpDate = "2019-11-29" },
+//                CampaignBooking().apply { pickUpDate = "2019-11-27"; time = "14.00 - 15.00"; title = "Nice c redemption" }, CampaignBooking().apply { pickUpDate = "2019-11-30" }, CampaignBooking().apply { pickUpDate = "2019-11-29" },
 //                CampaignBooking().apply { pickUpDate = "2019-11-27" }, CampaignBooking().apply { pickUpDate = "2019-12-12" }, CampaignBooking().apply { pickUpDate = "2019-11-24" },
 //                CampaignBooking().apply { pickUpDate = "2019-11-21" }, CampaignBooking().apply { pickUpDate = "2019-11-22" })
 

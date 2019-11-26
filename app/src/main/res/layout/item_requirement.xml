@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/requirementType"
-        style="@style/Models14SemiBoldText"
+        style="@style/Models14BoldText"
         android:layout_width="0dp"
         android:layout_marginTop="6dp"
         android:layout_height="wrap_content"

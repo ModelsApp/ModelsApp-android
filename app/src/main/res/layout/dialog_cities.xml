@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/textView4"
-            style="@style/Models20SemiBoldText"
+            style="@style/Models20BoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -47,7 +47,7 @@
             android:overScrollMode="never"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"

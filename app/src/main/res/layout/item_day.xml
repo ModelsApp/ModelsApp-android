@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:includeFontPadding="false"
         android:textAllCaps="true"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="T" />
@@ -22,7 +23,7 @@
     <FrameLayout
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="10dp">
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/itemDayValue"
             style="@style/Models16Text"
@@ -31,6 +32,7 @@
             android:layout_height="40dp"
             android:background="@drawable/item_day_selector"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/day_text_color"
             app:layout_constraintEnd_toEndOf="@+id/itemDayName"
