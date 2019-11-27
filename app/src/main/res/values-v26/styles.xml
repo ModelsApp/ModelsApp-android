@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseEditText" parent="Models14Text">
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
+    </style>
+
+</resources>

@@ -127,7 +127,7 @@
             android:layout_height="0dp">
             <EditText
                 android:id="@+id/et_email"
-                style="@style/Models14Text"
+                style="@style/BaseEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="12dp"
@@ -148,7 +148,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
             <EditText
                 android:id="@+id/et_password"
-                style="@style/Models14Text"
+                style="@style/BaseEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="12dp"
@@ -169,7 +169,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
             <EditText
                 android:id="@+id/et_confirm_password"
-                style="@style/Models14Text"
+                style="@style/BaseEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingEnd="12dp"
