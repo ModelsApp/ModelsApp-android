@@ -1,9 +1,16 @@
 package com.square.android.ui.fragment
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.location.Location
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.view.View
+import android.widget.CompoundButton
+import androidx.core.content.ContextCompat
+import com.afollestad.materialdialogs.MaterialDialog
 import com.mapbox.android.core.location.*
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.square.android.R
@@ -32,18 +39,48 @@ abstract class LocationFragment : BaseFragment(), LocationEngineCallback<Locatio
     }
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>) {
-        showMessage(R.string.permsission_needed)
+        showMessage(R.string.permission_needed)
     }
 
     private fun tryInitLocation() {
-        if (PermissionsManager.areLocationPermissionsGranted(context)) {
-            initLocation()
 
-            locationAllowed()
-        } else {
+        if(PermissionsManager.areLocationPermissionsGranted(activity)){
+            if(repository.getGeolocationAllowed()){
+                initLocation()
+
+                locationAllowed()
+            } else{
+                if(!repository.getLocationDontAsk()){
+                    showLocationDialog()
+                }
+            }
+
+        } else{
             permissionsManager = PermissionsManager(this)
             permissionsManager!!.requestLocationPermissions(this)
         }
+    }
+
+    private fun showLocationDialog() {
+        val dialog = MaterialDialog.Builder(activity!!)
+                .cancelable(true)
+                .content(R.string.permission_dialog_text)
+                .contentColor(ContextCompat.getColor(activity!!, android.R.color.black))
+                .title(R.string.location_permissions)
+                .positiveText(R.string.yes)
+                .positiveColor(ContextCompat.getColor(activity!!, R.color.nice_pink))
+                .negativeText(R.string.no)
+                .negativeColor(ContextCompat.getColor(activity!!, R.color.secondary_text))
+                .checkBoxPrompt(getString(R.string.dont_ask_again),false) { buttonView, isChecked -> repository.setLocationDontAsk(isChecked) }
+                .onPositive { dialog, which -> run{
+                    repository.setGeolocationAllowed(true)
+                    initLocation()
+                    locationAllowed()
+                } }
+                .onNegative { dialog, which -> dialog.dismiss() }
+                .build()
+
+        dialog.show()
     }
 
     override fun onPermissionResult(granted: Boolean) {

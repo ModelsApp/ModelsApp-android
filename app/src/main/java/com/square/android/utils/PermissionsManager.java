@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 
 import com.mapbox.android.core.permissions.PermissionsListener;
+import com.square.android.App;
+import com.square.android.data.local.LocalDataManager;
 
 import java.util.ArrayList;
 
@@ -50,6 +52,16 @@ public class PermissionsManager {
     public static boolean areLocationPermissionsGranted(Context context) {
         return isCoarseLocationPermissionGranted(context)
                 || isFineLocationPermissionGranted(context);
+    }
+
+    public static boolean areOwnLocationPermissionsGranted(Context context) {
+        LocalDataManager manager = new LocalDataManager(App.INSTANCE);
+
+        if(isCoarseLocationPermissionGranted(context) || isFineLocationPermissionGranted(context)){
+            return manager.getGeolocationAllowed();
+        } else{
+            return false;
+        }
     }
 
     public static boolean areRuntimePermissionsRequired() {
@@ -123,12 +135,21 @@ public class PermissionsManager {
             case REQUEST_PERMISSIONS_CODE:
                 if (listener != null) {
                     boolean granted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+
+                    for(String s: permissions){
+                        if(s.equals(FINE_LOCATION_PERMISSION) || s.equals(COARSE_LOCATION_PERMISSION)){
+                            LocalDataManager manager = new LocalDataManager(App.INSTANCE);
+                            manager.setGeolocationAllowed(granted);
+                            break;
+                        }
+                    }
+
                     listener.onPermissionResult(granted);
                 }
                 break;
             default:
-                // Ignored
         }
     }
+
 }
 

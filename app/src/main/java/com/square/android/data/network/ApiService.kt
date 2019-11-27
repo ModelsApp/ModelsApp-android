@@ -161,7 +161,7 @@ interface ApiService {
                   @Path("bookingId") bookingId: Long,
                   @Part("link") link: String,
                   @Part("actionType") actionType: String,
-                  @Part image: MultipartBody.Part) : Call<MessageResponse>
+                  @Part image: MultipartBody.Part?) : Call<MessageResponse>
 
 
     @GET("place/{id}/sample")

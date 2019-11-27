@@ -21,17 +21,21 @@ import com.square.android.utils.ValidationCallback
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import android.content.Intent
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.square.android.utils.PermissionsManager
 
 private const val GENDER_MALE = "male"
 private const val GENDER_FEMALE = "female"
 
-class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<CharSequence>, OnCountryPickerListener {
+class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<CharSequence>, OnCountryPickerListener, PermissionsListener {
     private var isDoneShown = false
 
     @InjectPresenter
     lateinit var presenter: EditProfilePresenter
 
     lateinit var countryPicker: CountryPicker
+
+    private var permissionsManager: PermissionsManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -102,7 +106,14 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
         }
     }
 
-    override fun showData(user: Profile.User, arePushNotificationsAllowed: Boolean, isGeolocationAllowed: Boolean) {
+    override fun showData(user: Profile.User, arePushNotificationsAllowed: Boolean) {
+        if(PermissionsManager.areLocationPermissionsGranted(activity!!)){
+            if(!repository.getLocationPermissionsOneTimeChecked()){
+                repository.setGeolocationAllowed(true)
+                repository.setLocationPermissionsOneTimeChecked(true)
+            }
+        }
+
         user.mainImage?.run {
             profileEditAvatar.loadImage(this, placeholder = R.color.colorPrimary,
                     roundedCornersRadiusPx = 100,
@@ -125,13 +136,33 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
         formEditDialFlag.visibility = View.GONE
 
         switchPushNotifi.isChecked = arePushNotificationsAllowed
-        switchAllowGeo.isChecked = isGeolocationAllowed
 
-        switchPushNotifi.setOnCheckedChangeListener { buttonView, isChecked -> presenter.setPushNotificationsAllowed(isChecked) }
-        switchAllowGeo.setOnCheckedChangeListener { buttonView, isChecked -> presenter.setGeolocationAllowed(isChecked) }
+        permissionsManager = PermissionsManager(this)
+
+        switchAllowGeo.isChecked = PermissionsManager.areOwnLocationPermissionsGranted(activity!!)
+
+        allowGeoClickView.setOnClickListener {
+            if(PermissionsManager.areLocationPermissionsGranted(activity!!)){
+                switchAllowGeo.isChecked = repository.getGeolocationAllowed().not()
+                repository.setGeolocationAllowed(repository.getGeolocationAllowed().not())
+            } else{
+//                val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+//                ActivityCompat.requestPermissions(activity!!, permissions, 1387)
+
+                permissionsManager!!.requestLocationPermissions(this)
+            }
+        }
+
+        switchPushNotifi.setOnCheckedChangeListener { buttonView, isChecked -> repository.setPushNotificationsAllowed(isChecked) }
 
         val genderButton = determineGenderButtonId(user.gender)
         genderButton.isChecked = true
+    }
+
+    override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) { }
+
+    override fun onPermissionResult(granted: Boolean) {
+            switchAllowGeo.isChecked = granted
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =

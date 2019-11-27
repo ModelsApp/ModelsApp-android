@@ -6,6 +6,6 @@ import com.square.android.presentation.view.ProgressView
 
 interface EditProfileView : ProgressView {
     fun showBirthday(date: String)
-    fun showData(user: Profile.User, arePushNotificationsAllowed: Boolean, isGeolocationAllowed: Boolean)
+    fun showData(user: Profile.User, arePushNotificationsAllowed: Boolean)
     fun displayNationality(country: Country?)
 }

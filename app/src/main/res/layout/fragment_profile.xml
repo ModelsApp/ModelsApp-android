@@ -210,9 +210,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:drawablePadding="24dp"
-                android:paddingTop="6dp"
+                android:paddingTop="8dp"
                 android:includeFontPadding="false"
-                android:paddingBottom="6dp"
+                android:paddingBottom="8dp"
                 android:text="@string/invite_button_text"
                 android:textColor="@color/white"
                 android:layout_weight="1" />

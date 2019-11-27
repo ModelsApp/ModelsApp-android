@@ -36,6 +36,9 @@ private const val KEY_ALLOW_PUSH_NOTIFICATIONS = "KEY_ALLOW_PUSH_NOTIFICATIONS"
 
 private const val KEY_ALLOW_GEOLOCATION = "KEY_ALLOW_GEOLOCATION"
 
+private const val KEY_LOCATION_DONT_ASK = "KEY_LOCATION_DONT_ASK"
+private const val KEY_LOCATION_ONE_TIME = "KEY_LOCATION_ONE_TIME"
+
 private const val DISPLAY_INTRO_DEFAULT = true
 private const val PROFILE_FILLED_DEFAULT = false
 private const val LOGGED_IN_DEFAULT = false
@@ -262,7 +265,27 @@ class LocalDataManager(context: Context) {
     }
 
     fun getGeolocationAllowed(): Boolean {
-        return preferences.getBoolean(KEY_ALLOW_GEOLOCATION, false)
+        return preferences.getBoolean(KEY_ALLOW_GEOLOCATION, true)
+    }
+
+    fun getLocationPermissionsOneTimeChecked(): Boolean {
+        return preferences.getBoolean(KEY_LOCATION_ONE_TIME, false)
+    }
+
+    fun setLocationPermissionsOneTimeChecked(checkedAlready: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_LOCATION_ONE_TIME, checkedAlready)
+                .apply()
+    }
+
+    fun getLocationDontAsk(): Boolean {
+        return preferences.getBoolean(KEY_LOCATION_DONT_ASK, false)
+    }
+
+    fun setLocationDontAsk(dontAsk: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_LOCATION_DONT_ASK, dontAsk)
+                .apply()
     }
 
     fun setPushNotificationsAllowed(allowed: Boolean) {

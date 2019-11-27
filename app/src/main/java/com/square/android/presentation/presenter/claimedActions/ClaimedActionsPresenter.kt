@@ -82,13 +82,13 @@ class ClaimedActionsPresenter: BasePresenter<ClaimedActionsView>() {
 
 //    fun addReview(index: Int, photo: ByteArray) =
 
-    fun addReview(index: Int, photo: ByteArray) =
+    fun addReview(index: Int, photo: ByteArray?) =
             launch ({
                 viewState.showLoadingDialog()
 
                 //TODO error: D/OkHttp: <-- HTTP FAILED: javax.net.ssl.SSLException: Write error: ssl=0x7b6ed76208: I/O error during system call, Broken pipe
                 //TODO changed ReviewInfo to link:String in api.addReview
-                var message = interactor.addReview(offerId, redemptionId, actions[index].type, photo).await()
+                val message = interactor.addReview(offerId, redemptionId, actions[index].type, photo).await()
 
                 println("JFKSIDFSK ClaimedActionsPresenter message:"+message)
 

@@ -31,6 +31,8 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
 
     private val eventBus: EventBus by inject()
 
+    private var withoutPhoto = false
+
     init {
         eventBus.register(this)
     }
@@ -112,6 +114,8 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
             } ?: run{ Toast.makeText(activity, getString(R.string.app_not_installed), Toast.LENGTH_SHORT).show()}
         }
 
+        withoutPhoto = action.type == TYPE_INSTAGRAM_STORY
+
         reviewPager.setCurrentItem(1,true)
     }
 
@@ -134,21 +138,24 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
     fun setUpPage(position: Int){
         when(position){
             0 -> {
+                reviewPager.visibility = View.VISIBLE
                 reviewDialogBack.visibility = View.GONE
                 reviewDialogClose.visibility =  View.VISIBLE
                 reviewBtnAction.isEnabled = true
             }
             1 -> {
-                reviewDialogClose.visibility = View.GONE
+                reviewDialogClose.visibility = if(withoutPhoto) View.VISIBLE else View.GONE
                 reviewDialogBack.visibility =  View.VISIBLE
-                reviewBtnAction.isEnabled = photo != null
+
+                reviewPager.visibility = if(withoutPhoto) View.INVISIBLE else View.VISIBLE
+                reviewBtnAction.isEnabled = withoutPhoto || photo != null
             }
         }
 
-        setBtnText()
+        setBtnTextAndAction()
     }
 
-    private fun setBtnText(){
+    private fun setBtnTextAndAction(){
         if(currentPagerPosition == 0){
 
 //TODO there will be more types - facebook review, facebook story etc
@@ -162,8 +169,11 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
                 else -> "TODO"
             }
         } else{
-
-            reviewBtnAction.text = if(fromClaimed) getString(R.string.send) else getString(R.string.accept)
+            if(withoutPhoto){
+                reviewBtnAction.text = getString(R.string.accept)
+            } else{
+                reviewBtnAction.text = if(fromClaimed) getString(R.string.send) else getString(R.string.accept)
+            }
         }
     }
 
@@ -184,7 +194,7 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
 
     interface Handler {
 //        fun sendClicked(index: Int, photo: ByteArray)
-        fun sendClicked(index: Int, photo: ByteArray, actionType:String)
+        fun sendClicked(index: Int, photo: ByteArray?, actionType:String)
     }
 
     override fun onDestroy() {

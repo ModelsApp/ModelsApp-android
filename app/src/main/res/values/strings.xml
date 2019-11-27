@@ -163,10 +163,14 @@
 
     <string name="shareContent">Join us: https://play.google.com/store/apps/details?id=com.squaremm.android\nReferral code: %s</string>
     <string name="hint_referral">Referral</string>
-    <string name="permsission_needed">We need location permissions to show places near to you!</string>
+    <string name="permission_needed">We need location permissions to show places near to you!</string>
     <string name="location_failed_message">Failed to get location</string>
     <string name="credits">Credits</string>
     <string name="credits_lowercase">credits</string>
+
+    <string name="location_permissions">Location permissions</string>
+    <string name="permission_dialog_text">We need location permissions to show places near to you. Do you want to allow Square to access your device\'s location?</string>
+    <string name="dont_ask_again">Don\'t ask again</string>
 
     <string name="dinner_plan">Dinner Plan</string>
     <string name="restaurant_location">Restaurant Location</string>

@@ -95,7 +95,7 @@ interface Repository {
     fun claimOffer(offerId: Long) : MessageResponse
 
 //    fun addReview(offerId: Long, bookingId: Long, link: String, actionId: String, imageBytes: ByteArray) : MessageResponse
-    fun addReview(offerId: Long, bookingId: Long, link: String, actionType: String, imageBytes: ByteArray) : MessageResponse
+    fun addReview(offerId: Long, bookingId: Long, link: String, actionType: String, imageBytes: ByteArray?) : MessageResponse
 
 
     fun getPlaceOffers(placeId: Long) : Deferred<List<OfferInfo>>
@@ -146,6 +146,14 @@ interface Repository {
     fun getPushNotificationsAllowed(): Boolean
 
     fun getGeolocationAllowed(): Boolean
+
+    fun getLocationDontAsk(): Boolean
+
+    fun setLocationDontAsk(dontAsk: Boolean)
+
+    fun getLocationPermissionsOneTimeChecked(): Boolean
+
+    fun setLocationPermissionsOneTimeChecked(checkedAlready: Boolean)
 
     fun setPushNotificationsAllowed(allowed: Boolean)
 

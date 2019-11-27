@@ -6,7 +6,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
 class ReviewInteractorImpl(private val repository: Repository) : ReviewInteractor {
-    override fun addReview(offerId: Long, bookingId: Long, actionId: String, photo: ByteArray) = GlobalScope.async {
+    override fun addReview(offerId: Long, bookingId: Long, actionId: String, photo: ByteArray?) = GlobalScope.async {
         val link = repository.getUserInfo().socialLink
 
         repository.addReview(offerId, bookingId,if(link.isNullOrEmpty()) "" else link, actionId, photo)

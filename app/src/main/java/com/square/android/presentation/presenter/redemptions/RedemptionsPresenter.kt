@@ -111,12 +111,12 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
             return
         }
 
-        //TODO IMPORTANT - uncomment later
-//        if (lastLocation == null) {
-//            viewState.showMessage(R.string.cannot_obtain_location)
-//            return
-//        }
-//
+        if (lastLocation == null) {
+            viewState.showMessage(R.string.cannot_obtain_location)
+            return
+        }
+
+        //TODO IMPORTANT - no place.location in RedemptionInfo
 //        val distance = lastLocation!!.distanceTo(item.place.location)
 //
 //        if (distance > MAXIMAL_DISTANCE) {

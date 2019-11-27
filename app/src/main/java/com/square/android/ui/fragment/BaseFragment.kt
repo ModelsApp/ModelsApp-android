@@ -29,7 +29,7 @@ abstract class BaseFragment : MvpFragment(), BaseView {
     protected open val tutorial: Tutorial? = null
 
     private val eventBus: EventBus by inject()
-    private val repository: Repository by inject()
+    val repository: Repository by inject()
 
     private fun checkDrawOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -34,8 +34,6 @@ class ReviewPresenter(private val offerId: Long,
     private fun loadData() = launch {
         viewState.showProgress()
 
-        println("JFKSIDFSK ReviewPresenter offerId: "+offerId.toString()+" , redemptionId: "+redemptionId)
-
         actions = repository.getActions(offerId, redemptionId).await().toMutableList()
 
         //TODO no subActions for now, action picture will not be working without them
@@ -104,7 +102,7 @@ class ReviewPresenter(private val offerId: Long,
 //        viewState.changeSelection(index)
 //    }
 
-    fun addAction(index: Int, photo: ByteArray, actionType: String){
+    fun addAction(index: Int, photo: ByteArray?, actionType: String){
         if(filledActions.isEmpty()){
             viewState.showButton()
         }
@@ -120,8 +118,12 @@ class ReviewPresenter(private val offerId: Long,
         //TODO error: D/OkHttp: <-- HTTP FAILED: javax.net.ssl.SSLException: Write error: ssl=0x7b6ed76208: I/O error during system call, Broken pipe
         //TODO changed ReviewInfo to link:String in api.addReview
         for(filledAction in filledActions){
-            filledAction.photo?.let {
-                interactor.addReview(offerId, redemptionId, filledAction.type, it).await()
+            if(filledAction.type == TYPE_INSTAGRAM_STORY){
+                 interactor.addReview(offerId, redemptionId, filledAction.type, filledAction.photo).await()
+            } else{
+                filledAction.photo?.let {
+                    interactor.addReview(offerId, redemptionId, filledAction.type, it).await()
+                }
             }
         }
 

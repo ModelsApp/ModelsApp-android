@@ -171,13 +171,16 @@ class ActualRepository(private val api: ApiService,
 //
 //        api.addReview(localManager.getAuthToken(), offerId, offerId, link, actionId, body)
 //    }
-    override fun addReview(offerId: Long, bookingId: Long, link: String, actionType: String, imageBytes: ByteArray) = performRequest {
+    override fun addReview(offerId: Long, bookingId: Long, link: String, actionType: String, imageBytes: ByteArray?) = performRequest {
+    var body: MultipartBody.Part? = null
+
+    imageBytes?.let {
         val requestFile = RequestBody.create(
                 MediaType.parse("image/*"),
-                imageBytes
+                it
         )
-        val body = MultipartBody.Part.createFormData("images", "", requestFile)
-
+        body = MultipartBody.Part.createFormData("images", "", requestFile)
+    }
         api.addReview(localManager.getAuthToken(), offerId, offerId, link, actionType, body)
     }
 
@@ -424,6 +427,18 @@ class ActualRepository(private val api: ApiService,
     override fun getPushNotificationsAllowed(): Boolean = localManager.getPushNotificationsAllowed()
 
     override fun getGeolocationAllowed(): Boolean = localManager.getGeolocationAllowed()
+
+    override fun getLocationDontAsk(): Boolean = localManager.getLocationDontAsk()
+
+    override fun setLocationDontAsk(dontAsk: Boolean) {
+        localManager.setLocationDontAsk(dontAsk)
+    }
+
+    override fun getLocationPermissionsOneTimeChecked(): Boolean = localManager.getLocationPermissionsOneTimeChecked()
+
+    override fun setLocationPermissionsOneTimeChecked(checkedAlready: Boolean) {
+        localManager.setLocationPermissionsOneTimeChecked(checkedAlready)
+    }
 
     override fun setPushNotificationsAllowed(allowed: Boolean) {
         localManager.setPushNotificationsAllowed(allowed)

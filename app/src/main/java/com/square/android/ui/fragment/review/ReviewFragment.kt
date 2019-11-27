@@ -145,7 +145,7 @@ class ReviewFragment : BaseFragment(), ReviewView, ReviewAdapter.Handler, Review
 //       presenter.addAction(index, photo)
 //    }
 
-    override fun sendClicked(index: Int, photo: ByteArray, actionType: String) {
+    override fun sendClicked(index: Int, photo: ByteArray?, actionType: String) {
         presenter.addAction(index, photo, actionType)
     }
 
