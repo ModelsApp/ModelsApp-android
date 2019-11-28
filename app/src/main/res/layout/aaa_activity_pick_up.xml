@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rounded_background_white" >
+    android:background="@android:color/white" >
 
 <ImageView
     android:id="@+id/backArrow"
@@ -266,13 +266,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/howToLl" />
 
+<!-- TODO remember to set pickupPager.isPagingEnabled = false -->
     <com.square.android.utils.widget.PagingViewPager
         android:id="@+id/pickup_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:overScrollMode="never"
         android:scrollbars="none"
-        tools:background="@color/nice_pink_alpha_10"
         app:layout_constraintBottom_toTopOf="@+id/bottomCl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

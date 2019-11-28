@@ -142,7 +142,7 @@
                     style="@style/Models16Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/color" />
+                    android:text="@string/color_" />
 
                 <TextView
                     android:id="@+id/chatCarColor"
