@@ -17,6 +17,7 @@ import com.square.android.ui.base.tutorial.TutorialService
 import com.square.android.ui.base.tutorial.TutorialStep
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.map.MarginItemDecorator
+import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
 import kotlinx.android.synthetic.main.fragment_offers_list.*
 import org.jetbrains.anko.bundleOf
 
@@ -24,10 +25,10 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
 
     companion object {
         @Suppress("DEPRECATION")
-        fun newInstance(offerId: Long): OffersListFragment {
+        fun newInstance(redemptionId: Long): OffersListFragment {
             val fragment = OffersListFragment()
 
-            val args = bundleOf(OFFER_EXTRA_ID to offerId)
+            val args = bundleOf(EXTRA_REDEMPTION_ID to redemptionId)
             fragment.arguments = args
 
             return fragment
@@ -38,7 +39,7 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
     lateinit var presenter: OffersListPresenter
 
     @ProvidePresenter
-    fun providePresenter(): OffersListPresenter = OffersListPresenter( arguments?.getLong(OFFER_EXTRA_ID,0) ?: 0)
+    fun providePresenter(): OffersListPresenter = OffersListPresenter( arguments?.getLong(EXTRA_REDEMPTION_ID,0) ?: 0)
 
     private var adapter: OffersListAdapter? = null
 

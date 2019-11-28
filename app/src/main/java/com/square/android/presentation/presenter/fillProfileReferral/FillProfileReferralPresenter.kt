@@ -23,7 +23,7 @@ class FillProfileReferralPresenter(
     }
 
     fun skipClicked() {
-        info.referral = ""
+        info.referral = null
 
         finishRegistration()
     }
@@ -32,10 +32,13 @@ class FillProfileReferralPresenter(
         launch({
             viewState.showProgress()
 
-            val response = repository.fillProfile(info).await()
+            val images = info.images?.toMutableList()
+
+            info.images = null
+            val response = repository.fillProfile(info.apply { email = null }).await()
 
             val userId = repository.getUserId()
-            info.images?.forEach {
+            images?.forEach {
                 repository.addPhoto(userId, it).await()
             }
 

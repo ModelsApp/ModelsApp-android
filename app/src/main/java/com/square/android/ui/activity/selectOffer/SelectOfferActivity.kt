@@ -17,6 +17,7 @@ import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.fragment.review.ReviewExtras
 import com.square.android.ui.fragment.checkIn.CheckInFragment
 import com.square.android.ui.fragment.offersList.OffersListFragment
+import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
 import com.square.android.ui.fragment.review.ReviewFragment
 import kotlinx.android.synthetic.main.activity_select_offer.*
 import ru.terrakok.cicerone.Navigator
@@ -31,7 +32,7 @@ class SelectOfferActivity: BaseActivity(), SelectOfferView {
     lateinit var presenter: SelectOfferPresenter
 
     @ProvidePresenter
-    fun providePresenter() = SelectOfferPresenter(intent.getLongExtra(OFFER_EXTRA_ID,0))
+    fun providePresenter() = SelectOfferPresenter(intent.getLongExtra(EXTRA_REDEMPTION_ID,0))
 
     private var currentStep = 1
 

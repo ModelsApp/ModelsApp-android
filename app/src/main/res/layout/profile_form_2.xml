@@ -74,6 +74,7 @@
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:visibility="gone"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -119,6 +120,7 @@
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:visibility="gone"
         android:orientation="vertical" >
 
         <LinearLayout

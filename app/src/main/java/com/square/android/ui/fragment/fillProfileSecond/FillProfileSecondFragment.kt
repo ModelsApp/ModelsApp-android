@@ -27,10 +27,10 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
     override fun showData(profileInfo: ProfileInfo) {
         form.formProfileMotherAgency.setText(profileInfo.motherAgency)
 
-        if(!TextUtils.isEmpty(profileInfo.city1)){
-            form.formProfileCity1.text = profileInfo.city1
+        if(!TextUtils.isEmpty(profileInfo.city)){
+            form.formProfileCity1.text = profileInfo.city
         }
-        form.formProfileAgency1.setText(profileInfo.agency1)
+        form.formProfileAgency1.setText(profileInfo.agency)
 
         if(!TextUtils.isEmpty(profileInfo.city2)){
             form.formProfileCity2.text = profileInfo.city2
@@ -223,23 +223,23 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
             profileInfo.motherAgency = form.formProfileMotherAgency.content
         }
 
-        if(isValid(form.formProfileCity1.content)){
-            profileInfo.city1 = form.formProfileCity1.content
-        }
-
-        if(isValid(form.formProfileAgency1.content)){
-            profileInfo.agency1 = form.formProfileAgency1.content
-        }
-
-        if(isValid(form.formProfileAgency2.content) && isValid(form.formProfileCity2.content)){
-            profileInfo.city2 = form.formProfileCity2.content
-            profileInfo.agency2 = form.formProfileAgency2.content
-        }
-
-        if(isValid(form.formProfileAgency3.content) && isValid(form.formProfileCity3.content)){
-            profileInfo.city3 = form.formProfileCity3.content
-            profileInfo.agency3 = form.formProfileAgency3.content
-        }
+//        if(isValid(form.formProfileCity1.content)){
+//            profileInfo.city = form.formProfileCity1.content
+//        }
+//
+//        if(isValid(form.formProfileAgency1.content)){
+//            profileInfo.agency = form.formProfileAgency1.content
+//        }
+//
+//        if(isValid(form.formProfileAgency2.content) && isValid(form.formProfileCity2.content)){
+//            profileInfo.city2 = form.formProfileCity2.content
+//            profileInfo.agency2 = form.formProfileAgency2.content
+//        }
+//
+//        if(isValid(form.formProfileAgency3.content) && isValid(form.formProfileCity3.content)){
+//            profileInfo.city3 = form.formProfileCity3.content
+//            profileInfo.agency3 = form.formProfileAgency3.content
+//        }
 
         presenter.saveState(profileInfo, 2)
 

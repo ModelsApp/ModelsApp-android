@@ -154,15 +154,14 @@ interface ApiService {
 //                  @Part("actionId") actionId: String,
 //                  @Part image: MultipartBody.Part) : Call<MessageResponse>
 
-    @POST("v2/offer/{id}/booking/{bookingId}/post")
+    @POST("v2/offer/booking")
     @Multipart
     fun addReview(@Header("Authorization") authorization: String,
-                  @Path("id") offerId: Long,
-                  @Path("bookingId") bookingId: Long,
+                  @Part("offerId") offerId: Long,
+                  @Part("bookingId") bookingId: Long,
                   @Part("link") link: String,
-                  @Part("actionType") actionType: String,
+                  @Part("actionType") actionId: String,
                   @Part image: MultipartBody.Part?) : Call<MessageResponse>
-
 
     @GET("place/{id}/sample")
     fun getFeedbackBody(@Path("id") id: Long) : Call<MessageResponse>
@@ -203,6 +202,7 @@ interface ApiService {
     @PUT("user/{id}/device")
     fun sendFcmToken(@Path("id") userId: Long,
                      @Body fcmTokenData: FcmTokenData) : Call<MessageResponse>
+
 
     @GET("user/paymentToken")
     fun getPaymentTokens(@Header("Authorization") authorization: String): Call<List<BillingTokenInfo>>

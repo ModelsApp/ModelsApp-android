@@ -45,7 +45,7 @@ class FillProfileFirstPresenter(val info: ProfileInfo) : BasePresenter<FillProfi
     }
 
     fun genderSelected(gender: String) {
-        info.gender = gender
+        info.gender = gender.toLowerCase()
         viewState.displayGender(gender)
     }
 }

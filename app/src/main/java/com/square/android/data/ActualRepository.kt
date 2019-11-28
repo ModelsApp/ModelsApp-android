@@ -1,5 +1,6 @@
 package com.square.android.data
 
+import android.util.Log
 import com.square.android.SOCIAL
 import com.square.android.data.local.LocalDataManager
 import com.square.android.data.network.ApiService
@@ -172,16 +173,17 @@ class ActualRepository(private val api: ApiService,
 //        api.addReview(localManager.getAuthToken(), offerId, offerId, link, actionId, body)
 //    }
     override fun addReview(offerId: Long, bookingId: Long, link: String, actionType: String, imageBytes: ByteArray?) = performRequest {
-    var body: MultipartBody.Part? = null
+        var body: MultipartBody.Part? = null
 
-    imageBytes?.let {
-        val requestFile = RequestBody.create(
-                MediaType.parse("image/*"),
-                it
-        )
-        body = MultipartBody.Part.createFormData("images", "", requestFile)
-    }
-        api.addReview(localManager.getAuthToken(), offerId, offerId, link, actionType, body)
+        imageBytes?.let {
+            val requestFile = RequestBody.create(
+                    MediaType.parse("image/*"),
+                    it
+            )
+            body = MultipartBody.Part.createFormData("images", "", requestFile)
+        }
+        Log.e("LOL", actionType + " OFFER ID:" + offerId + " BOOKING ID:" + bookingId + " " + body.toString())
+        api.addReview(localManager.getAuthToken(), offerId, bookingId, link, actionType, body)
     }
 
     override fun claimOffer(offerId: Long) = performRequest {
@@ -318,7 +320,7 @@ class ActualRepository(private val api: ApiService,
     }
 
     override fun fillProfile(info: ProfileInfo): Deferred<MessageResponse> = GlobalScope.async {
-        val data = performRequestCheckingMessage { api.editProfile(info) }
+        val data = performRequestCheckingMessage { api.editProfile(info.apply { gender = gender.toLowerCase() }) }
 
         data
     }

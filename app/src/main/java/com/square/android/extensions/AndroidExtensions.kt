@@ -269,18 +269,16 @@ fun Location.distanceTo(location: com.square.android.data.pojo.Location): Float 
 }
 
 fun Uri.toBytes(context: Context): ByteArray? {
-    val inputStream = context.contentResolver.openInputStream(this)?.run {
+    return context.contentResolver.openInputStream(this)?.let {
         val byteBuffer = ByteArrayOutputStream()
         val bufferSize = 1024
         val buffer = ByteArray(bufferSize)
 
-        var len = read(buffer)
+        var len = it.read(buffer)
         while (len != -1) {
             byteBuffer.write(buffer, 0, len)
-            len = read(buffer)
+            len = it.read(buffer)
         }
-        return byteBuffer.toByteArray()
+        return@let byteBuffer.toByteArray()
     }
-
-    return null
 }

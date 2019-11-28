@@ -46,6 +46,7 @@ import com.square.android.ui.fragment.campaigns.CampaignsFragment
 import com.square.android.ui.fragment.places.PlacesFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.redemptions.RedemptionsFragment
+import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
 import com.square.android.utils.DialogDepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.notifications_badge.*
@@ -166,7 +167,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<StartActivity>()
 
                     SCREENS.SELECT_OFFER ->
-                        context.intentFor<SelectOfferActivity>(OFFER_EXTRA_ID to data as Long)
+                        context.intentFor<SelectOfferActivity>(EXTRA_REDEMPTION_ID to data as Long)
 
                     SCREENS.EVENT ->{
                         val extras = data as EventExtras

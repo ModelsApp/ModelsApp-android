@@ -6,7 +6,7 @@ import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.selectOffer.SelectOfferView
 
 @InjectViewState
-class SelectOfferPresenter(redemptionId: Long) : BasePresenter<SelectOfferView>() {
+class SelectOfferPresenter(val redemptionId: Long) : BasePresenter<SelectOfferView>() {
 
     init {
         router.replaceScreen(SCREENS.OFFERS_LIST, redemptionId)

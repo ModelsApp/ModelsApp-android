@@ -28,8 +28,8 @@ class FillProfileSecondPresenter(val info: ProfileInfo) : BasePresenter<FillProf
 
     fun nextClicked(motherAgency: String, city1: String, agency1: String, city2: String, agency2: String, city3: String, agency3: String) {
         info.motherAgency = motherAgency
-        info.city1 = city1
-        info.agency1 = agency1
+        info.city = city1
+        info.agency = agency1
         info.city2 = city2
         info.agency2 = agency2
         info.city3 = city3
