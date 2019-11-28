@@ -12,6 +12,8 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.koin.standalone.inject
 
+class CityLocateEvent(val data: LatLng)
+
 @InjectViewState
 class MapPresenter(var data: MutableList<Place>): BasePresenter<MapView>() {
 
@@ -29,6 +31,11 @@ class MapPresenter(var data: MutableList<Place>): BasePresenter<MapView>() {
 
     init {
         eventBus.register(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onCityLocateEvent(event: CityLocateEvent) {
+        viewState.locateCity(event.data)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

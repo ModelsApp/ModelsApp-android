@@ -1,5 +1,6 @@
 package com.square.android.presentation.presenter.editProfile
 
+import android.text.TextUtils
 import com.arellomobile.mvp.InjectViewState
 import com.mukesh.countrypicker.Country
 import com.square.android.SCREENS
@@ -38,6 +39,18 @@ class EditProfilePresenter : BasePresenter<EditProfileView>() {
     fun save(profileInfo: ProfileInfo) {
         launch {
             viewState.showProgress()
+
+            if(TextUtils.isEmpty(profileInfo.instagramName)){
+                profileInfo.instagramName = "???"
+            }
+
+            if(TextUtils.isEmpty(profileInfo.referral)){
+                if(TextUtils.isEmpty(user!!.referralCode)){
+                    profileInfo.referral = "0000"
+                } else{
+                    profileInfo.referral = user!!.referralCode
+                }
+            }
 
             val result = repository.fillProfile(profileInfo).await()
 

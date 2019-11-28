@@ -7,6 +7,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.BasePresenter
+import com.square.android.presentation.presenter.map.CityLocateEvent
 import com.square.android.presentation.presenter.placesList.PlacesUpdatedEvent
 import com.square.android.presentation.view.places.PlacesView
 import com.square.android.ui.activity.event.EventExtras
@@ -179,6 +180,8 @@ class PlacesPresenter : BasePresenter<PlacesView>() {
 
         selectedCity = c
 
+        naviateToCity(c.name)
+
         data = repository.getPlacesByFilters(PlaceData().apply {
             date = actualDates[0]
             city = selectedCity!!.name
@@ -195,6 +198,17 @@ class PlacesPresenter : BasePresenter<PlacesView>() {
         distancesFilled = false
 
         checkFilters()
+    }
+
+    private fun naviateToCity(cityname: String){
+        //TODO hardcoded, change later
+        val latLng: LatLng = when(cityname.toUpperCase(Locale.ENGLISH)){
+            "MILAN" -> LatLng(45.464664, 9.188540)
+            "LONDON" -> LatLng(51.509865, -0.118092)
+            "BUDAPEST" -> LatLng(47.497913, 19.040236)
+            else -> LatLng(0.0, 0.0)
+        }
+        eventBus.post(CityLocateEvent(latLng))
     }
 
     private fun sendData(isActual: Boolean, updateDistances: Boolean = false){

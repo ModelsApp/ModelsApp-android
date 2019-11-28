@@ -25,6 +25,9 @@ import com.square.android.extensions.getBitmap
 private const val LOCATION_ZOOM_LEVEL = 14.0
 private const val LOCATION_ZOOM_ANIMATION = 3000L
 
+private const val CITY_ZOOM_LEVEL = 10.0
+private const val CITY_ZOOM_ANIMATION = 500L
+
 @Suppress("DEPRECATION")
 abstract class BaseMapFragment : LocationFragment() {
     protected lateinit var mapView: MapView
@@ -145,6 +148,19 @@ abstract class BaseMapFragment : LocationFragment() {
         val update = CameraUpdateFactory.newCameraPosition(cameraPosition)
 
         mapboxMap?.animateCamera(update, LOCATION_ZOOM_ANIMATION)
+    }
+
+    protected fun centerOnCity(location: LatLng) {
+        val cameraPosition = CameraPosition.Builder()
+                .target(location)
+                .zoom(CITY_ZOOM_LEVEL)
+                .tilt(0.0)
+                .bearing(0.0)
+                .build()
+
+        val update = CameraUpdateFactory.newCameraPosition(cameraPosition)
+
+        mapboxMap?.animateCamera(update, CITY_ZOOM_ANIMATION)
     }
 
     override fun onStart() {

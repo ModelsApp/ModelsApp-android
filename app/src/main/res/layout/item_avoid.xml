@@ -8,16 +8,16 @@
 
     <ImageView
         android:id="@+id/itemAvoidImg"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_circle_no"
         android:tint="@color/status_red" />
 
     <TextView
         android:id="@+id/itemAvoidText"
-        style="@style/Models15Text"
+        style="@style/Models14Text"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="3.5dp"
+        android:layout_marginTop="1.5dp"
         android:includeFontPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

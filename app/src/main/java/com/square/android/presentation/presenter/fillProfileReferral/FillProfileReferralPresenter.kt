@@ -35,7 +35,7 @@ class FillProfileReferralPresenter(
             val images = info.images?.toMutableList()
 
             info.images = null
-            val response = repository.fillProfile(info.apply { email = null }).await()
+            val response = repository.fillProfile(info.apply { }).await()
 
             val userId = repository.getUserId()
             images?.forEach {

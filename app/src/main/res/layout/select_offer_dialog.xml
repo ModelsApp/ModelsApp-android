@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/offerDialogName"
-            style="@style/Models24SemiBoldText"
+            style="@style/Models18SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -56,7 +56,7 @@
             android:overScrollMode="never" >
             <TextView
                 android:id="@+id/offerDialogComponents"
-                style="@style/Models18Text"
+                style="@style/Models15Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -73,13 +73,13 @@
             app:layout_constraintTop_toTopOf="@+id/offerDialogName" >
             <TextView
                 android:id="@+id/offerDialogCredits"
-                style="@style/Models18SemiBoldText"
+                style="@style/Models16SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/placesPrimary"
                 tools:text="50" />
             <TextView
-                style="@style/Models18Text"
+                style="@style/Models16Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/placesPrimary"

@@ -14,17 +14,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="24dp"
-        android:paddingEnd="32dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:id="@+id/reviewContainer"
         android:background="@drawable/review_bg_color"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp" >
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" >
 
         <ImageView
             android:id="@+id/reviewItemLogo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:cropToPadding="false"
@@ -36,11 +36,11 @@
 
         <CheckedTextView
             android:id="@+id/reviewItemTitle"
-            style="@style/Models18SemiBoldText"
+            style="@style/Models16SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="16dp"
             android:includeFontPadding="false"
             android:textColor="@color/checked_black_transc"
             android:maxLines="3"
@@ -58,7 +58,7 @@
             android:id="@+id/reviewDivider"
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="20dp"
             android:background="@color/gray_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/reviewLl"
@@ -76,7 +76,7 @@
 
             <CheckedTextView
                 android:id="@+id/reviewItemCoins"
-                style="@style/Models20SemiBoldText"
+                style="@style/Models18SemiBoldText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -90,7 +90,7 @@
 
             <CheckedTextView
                 android:id="@+id/reviewItemCreditsLabel"
-                style="@style/Models14Text"
+                style="@style/Models12Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

@@ -61,7 +61,7 @@
 
             <TextView
                 android:id="@+id/couponPersonName"
-                style="@style/Models22SemiBoldText"
+                style="@style/Models20SemiBoldText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -108,7 +108,7 @@
                 android:overScrollMode="never" >
                 <TextView
                     android:id="@+id/couponComponents"
-                    style="@style/Models20Text"
+                    style="@style/Models16Text"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="12dp"
                     android:background="@android:color/white"
@@ -149,7 +149,7 @@
 
                 <TextView
                     android:id="@+id/couponPlaceName"
-                    style="@style/Models18SemiBoldText"
+                    style="@style/Models16SemiBoldText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -159,7 +159,7 @@
 
                 <TextView
                     android:id="@+id/couponPlaceAddress"
-                    style="@style/Models14Text"
+                    style="@style/Models12Text"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
 
                 <TextView
                     android:id="@+id/couponPlaceDate"
-                    style="@style/Models14SemiBoldText"
+                    style="@style/Models12SemiBoldText"
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

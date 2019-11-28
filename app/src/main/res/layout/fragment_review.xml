@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/reviewSend"
-        style="@style/Models18Text"
+        style="@style/Models16Text"
         android:textColor="@color/nice_pink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
 
     <TextView
         android:id="@+id/reviewSkip"
-        style="@style/Models18Text"
+        style="@style/Models16Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"

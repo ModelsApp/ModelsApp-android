@@ -31,9 +31,13 @@
 
         <TextView
             android:id="@+id/placeInfoTitle"
-            style="@style/Models16BoldText"
+            style="@style/Models15BoldText"
             android:layout_width="0dp"
             android:includeFontPadding="false"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
@@ -41,11 +45,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/placeInfoImage"
             app:layout_constraintEnd_toStartOf="@+id/placeDistance"
-            tools:text="Bar&amp;Grill 108" />
+            tools:text="Bar&amp;Grill" />
 
         <TextView
             android:id="@+id/placeDistance"
-            style="@style/Models13Text"
+            style="@style/Models12Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -57,14 +61,14 @@
 
         <TextView
             android:id="@+id/placeInfoAddress"
-            style="@style/Models13Text"
+            style="@style/Models11Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:maxLines="1"
             android:ellipsize="end"
             android:layout_marginEnd="16dp"
             android:includeFontPadding="false"
-            android:maxLines="1"
             android:textColor="@color/secondary_text"
             app:layout_constraintEnd_toStartOf="@+id/placeExtrasRv"
             app:layout_constraintStart_toStartOf="@+id/placeInfoTitle"

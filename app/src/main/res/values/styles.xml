@@ -144,6 +144,10 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="Models11Text" parent="ModelsText">
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <style name="Models12Text" parent="ModelsText">
         <item name="android:textSize">12sp</item>
     </style>

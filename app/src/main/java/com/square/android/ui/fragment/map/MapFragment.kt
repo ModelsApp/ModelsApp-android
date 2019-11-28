@@ -17,7 +17,6 @@ import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.geometry.LatLng
-import com.square.android.R
 import com.square.android.data.pojo.Place
 import com.square.android.extensions.asDistance
 import com.square.android.extensions.loadFirstOrPlaceholder
@@ -28,6 +27,7 @@ import com.square.android.ui.fragment.BaseMapFragment
 import com.square.android.ui.fragment.placesList.PlaceExtrasAdapter
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.place_map.view.*
+import com.square.android.R
 
 class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, PermissionsListener, LocationEngineCallback<LocationEngineResult> {
 
@@ -36,6 +36,8 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 
     @ProvidePresenter
     fun providePresenter() = MapPresenter(data)
+
+    var alreadyLocated = false
 
     private var previousMarker : Marker? = null
 
@@ -48,6 +50,10 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 
     override fun locate(location: LatLng) {
         centerOn(location)
+    }
+
+    override fun locateCity(location: LatLng) {
+        centerOnCity(location)
     }
 
     override fun mapReady() {

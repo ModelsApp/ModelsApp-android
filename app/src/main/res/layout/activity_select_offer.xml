@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/selectOfferTitle"
-        style="@style/Models22SemiBoldText"
+        style="@style/Models20SemiBoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,8 +19,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="@string/select_offer_title"
-        android:textAllCaps="true"
-        android:textColor="@color/nice_pink"
         app:layout_constraintEnd_toStartOf="@+id/selectOfferHoursLl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

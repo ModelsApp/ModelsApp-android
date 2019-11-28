@@ -127,7 +127,6 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
         setNationality(user.nationality)
 
         formEditProfileMotherAgency.content = user.motherAgency
-        formEditProfileEmail.content = user.email
         formEditProfilePhone.content = user.phone
 
         profileEditCoins.text = getString(R.string.credits_format, user.credits)
@@ -190,10 +189,10 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
 
     private fun setUpValidation() {
         val validateList = listOf(
-                formEditProfileName, formEditProfileSurname,
+                formEditProfileName,
+                formEditProfileSurname,
                 formEditProfileNationality,
-
-                formEditProfileEmail, formEditProfilePhone,
+                formEditProfilePhone,
                 formEditProfileMotherAgency
         )
 
@@ -228,7 +227,7 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
 
         val nationality = formEditProfileNationality.content
 
-        val email = formEditProfileEmail.content
+//        val email = formEditProfileEmail.content
         val phone = formEditDialCode.content + formEditProfilePhone.content
         val motherAgency = formEditProfileMotherAgency.content
 
@@ -236,7 +235,7 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
                 name = name,
                 surname = surname,
                 gender = gender,
-                email = email,
+//                email = email,
                 phone = phone,
                 motherAgency = motherAgency,
                 nationality = nationality,

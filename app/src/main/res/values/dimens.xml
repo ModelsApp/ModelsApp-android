@@ -18,11 +18,21 @@
     <dimen name="customBtnPaddingEnd">78dp</dimen>
 
     <dimen name="ac_place_default_margin">20dp</dimen>
-    <dimen name="toolbar_image_height">220dp</dimen>
-    <dimen name="toolbar_extra_space">40dp</dimen>
-    <dimen name="toolbarHeight">56dp</dimen>
+
+<!--  was 220dp  -->
+    <dimen name="toolbar_image_height">262dp</dimen>
+
+<!--  was 40dp  -->
+    <dimen name="toolbar_extra_space">28dp</dimen>
+
+<!--  was 56dp  -->
+    <dimen name="toolbarHeight">48dp</dimen>
+
     <dimen name="statusMargin">32dp</dimen>
-    <dimen name="backArrowSize">28dp</dimen>
+
+<!--  was 28  -->
+    <dimen name="backArrowSize">24dp</dimen>
+
     <dimen name="backArrowMarginStart">20dp</dimen>
 
     <dimen name="value_128dp">128dp</dimen>

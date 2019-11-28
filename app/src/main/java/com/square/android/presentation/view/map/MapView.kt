@@ -15,4 +15,5 @@ interface MapView : BaseView {
     fun updateCurrentInfoDistance(distance: Int?)
     fun hideInfo()
     fun locate(location: LatLng)
+    fun locateCity(location: LatLng)
 }
