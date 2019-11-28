@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activity.main.MainActivity">
+    tools:context=".ui.activity.main.MainActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,8 +51,7 @@
             android:layout_width="180dp"
             android:layout_height="180dp" />
         <TextView
-            style="@style/Models18Text"
-            android:textStyle="bold"
+            style="@style/Models18SemiBoldText"
             android:text="@string/thank_you_for_interest"
             android:gravity="center"
             android:layout_marginTop="12dp"
@@ -99,6 +98,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

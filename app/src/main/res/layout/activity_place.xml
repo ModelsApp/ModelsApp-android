@@ -172,7 +172,7 @@
                             android:id="@+id/placeAboutCl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:visibility="visible"
+                            tools:visibility="gone"
                             android:clipChildren="false"
                             android:clipToPadding="false" >
 

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:overScrollMode="never" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingStart="24dp"
+        tools:background="@android:color/white"
+        android:paddingEnd="24dp" >
+
+        <TextView
+            android:id="@+id/confirmLabel"
+            style="@style/Models16SemiBoldText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelSpinner"
+            style="@style/NewInputSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/label" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.square.android.utils.widget.ErrorEditText
+                android:id="@+id/nameEt"
+                style="@style/NewInputField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:hint="@string/hint_name"
+                android:layout_marginEnd="10dp"
+                android:inputType="textPersonName|textCapSentences" />
+
+            <com.square.android.utils.widget.ErrorEditText
+                android:id="@+id/surnameEt"
+                style="@style/NewInputField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_marginStart="10dp"
+                android:hint="@string/hint_surname"
+                android:inputType="textPersonName|textCapSentences" />
+        </LinearLayout>
+
+        <com.square.android.utils.widget.ErrorEditText
+            android:id="@+id/addressEt"
+            style="@style/NewInputField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_address"
+            android:inputType="textPersonName|textCapSentences" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.square.android.utils.widget.ErrorEditText
+                android:id="@+id/zipCodeEt"
+                style="@style/NewInputField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:hint="@string/zip_code"
+                android:layout_marginEnd="10dp"
+                android:inputType="textPersonName|textCapSentences" />
+
+            <com.square.android.utils.widget.ErrorEditText
+                android:id="@+id/cityEt"
+                style="@style/NewInputField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_marginStart="10dp"
+                android:hint="@string/city"
+                android:inputType="textPersonName|textCapSentences" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/countrySpinner"
+            style="@style/NewInputSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/country" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -157,6 +157,20 @@
 
     <string name="credits_plus_format">+ %d credits</string>
 
+    <string name="select_pick_up_location">Select the pick up location</string>
+    <string name="confirm_product_details">Confirm product details</string>
+    <string name="color">Color</string>
+    <string name="size">Size</string>
+    <string name="address">Address</string>
+    <string name="label">Label</string>
+    <string name="country">Country</string>
+    <string name="hint_address">Address</string>
+    <string name="zip_code">Zip code</string>
+    <string name="where_to_find">Where to find</string>
+    <string name="available_discount">Available discount</string>
+    <string name="discount_code_">Discount code:</string>
+    <string name="no_discount">No discount</string>
+
     <string name="error_occurred">An error occurred!</string>
     <string name="subscription_status_cannot_obtained">Your subscription status\ncan not be obtained</string>
     <string name="check_internet_connection">Please check your internet connection.</string>
@@ -177,7 +191,7 @@
     <string name="chat_with_the_driver">Chat with the driver</string>
     <string name="be_ready_pick_up">Please be ready outside of the restaurant at %s for the driver pick up.</string>
 
-    <string name="color">Color:</string>
+    <string name="color_">Color:</string>
     <string name="type_your_message">Type your message…</string>
     <string name="couldnt_send">Couldn\'t send.</string>
 
@@ -512,7 +526,7 @@
 
     <string name="pick_up">Pick-Up</string>
 
-    <string name="address">Address:</string>
+    <string name="address_">Address:</string>
 
     <string name="google_pay_not_available">Unfortunately, Google Pay is not available on this device</string>
     <string name="something_went_wrong">Something went wrong</string>

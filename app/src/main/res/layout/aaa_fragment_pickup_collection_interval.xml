@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:overScrollMode="never" >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@android:color/white"
+    android:clipToPadding="false"
+    android:paddingBottom="20dp" >
+
+<!--  TODO list of days like in fragment_pick_up_interval  -->
+    <TextView
+        android:id="@+id/monthLabel"
+        style="@style/Models16SemiBoldText"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="September 2019" />
+
+    <ImageView
+        android:id="@+id/pickupDayLeft"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/chevron_left"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/monthLabel"
+        app:layout_constraintEnd_toStartOf="@+id/monthLabel"
+        app:layout_constraintTop_toTopOf="@+id/monthLabel" />
+
+    <ImageView
+        android:id="@+id/pickupDayRight"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/chevron_right"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/monthLabel"
+        app:layout_constraintStart_toEndOf="@+id/monthLabel"
+        app:layout_constraintTop_toTopOf="@+id/monthLabel" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_day"
+        android:nestedScrollingEnabled="false"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthLabel" />
+
+    <TextView
+        android:id="@+id/timeframesLabel"
+        style="@style/Models16SemiBoldText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/timeframes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:indeterminateTint="@color/nice_red"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/timeframesLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!-- list of timeframes like in activity_place  -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIntervals"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        tools:listitem="@layout/item_interval_match_parent"
+        tools:background="@color/nice_pink_alpha_10"
+        tools:itemCount="1"
+        tools:layout_height="65dp" />
+
+    <TextView
+        android:id="@+id/intervalsEmpty"
+        style="@style/Models18Text"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/referral_field_background"
+        android:backgroundTint="@color/gray_light"
+        android:gravity="center"
+        android:text="@string/cant_use_square"
+        android:textColor="@color/blueish_gray"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
