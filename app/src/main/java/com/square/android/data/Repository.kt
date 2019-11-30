@@ -93,7 +93,7 @@ interface Repository {
 
     fun getOffer(offerId: Long): Deferred<Offer>
 
-    fun claimOffer(offerId: Long) : MessageResponse
+    fun claimOffer(offerId: Long) : Deferred<MessageResponse>
 
 //    fun addReview(offerId: Long, bookingId: Long, link: String, actionId: String, imageBytes: ByteArray) : MessageResponse
     fun addReview(offerId: Long, bookingId: Long, link: String, actionType: String, imageBytes: ByteArray?) : MessageResponse
@@ -106,7 +106,7 @@ interface Repository {
     fun getBadgeCount() : Deferred<BadgeInfo>
 
     fun addOfferToBook(bookId: Long,
-                       offerId: Long) : MessageResponse
+                       offerId: Long) : Deferred<MessageResponse>
 
     fun getIntervals(placeId: Long, date: String): Deferred<IntervalsWrapper>
     fun getIntervalSlots(placeId: Long, date: String): Deferred<List<Place.Interval>>

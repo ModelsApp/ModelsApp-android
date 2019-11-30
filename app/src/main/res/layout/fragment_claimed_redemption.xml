@@ -4,58 +4,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.activity.claimedRedemption.ClaimedRedemptionActivity">
+    android:background="@color/white" >
 
     <TextView
         android:id="@+id/claimedRedemptionTitle"
         style="@style/Models20SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
         android:includeFontPadding="false"
-        android:text="@string/claimed_redemption_title"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="La Perla d'Oro"
         android:textColor="@android:color/black"
-        android:textAllCaps="true"
-        app:layout_constraintStart_toEndOf="@+id/dividerStart"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/claimedRedemptionBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:tint="@android:color/black"
+        android:id="@+id/claimedRedemptionIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/r_hanger"
         app:layout_constraintBottom_toBottomOf="@+id/claimedRedemptionTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/claimedRedemptionTitle"
-        app:srcCompat="@drawable/ic_arrow_back" />
-
-    <View
-        android:id="@+id/dividerStart"
-        android:layout_width="32dp"
-        android:layout_height="0.75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/claimedRedemptionTitle"
-        app:layout_constraintStart_toEndOf="@id/claimedRedemptionBack"
-        app:layout_constraintTop_toTopOf="@+id/claimedRedemptionTitle" />
-    <View
-        android:id="@+id/dividerEnd"
-        android:layout_width="0dp"
-        android:layout_height="0.75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
-        android:background="@android:color/black"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/claimedRedemptionTitle"
-        app:layout_constraintStart_toEndOf="@id/claimedRedemptionTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/claimedRedemptionTitle" />
-
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/claimedRedemptionTab"
@@ -84,5 +58,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/claimedRedemptionTab" />
+
+    <ProgressBar
+        android:id="@+id/claimedRedemptionProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/placesPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/claimedRedemptionPager"
+        app:layout_constraintEnd_toEndOf="@+id/claimedRedemptionPager"
+        app:layout_constraintStart_toStartOf="@+id/claimedRedemptionPager"
+        app:layout_constraintTop_toTopOf="@+id/claimedRedemptionPager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

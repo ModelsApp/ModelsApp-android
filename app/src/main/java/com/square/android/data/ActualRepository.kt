@@ -129,8 +129,9 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
-    override fun addOfferToBook(bookId: Long, offerId: Long) = performRequest {
-        api.addOfferToBook(bookId, OfferToBook(offerId))
+    override fun addOfferToBook(bookId: Long, offerId: Long): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest { api.addOfferToBook(bookId, OfferToBook(offerId)) }
+        data
     }
 
     override fun getCities(): Deferred<List<City>> = GlobalScope.async {
@@ -186,8 +187,9 @@ class ActualRepository(private val api: ApiService,
         api.addReview(localManager.getAuthToken(), offerId, bookingId, link, actionType, body)
     }
 
-    override fun claimOffer(offerId: Long) = performRequest {
-        api.claimRedemption(offerId)
+    override fun claimOffer(offerId: Long): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest { api.claimRedemption(offerId) }
+        data
     }
 
     override fun setSocialLink(username: String) {

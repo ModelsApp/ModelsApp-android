@@ -12,7 +12,6 @@ import com.square.android.extensions.toDateYMD
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
 import com.square.android.presentation.view.redemptions.RedemptionsView
-import com.square.android.ui.activity.claimedRedemption.ClaimedExtras
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -24,6 +23,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class RedemptionsUpdatedEvent
+
+class ClaimedExtras(val offerId: Long, val redemptionId: Long)
 
 private const val MAXIMAL_DISTANCE = 75_000_000 // TODO change before release to the 75 m
 
@@ -105,12 +106,6 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 
         val item = data!![position] as? RedemptionInfo ?: return
 
-        if (item.claimed) {
-
-            router.navigateTo(SCREENS.SELECT_OFFER, item.id)
-            return
-        }
-
         if (lastLocation == null) {
             viewState.showMessage(R.string.cannot_obtain_location)
             return
@@ -124,7 +119,7 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 //            return
 //        }
 
-        router.navigateTo(SCREENS.SELECT_OFFER, item.id)
+        router.navigateTo(SCREENS.SELECT_OFFER, item)
 
 //        AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.OFFER_SELECT.apply { venueName = item.place.name },
 //                hashMapOf("id" to item.id.toString())), repository)
@@ -133,16 +128,7 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
     fun claimedInfoClicked(position: Int) {
         val item = data!![position] as? RedemptionInfo ?: return
 
-        val offerId = item.offers.firstOrNull()
-
-        if (offerId == null) {
-            viewState.showMessage(R.string.no_offer_found)
-            return
-        }
-
-        val extras = ClaimedExtras(offerId, item.id)
-
-        router.navigateTo(SCREENS.CLAIMED_REDEMPTION, extras)
+        router.navigateTo(SCREENS.SELECT_OFFER, item)
     }
 
     fun cancelClicked(position: Int) {

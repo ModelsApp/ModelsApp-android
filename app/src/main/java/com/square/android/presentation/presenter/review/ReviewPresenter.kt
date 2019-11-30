@@ -4,19 +4,14 @@ import com.arellomobile.mvp.InjectViewState
 import com.square.android.data.pojo.*
 import com.square.android.domain.review.ReviewInteractor
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
-import com.square.android.presentation.presenter.redemptions.RedemptionsUpdatedEvent
 import com.square.android.presentation.view.review.ReviewView
-import org.greenrobot.eventbus.EventBus
 import org.koin.standalone.inject
 
 class ActionExtras(var index: Int, var id: String = "", var photo: ByteArray? = null, var type: String = "")
 
 @InjectViewState
-class ReviewPresenter(private val offerId: Long,
+class ReviewPresenter(private val offerId: Long?,
                       private val redemptionId: Long) : BasePresenter<ReviewView>() {
-
-    private val bus: EventBus by inject()
 
     private val interactor : ReviewInteractor by inject()
 
@@ -31,26 +26,29 @@ class ReviewPresenter(private val offerId: Long,
         loadData()
     }
 
+    //TODO sending multiple action as it is now or just ony by one like it was in old ClaimedActions?
+
     private fun loadData() = launch {
         viewState.showProgress()
 
-        actions = repository.getActions(offerId, redemptionId).await().toMutableList()
+        offerId?.let {
+            actions = repository.getActions(it, redemptionId).await().toMutableList()
 
-        //TODO no subActions for now, action picture will not be working without them
-        val pictureAction = actions.firstOrNull { it.type == TYPE_PICTURE }
-        pictureAction?.let {
-            actions.remove(it)
-        }
+            //TODO no subActions for now, action picture will not be working without them
+            val pictureAction = actions.firstOrNull { it.type == TYPE_PICTURE }
+            pictureAction?.let {
+                actions.remove(it)
+            }
 
-        data = interactor.getOffer(offerId).await()
+            data = interactor.getOffer(it).await()
 
-        for(action in actions){
-            action.enabled = action.active
-        }
+            for(action in actions){
+                action.enabled = action.active
+            }
 
 //        actions = data!!.actions
 
-        //TODO there are no subActions for now
+            //TODO there are no subActions for now
 //        subActions = data!!.subActions
 
 //        for(subAction in subActions){
@@ -69,8 +67,9 @@ class ReviewPresenter(private val offerId: Long,
 //            }
 //        }
 
-        viewState.hideProgress()
-        viewState.showData(data!!, actions.toList())
+            viewState.hideProgress()
+            viewState.showData(data!!, actions.toList())
+        }
     }
 
     fun itemClicked(index: Int) {
@@ -119,45 +118,16 @@ class ReviewPresenter(private val offerId: Long,
         //TODO changed ReviewInfo to link:String in api.addReview
         for(filledAction in filledActions){
             if(filledAction.type == TYPE_INSTAGRAM_STORY){
-                 interactor.addReview(offerId, redemptionId, filledAction.type, filledAction.photo).await()
+                 interactor.addReview(offerId!!, redemptionId, filledAction.type, filledAction.photo).await()
             } else{
                 filledAction.photo?.let {
-                    interactor.addReview(offerId, redemptionId, filledAction.type, it).await()
+                    interactor.addReview(offerId!!, redemptionId, filledAction.type, it).await()
                 }
             }
         }
 
-        //TODO this part is working
-        claimRedemption()
-    }
-
-    fun skipClicked() {
-        viewState.showLoadingDialog()
-        claimRedemption()
-    }
-
-    private fun claimRedemption() = launch {
-        interactor.claimRedemption(redemptionId, offerId).await()
-
-        sendRedemptionsUpdatedEvent()
-        sendBadgeEvent()
-
-        viewState.hideLoadingDialog()
-
         viewState.showCongratulations()
     }
 
-    private fun sendBadgeEvent() {
-        val event = BadgeStateChangedEvent()
-
-        bus.post(event)
-    }
-
     fun finishChain() = router.finishChain()
-
-    private fun sendRedemptionsUpdatedEvent() {
-        val event = RedemptionsUpdatedEvent()
-        bus.post(event)
-    }
-
 }

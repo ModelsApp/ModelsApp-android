@@ -26,7 +26,6 @@ object SCREENS {
 
     const val SELECT_OFFER = "SELECT_OFFER"
     const val REVIEW = "REVIEW"
-    const val CHECK_IN = "CHECK_IN"
     const val OFFERS_LIST = "OFFERS_LIST"
 
     const val CLAIMED_REDEMPTION = "CLAIMED_REDEMPTION"

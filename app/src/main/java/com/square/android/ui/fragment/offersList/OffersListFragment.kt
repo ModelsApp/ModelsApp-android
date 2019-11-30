@@ -4,31 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
 import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionFull
+import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.offersList.OffersListPresenter
 import com.square.android.presentation.view.offersList.OffersListView
-import com.square.android.ui.activity.selectOffer.*
-import com.square.android.ui.base.tutorial.Tutorial
-import com.square.android.ui.base.tutorial.TutorialService
-import com.square.android.ui.base.tutorial.TutorialStep
+import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.ui.fragment.map.MarginItemDecorator
+import com.square.android.ui.fragment.places.GridItemDecoration
+import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
 import kotlinx.android.synthetic.main.fragment_offers_list.*
 import org.jetbrains.anko.bundleOf
 
-class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Handler {
+class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Handler, SelectOfferDialog.Handler, CouponDialog.Handler {
 
     companion object {
         @Suppress("DEPRECATION")
-        fun newInstance(redemptionId: Long): OffersListFragment {
+        fun newInstance(redemptionInfo: RedemptionInfo): OffersListFragment {
             val fragment = OffersListFragment()
 
-            val args = bundleOf(EXTRA_REDEMPTION_ID to redemptionId)
+            val args = bundleOf(EXTRA_REDEMPTION to redemptionInfo)
             fragment.arguments = args
 
             return fragment
@@ -39,13 +40,15 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
     lateinit var presenter: OffersListPresenter
 
     @ProvidePresenter
-    fun providePresenter(): OffersListPresenter = OffersListPresenter( arguments?.getLong(EXTRA_REDEMPTION_ID,0) ?: 0)
+    fun providePresenter(): OffersListPresenter = OffersListPresenter( arguments?.getParcelable(EXTRA_REDEMPTION) as RedemptionInfo)
 
     private var adapter: OffersListAdapter? = null
 
     private var dialog: SelectOfferDialog? = null
 
     private var currentId: Long? = null
+
+    private var loadingDialog: LoadingDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -55,7 +58,8 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as SelectOfferActivity).configureStep(1)
+        loadingDialog = LoadingDialog(activity!!)
+        offersListBack.setOnClickListener {presenter.backPressed()}
     }
 
     override fun showProgress() {
@@ -68,24 +72,48 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
         offersListRv.visibility = View.VISIBLE
     }
 
+    override fun showLoadingDialog() {
+        loadingDialog?.show()
+    }
+
+    override fun hideLoadingDialog() {
+        loadingDialog?.dismiss()
+    }
+
+    override fun showCouponDialog(redemptionFull: RedemptionFull, userData: Profile.User, offerInfo: OfferInfo) {
+        val dialog = CouponDialog(activity!!, true)
+        dialog.show(redemptionFull, userData, offerInfo, this)
+    }
+
+    override fun dialogCancelled() {
+        presenter.navigateToClaimed()
+    }
+
     override fun showOfferDialog(offer: OfferInfo) {
         currentId = offer.id
 
-        dialog = SelectOfferDialog(activity!!)
+        dialog = SelectOfferDialog(offer, this)
 
-        dialog!!.show(offer) { presenter.dialogSubmitClicked(offer.id) }
+        dialog!!.show(fragmentManager, "")
+    }
+
+    override fun confirmClicked(id: Long) {
+        presenter.dialogSubmitClicked(id)
     }
 
     override fun showData(data: List<OfferInfo>, redemptionFull: RedemptionFull) {
         adapter = OffersListAdapter(data, this, redemptionFull)
 
         offersListRv.adapter = adapter
-        offersListRv.addItemDecoration(MarginItemDecorator( offersListRv.context.resources.getDimension(R.dimen.rv_item_decorator_12).toInt(),true,
-                offersListRv.context.resources.getDimension(R.dimen.rv_item_decorator_8).toInt(),
-                offersListRv.context.resources.getDimension(R.dimen.rv_item_decorator_16).toInt()
-        ))
+        offersListRv.layoutManager = GridLayoutManager(activity, 2)
+        offersListRv.adapter = adapter
+        offersListRv.addItemDecoration(GridItemDecoration(2,offersListRv.context.resources.getDimension(R.dimen.value_24dp).toInt(), false))
 
-        (activity as SelectOfferActivity).setHours(getString(R.string.time_range, redemptionFull.redemption.startTime, redemptionFull.redemption.endTime))
+        offersListDate.text = redemptionFull.redemption.date.replace("-",".")
+        offersListInterval.text = redemptionFull.redemption.startTime+"\n"+redemptionFull.redemption.endTime
+        offersListTitle.text = redemptionFull.redemption.place.name
+
+        offersListCheckBtn.setOnClickListener {presenter.checkIn()}
 
         visibleNow()
     }
@@ -93,7 +121,7 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
     override fun setSelectedItem(position: Int) {
         adapter?.setSelectedItem(position)
 
-        presenter.submitClicked()
+        offersListCheckBtn.visibility = View.VISIBLE
     }
 
     override fun itemClicked(position: Int) {
@@ -102,46 +130,46 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
         presenter.itemClicked(position)
     }
 
-    override val PERMISSION_REQUEST_CODE: Int?
-        get() = 1341
-
-    override val tutorial: Tutorial?
-        get() =  Tutorial.Builder(tutorialKey = TutorialService.TutorialKey.SELECT_OFFER)
-                .addNextStep(TutorialStep(
-                        // width percentage, height percentage for text with arrow
-                        floatArrayOf(0.35f, 0.50f),
-                        getString(R.string.tut_4_1),
-                        TutorialStep.ArrowPos.TOP,
-                        R.drawable.arrow_bottom_left_x_top_right,
-                        0.60f,
-                        // marginStart dp, marginEnd dp, horizontal center of the transView in 0.0f - 1f, height of the transView in dp
-                        // 0f,0f,0f,0f for covering entire screen
-                        floatArrayOf(0f,0f,0.15f,312f),
-                        1,
-                        // delay before showing view in ms
-                        500f))
-                .addNextStep(TutorialStep(
-                        // width percentage, height percentage for text with arrow
-                        floatArrayOf(0.35f, 0.50f),
-                        "",
-                        TutorialStep.ArrowPos.TOP,
-                        R.drawable.arrow_bottom_left_x_top_right,
-                        0.60f,
-                        // marginStart dp, marginEnd dp, horizontal center of the transView in 0.0f - 1f, height of the transView in dp
-                        // 0f,0f,0f,0f for covering entire screen
-                        floatArrayOf(0f,0f,0.0f,0f),
-                        0,
-                        // delay before showing view in ms
-                        500f))
-
-                .setOnNextStepIsChangingListener {
-                    if(it == 2){
-                        presenter.itemClicked(0)
-                    }
-                }
-                .setOnContinueTutorialListener {
-                    dialog?.cancel()
-                    currentId?.run {presenter.dialogSubmitClicked(this)}
-                }
-                .build()
+//    override val PERMISSION_REQUEST_CODE: Int?
+//        get() = 1341
+//
+//    override val tutorial: Tutorial?
+//        get() =  Tutorial.Builder(tutorialKey = TutorialService.TutorialKey.SELECT_OFFER)
+//                .addNextStep(TutorialStep(
+//                        // width percentage, height percentage for text with arrow
+//                        floatArrayOf(0.35f, 0.50f),
+//                        getString(R.string.tut_4_1),
+//                        TutorialStep.ArrowPos.TOP,
+//                        R.drawable.arrow_bottom_left_x_top_right,
+//                        0.60f,
+//                        // marginStart dp, marginEnd dp, horizontal center of the transView in 0.0f - 1f, height of the transView in dp
+//                        // 0f,0f,0f,0f for covering entire screen
+//                        floatArrayOf(0f,0f,0.15f,312f),
+//                        1,
+//                        // delay before showing view in ms
+//                        500f))
+//                .addNextStep(TutorialStep(
+//                        // width percentage, height percentage for text with arrow
+//                        floatArrayOf(0.35f, 0.50f),
+//                        "",
+//                        TutorialStep.ArrowPos.TOP,
+//                        R.drawable.arrow_bottom_left_x_top_right,
+//                        0.60f,
+//                        // marginStart dp, marginEnd dp, horizontal center of the transView in 0.0f - 1f, height of the transView in dp
+//                        // 0f,0f,0f,0f for covering entire screen
+//                        floatArrayOf(0f,0f,0.0f,0f),
+//                        0,
+//                        // delay before showing view in ms
+//                        500f))
+//
+//                .setOnNextStepIsChangingListener {
+//                    if(it == 2){
+//                        presenter.itemClicked(0)
+//                    }
+//                }
+//                .setOnContinueTutorialListener {
+//                    dialog?.cancel()
+//                    currentId?.run {presenter.dialogSubmitClicked(this)}
+//                }
+//                .build()
 }

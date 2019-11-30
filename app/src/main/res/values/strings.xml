@@ -290,6 +290,11 @@
     <string name="send_photo_description">Make and send a photo!</string>
 
 
+    <string name="checked_in_at">Checked in at</string>
+    <string name="notes_">Notes:</string>
+    <string name="present_coupon">Present this coupon to staff members before to order</string>
+
+
     <string name="terms_">Terms</string>
     <string name="privacy">Privacy</string>
 
@@ -627,6 +632,8 @@
 
     <string name="ok">OK</string>
 
+    <string name="reservation_details">Reservation details</string>
+
     <string name="upload_screenshot">Upload screenshot</string>
 
     <string name="ok_lowercase">Ok</string>
@@ -648,8 +655,7 @@
     <string name="review_done_title">Thank you so much!</string>
     <string name="review_done_title_sub">We will notify you when your review will be accepted</string>
     <string name="claimed_redemption_title">Redeemed item</string>
-    <string name="page_coupon">Coupon</string>
-    <string name="page_actions">Actions taken</string>
+    <string name="actions">Actions</string>
     <string name="no_offer_found">No offer found for this book</string>
     <string name="yelp_post">Yelp post</string>
     <string name="type_yelp">Yelp</string>

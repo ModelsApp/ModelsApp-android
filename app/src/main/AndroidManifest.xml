@@ -55,11 +55,6 @@
             android:theme="@style/WhiteStatusActivity" />
 
         <activity
-            android:name=".ui.activity.claimedRedemption.ClaimedRedemptionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusActivity" />
-
-        <activity
             android:name=".ui.activity.eventSummary.EventSummaryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteStatusActivity" />

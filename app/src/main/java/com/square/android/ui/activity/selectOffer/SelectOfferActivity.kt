@@ -2,7 +2,6 @@ package com.square.android.ui.activity.selectOffer
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
@@ -11,20 +10,16 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
 import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
+import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.selectOffer.SelectOfferPresenter
 import com.square.android.presentation.view.selectOffer.SelectOfferView
 import com.square.android.ui.activity.BaseActivity
-import com.square.android.ui.fragment.review.ReviewExtras
-import com.square.android.ui.fragment.checkIn.CheckInFragment
+import com.square.android.ui.fragment.claimedRedemption.ClaimedRedemptionFragment
 import com.square.android.ui.fragment.offersList.OffersListFragment
-import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
-import com.square.android.ui.fragment.review.ReviewFragment
-import kotlinx.android.synthetic.main.activity_select_offer.*
+import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
-
-const val OFFER_EXTRA_ID = "CLAIMED_OFFER_EXTRA_ID"
 
 class SelectOfferActivity: BaseActivity(), SelectOfferView {
 
@@ -32,9 +27,7 @@ class SelectOfferActivity: BaseActivity(), SelectOfferView {
     lateinit var presenter: SelectOfferPresenter
 
     @ProvidePresenter
-    fun providePresenter() = SelectOfferPresenter(intent.getLongExtra(EXTRA_REDEMPTION_ID,0))
-
-    private var currentStep = 1
+    fun providePresenter() = SelectOfferPresenter( intent.getParcelableExtra(EXTRA_REDEMPTION) as RedemptionInfo)
 
     override fun provideNavigator(): Navigator = SelectOfferNavigator(this)
 
@@ -43,70 +36,16 @@ class SelectOfferActivity: BaseActivity(), SelectOfferView {
         setContentView(R.layout.activity_select_offer)
     }
 
-    fun configureStep(step: Int){
-        currentStep = step
-
-        when(step){
-            1 -> {
-                selectOfferStep1.setBackgroundResource(R.drawable.round_bg_stroke_pink)
-                selectOfferStep2.setBackgroundResource(R.drawable.round_bg_stroke_gray)
-                selectOfferStep2.setBackgroundResource(R.drawable.round_bg_stroke_gray)
-
-                selectOfferStep1.text = "1."
-                selectOfferStep2.text = ""
-                selectOfferStep3.text = ""
-
-                selectOfferTitle.text = getString(R.string.select_offer_title)
-                selectOfferHoursLl.visibility = View.VISIBLE
-            }
-
-            2 -> {
-                selectOfferStep1.setBackgroundResource(R.drawable.round_bg_grey_divider)
-                selectOfferStep2.setBackgroundResource(R.drawable.round_bg_stroke_pink)
-                selectOfferStep3.setBackgroundResource(R.drawable.round_bg_stroke_gray)
-
-                selectOfferStep1.text = "1."
-                selectOfferStep2.text = "2."
-                selectOfferStep3.text = ""
-
-                selectOfferTitle.text = getString(R.string.select_offer_title)
-                selectOfferHoursLl.visibility = View.GONE
-            }
-
-            3 -> {
-                selectOfferStep1.setBackgroundResource(R.drawable.round_bg_grey_divider)
-                selectOfferStep2.setBackgroundResource(R.drawable.round_bg_grey_divider)
-                selectOfferStep3.setBackgroundResource(R.drawable.round_bg_stroke_pink)
-
-                selectOfferStep1.text = "1."
-                selectOfferStep2.text = "2."
-                selectOfferStep3.text = "3."
-
-                selectOfferTitle.text = getString(R.string.review_title)
-                selectOfferHoursLl.visibility = View.GONE
-            }
-        }
-    }
-
-    fun setHours(hours: String){
-        selectOfferTime.text = hours
-    }
-
     private class SelectOfferNavigator(activity: FragmentActivity) : AppNavigator(activity, R.id.selectOfferContainer) {
 
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?) = null
 
-        override fun createFragment(screenKey: String, data: Any?) = when (screenKey) {
+        override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
 
-            SCREENS.OFFERS_LIST -> OffersListFragment.newInstance(data as Long)
+            SCREENS.OFFERS_LIST -> {OffersListFragment.newInstance(data as RedemptionInfo) }
 
-            SCREENS.CHECK_IN -> {
-                val extras = data as ReviewExtras
-                CheckInFragment.newInstance(extras.redemptionId, extras.offerId) }
-
-            SCREENS.REVIEW -> {
-                val extras = data as ReviewExtras
-                ReviewFragment.newInstance(extras.redemptionId, extras.offerId)
+            SCREENS.CLAIMED_REDEMPTION -> {
+                ClaimedRedemptionFragment.newInstance(data as RedemptionInfo)
             }
 
             else -> throw IllegalArgumentException("Unknown screen key: $screenKey")

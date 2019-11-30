@@ -4,20 +4,23 @@ import com.arellomobile.mvp.InjectViewState
 import com.square.android.SCREENS
 import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.RedemptionFull
+import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.BasePresenter
+import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
+import com.square.android.presentation.presenter.redemptions.RedemptionsUpdatedEvent
 import com.square.android.presentation.view.offersList.OffersListView
-import com.square.android.ui.fragment.review.ReviewExtras
-import com.square.android.utils.AnalyticsEvent
-import com.square.android.utils.AnalyticsEvents
-import com.square.android.utils.AnalyticsManager
+import org.greenrobot.eventbus.EventBus
+import org.koin.standalone.inject
 
 @InjectViewState
-class OffersListPresenter(private val redemptionId: Long) : BasePresenter<OffersListView>(){
+class OffersListPresenter(private val redemptionInfo: RedemptionInfo) : BasePresenter<OffersListView>(){
 
     private var data: RedemptionFull? = null
     private var offers: List<OfferInfo>? = null
 
     private var currentPosition = 0
+
+    private val bus: EventBus by inject()
 
     var dialogAllowed = true
 
@@ -28,21 +31,21 @@ class OffersListPresenter(private val redemptionId: Long) : BasePresenter<Offers
     private fun loadData() = launch {
         viewState.showProgress()
 
-        data = repository.getRedemption(redemptionId).await()
-        offers = repository.getOffersForBooking(data!!.redemption.place.id, redemptionId).await()
+        data = repository.getRedemption(redemptionInfo.id).await()
+        offers = repository.getOffersForBooking(data!!.redemption.place.id, redemptionInfo.id).await()
 
         viewState.hideProgress()
 
         viewState.showData(offers!!, data!!)
     }
 
+    fun backPressed(){
+        router.exit()
+    }
+
     fun itemClicked(position: Int) {
         currentPosition = position
 
-        viewState.setSelectedItem(position)
-    }
-
-    fun submitClicked() {
         if(dialogAllowed){
             dialogAllowed = false
 
@@ -52,12 +55,40 @@ class OffersListPresenter(private val redemptionId: Long) : BasePresenter<Offers
         }
     }
 
+    fun checkIn() = launch  {
+        viewState.showLoadingDialog()
+
+        repository.claimOffer(redemptionInfo.id).await()
+        repository.addOfferToBook(redemptionInfo.id, offers!![currentPosition].id).await()
+
+        sendRedemptionsUpdatedEvent()
+        sendBadgeEvent()
+
+        viewState.hideLoadingDialog()
+
+        val user = repository.getCurrentUser().await()
+
+        viewState.showCouponDialog(data!!, user, offers!![currentPosition])
+    }
+
+    fun navigateToClaimed(){
+        //TODO check if working correctly
+        router.replaceScreen(SCREENS.CLAIMED_REDEMPTION, redemptionInfo)
+    }
+
+    private fun sendBadgeEvent() {
+        val event = BadgeStateChangedEvent()
+
+        bus.post(event)
+    }
+
+    private fun sendRedemptionsUpdatedEvent() {
+        val event = RedemptionsUpdatedEvent()
+        bus.post(event)
+    }
+
     fun dialogSubmitClicked(id: Long) {
-        val extras = ReviewExtras(redemptionId, id)
-
-        router.navigateTo(SCREENS.CHECK_IN, extras)
-
-//        AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.ACTIONS_OPENED.apply { venueName = data?.redemption?.place?.name }, hashMapOf("id" to id.toString())), repository)
+        viewState.setSelectedItem(currentPosition)
     }
 
 }

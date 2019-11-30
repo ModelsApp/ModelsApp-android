@@ -1,45 +1,106 @@
 package com.square.android.ui.fragment.offersList
 
-import android.annotation.SuppressLint
-import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.view.LayoutInflater
-import com.afollestad.materialdialogs.MaterialDialog
+import android.os.Bundle
+import android.view.*
+import androidx.fragment.app.DialogFragment
+import androidx.viewpager.widget.ViewPager
 import com.square.android.R
 import com.square.android.data.pojo.OfferInfo
-import com.square.android.extensions.loadImage
-import kotlinx.android.synthetic.main.select_offer_dialog.view.*
-import android.graphics.Color
+import com.square.android.ui.fragment.dOfferInfo.DinnerBackClickedEvent
+import com.square.android.ui.fragment.dOffer.DinnerInfoClickedEvent
+import com.square.android.ui.fragment.dOffer.DinnerInfoCloseEvent
+import kotlinx.android.synthetic.main.dialog_select_offer.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.android.ext.android.inject
 
-class SelectOfferDialog(private val context: Context) {
-    var dialog: MaterialDialog? = null
+class SelectOfferDialog(var offerInfo: OfferInfo, private val handler: Handler?, var mCancelable: Boolean = true): DialogFragment() {
 
-    @SuppressLint("InflateParams")
-    fun show(offer: OfferInfo, onAction: () -> Unit) {
+    private var currentPagerPosition = 0
 
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.select_offer_dialog, null, false)
+    private val eventBus: EventBus by inject()
 
-        dialog = MaterialDialog.Builder(context)
-                .customView(view, false)
-                .cancelable(true)
-                .build()
-
-        dialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        view.offerDialogImg.loadImage((offer.mainImage ?: offer.photo) ?: "")
-
-        view.offerDialogSubmit.setOnClickListener { cancel()
-            onAction.invoke() }
-
-        view.offerDialogName.text = offer.name
-        view.offerDialogCredits.text = offer.price.toString()
-        view.offerDialogComponents.text = offer.compositionAsStr()
-
-        dialog!!.show()
+    init {
+        eventBus.register(this)
     }
 
-    fun cancel(){
-        dialog?.cancel()
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onDinnerBackClickedEvent(event: DinnerBackClickedEvent) {
+        dinnerOfferPager.setCurrentItem(0,true)
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onDinnerInfoCloseEvent(event: DinnerInfoCloseEvent) {
+        dialog.cancel()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onDinnerInfoClickedEvent(event: DinnerInfoClickedEvent) {
+        dinnerOfferPager.setCurrentItem(1,true)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(mCancelable)
+        dialog.window!!.setGravity(Gravity.CENTER)
+
+        return inflater.inflate(R.layout.dialog_select_offer, null, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setUpPager()
+        setUpPage(currentPagerPosition)
+
+        dinnerOfferBtn.setOnClickListener {confirmClicked()}
+    }
+
+    private fun confirmClicked(){
+        handler?.confirmClicked(offerInfo.id)
+        dialog.cancel()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val metrics = resources.displayMetrics
+        val screenWidth = (metrics.widthPixels * 0.9).toInt()
+
+        dialog.window?.setLayout(screenWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+    }
+
+    private fun setUpPager() {
+        dinnerOfferPager.isPagingEnabled = false
+        dinnerOfferPager.adapter = DinnerOfferDialogAdapter(childFragmentManager, offerInfo)
+        dinnerOfferPager.offscreenPageLimit = 2
+
+        dinnerOfferPager.addOnPageChangeListener( object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) { }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
+            override fun onPageSelected(position: Int) {
+                currentPagerPosition = position
+                setUpPage(currentPagerPosition)
+            }
+        })
+    }
+
+    fun setUpPage(position: Int){
+        when(position){
+            0 -> { dinnerOfferBtn.visibility = View.VISIBLE }
+            1 -> { dinnerOfferBtn.visibility = View.GONE }
+        }
+    }
+
+    interface Handler {
+        fun confirmClicked(id: Long)
+    }
+
+    override fun onDestroy() {
+        eventBus.unregister(this)
+        super.onDestroy()
+    }
+
 }

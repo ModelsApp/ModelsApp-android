@@ -17,7 +17,7 @@
         android:paddingBottom="24dp" >
 
         <ImageView
-            android:id="@+id/dinnerOfferImg"
+            android:id="@+id/dOfferImg"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/greyish_app_bg"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/dinnerOfferClose"
+            android:id="@+id/dOfferClose"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:background="@drawable/round_background"
@@ -40,8 +40,8 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/dinnerOfferName"
-            style="@style/Models22Text"
+            android:id="@+id/dOfferName"
+            style="@style/Models18SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -50,14 +50,14 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="1"
-            app:layout_constraintEnd_toStartOf="@+id/dinnerOfferInfo"
+            app:layout_constraintEnd_toStartOf="@+id/dOfferInfo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dinnerOfferImg"
+            app:layout_constraintTop_toBottomOf="@+id/dOfferImg"
             app:layout_goneMarginEnd="16dp"
             tools:text="Pasta Menu" />
 
         <ImageView
-            android:id="@+id/dinnerOfferInfo"
+            android:id="@+id/dOfferInfo"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_info"
@@ -65,9 +65,9 @@
             android:visibility="gone"
             tools:visibility="visible"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="@+id/dinnerOfferName"
+            app:layout_constraintBottom_toBottomOf="@+id/dOfferName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dinnerOfferName" />
+            app:layout_constraintTop_toTopOf="@+id/dOfferName" />
 
         <View
             android:id="@+id/divider"
@@ -79,25 +79,24 @@
             android:background="@color/gray_divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dinnerOfferName" />
+            app:layout_constraintTop_toBottomOf="@+id/dOfferName" />
 
         <TextView
-            android:id="@+id/dinnerOfferQt"
-            style="@style/Models18Text"
+            android:id="@+id/dOfferQt"
+            style="@style/Models16Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/qt"
+            android:textColor="@color/gray_hint_light"
             android:visibility="gone"
-            tools:visibility="visible"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/gray_hint"
             app:layout_constraintEnd_toEndOf="@+id/divider"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toTopOf="@+id/dOfferDetails"
+            tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/dinnerOfferDetails"
-            style="@style/Models18Text"
-            android:textColor="@color/gray_hint"
+            android:id="@+id/dOfferDetails"
+            style="@style/Models16Text"
+            android:textColor="@color/gray_hint_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -121,7 +120,7 @@
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dinnerOfferDetails"
+            app:layout_constraintTop_toBottomOf="@+id/dOfferDetails"
             app:scroll_view_max_height="116dp" >
 
             <LinearLayout
@@ -132,7 +131,7 @@
 
                 <TextView
                     android:id="@+id/offerNames"
-                    style="@style/Models18Text"
+                    style="@style/Models16Text"
                     android:layout_width="0dp"
                     android:layout_weight=".9"
                     android:lineSpacingExtra="12dp"
@@ -142,7 +141,7 @@
 
                 <TextView
                     android:id="@+id/offerNumbers"
-                    style="@style/Models18Text"
+                    style="@style/Models16Text"
                     android:layout_weight=".1"
                     android:layout_width="0dp"
                     android:lineSpacingExtra="12dp"
@@ -154,28 +153,29 @@
         </com.square.android.utils.widget.ScrollViewMaxHeight>
 
         <TextView
-            android:id="@+id/dinnerOfferCreditsLabel"
-            style="@style/Models18SemiBoldText"
+            android:id="@+id/dOfferCreditsLabel"
+            style="@style/Models16Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:includeFontPadding="false"
             android:text="@string/total_credits"
-            app:layout_constraintBottom_toBottomOf="@+id/dinnerOfferCredits"
+            android:textColor="@color/gray_back_arrow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dinnerOfferCredits" />
+            app:layout_constraintTop_toBottomOf="@+id/scrollViewMaxHeight" />
 
         <TextView
-            android:id="@+id/dinnerOfferCredits"
-            style="@style/Models22SemiBoldText"
+            android:id="@+id/dOfferCredits"
+            style="@style/Models16SemiBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
             android:includeFontPadding="false"
             android:textColor="@color/placesPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/dOfferCreditsLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollViewMaxHeight"
+            app:layout_constraintTop_toTopOf="@+id/dOfferCreditsLabel"
             tools:text="50" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/reviewDialogName"
-            style="@style/Models16SemiBoldText"
+            style="@style/Models16Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"

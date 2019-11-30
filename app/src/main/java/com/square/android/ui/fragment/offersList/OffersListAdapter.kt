@@ -33,7 +33,13 @@ class OffersListAdapter(data: List<OfferInfo>,
 
     fun setSelectedItem(position: Int?) {
         if (position == null) return
+
+        val previousPosition = selectedItemPosition
         selectedItemPosition = position
+
+        previousPosition?.let { notifyItemChanged(it, SelectedPayload) }
+
+        notifyItemChanged(position)
     }
 
     override fun instantiateHolder(view: View): OfferHolder = OfferHolder(view, handler, redemptionFull)
@@ -55,7 +61,6 @@ class OffersListAdapter(data: List<OfferInfo>,
             }
 
             item.isAvailable.run {
-                shadowTop.visibility = if(this) View.VISIBLE else View.GONE
 
                 redemptionFull?.let {
                     offerAvailableText.text = if (!this)
@@ -69,13 +74,12 @@ class OffersListAdapter(data: List<OfferInfo>,
             offerTitle.text = item.name
             offerPrice.text = item.price.toString()
 
-            offerImage.loadImage((item.mainImage ?: item.photo)?: "")
+            offerImage.loadImage(url = (item.mainImage ?: item.photo)?: "", roundedCornersRadiusPx = 10)
         }
 
         fun bindSelected(selectedPosition: Int?) {
-            val isActive = selectedPosition == adapterPosition
-
-            offerContainer.isActivated = isActive
+            checkedOutline.visibility = if(selectedPosition == adapterPosition) View.VISIBLE else View.GONE
+            checkedImv.visibility = if(selectedPosition == adapterPosition) View.VISIBLE else View.GONE
         }
     }
 

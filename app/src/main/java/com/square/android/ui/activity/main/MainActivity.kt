@@ -19,14 +19,11 @@ import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
 import com.square.android.data.network.fcm.NotificationType
 import com.square.android.data.pojo.Profile
+import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
-import com.square.android.ui.activity.claimedRedemption.CLAIMED_OFFER_EXTRA_ID
-import com.square.android.ui.activity.claimedRedemption.CLAIMED_REDEMPTION_EXTRA_ID
-import com.square.android.ui.activity.claimedRedemption.ClaimedExtras
-import com.square.android.ui.activity.claimedRedemption.ClaimedRedemptionActivity
 import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.editProfile.EditProfileFragment
 import com.square.android.ui.activity.gallery.GalleryActivity
@@ -37,7 +34,7 @@ import com.square.android.ui.activity.passEligible.PASS_CAN_BACK_EXTRA
 import com.square.android.ui.activity.passEligible.PassEligibleActivity
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID
 import com.square.android.ui.activity.place.PlaceActivity
-import com.square.android.ui.activity.selectOffer.OFFER_EXTRA_ID
+
 import com.square.android.ui.activity.selectOffer.SelectOfferActivity
 import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
@@ -46,6 +43,7 @@ import com.square.android.ui.fragment.campaigns.CampaignsFragment
 import com.square.android.ui.fragment.places.PlacesFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.redemptions.RedemptionsFragment
+import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
 import com.square.android.utils.DialogDepository
 import kotlinx.android.synthetic.main.activity_main.*
@@ -167,7 +165,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<StartActivity>()
 
                     SCREENS.SELECT_OFFER ->
-                        context.intentFor<SelectOfferActivity>(EXTRA_REDEMPTION_ID to data as Long)
+                        context.intentFor<SelectOfferActivity>(EXTRA_REDEMPTION to data as RedemptionInfo)
 
                     SCREENS.EVENT ->{
                         val extras = data as EventExtras
@@ -181,14 +179,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.GALLERY ->
                         context.intentFor<GalleryActivity>(USER_EXTRA to data as Profile.User)
-
-                    SCREENS.CLAIMED_REDEMPTION -> {
-                        val extras = data as ClaimedExtras
-
-                        context.intentFor<ClaimedRedemptionActivity>(
-                                CLAIMED_OFFER_EXTRA_ID to extras.offerId,
-                                CLAIMED_REDEMPTION_EXTRA_ID to extras.redemptionId)
-                    }
 
                     SCREENS.NO_CONNECTION ->
                         context.intentFor<NoConnectionActivity>()

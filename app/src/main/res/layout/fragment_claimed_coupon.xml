@@ -1,28 +1,485 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:background="@color/placeholder"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp"
-    android:paddingTop="8dp"
-    tools:context=".ui.fragment.claimedCoupon.ClaimedCouponFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@android:color/white" >
 
-    <androidx.cardview.widget.CardView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="24dp"
+    app:cardUseCompatPadding="false" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:cardUseCompatPadding="false"
-        android:background="@color/white"
-        android:paddingBottom="32dp">
+        android:background="@color/coupon_bg"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:paddingTop="24dp" >
 
-        <include
-            android:id="@+id/coupon"
-            layout="@layout/coupon_body" />
-    </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/ic_ticket"
+            android:layout_width="72dp"
+            android:layout_height="24dp"
+            android:src="@drawable/r_hanger"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailsLabel"
+            style="@style/Models16SemiBoldText"
+            android:layout_width="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_height="wrap_content"
+            android:text="@string/reservation_details"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/ic_ticket"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/dateLl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/detailsLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/r_calendar" />
+
+            <TextView
+                style="@style/Models14Text"
+                android:id="@+id/dateTv"
+                android:layout_marginStart="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Jun 21st, 2019" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timeLl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/dateLl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_timer" />
+
+            <TextView
+                style="@style/Models14Text"
+                android:id="@+id/timeTv"
+                android:layout_marginStart="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="11:00 am - 11:30 am" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/placeLl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/timeLl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/r_discount" />
+
+            <TextView
+                style="@style/Models14Text"
+                android:id="@+id/placeTv"
+                android:layout_marginStart="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="La perla d'Oro" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/addressLl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/placeLl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/r_pin" />
+
+            <TextView
+                style="@style/Models14Text"
+                android:id="@+id/addressTv"
+                android:layout_marginStart="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Via Piazza Grande XII, 42" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/checkedInLl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addressLl" >
+
+            <TextView
+                style="@style/Models14Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/checked_in_at" />
+
+            <TextView
+                android:id="@+id/checkedAt"
+                style="@style/Models14SemiBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                tools:text="11:15 am" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkedInLl"
+            app:layout_constraintTop_toTopOf="@+id/checkedInLl"
+            app:layout_constraintBottom_toBottomOf="@+id/checkedInLl" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkedInLl"
+            app:layout_constraintTop_toTopOf="@+id/checkedInLl"
+            app:layout_constraintBottom_toBottomOf="@+id/checkedInLl" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/userImg"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/checkedInLl"
+            app:layout_constraintEnd_toEndOf="@+id/guideline"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
+            tools:src="@drawable/auth_background" />
+
+        <TextView
+            style="@style/Models14Text"
+            android:id="@+id/userName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Mark C."
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@+id/userImg"
+            app:layout_constraintStart_toStartOf="@+id/userImg"
+            app:layout_constraintEnd_toEndOf="@+id/userImg" />
+
+
+        <!--     TODO no info about offer in redemptionFull right now   -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/offerImg"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/checkedInLl"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/offerImage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@+id/offerTitle"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="8dp"
+                tools:scaleType="centerCrop"
+                tools:src="@drawable/auth_background" />
+
+            <View
+                android:id="@+id/checkedOutline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintTop_toTopOf="@+id/offerImage"
+                app:layout_constraintBottom_toBottomOf="@+id/offerImage"
+                app:layout_constraintStart_toStartOf="@+id/offerImage"
+                app:layout_constraintEnd_toEndOf="@+id/offerImage"
+                android:background="@drawable/outline_10_px" />
+
+            <FrameLayout
+                android:id="@+id/checkedImv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_check_circle"
+                    android:tint="@color/nice_pink" />
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            style="@style/Models14Text"
+            android:id="@+id/offerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Menu dinner"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@+id/offerImg"
+            app:layout_constraintStart_toStartOf="@+id/offerImg"
+            app:layout_constraintEnd_toEndOf="@+id/offerImg" />
+        <TextView
+            style="@style/Models12SemiBoldText"
+            android:id="@+id/offerCredits"
+            android:textColor="@color/nice_pink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="150 credits"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_marginTop="3dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@+id/offerName"
+            app:layout_constraintStart_toStartOf="@+id/offerImg"
+            app:layout_constraintEnd_toEndOf="@+id/offerImg" />
+
+        <!--     TODO no offerInfo in redemptionFull       -->
+        <LinearLayout
+            android:id="@+id/offersLl"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/offerNames"
+                style="@style/Models16Text"
+                android:layout_width="0dp"
+                android:layout_weight=".9"
+                android:lineSpacingExtra="12dp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                tools:text="Friday - Sunday: 19.00 - 23.00\nFriday - Sunday: 19.00 - 23.00\nFriday - Sunday: 19.00 - 23.00\nFriday - Sunday: 19.00 - 23.00" />
+
+            <TextView
+                android:id="@+id/offerNumbers"
+                style="@style/Models16Text"
+                android:layout_weight=".1"
+                android:layout_width="0dp"
+                android:lineSpacingExtra="12dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="21" />
+
+        </LinearLayout>
+
+        <!--      TODO notes are not in model yet      -->
+        <LinearLayout
+            android:id="@+id/notesLl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_goneMarginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/offersLl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                style="@style/Models12SemiBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notes_" />
+
+            <TextView
+                style="@style/Models12Text"
+                android:id="@+id/notesTv"
+                android:layout_marginStart="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="not available past with lobster" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dashedLine"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/notesLl"
+            android:backgroundTint="@color/nice_pink"
+            android:layout_marginTop="32dp"
+            app:layout_goneMarginTop="40dp"
+            android:background="@drawable/dashed_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/nice_pink"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/dashedLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                style="@style/Models14Text"
+                android:textColor="@android:color/white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/present_coupon"
+                android:paddingTop="16dp"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:layout_weight="0.5" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/thanks"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
 </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

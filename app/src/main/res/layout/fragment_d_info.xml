@@ -16,7 +16,7 @@
         android:paddingBottom="24dp" >
 
         <ImageView
-            android:id="@+id/dinnerInfoBack"
+            android:id="@+id/dInfoBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="20dp"
@@ -27,20 +27,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/dinnerInfoTitle"
-            style="@style/Models20SemiBoldText"
+            android:id="@+id/dInfoTitle"
+            style="@style/Models18SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:includeFontPadding="false"
+            app:layout_constraintBottom_toBottomOf="@+id/dInfoBack"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dinnerInfoBack"
-            app:layout_constraintTop_toTopOf="@+id/dinnerInfoBack"
+            app:layout_constraintStart_toEndOf="@+id/dInfoBack"
+            app:layout_constraintTop_toTopOf="@+id/dInfoBack"
             tools:text="Pasta menu" />
 
         <TextView
-            android:id="@+id/dinnerInfoText"
+            android:id="@+id/dInfoText"
             style="@style/Models15Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
             android:layout_marginEnd="20dp"
             android:lineSpacingExtra="3dp"
             tools:text="WARNING\nNot available lobster tagiatelle and truffle linguine."
-            app:layout_constraintTop_toBottomOf="@+id/dinnerInfoTitle"
+            app:layout_constraintTop_toBottomOf="@+id/dInfoTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

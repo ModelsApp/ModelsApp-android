@@ -14,10 +14,6 @@ import com.square.android.R
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.review.ReviewPresenter
 import com.square.android.presentation.view.review.ReviewView
-import com.square.android.ui.activity.selectOffer.SelectOfferActivity
-import com.square.android.ui.base.tutorial.Tutorial
-import com.square.android.ui.base.tutorial.TutorialService
-import com.square.android.ui.base.tutorial.TutorialStep
 import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.map.MarginItemDecorator
@@ -27,13 +23,15 @@ import org.jetbrains.anko.bundleOf
 const val EXTRA_OFFER_ID = "EXTRA_OFFER_ID"
 const val EXTRA_REDEMPTION_ID = "EXTRA_REDEMPTION_ID"
 
-class ReviewExtras(val redemptionId: Long, val offerId: Long)
+const val EXTRA_REDEMPTION = "EXTRA_REDEMPTION"
+const val EXTRA_REDEMPTION_FULL = "EXTRA_REDEMPTION_FULL"
+const val EXTRA_USER = "EXTRA_USER"
 
 class ReviewFragment : BaseFragment(), ReviewView, ReviewAdapter.Handler, ReviewDialog.Handler{
 
     companion object {
         @Suppress("DEPRECATION")
-        fun newInstance(redemptionId: Long, offerId: Long): ReviewFragment {
+        fun newInstance(redemptionId: Long, offerId: Long?): ReviewFragment {
             val fragment = ReviewFragment()
 
             val args = bundleOf(EXTRA_REDEMPTION_ID to redemptionId, EXTRA_OFFER_ID to offerId)
@@ -61,13 +59,7 @@ class ReviewFragment : BaseFragment(), ReviewView, ReviewAdapter.Handler, Review
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as SelectOfferActivity).configureStep(3)
-
         reviewSend.setOnClickListener { presenter.submitClicked() }
-
-        reviewSkip.setOnClickListener {
-            presenter.skipClicked()
-        }
 
         loadingDialog = LoadingDialog(activity!!)
     }
@@ -152,31 +144,31 @@ class ReviewFragment : BaseFragment(), ReviewView, ReviewAdapter.Handler, Review
     private fun getRedemptionId() = arguments?.getLong(EXTRA_REDEMPTION_ID, 0) ?: 0
     private fun getOfferId() = arguments?.getLong(EXTRA_OFFER_ID, 0) ?: 0
 
-    override val PERMISSION_REQUEST_CODE: Int?
-        get() = 1343
-
-    override val tutorial: Tutorial?
-        get() =  Tutorial.Builder(tutorialKey = TutorialService.TutorialKey.REVIEW)
-                .addNextStep(TutorialStep(
-                        // width percentage, height percentage for text with arrow
-                        floatArrayOf(0.50f, 0.78f),
-                        getString(R.string.tut_5_1),
-                        TutorialStep.ArrowPos.TOP,
-                        R.drawable.arrow_bottom_right_x_top_left,
-                        0.35f,
-                        // marginStart dp, marginEnd dp, horizontal center of the transView in 0.0f - 1f, height of the transView in dp
-                        // 0f,0f,0f,0f for covering entire screen
-                        floatArrayOf(0f,0f,0.30f,500f),
-                        1,
-                        // delay before showing view in ms
-                        500f))
-
-                .setOnNextStepIsChangingListener {
-
-                }
-                .setOnContinueTutorialListener {
-
-                }
-                .build()
+//    override val PERMISSION_REQUEST_CODE: Int?
+//        get() = 1343
+//
+//    override val tutorial: Tutorial?
+//        get() =  Tutorial.Builder(tutorialKey = TutorialService.TutorialKey.REVIEW)
+//                .addNextStep(TutorialStep(
+//                        // width percentage, height percentage for text with arrow
+//                        floatArrayOf(0.50f, 0.78f),
+//                        getString(R.string.tut_5_1),
+//                        TutorialStep.ArrowPos.TOP,
+//                        R.drawable.arrow_bottom_right_x_top_left,
+//                        0.35f,
+//                        // marginStart dp, marginEnd dp, horizontal center of the transView in 0.0f - 1f, height of the transView in dp
+//                        // 0f,0f,0f,0f for covering entire screen
+//                        floatArrayOf(0f,0f,0.30f,500f),
+//                        1,
+//                        // delay before showing view in ms
+//                        500f))
+//
+//                .setOnNextStepIsChangingListener {
+//
+//                }
+//                .setOnContinueTutorialListener {
+//
+//                }
+//                .build()
 
 }

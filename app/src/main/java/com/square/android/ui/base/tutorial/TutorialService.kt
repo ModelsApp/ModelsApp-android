@@ -31,7 +31,6 @@ class TutorialService : Service() {
         BOOKING,
         REDEMPTIONS,
         SELECT_OFFER,
-        CHECK_IN,
         REVIEW,
     }
 

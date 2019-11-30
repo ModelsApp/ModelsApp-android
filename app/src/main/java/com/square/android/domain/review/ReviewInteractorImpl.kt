@@ -17,14 +17,7 @@ class ReviewInteractorImpl(private val repository: Repository) : ReviewInteracto
         repository.addReview(offerId, bookingId, if(link.isNullOrEmpty()) "" else link, actionId, photo)
     }
 
-    override fun claimRedemption(redemptionId: Long, offerId: Long) = GlobalScope.async {
-        repository.claimOffer(redemptionId)
-
-        repository.addOfferToBook(redemptionId, offerId)
-    }
-
     override fun getOffer(id: Long) = GlobalScope.async {
         repository.getOffer(id).await()
     }
-
 }
