@@ -171,6 +171,7 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
         } else{
             if(withoutPhoto){
                 reviewBtnAction.text = getString(R.string.accept)
+                reviewBtnAction.performClick()
             } else{
                 reviewBtnAction.text = if(fromClaimed) getString(R.string.send) else getString(R.string.accept)
             }

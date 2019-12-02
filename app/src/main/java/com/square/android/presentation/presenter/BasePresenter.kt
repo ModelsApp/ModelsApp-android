@@ -254,6 +254,7 @@ abstract class BasePresenter<V : BaseView> : MvpPresenter<V>(), KoinComponent {
     }
 
     private val defaultCatch: suspend CoroutineScope.(Throwable) -> Unit = {
+        val errorMessage = it.errorMessage
 
         if((it is  UnknownHostException || it is SocketTimeoutException || it is ConnectException)){
                 if(allowNoConnectionScreen){
@@ -261,8 +262,9 @@ abstract class BasePresenter<V : BaseView> : MvpPresenter<V>(), KoinComponent {
                     router.navigateTo(SCREENS.NO_CONNECTION)
                 }
         } else{
-            if(!TextUtils.isEmpty(it.errorMessage)){
-                viewState.showMessage(it.errorMessage)
+
+            if(!TextUtils.isEmpty(errorMessage)){
+                viewState.showMessage(errorMessage)
             }
         }
 

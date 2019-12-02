@@ -269,7 +269,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
-                    app:layout_constraintBottom_toTopOf="@+id/offerTitle"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -427,7 +426,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/nice_pink"
+                android:background="@color/nice_pink2"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:gravity="center_vertical"
@@ -458,8 +457,10 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="72dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerInside"
                     android:src="@drawable/thanks"
+                    android:scaleX="1.3"
+                    android:scaleY="1.3"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:layout_weight="0.5" />

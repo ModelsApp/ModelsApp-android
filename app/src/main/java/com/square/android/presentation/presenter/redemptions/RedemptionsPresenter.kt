@@ -1,6 +1,7 @@
 package com.square.android.presentation.presenter.redemptions
 
 import android.location.Location
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.App
 import com.square.android.R
@@ -8,7 +9,8 @@ import com.square.android.SCREENS
 import com.square.android.data.pojo.CampaignBooking
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.extensions.relativeTimeString
-import com.square.android.extensions.toDateYMD
+import com.square.android.extensions.toDate
+import com.square.android.extensions.toDateBooking
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
 import com.square.android.presentation.view.redemptions.RedemptionsView
@@ -187,8 +189,9 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 //                CampaignBooking().apply { pickUpDate = "2019-11-27" }, CampaignBooking().apply { pickUpDate = "2019-12-12" }, CampaignBooking().apply { pickUpDate = "2019-11-24" },
 //                CampaignBooking().apply { pickUpDate = "2019-11-21" }, CampaignBooking().apply { pickUpDate = "2019-11-22" })
 
+
         groups = data.groupByTo(mutableMapOf()) {
-           if(it is RedemptionInfo){
+           if(it is RedemptionInfo) {
                if (it.closed) {
                    return@groupByTo closedTitle
                }
@@ -197,33 +200,36 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
                    return@groupByTo claimedTitle
                }
 
-               val date = it.date.toDateYMD()
+               val date = "${it.date} ${it.endTime}".toDateBooking()
                itemCalendar.time = date
            }
 
             if(it is CampaignBooking){
                 if(it.pickUpDate != null){
-                    val date = it.pickUpDate!!.toDateYMD()
+                    val date = it.pickUpDate!!.toDate()
                     itemCalendar.time = date
                 }
             }
-            itemCalendar.relativeTimeString(today)
+            val determinedTime = itemCalendar.relativeTimeString(today)
+
+            Log.e("LOL", "BOOKING: " + determinedTime)
+            return@groupByTo determinedTime
         }
 
         val sorted = groups!!.toSortedMap(compareByDescending<String> { titleToIndex(it) }.thenByDescending {
             if(titleToIndex(it) == 2){
-                it.toDateYMD()
+                it.toDate()
             } else{
                 it
             }
         })
 
         sorted.forEach { (title, list) ->
-                result.addAll(0, list.sortedByDescending {
+                result.addAll(0, list.sortedBy {
                     if(it is RedemptionInfo){
-                        it.date.toDateYMD()
+                        "${it.date} ${it.endTime}".toDateBooking()
                     } else{
-                        (it as CampaignBooking).pickUpDate?.toDateYMD()
+                        (it as CampaignBooking).pickUpDate?.toDate()
                     }
                 })
                 result.add(0, title)

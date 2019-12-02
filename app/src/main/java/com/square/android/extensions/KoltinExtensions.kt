@@ -1,5 +1,6 @@
 package com.square.android.extensions
 
+import android.util.Log
 import android.util.Patterns
 import com.square.android.App
 import com.square.android.R
@@ -20,6 +21,11 @@ fun Int.toOrdinalString() =
 //TODO check date formatting in RedemptionInfo.date and CampaignBooking.pickUpDate and use one of the below methods to format it(RedemptionsPresenter, RedemptionsAdapter)
 fun String.toDate(): Date {
     val format = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+    return format.parse(this)
+}
+fun String.toDateBooking(): Date {
+    val format = SimpleDateFormat("dd-MM-yyyy HH.mm", Locale.getDefault())
 
     return format.parse(this)
 }

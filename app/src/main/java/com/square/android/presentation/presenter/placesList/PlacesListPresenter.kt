@@ -24,14 +24,14 @@ class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesLi
         if(event.shouldUpdateDistances){
             viewState.updateDistances()
         } else{
-            viewState.updatePlaces(data.toList())
+            viewState.updatePlaces(data.filter { it.freeSpots > 0 }.toList())
         }
     }
 
     init {
         eventBus.register(this)
 
-        viewState.showData(data.toList())
+        viewState.showData(data.filter { it.freeSpots > 0 }.toList())
     }
 
     fun itemClicked(place: Place) {
