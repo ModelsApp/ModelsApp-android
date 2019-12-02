@@ -40,6 +40,7 @@
             android:id="@+id/reviewPager"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toTopOf="@+id/reviewBtnAction"
             app:layout_constraintEnd_toEndOf="parent"

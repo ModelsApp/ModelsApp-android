@@ -62,7 +62,7 @@ class ClaimedCouponFragment : BaseFragment(), ClaimedCouponView {
 //      notesTv.text =
 
         userImg.loadImage(url = (user.mainImage ?: user.photo)?: "", roundedCornersRadiusPx = 10)
-        userName.text = user.name + user.surname.get(0)+"."
+        userName.text = user.name +" "+ user.surname.get(0)+"."
 
         //TODO offer img and name
 

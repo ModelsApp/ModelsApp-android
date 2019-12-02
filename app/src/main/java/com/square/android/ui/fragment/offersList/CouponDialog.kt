@@ -55,7 +55,7 @@ class CouponDialog(private val context: Context, var cancelable: Boolean = true)
 //      view.notesTv.text =
 
         view.userImg.loadImage(url = (userData.mainImage ?: userData.photo)?: "", roundedCornersRadiusPx = 10)
-        view.userName.text = userData.name + userData.surname.get(0)+"."
+        view.userName.text = userData.name +" "+ userData.surname.get(0)+"."
 
         //TODO offer img and name
 
