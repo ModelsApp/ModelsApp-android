@@ -76,7 +76,7 @@ class Offer(
             var id: Int = 0,
             var accepted: Boolean = false,
             var credits: Int = 0,
-            var feedback: String = "",
+            var feedback: String? = "",
             var link: String = "",
             var offer: Int = 0,
             var place: Int = 0,
