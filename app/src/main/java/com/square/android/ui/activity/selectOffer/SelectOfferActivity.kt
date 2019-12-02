@@ -1,6 +1,9 @@
 package com.square.android.ui.activity.selectOffer
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -17,6 +20,11 @@ import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.fragment.claimedRedemption.ClaimedRedemptionFragment
 import com.square.android.ui.fragment.offersList.OffersListFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
+import com.square.android.ui.fragment.reviewUpload.PhotoResultEvent
+import com.square.android.utils.FileUtils
+import com.square.android.utils.IMAGE_PICKER_RC
+import org.greenrobot.eventbus.EventBus
+import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
@@ -28,6 +36,8 @@ class SelectOfferActivity: BaseActivity(), SelectOfferView {
 
     @ProvidePresenter
     fun providePresenter() = SelectOfferPresenter( intent.getParcelableExtra(EXTRA_REDEMPTION) as RedemptionInfo)
+
+    private val eventBus: EventBus by inject()
 
     override fun provideNavigator(): Navigator = SelectOfferNavigator(this)
 
@@ -72,4 +82,18 @@ class SelectOfferActivity: BaseActivity(), SelectOfferView {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        val uri: Uri? = when (requestCode) {
+            IMAGE_PICKER_RC -> data?.data
+            else -> data?.extras?.get("data") as Uri? ?: FileUtils.getOutputFileUri(this)
+        }
+
+        uri?.let {eventBus.post(PhotoResultEvent(it))}
+    }
 }

@@ -1,6 +1,5 @@
 package com.square.android.ui.fragment.review
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -12,10 +11,7 @@ import androidx.viewpager.widget.ViewPager
 import com.square.android.R
 import com.square.android.data.pojo.*
 import com.square.android.extensions.toBytes
-import com.square.android.ui.fragment.reviewUpload.PhotoResultEvent
 import com.square.android.ui.fragment.reviewUpload.ReviewPhotoEvent
-import com.square.android.utils.FileUtils
-import com.square.android.utils.IMAGE_PICKER_RC
 import kotlinx.android.synthetic.main.review_dialog.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -84,10 +80,14 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
             when(currentPagerPosition){
                 0 -> openByType()
                 1 -> {
-                    photo?.let {
-//                        handler.sendClicked(index, it)
-                        handler.sendClicked(index, it, action.type)
+                    if (withoutPhoto) {
+                        handler.sendClicked(index, null, action.type)
                         dialog.cancel()
+                    } else {
+                        photo?.let {
+                            handler.sendClicked(index, it, action.type)
+                            dialog.cancel()
+                        }
                     }
                 }
             }
@@ -178,23 +178,7 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode != Activity.RESULT_OK) {
-            return
-        }
-
-        val uri: Uri? = when (requestCode) {
-            IMAGE_PICKER_RC -> data?.data
-            else -> data?.extras?.get("data") as Uri? ?: FileUtils.getOutputFileUri(activity!!)
-        }
-
-        uri?.let {eventBus.post(PhotoResultEvent(it))}
-    }
-
     interface Handler {
-//        fun sendClicked(index: Int, photo: ByteArray)
         fun sendClicked(index: Int, photo: ByteArray?, actionType:String)
     }
 
