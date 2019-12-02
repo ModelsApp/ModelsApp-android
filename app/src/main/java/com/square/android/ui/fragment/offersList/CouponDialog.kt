@@ -23,7 +23,7 @@ class CouponDialog(private val context: Context, var cancelable: Boolean = true)
     @SuppressLint("InflateParams")
     fun show(redemptionFull: RedemptionFull, userData: Profile.User, offerInfo: OfferInfo, cancelHandler: Handler? = null) {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.offer_dialog, null, false)
+        val view = inflater.inflate(R.layout.dialog_coupon, null, false)
 
         dialog = MaterialDialog.Builder(context)
                 .customView(view, false)
@@ -55,7 +55,7 @@ class CouponDialog(private val context: Context, var cancelable: Boolean = true)
 //      view.notesTv.text =
 
         view.userImg.loadImage(url = (userData.mainImage ?: userData.photo)?: "", roundedCornersRadiusPx = 10)
-        view.userName.text = userData.name + userData.surname.get(0)+"."
+        view.userName.text = "${userData.name}${userData.surname[0]}."
 
         //TODO offer img and name
 
@@ -63,7 +63,7 @@ class CouponDialog(private val context: Context, var cancelable: Boolean = true)
         val hour: String = if(calendar.get(Calendar.HOUR_OF_DAY) < 10) "0"+calendar.get(Calendar.HOUR_OF_DAY) else calendar.get(Calendar.HOUR_OF_DAY).toString()
         val minute: String = if(calendar.get(Calendar.MINUTE) < 10) "0"+calendar.get(Calendar.MINUTE) else calendar.get(Calendar.MINUTE).toString()
 
-        view.checkedAt.text = hour+":"+minute
+        view.checkedAt.text = "$hour:$minute"
 
         dialog.show()
     }

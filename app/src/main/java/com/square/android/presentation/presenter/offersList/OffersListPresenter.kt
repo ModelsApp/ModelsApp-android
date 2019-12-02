@@ -1,16 +1,23 @@
 package com.square.android.presentation.presenter.offersList
 
+import android.text.TextUtils
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.SCREENS
+import com.square.android.data.network.errorMessage
 import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.RedemptionFull
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
 import com.square.android.presentation.presenter.redemptions.RedemptionsUpdatedEvent
+import com.square.android.presentation.view.LoadingView
+import com.square.android.presentation.view.ProgressView
 import com.square.android.presentation.view.offersList.OffersListView
 import org.greenrobot.eventbus.EventBus
 import org.koin.standalone.inject
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 @InjectViewState
 class OffersListPresenter(private val redemptionInfo: RedemptionInfo) : BasePresenter<OffersListView>(){

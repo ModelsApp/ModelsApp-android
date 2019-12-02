@@ -62,7 +62,7 @@ class ClaimedCouponFragment : BaseFragment(), ClaimedCouponView {
 //      notesTv.text =
 
         userImg.loadImage(url = (user.mainImage ?: user.photo)?: "", roundedCornersRadiusPx = 10)
-        userName.text = user.name + user.surname.get(0)+"."
+        userName.text = user.name + user.surname[0] +"."
 
         //TODO offer img and name
 
@@ -70,7 +70,7 @@ class ClaimedCouponFragment : BaseFragment(), ClaimedCouponView {
         val hour: String = if(calendar.get(Calendar.HOUR_OF_DAY) < 10) "0"+calendar.get(Calendar.HOUR_OF_DAY) else calendar.get(Calendar.HOUR_OF_DAY).toString()
         val minute: String = if(calendar.get(Calendar.MINUTE) < 10) "0"+calendar.get(Calendar.MINUTE) else calendar.get(Calendar.MINUTE).toString()
 
-        checkedAt.text = hour+":"+minute
+        checkedAt.text = "$hour:$minute"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -59,6 +59,12 @@ class AuthFragment : BaseFragment(), AuthView {
         read_acceptation_policy.movementMethod = LinkMovementMethod.getInstance()
         pending_button_video.setOnClickListener { presenter.navigateTutorialVideos() }
 
+        imageView.setCropOffset(0f,1f)
+
+        tv_not_a_user.visibility = View.GONE
+        tv_want_to_login.visibility = View.GONE
+        tv_forgot_password.visibility = View.GONE
+
         do_action_button.setOnClickListener {
             val authData = AuthData(et_email.content, et_password.content, et_confirm_password.content)
             presenter.actionClicked(authData)

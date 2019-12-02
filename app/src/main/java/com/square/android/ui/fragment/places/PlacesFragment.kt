@@ -128,7 +128,8 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
 
         if(presenter.initialized){
             when(presenter.filteringMode){
-                1 ->{ filterDays = false
+                1 ->{
+                    filterDays = false
                     filterTypes = false
                     placesTypes.visibility = View.GONE
                     placesSearchLl.visibility = View.VISIBLE
@@ -137,13 +138,15 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
                     ignoreText = true
                     placesSearch.setText(presenter.searchText)
                 }
-                2 -> { filterDays = true
+                2 -> {
+                    filterDays = true
                     filterTypes = false
                     placesTypes.visibility = View.GONE
                     placesSearchLl.visibility = View.GONE
                     placesFiltersDaysRv.visibility = View.VISIBLE
                 }
-                3 -> { filterDays = false
+                3 -> {
+                    filterDays = false
                     filterTypes = true
                     placesTypes.visibility = View.VISIBLE
                     placesSearchLl.visibility = View.GONE
