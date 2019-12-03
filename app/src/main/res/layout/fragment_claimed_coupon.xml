@@ -40,8 +40,8 @@
         <ImageView
             android:id="@+id/ic_ticket"
             android:layout_width="72dp"
-            android:layout_height="24dp"
-            android:src="@drawable/r_hanger"
+            android:layout_height="32dp"
+            android:src="@drawable/b_coupon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
             android:layout_marginEnd="24dp"
             android:layout_height="wrap_content"
             android:text="@string/reservation_details"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="22dp"
             app:layout_constraintTop_toBottomOf="@+id/ic_ticket"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -75,7 +75,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/r_calendar" />
+                android:src="@drawable/b_calendar" />
 
             <TextView
                 style="@style/Models14Text"
@@ -104,7 +104,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_timer" />
+                android:src="@drawable/b_time" />
 
             <TextView
                 style="@style/Models14Text"
@@ -133,7 +133,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/r_discount" />
+                android:src="@drawable/b_place" />
 
             <TextView
                 style="@style/Models14Text"
@@ -442,14 +442,16 @@
             app:layout_constraintEnd_toEndOf="parent" >
 
             <TextView
-                style="@style/Models14Text"
+                style="@style/Models12Text"
                 android:textColor="@android:color/white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/present_coupon"
-                android:paddingTop="16dp"
+                android:paddingTop="8dp"
+                android:maxLines="3"
+                app:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:paddingBottom="16dp"
+                android:paddingBottom="8dp"
                 android:layout_weight="0.5" />
 
             <View
@@ -463,7 +465,7 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="72dp"
+                android:layout_height="64dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/thanks"
                 android:scaleX="1.3"

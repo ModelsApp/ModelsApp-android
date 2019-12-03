@@ -206,7 +206,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
         placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
-        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
+        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).capitalize()
         val m = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
 
         placeBookingDate.text = d + ", " + m + " " + dayToString(calendar.get(Calendar.DAY_OF_MONTH))
@@ -287,7 +287,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
         placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
-        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
+        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).capitalize()
         val m =  calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
 
         placeBookingDate.text = d +", " + m +" " + dayToString(calendar.get(Calendar.DAY_OF_MONTH))

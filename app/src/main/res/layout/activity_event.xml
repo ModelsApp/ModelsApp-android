@@ -192,25 +192,25 @@
         android:layout_gravity="center"
         android:layout_marginTop="160dp"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <!--////////// Booking //////////-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/eventBookingCl"
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:clipChildren="false"
         android:background="@android:color/white"
         app:layout_anchorGravity="bottom"
         android:clipToPadding="false"
-        android:paddingBottom="20dp" >
+        android:paddingBottom="16dp" >
 
         <Button
             android:id="@+id/eventBookingBtn"
             style="@style/Models16Text"
-            android:layout_width="112dp"
-            android:layout_height="56dp"
+            android:layout_width="108dp"
+            android:layout_height="52dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginEnd="@dimen/ac_place_default_margin"
             android:background="@drawable/nice_button_red_pink_alpha"
@@ -236,8 +236,8 @@
 
         <ImageView
             android:id="@+id/eventBookingImv"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_marginStart="@dimen/ac_place_default_margin"
             android:layout_marginTop="20dp"
             android:src="@drawable/r_calendar"
@@ -246,7 +246,7 @@
 
         <TextView
             android:id="@+id/eventBookingText"
-            style="@style/Models14SemiBoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -262,7 +262,7 @@
 
         <TextView
             android:id="@+id/eventBookingDate"
-            style="@style/Models16Text"
+            style="@style/Models14Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

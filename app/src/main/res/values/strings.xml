@@ -171,6 +171,9 @@
     <string name="discount_code_">Discount code:</string>
     <string name="no_discount">No discount</string>
 
+    <string name="claim_too_early">Cannot claim, it\'s too early</string>
+    <string name="claim_too_late">Cannot claim, it\'s too late</string>
+
     <string name="error_occurred">An error occurred!</string>
     <string name="subscription_status_cannot_obtained">Your subscription status\ncan not be obtained</string>
     <string name="check_internet_connection">Please check your internet connection.</string>
@@ -292,7 +295,7 @@
 
     <string name="checked_in_at">Checked in at</string>
     <string name="notes_">Notes:</string>
-    <string name="present_coupon">Present this coupon to staff members before to order</string>
+    <string name="present_coupon">Present this coupon\nto staff members\nbefore to order</string>
 
 
     <string name="terms_">Terms</string>

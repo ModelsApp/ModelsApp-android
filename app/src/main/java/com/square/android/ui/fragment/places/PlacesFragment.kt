@@ -37,7 +37,7 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
 
     private var filtersAdapter: FiltersAdapter? = null
 
-    private var daysAdapter: DaysShortAdapter? = null
+    private var dayShortAdapter: DaysShortAdapter? = null
 
     override fun showProgress() {
         placesProgress.visibility = View.VISIBLE
@@ -53,8 +53,8 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         placesFiltersTypesRv.layoutManager = LinearLayoutManager(placesFiltersTypesRv.context, RecyclerView.HORIZONTAL,false)
         placesFiltersTypesRv.addItemDecoration(MarginItemDecorator(placesFiltersTypesRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), false))
 
-        daysAdapter = DaysShortAdapter(days, this)
-        placesFiltersDaysRv.adapter = daysAdapter
+        dayShortAdapter = DaysShortAdapter(days, this)
+        placesFiltersDaysRv.adapter = dayShortAdapter
         placesFiltersDaysRv.layoutManager = LinearLayoutManager(placesFiltersDaysRv.context, RecyclerView.HORIZONTAL,false)
         placesFiltersDaysRv.addItemDecoration(MarginItemDecorator(placesFiltersDaysRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), false))
 
@@ -110,11 +110,11 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
 
         placesIcDays.setOnClickListener {
             filterDays = filterDays.not()
-            changeFiltering()
+            changeFiltering(1)
         }
         placesIcTypes.setOnClickListener {
             filterTypes = filterTypes.not()
-            changeFiltering()
+            changeFiltering(2)
         }
 
         placesIcMap.setOnClickListener {
@@ -188,14 +188,27 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         }
     }
 
-    private fun changeFiltering(){
+                                // 1 - days, 2 - types
+    private fun changeFiltering(whichClicked: Int){
         placesIcDays.imageTintList = if (filterDays) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
         else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
 
         placesIcTypes.imageTintList = if (filterTypes) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
         else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
 
-        if ((filterDays && filterTypes) || (!filterDays && !filterTypes)) {
+        if (filterDays && filterTypes) {
+            if(whichClicked == 1){
+                placesTypes.visibility = View.GONE
+                placesSearchLl.visibility = View.GONE
+                placesFiltersDaysRv.visibility = View.VISIBLE
+                presenter.changeFiltering(2)
+            } else {
+                placesSearchLl.visibility = View.GONE
+                placesFiltersDaysRv.visibility = View.GONE
+                placesTypes.visibility = View.VISIBLE
+                presenter.changeFiltering(3)
+            }
+        } else if (!filterDays && !filterTypes) {
             placesTypes.visibility = View.GONE
             placesFiltersDaysRv.visibility = View.GONE
             placesSearchLl.visibility = View.VISIBLE
@@ -228,7 +241,7 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
     }
 
     override fun setSelectedDayItem(position: Int) {
-        daysAdapter?.setSelectedItem(position)
+        dayShortAdapter?.setSelectedItem(position)
     }
 
     override fun dayItemClicked(position: Int){

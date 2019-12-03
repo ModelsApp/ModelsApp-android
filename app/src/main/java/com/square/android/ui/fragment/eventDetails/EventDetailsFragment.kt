@@ -150,7 +150,7 @@ class EventDetailsFragment: BaseFragment(), EventDetailsView{
         val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
         eventBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
-        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
+        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).capitalize()
         val m =  calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
 
         (activity as EventActivity).updateDateLabel(d +", " + m +" " + dayToString(calendar.get(Calendar.DAY_OF_MONTH)))
@@ -346,7 +346,7 @@ class EventDetailsFragment: BaseFragment(), EventDetailsView{
         val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
         eventBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
-        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
+        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).capitalize()
         val m = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
 
         (activity as EventActivity).updateDateLabel(d +", " + m +" " + dayToString(calendar.get(Calendar.DAY_OF_MONTH)))

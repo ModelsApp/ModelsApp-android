@@ -21,24 +21,25 @@
         tools:text="T" />
 
     <FrameLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_marginTop="10dp">
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/itemDayValue"
             style="@style/Models16Text"
             android:layout_gravity="center"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="@drawable/item_day_selector"
             android:gravity="center"
+            android:checked="true"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/day_text_color"
             app:layout_constraintEnd_toEndOf="@+id/itemDayName"
             app:layout_constraintStart_toStartOf="@+id/itemDayName"
             app:layout_constraintTop_toBottomOf="@+id/itemDayName"
-            tools:text="25" />
+            tools:text="52" />
     </FrameLayout>
 
 

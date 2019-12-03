@@ -282,7 +282,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomCl"
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:clipChildren="false"
         android:background="@android:color/white"
@@ -311,7 +311,7 @@
         <Button
             android:id="@+id/bottomBtnNext"
             style="@style/Models16Text"
-            android:layout_width="112dp"
+            android:layout_width="108dp"
             android:layout_height="52dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginEnd="20dp"
@@ -330,8 +330,8 @@
 
         <ImageView
             android:id="@+id/bottomIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/r_calendar"
