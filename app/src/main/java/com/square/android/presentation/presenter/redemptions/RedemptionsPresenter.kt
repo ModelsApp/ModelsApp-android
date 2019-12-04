@@ -27,8 +27,6 @@ import kotlin.collections.ArrayList
 
 class RedemptionsUpdatedEvent
 
-class ClaimedExtras(val offerId: Long, val redemptionId: Long)
-
 private const val MAXIMAL_DISTANCE = 75_000_000 // TODO change before release to the 75 m
 
 @Suppress("unused")
@@ -37,6 +35,9 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
     private val eventBus: EventBus by inject()
 
     var data: MutableList<Any>? = null
+
+    var redemptions: MutableList<RedemptionInfo>? = null
+    var campaignRedemptions: MutableList<CampaignBooking>? = null
 
     private var groups: MutableMap<String, MutableList<Any>>? = null
 
@@ -63,11 +64,13 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 
     private fun loadData() {
         launch {
-            val redemptions = repository.getRedemptions().await()
-            val campaignRedemptions = repository.getCampaignBookings().await()
+            viewState.showProgress()
 
-            if(!campaignRedemptions.isNullOrEmpty()){
-                val iterate = campaignRedemptions.toMutableList().listIterator()
+            redemptions = repository.getRedemptions().await().toMutableList()
+            campaignRedemptions = repository.getCampaignBookings().await().toMutableList()
+
+            if (!campaignRedemptions.isNullOrEmpty()) {
+                val iterate = campaignRedemptions!!.toMutableList().listIterator()
                 while (iterate.hasNext()) {
                     val oldValue = iterate.next()
 
@@ -82,32 +85,42 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
                 }
             }
 
-            val allRedemptions: List<Any> = if(!campaignRedemptions.isNullOrEmpty() && !redemptions.isNullOrEmpty()){
-                redemptions + campaignRedemptions.toList()
-            } else if(!campaignRedemptions.isNullOrEmpty()){
-                campaignRedemptions.toList()
-            } else if (!redemptions.isNullOrEmpty()){
-                redemptions
-            } else{
-                listOf()
+            campaignRedemptions!!.sortedBy { it.pickUpDate?.toDate() }
+
+            if (data != null) {
+                if (data!!.filterIsInstance<RedemptionInfo>().isEmpty()) {
+                    changeDataType(true)
+                } else {
+                    changeDataType(false)
+                }
+            } else {
+                changeDataType(false)
             }
+        }
+    }
 
-            data = addHeaders(allRedemptions).await().toMutableList()
+    fun campaignClicked(id: Long){
+        val item = data!!.filterIsInstance<CampaignBooking>().firstOrNull { it.campaignId == id } ?: return
 
+        router.navigateTo(SCREENS.CAMPAIGN_DETAILS, item.campaignId)
+    }
+
+    fun changeDataType(areCampaignRedemptions: Boolean) = launch {
+        viewState.showProgress()
+
+        if(!areCampaignRedemptions){
+            data = addHeaders(redemptions!!).await().toMutableList()
+            viewState.hideProgress()
+            viewState.showData(data!!)
+        } else{
+            data = addHeaders(campaignRedemptions!!).await().toMutableList()
             viewState.hideProgress()
             viewState.showData(data!!)
         }
     }
 
-    fun campaignClicked(position: Int){
-        val item = data!![position] as? CampaignBooking ?: return
-
-        router.navigateTo(SCREENS.CAMPAIGN_DETAILS, item.campaignId)
-    }
-
-    fun claimClicked(position: Int) {
-
-        val item = data!![position] as? RedemptionInfo ?: return
+    fun claimClicked(id: Long) {
+        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
 
         if (lastLocation == null) {
             viewState.showMessage(R.string.cannot_obtain_location)
@@ -163,14 +176,17 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 //                hashMapOf("id" to item.id.toString())), repository)
     }
 
-    fun claimedInfoClicked(position: Int) {
-        val item = data!![position] as? RedemptionInfo ?: return
+    fun claimedInfoClicked(id: Long) {
+        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
 
         router.navigateTo(SCREENS.SELECT_OFFER, item)
     }
 
-    fun cancelClicked(position: Int) {
-        val item = data!![position] as? RedemptionInfo ?: return
+    fun cancelRedemptionClicked(id: Long) {
+        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
+
+        //TODO check if working
+        val position = data!!.indexOf(item)
 
         launch {
             val result = repository.deleteRedemption(item.id).await()
@@ -191,6 +207,12 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
             }
 
             data!!.removeAt(position)
+
+            val r = redemptions!!.firstOrNull { it.id == id}
+            r?.let {
+                redemptions!!.removeAt(redemptions!!.indexOf(it))
+            }
+
             viewState.removeItem(position)
 
             if (removeHeader) {
@@ -202,6 +224,10 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 
             viewState.showMessage(result.message)
         }
+    }
+
+    fun cancelCampaignClicked(id: Long) {
+        //TODO
     }
 
     private fun sendBadgeEvent() {
@@ -216,8 +242,13 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
 
         val result = ArrayList<Any>()
 
+//       redemption
         val closedTitle = App.getString(R.string.closed)
         val claimedTitle = App.getString(R.string.claimed)
+
+//       campaign
+        val activeTitle = App.getString(R.string.active_campaigns)
+        val completedTitle = App.getString(R.string.completed_campaigns)
         
 //        val data2 = listOf(RedemptionInfo().apply { date = "2019-11-22"; claimed = true; startTime ="14.00"; endTime="15.00"; place.name = "Nice redemption"; place.address = "Via Giorgio 2, 324 Milano"; }, RedemptionInfo().apply {date = "2019-11-22"; startTime ="14.00"; endTime="15.00"; place.name = "Nice redemption"; place.address = "Via Giorgio 2, 324 Milano"; }, RedemptionInfo().apply { date = "2019-11-26"; startTime ="14.00"; endTime="15.00"; place.name = "Nice redemption"; place.address = "Via Giorgio 2, 324 Milano"; },
 //                CampaignBooking().apply { pickUpDate = "2019-11-25" }, CampaignBooking().apply { pickUpDate = "2019-11-25" }, CampaignBooking().apply { pickUpDate = "2019-11-28" },
@@ -241,6 +272,14 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
            }
 
             if(it is CampaignBooking){
+                //TODO (no info for now)
+//                if (it.active) {
+//                    return@groupByTo activeTitle
+//                }
+//                if (it.completed) {
+//                    return@groupByTo completedTitle
+//                }
+
                 if(it.pickUpDate != null){
                     val date = it.pickUpDate!!.toDate()
                     itemCalendar.time = date
@@ -285,7 +324,10 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
             App.getString(R.string.past) -> 3
             App.getString(R.string.claimed) -> 4
             App.getString(R.string.closed) -> 5
+            App.getString(R.string.active_campaigns) -> 6
+            App.getString(R.string.completed_campaigns) -> 7
             else -> 2
         }
     }
+
 }

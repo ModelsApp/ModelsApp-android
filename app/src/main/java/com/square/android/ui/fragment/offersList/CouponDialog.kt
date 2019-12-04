@@ -39,6 +39,9 @@ class CouponDialog(private val context: Context, var cancelable: Boolean = true)
         view.placeTv.text = redemptionFull.redemption.place.name
         view.addressTv.text = redemptionFull.redemption.place.address
 
+
+
+
         //TODO no offerInfo in redemptionFull
 //        val numberList: MutableList<Int> = mutableListOf()
 //        val names = redemptionFull.offer.compositionAsStr()

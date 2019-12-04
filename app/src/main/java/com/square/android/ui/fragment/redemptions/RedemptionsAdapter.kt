@@ -1,31 +1,24 @@
 package com.square.android.ui.fragment.redemptions
 
-import android.animation.ObjectAnimator
 import android.util.TypedValue
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
-import com.daimajia.swipe.SwipeLayout
 import com.square.android.R
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.ui.base.BaseAdapter
-import kotlinx.android.synthetic.main.item_redemption_active.*
 import kotlinx.android.synthetic.main.redemption_header.*
-import kotlinx.android.synthetic.main.item_campaign_redemption.*
-import android.animation.Animator
-import android.animation.AnimatorSet
-import android.view.animation.DecelerateInterpolator
 import android.webkit.URLUtil
 import com.square.android.App
 import com.square.android.data.pojo.CampaignBooking
 import com.square.android.extensions.*
+import kotlinx.android.synthetic.main.item_campaign_redemption.*
+import kotlinx.android.synthetic.main.item_redemption.*
 import java.lang.Exception
 import java.util.*
 
 private const val TYPE_HEADER = R.layout.redemption_header
-private const val TYPE_REDEMPTION = R.layout.item_redemption_active
-private const val TYPE_CLAIMED_REDEMPTION = R.layout.item_redemption_claimed
-private const val TYPE_CLOSED_REDEMPTION = R.layout.item_redemption_closed
+private const val TYPE_REDEMPTION = R.layout.item_redemption
 private const val TYPE_CAMPAIGN_REDEMPTION = R.layout.item_campaign_redemption
 
 private var isDialogVisible = false
@@ -42,11 +35,7 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
 
         return when (item) {
             is RedemptionInfo -> {
-                when {
-                    item.closed -> TYPE_CLOSED_REDEMPTION
-                    item.claimed -> TYPE_CLAIMED_REDEMPTION
-                    else -> TYPE_REDEMPTION
-                }
+                TYPE_REDEMPTION
             }
             is CampaignBooking -> {
                 TYPE_CAMPAIGN_REDEMPTION
@@ -59,165 +48,7 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
         notifyItemRemoved(position)
     }
 
-    class RedemptionHolder(containerView: View, handler: Handler) : BaseHolder<Any>(containerView) {
-        init {
-
-            //Campaign redemption
-                campaignRedemptionContainer?.setOnClickListener {
-
-                    val dip4 : Float = campaignRedemptionContainer.resources.getDimension(R.dimen.anim_start)
-                    val dip2 : Float = campaignRedemptionContainer.resources.getDimension(R.dimen.anim_end)
-
-                    val anim1Start = ObjectAnimator.ofFloat(campaignRedemptionContainer, "elevation", dip4)
-                    val anim2Start = ObjectAnimator.ofFloat(campaignRedemptionImageShadow, "elevation", dip4)
-                    val anim3Start = ObjectAnimator.ofFloat(campaignRedemptionImage, "elevation", dip4)
-
-                    val anim1End = ObjectAnimator.ofFloat(campaignRedemptionContainer, "elevation", dip2)
-                    val anim2End = ObjectAnimator.ofFloat(campaignRedemptionImageShadow, "elevation", dip2)
-                    val anim3End = ObjectAnimator.ofFloat(campaignRedemptionImage, "elevation", dip2)
-
-                    val animationSet = AnimatorSet()
-                    val animationSet2 = AnimatorSet()
-
-                    animationSet.playTogether(
-                            anim1Start,
-                            anim2Start,
-                            anim3Start)
-                    animationSet.interpolator = DecelerateInterpolator()
-                    animationSet.duration = 1
-
-                    animationSet.addListener(object: Animator.AnimatorListener {
-                        override fun onAnimationRepeat(animation: Animator?) {}
-
-                        override fun onAnimationEnd(animation: Animator?) {
-                            handler.campaignItemClicked(adapterPosition)
-
-                            animationSet2.playTogether(
-                                    anim1End,
-                                    anim2End,
-                                    anim3End)
-                            animationSet2.interpolator = DecelerateInterpolator()
-                            animationSet2.duration = 200
-                            animationSet2.start()
-                        }
-
-                        override fun onAnimationCancel(animation: Animator?) {}
-                        override fun onAnimationStart(animation: Animator?) {}
-                    } )
-                    animationSet.start()
-                }
-
-                campaignRedemptionImage?.setOnClickListener {
-                    campaignRedemptionContainer?.callOnClick()
-                }
-                campaignRedemptionImageShadow?.setOnClickListener {
-                    campaignRedemptionContainer?.callOnClick()
-                }
-
-            //Redemption
-                redemptionContainer?.setOnClickListener {
-
-                    val dip4 : Float = redemptionContainer.resources.getDimension(R.dimen.anim_start)
-                    val dip2 : Float = redemptionContainer.resources.getDimension(R.dimen.anim_end)
-
-                    val anim1Start = ObjectAnimator.ofFloat(redemptionContainer, "elevation", dip4)
-                    val anim2Start = ObjectAnimator.ofFloat(redemptionImageShadow, "elevation", dip4)
-                    val anim3Start = ObjectAnimator.ofFloat(redemptionImage, "elevation", dip4)
-
-                    val anim1End = ObjectAnimator.ofFloat(redemptionContainer, "elevation", dip2)
-                    val anim2End = ObjectAnimator.ofFloat(redemptionImageShadow, "elevation", dip2)
-                    val anim3End = ObjectAnimator.ofFloat(redemptionImage, "elevation", dip2)
-
-                    val animationSet = AnimatorSet()
-                    val animationSet2 = AnimatorSet()
-
-                    animationSet.playTogether(
-                            anim1Start,
-                            anim2Start,
-                            anim3Start)
-                    animationSet.interpolator = DecelerateInterpolator()
-                    animationSet.duration = 1
-
-                    animationSet.addListener(object: Animator.AnimatorListener {
-                        override fun onAnimationRepeat(animation: Animator?) {}
-
-                        override fun onAnimationEnd(animation: Animator?) {
-                            if (itemViewType == TYPE_REDEMPTION) {
-                                handler.claimClicked(adapterPosition)
-                            } else if (itemViewType == TYPE_CLAIMED_REDEMPTION) {
-                                handler.claimedItemClicked(adapterPosition)
-                            }
-
-                            animationSet2.playTogether(
-                                    anim1End,
-                                    anim2End,
-                                    anim3End)
-                            animationSet2.interpolator = DecelerateInterpolator()
-                            animationSet2.duration = 200
-                            animationSet2.start()
-                        }
-
-                        override fun onAnimationCancel(animation: Animator?) {}
-                        override fun onAnimationStart(animation: Animator?) {}
-                    } )
-                    animationSet.start()
-                }
-
-                redemptionImage?.setOnClickListener {
-                    redemptionContainer?.callOnClick()
-                }
-                redemptionImageShadow?.setOnClickListener {
-                    redemptionContainer?.callOnClick()
-                }
-
-                redemptionSwipeLayout?.showMode = SwipeLayout.ShowMode.LayDown
-                redemptionSwipeLayout?.addSwipeListener(object: SwipeLayout.SwipeListener {
-                    override fun onUpdate(layout: SwipeLayout?, leftOffset: Int, topOffset: Int) {}
-                    override fun onStartOpen(layout: SwipeLayout?) {}
-                    override fun onStartClose(layout: SwipeLayout?) {}
-                    override fun onHandRelease(layout: SwipeLayout?, xvel: Float, yvel: Float) {}
-                    override fun onClose(layout: SwipeLayout?) {}
-
-                    override fun onOpen(layout: SwipeLayout?) {
-                        if (itemViewType == TYPE_REDEMPTION) {
-                            if(!isDialogVisible){
-                                isDialogVisible = true
-
-                                val dialog: MaterialDialog = MaterialDialog.Builder(redemptionSwipeLayout.context)
-                                        .title(R.string.remove_item_title)
-                                        .content(R.string.remove_item_content)
-                                        .contentColorRes(android.R.color.black)
-                                        .itemsColor( ContextCompat.getColor( redemptionSwipeLayout.context, R.color.nice_pink))
-                                        .positiveText(R.string.ok_lowercase)
-                                        .negativeText(R.string.cancel)
-                                        .cancelable(true)
-                                        .onPositive { dialog, action ->
-                                            dialog.cancel()
-
-                                            handler.cancelClicked(adapterPosition)
-                                        }
-                                        .onNegative { dialog, action ->
-                                            dialog.cancel()
-                                        }
-                                        .cancelListener {
-                                            redemptionSwipeLayout?.close()
-                                            isDialogVisible = false
-                                        }
-                                        .build()
-
-                                val titleTv = dialog.titleView
-                                val contentTv = dialog.contentView
-
-                                titleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19f)
-                                contentTv?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
-
-                                dialog.show()
-                            }
-                        }
-                    }
-                })
-
-        }
+    class RedemptionHolder(containerView: View, var handler: Handler) : BaseHolder<Any>(containerView) {
 
         override fun bind(item: Any, vararg extras: Any?) {
             when (item) {
@@ -229,26 +60,91 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
 
         private fun bindRedemption(redemptionInfo: RedemptionInfo) {
             if (redemptionInfo.closed || redemptionInfo.claimed) {
-                redemptionImage.makeBlackWhite()
-            } else {
-                redemptionImage.removeFilters()
-            }
+                redemption_image.makeBlackWhite()
 
-            redemptionHours?.text = redemptionHours.context.getString(com.square.android.R.string.time_range, redemptionInfo.startTime, redemptionInfo.endTime)
-            redemptionTitle.text = redemptionInfo.place.name
-            redemptionAddress.text = redemptionInfo.place.address
-            redemptionDate.text = redemptionInfo.date
+                redemption_place_name.alpha = 0.3f
+                redemption_address.alpha = 0.3f
+                redemption_hours.alpha = 0.3f
+                redemption_btn_top.alpha = 0.3f
+                redemption_btn_bottom.alpha = 0.3f
+
+                //TODO remove option
+            } else {
+                redemption_image.removeFilters()
+
+                redemption_place_name.alpha = 1f
+                redemption_address.alpha = 1f
+                redemption_hours.alpha = 1f
+                redemption_btn_top.alpha = 1f
+                redemption_btn_bottom.alpha = 1f
+
+                redemption_btn_bottom.visibility = View.VISIBLE
+                redemption_btn_bottom.text = redemption_btn_bottom.resources.getString(R.string.cancel)
+                redemption_btn_bottom.setTextColor(ContextCompat.getColor(redemption_btn_bottom.context, R.color.status_red))
+                redemption_btn_bottom.setOnClickListener {
+                    if (!isDialogVisible) {
+                        isDialogVisible = true
+
+                        val dialog: MaterialDialog = MaterialDialog.Builder(redemption_btn_bottom.context)
+                                .title(R.string.remove_item_title)
+                                .content(R.string.remove_item_content)
+                                .contentColorRes(android.R.color.black)
+                                .itemsColor(ContextCompat.getColor(redemption_btn_bottom.context, R.color.nice_pink))
+                                .positiveText(R.string.yes)
+                                .negativeText(R.string.no)
+                                .negativeColorRes(R.color.nice_pink)
+                                .positiveColorRes(R.color.nice_pink)
+                                .cancelable(true)
+                                .onPositive { dialog, action ->
+                                    dialog.cancel()
+
+                                    handler.cancelRedemptionClicked(redemptionInfo.id)
+                                }
+                                .onNegative { dialog, action ->
+                                    dialog.cancel()
+                                }
+                                .cancelListener {
+                                    isDialogVisible = false
+                                }
+                                .build()
+
+                        val titleTv = dialog.titleView
+                        val contentTv = dialog.contentView
+
+                        titleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19f)
+                        contentTv?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
+
+                        dialog.show()
+                    }
+                }
+            }
+            redemption_place_name.text = redemptionInfo.place.name
+            redemption_address.text = redemptionInfo.place.address
+            redemption_hours?.text = redemption_hours.context.getString(com.square.android.R.string.time_range, redemptionInfo.startTime, redemptionInfo.endTime)
+
             if (URLUtil.isValidUrl(redemptionInfo.place.photo))
-                redemptionImage.loadImage(redemptionInfo.place.photo!!, roundedCornersRadiusPx = 360)
+                redemption_image.loadImage(redemptionInfo.place.photo!!, roundedCornersRadiusPx = 360)
+
+            redemptionContainer.setOnClickListener {
+                if(redemptionInfo.claimed){
+                    handler.claimedItemClicked(redemptionInfo.id)
+                } else{
+                    handler.claimClicked(redemptionInfo.id)
+                }
+            }
         }
 
         private fun bindCampaign(campaignBooking: CampaignBooking){
-            campaignRedemptionHours.text = campaignBooking.time
-            campaignRedemptionDate.text = campaignBooking.pickUpDate
-            campaignRedemptionTitle.text = campaignBooking.title
+            campaign_title.text = campaignBooking.title
+
+            //TODO no hashtag, campaign type, active boolean, completed boolean
+//            campaign_type.text =
+//            campaign_hashtag.text =
 
             if (URLUtil.isValidUrl(campaignBooking.mainImage))
-                campaignRedemptionImage.loadImage(campaignBooking.mainImage!!, roundedCornersRadiusPx = 360)
+                campaign_image.loadImage(campaignBooking.mainImage!!, roundedCornersRadiusPx = 360)
+
+            campaignRedemptionContainer.setOnClickListener { handler.campaignItemClicked(campaignBooking.campaignId) }
         }
 
         private fun bindHeader(header: String) {
@@ -261,19 +157,24 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
 
                 redemptionHeader.text = App.INSTANCE.getString(R.string.date_format, day, month)
 
+                redemptionHeader.setTextColorRes(R.color.gray_hint_light)
+
             } catch (e: Exception){
                 redemptionHeader.text = header
+                redemptionHeader.setTextColorRes(android.R.color.black)
             }
         }
     }
 
     interface Handler {
-        fun claimClicked(position: Int)
+        fun cancelCampaignClicked(id: Long)
 
-        fun cancelClicked(position: Int)
+        fun cancelRedemptionClicked(id: Long)
 
-        fun claimedItemClicked(position: Int)
+        fun campaignItemClicked(id: Long)
 
-        fun campaignItemClicked(position: Int)
+        fun claimClicked(id: Long)
+
+        fun claimedItemClicked(id: Long)
     }
 }

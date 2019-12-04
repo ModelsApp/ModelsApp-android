@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/redemptionsTitle"
@@ -15,31 +15,96 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/my_bookings_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ticketLl"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ticketLl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="24dp"
+        android:gravity="bottom"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/redemptionsTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/redemptionsTitle" >
+        <ImageView
+            android:id="@+id/ic_ticket"
+            android:layout_width="40dp"
+            android:layout_height="22dp"
+            android:src="@drawable/b_coupon" />
+
+        <TextView
+            android:id="@+id/ticketActualValue"
+            style="@style/Models16Text"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/gray_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2 /" />
+
+        <TextView
+            android:id="@+id/ticketMaxValue"
+            style="@style/Models16Text"
+            android:layout_marginStart="3.5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="9" />
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/redemptionsTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/redemptionsTitle"
+        app:tabIndicator="@drawable/indicator"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:tabTextAppearance="@style/Models18SemiBoldText"
+        app:tabIndicatorColor="@color/placesPrimary"
+        app:tabSelectedTextColor="@color/placesPrimary"
+        app:tabTextColor="@color/secondary_text"  />
+
+    <com.square.android.utils.widget.PagingViewPager
+        android:id="@+id/redemptionsPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/redemptionsTab" />
 
     <ProgressBar
         android:id="@+id/redemptionsProgress"
         android:layout_width="wrap_content"
-        android:indeterminateTint="@color/placesPrimary"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/redemptionsTitle"
-        tools:visibility="visible" />
+        android:indeterminateTint="@color/placesPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/redemptionsPager"
+        app:layout_constraintEnd_toEndOf="@+id/redemptionsPager"
+        app:layout_constraintStart_toStartOf="@+id/redemptionsPager"
+        app:layout_constraintTop_toTopOf="@+id/redemptionsPager" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/redemptionsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
         android:clipToPadding="false"
+        android:clipChildren="false"
         android:orientation="vertical"
         android:paddingBottom="16dp"
         android:overScrollMode="never"
@@ -47,5 +112,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/redemptionsTitle" />
+        app:layout_constraintTop_toBottomOf="@id/redemptionsTab" />
 </androidx.constraintlayout.widget.ConstraintLayout>

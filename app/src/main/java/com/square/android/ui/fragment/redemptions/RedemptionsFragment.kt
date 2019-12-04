@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.ViewPager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.square.android.R
-import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.redemptions.RedemptionsPresenter
 import com.square.android.presentation.view.redemptions.RedemptionsView
 import com.square.android.ui.base.tutorial.Tutorial
@@ -28,13 +28,37 @@ class RedemptionsFragment: LocationFragment(), RedemptionsView, RedemptionsAdapt
 
     override fun showData(ordered: List<Any>) {
         adapter = RedemptionsAdapter(ordered, this)
-
         redemptionsList.adapter = adapter
 
         if(!initialized){
             initialized = true
             visibleNow()
         }
+
+        //TODO where to get tickets data(ticketLl)
+    }
+
+    private fun initializePager() {
+        val fragAdapter = RedemptionsFragmentAdapter(childFragmentManager)
+
+        redemptionsPager.isPagingEnabled = false
+
+        redemptionsPager.adapter = fragAdapter
+        redemptionsTab.setupWithViewPager(redemptionsPager)
+
+        redemptionsPager.addOnPageChangeListener( object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) { }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
+            override fun onPageSelected(position: Int) {
+                if(position == 0){
+                    presenter.changeDataType(false)
+                } else{
+                    presenter.changeDataType(true)
+                }
+
+                ticketLl.visibility = if(position == 0) View.VISIBLE else View.GONE
+            }
+        })
     }
 
     override fun locationGotten(lastLocation: Location?) {
@@ -42,31 +66,37 @@ class RedemptionsFragment: LocationFragment(), RedemptionsView, RedemptionsAdapt
     }
 
     override fun showProgress() {
+        redemptionsList.visibility = View.INVISIBLE
         redemptionsProgress.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
         redemptionsProgress.visibility = View.GONE
+        redemptionsList.visibility = View.VISIBLE
     }
 
-    override fun claimClicked(position: Int) {
-        presenter.claimClicked(position)
+    override fun claimClicked(id: Long) {
+        presenter.claimClicked(id)
     }
 
-    override fun claimedItemClicked(position: Int) {
-        presenter.claimedInfoClicked(position)
+    override fun claimedItemClicked(id: Long) {
+        presenter.claimedInfoClicked(id)
     }
 
     override fun removeItem(position: Int) {
         adapter?.removeItem(position)
     }
 
-    override fun cancelClicked(position: Int) {
-        presenter.cancelClicked(position)
+    override fun cancelRedemptionClicked(id: Long) {
+        presenter.cancelRedemptionClicked(id)
     }
 
-    override fun campaignItemClicked(position: Int) {
-        presenter.campaignClicked(position)
+    override fun cancelCampaignClicked(id: Long) {
+        presenter.cancelCampaignClicked(id)
+    }
+
+    override fun campaignItemClicked(id: Long) {
+        presenter.campaignClicked(id)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -78,6 +108,8 @@ class RedemptionsFragment: LocationFragment(), RedemptionsView, RedemptionsAdapt
         super.onViewCreated(view, savedInstanceState)
 
         redemptionsList.setHasFixedSize(true)
+
+        initializePager()
     }
 
 //    override val PERMISSION_REQUEST_CODE: Int?

@@ -209,6 +209,11 @@
     <string name="claimed">Claimed</string>
     <string name="price">Price</string>
 
+
+    <string name="active_campaigns">Active campaigns</string>
+    <string name="completed_campaigns">Completed campaigns</string>
+
+
     <string name="send_picture">Send picture</string>
     <string name="book">Book</string>
     <string name="time_range">%s - %s</string>
@@ -373,6 +378,8 @@
     <string name="venues_list">Venues List</string>
     <string name="distance">Distance</string>
     <string name="place_name_comma">%s,</string>
+
+    <string name="lifestyle">Lifestyle</string>
 
 
     <string name="congratulations">Congratulations!</string>
