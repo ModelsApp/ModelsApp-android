@@ -11,12 +11,12 @@
         android:id="@+id/dinnerOffersBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:tint="@android:color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toBottomOf="@+id/dinnerOffersTitle"
+        android:tint="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/dinnerOffersTitle"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back" />
 
     <TextView
@@ -24,12 +24,12 @@
         style="@style/Models20SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="12dp"
         android:includeFontPadding="false"
-        tools:text="La Perla d'Oro"
+        app:layout_constraintBottom_toBottomOf="@+id/dinnerOffersBack"
         app:layout_constraintStart_toEndOf="@+id/dinnerOffersBack"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/dinnerOffersBack"
+        tools:text="La Perla d'Oro" />
 
     <TextView
         android:id="@+id/dinnerOffersDate"

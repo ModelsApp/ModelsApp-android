@@ -11,12 +11,12 @@
         android:id="@+id/eventOffersBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:tint="@android:color/black"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toBottomOf="@+id/eventOffersTitle"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/eventOffersTitle"
         app:srcCompat="@drawable/ic_arrow_back" />
 
     <TextView
@@ -24,12 +24,12 @@
         style="@style/Models20SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="12dp"
         android:includeFontPadding="false"
         android:text="@string/party"
+        app:layout_constraintBottom_toBottomOf="@+id/eventOffersBack"
         app:layout_constraintStart_toEndOf="@+id/eventOffersBack"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/eventOffersBack" />
 
     <TextView
         android:id="@+id/eventOffersDate"
