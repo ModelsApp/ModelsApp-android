@@ -160,14 +160,13 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
             redemptionCalEnding.set(Calendar.HOUR_OF_DAY, sEnd[0].toInt())
             redemptionCalEnding.set(Calendar.MINUTE, sEnd[1].toInt())
 
-            //TODO uncomment
-//            if(((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > 0) && ((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > claimTime) ){
-//                viewState.showMessage(R.string.claim_too_early)
-//            } else if(((redemptionCalEnding.timeInMillis - actualCal.timeInMillis) < 0) && ((actualCal.timeInMillis - redemptionCalEnding.timeInMillis) > claimTime)){
-//                viewState.showMessage(R.string.claim_too_late)
-//            } else{
+            if(((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > 0) && ((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > claimTime) ){
+                viewState.showMessage(R.string.claim_too_early)
+            } else if(((redemptionCalEnding.timeInMillis - actualCal.timeInMillis) < 0) && ((actualCal.timeInMillis - redemptionCalEnding.timeInMillis) > claimTime)){
+                viewState.showMessage(R.string.claim_too_late)
+            } else{
                 router.navigateTo(SCREENS.SELECT_OFFER, item)
-//            }
+            }
 
         } catch (e: Exception){
             viewState.showMessage(R.string.error_occurred)
