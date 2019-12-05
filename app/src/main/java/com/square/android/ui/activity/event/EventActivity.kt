@@ -162,7 +162,7 @@ class EventActivity: LocationActivity(), EventView {
     }
 
     override fun showBookingProgress() {
-        eventBookingBtn.visibility = View.GONE
+        eventBookingBtn.visibility = View.INVISIBLE
         eventBookProgress.visibility = View.VISIBLE
     }
 

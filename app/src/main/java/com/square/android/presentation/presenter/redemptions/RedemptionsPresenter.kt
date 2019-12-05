@@ -160,13 +160,14 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
             redemptionCalEnding.set(Calendar.HOUR_OF_DAY, sEnd[0].toInt())
             redemptionCalEnding.set(Calendar.MINUTE, sEnd[1].toInt())
 
-            if(((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > 0) && ((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > claimTime) ){
-                viewState.showMessage(R.string.claim_too_early)
-            } else if(((redemptionCalEnding.timeInMillis - actualCal.timeInMillis) < 0) && ((actualCal.timeInMillis - redemptionCalEnding.timeInMillis) > claimTime)){
-                viewState.showMessage(R.string.claim_too_late)
-            } else{
+            //TODO uncomment
+//            if(((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > 0) && ((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > claimTime) ){
+//                viewState.showMessage(R.string.claim_too_early)
+//            } else if(((redemptionCalEnding.timeInMillis - actualCal.timeInMillis) < 0) && ((actualCal.timeInMillis - redemptionCalEnding.timeInMillis) > claimTime)){
+//                viewState.showMessage(R.string.claim_too_late)
+//            } else{
                 router.navigateTo(SCREENS.SELECT_OFFER, item)
-            }
+//            }
 
         } catch (e: Exception){
             viewState.showMessage(R.string.error_occurred)
@@ -180,6 +181,10 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
         val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
 
         router.navigateTo(SCREENS.SELECT_OFFER, item)
+    }
+
+    fun redemptionDetailsClicked(placeId: Long){
+        router.navigateTo(SCREENS.PLACE, placeId)
     }
 
     fun cancelRedemptionClicked(id: Long) {

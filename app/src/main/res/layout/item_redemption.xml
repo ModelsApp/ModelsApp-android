@@ -7,6 +7,7 @@
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
     android:id="@+id/redemptionContainer"
+    android:paddingBottom="16dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="false"
     android:background="@android:color/white" >
@@ -26,7 +27,6 @@
             android:tint="@color/white"
             android:cropToPadding="false"
             android:padding="1dp"
-            android:src="@drawable/r_address"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -126,6 +126,7 @@
         <TextView
             android:id="@+id/redemption_btn_top"
             style="@style/Models12SemiBoldText"
+            android:foreground="?attr/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"

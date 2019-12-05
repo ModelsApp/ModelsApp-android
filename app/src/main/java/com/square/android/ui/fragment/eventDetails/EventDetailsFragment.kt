@@ -1,5 +1,6 @@
 package com.square.android.ui.fragment.eventDetails
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -31,6 +32,7 @@ import kotlinx.android.synthetic.main.fragment_event_details.*
 import org.jetbrains.anko.bundleOf
 import java.util.*
 import java.text.SimpleDateFormat
+import kotlin.math.roundToInt
 
 
 class EventDetailsFragment: BaseFragment(), EventDetailsView{
@@ -170,7 +172,11 @@ class EventDetailsFragment: BaseFragment(), EventDetailsView{
             calendar2.add(Calendar.DAY_OF_YEAR, 1)
         }
 
-        daysAdapter = DaysAdapter(days.toList(), dayHandler)
+
+        val margins = 2 * resources.getDimension(R.dimen.ac_place_default_margin)
+        val itemSize = ((Resources.getSystem().displayMetrics.widthPixels - margins)/7).roundToInt()
+
+        daysAdapter = DaysAdapter(days.toList(), dayHandler, itemSize)
         eventBookingCalendar.adapter = daysAdapter
         daysAdapter!!.selectedItemPosition = 0
         daysAdapter!!.notifyItemChanged(0, DaysAdapter.SelectedPayload)

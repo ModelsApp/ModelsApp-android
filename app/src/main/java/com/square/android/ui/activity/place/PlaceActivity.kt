@@ -23,6 +23,7 @@ import ru.terrakok.cicerone.Navigator
 import android.os.Build
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.text.TextUtils
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,6 +36,7 @@ import com.square.android.extensions.loadImageForIcon
 import com.square.android.ui.fragment.map.MarginItemDecorator
 import com.square.android.ui.fragment.places.GridItemDecoration
 import java.util.*
+import kotlin.math.roundToInt
 
 const val PLACE_EXTRA_ID = "EXTRA_ID"
 
@@ -307,7 +309,10 @@ class PlaceActivity : LocationActivity(), PlaceView {
             calendar2.add(Calendar.DAY_OF_YEAR, 1)
         }
 
-        daysAdapter = DaysAdapter(days.toList(), dayHandler)
+        val margins = 2 * resources.getDimension(R.dimen.ac_place_default_margin)
+        val itemSize = ((Resources.getSystem().displayMetrics.widthPixels - margins)/7).roundToInt()
+
+        daysAdapter = DaysAdapter(days.toList(), dayHandler, itemSize)
 //        daysAdapter!!.selectedMonth = calendar.get(Calendar.MONTH) + 1
         placeBookingCalendar.adapter = daysAdapter
         daysAdapter!!.selectedItemPosition = 0
@@ -337,6 +342,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         placeAbout.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 onAboutLoaded()
+                placeAbout.viewTreeObserver.removeOnGlobalLayoutListener(this)
                 placeAbout.viewTreeObserver.removeOnGlobalLayoutListener(this)
             }
         })

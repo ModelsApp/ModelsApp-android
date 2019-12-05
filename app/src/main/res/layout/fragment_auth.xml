@@ -56,9 +56,9 @@
             android:layout_height="0dp">
             <TextView
                 android:id="@+id/authRegisterButton"
-                style="@style/Models12Text"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:background="@drawable/login_button"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/tv_or"
-                style="@style/Models12Text"
+                style="@style/Models14Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -91,9 +91,9 @@
 
             <TextView
                 android:id="@+id/authButton"
-                style="@style/Models12Text"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:background="@drawable/login_button"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
@@ -119,7 +119,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline4"
             android:background="@color/login_background"
             android:animateLayoutChanges="true"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="0dp">
             <EditText
@@ -188,9 +188,9 @@
 
             <TextView
                 android:id="@+id/do_action_button"
-                style="@style/Models12Text"
+                style="@style/Models14SemiBoldText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:background="@drawable/login_button"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"

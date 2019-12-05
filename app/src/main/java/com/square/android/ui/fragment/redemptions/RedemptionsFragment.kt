@@ -99,6 +99,10 @@ class RedemptionsFragment: LocationFragment(), RedemptionsView, RedemptionsAdapt
         presenter.campaignClicked(id)
     }
 
+    override fun redemptionDetailsClicked(placeId: Long) {
+        presenter.redemptionDetailsClicked(placeId)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_redemptions, container, false)

@@ -110,7 +110,7 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
         offersListRv.addItemDecoration(GridItemDecoration(2,offersListRv.context.resources.getDimension(R.dimen.value_24dp).toInt(), false))
 
         offersListDate.text = redemptionFull.redemption.date.replace("-",".")
-        offersListInterval.text = redemptionFull.redemption.startTime+"\n"+redemptionFull.redemption.endTime
+        offersListInterval.text = redemptionFull.redemption.startTime.replace(" ","")+"\n"+redemptionFull.redemption.endTime.replace(" ","")
         offersListTitle.text = redemptionFull.redemption.place.name
 
         offersListCheckBtn.setOnClickListener {presenter.checkIn()}

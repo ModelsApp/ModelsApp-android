@@ -77,7 +77,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:background="@android:color/white"
-        android:paddingBottom="104dp"
+        android:paddingBottom="@dimen/bottomContainerHeight"
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
@@ -91,12 +91,12 @@
                         android:id="@+id/placeAddressCl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
                         android:paddingTop="16dp"
                         android:paddingBottom="20dp"
-                        android:background="?attr/selectableItemBackground"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" >
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/placePinImage"
@@ -104,17 +104,19 @@
                             android:layout_height="20dp"
                             android:layout_marginStart="@dimen/ac_place_default_margin"
                             android:src="@drawable/r_pin"
+                            app:layout_constraintBottom_toBottomOf="@+id/placeDistanceImage"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/placeAddress" />
+                            app:layout_constraintTop_toTopOf="@+id/placeDistanceImage" />
 
                         <ImageView
                             android:id="@+id/placeDistanceImage"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginEnd="@dimen/ac_place_default_margin"
                             android:src="@drawable/r_sign"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/placeAddress" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/placeAddress"
@@ -123,9 +125,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginEnd="48dp"
+                            android:layout_marginEnd="16dp"
                             android:includeFontPadding="false"
-                            android:lineSpacingExtra="8dp"
+                            android:lineSpacingExtra="2dp"
                             app:layout_constraintEnd_toStartOf="@+id/placeDistance"
                             app:layout_constraintStart_toEndOf="@+id/placePinImage"
                             app:layout_constraintTop_toTopOf="parent"
@@ -137,12 +139,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:gravity="start"
+                            android:gravity="center_horizontal"
                             android:includeFontPadding="false"
                             android:minWidth="24dp"
                             app:layout_constraintEnd_toEndOf="@+id/placeDistanceImage"
                             app:layout_constraintTop_toBottomOf="@+id/placeDistanceImage"
                             tools:text="150" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -190,11 +193,10 @@
 
                             <ImageView
                                 android:id="@+id/placeAboutImage"
-                                android:layout_width="0dp"
-                                android:layout_height="32dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
                                 android:layout_marginEnd="@dimen/ac_place_default_margin"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerInside"
+                                android:scaleType="fitXY"
                                 tools:src="@drawable/r_shoe"
                                 app:layout_constraintBottom_toBottomOf="@+id/placeAboutLabel"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -470,13 +472,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/placeBookingCl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bottomContainerHeight"
         android:layout_gravity="bottom"
         android:clipChildren="false"
         android:background="@android:color/white"
         app:layout_anchorGravity="bottom"
-        android:clipToPadding="false"
-        android:paddingBottom="16dp" >
+        android:clipToPadding="false" >
 
         <Button
             android:id="@+id/placeBookingBtn"
@@ -485,6 +486,8 @@
             android:layout_height="52dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginEnd="@dimen/ac_place_default_margin"
+            android:layout_marginTop="@dimen/ac_place_default_margin"
+            android:layout_marginBottom="@dimen/ac_place_default_margin"
             android:background="@drawable/nice_button_red_pink_alpha"
             android:enabled="false"
             android:text="@string/book_now"
@@ -492,7 +495,7 @@
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/placeBookingImv"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
@@ -500,49 +503,50 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="@dimen/ac_place_default_margin"
-            android:layout_marginTop="20dp"
             android:src="@drawable/r_calendar_clock"
+            app:layout_constraintBottom_toBottomOf="@+id/placeBookingBtn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/separatorBooking" />
+            app:layout_constraintTop_toTopOf="@+id/placeBookingBtn" />
 
-        <TextView
-            android:id="@+id/placeBookingText"
-            style="@style/Models12SemiBoldText"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="2dp"
-            android:ellipsize="end"
-            android:hint="@string/select_timeframe"
-            android:maxLines="1"
-            android:includeFontPadding="false"
-            android:textColorHint="@color/gray_hint_light"
-            app:layout_constraintEnd_toStartOf="@+id/placeBookingBtn"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@+id/placeBookingImv"
+            app:layout_constraintBottom_toBottomOf="@+id/placeBookingImv"
             app:layout_constraintStart_toEndOf="@+id/placeBookingImv"
-            app:layout_constraintTop_toBottomOf="@+id/placeBookingDate" />
+            app:layout_constraintEnd_toStartOf="@+id/placeBookingBtn" >
 
-        <TextView
-            android:id="@+id/placeBookingDate"
-            style="@style/Models14Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="18dp"
-            android:includeFontPadding="false"
-            android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintEnd_toStartOf="@+id/placeBookingBtn"
-            app:layout_constraintStart_toEndOf="@+id/placeBookingImv"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Monday, May 7th" />
+            <TextView
+                android:id="@+id/placeBookingDate"
+                style="@style/Models14Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                tools:text="Monday, May 7th" />
+
+            <TextView
+                android:id="@+id/placeBookingText"
+                style="@style/Models12SemiBoldText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:hint="@string/select_timeframe"
+                android:maxLines="1"
+                android:textColorHint="@color/gray_hint_light" />
+        </LinearLayout>
 
         <View
             android:id="@+id/separatorBooking"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="1.5dp"
             android:alpha="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:background="@color/divider"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,6 +62,7 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
         private fun bindRedemption(redemptionInfo: RedemptionInfo) {
             redemption_btn_top.text = redemption_btn_bottom.resources.getString(R.string.details)
             redemption_btn_top.setTextColor(Color.BLACK)
+            redemption_btn_top.setOnClickListener { handler.redemptionDetailsClicked(redemptionInfo.place.id)}
 
             if (redemptionInfo.closed || redemptionInfo.claimed) {
                 redemption_image.makeBlackWhite()
@@ -72,7 +73,6 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
                 redemption_btn_top.alpha = 0.3f
                 redemption_btn_bottom.alpha = 0.3f
 
-                //TODO remove option
             } else {
                 redemption_image.removeFilters()
 
@@ -180,5 +180,7 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
         fun claimClicked(id: Long)
 
         fun claimedItemClicked(id: Long)
+
+        fun redemptionDetailsClicked(placeId: Long)
     }
 }

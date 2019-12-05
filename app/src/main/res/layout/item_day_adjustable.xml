@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/itemDayContainer"
+    android:id="@+id/itemDayAdjustableContainer"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@android:color/white" >
 
     <TextView
-        android:id="@+id/itemDayName"
+        android:id="@+id/itemDayAdjustableName"
         style="@style/Models18Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,25 +21,26 @@
         tools:text="T" />
 
     <FrameLayout
-        android:id="@+id/itemDayValueContainer"
-        android:layout_width="42dp"
+        android:id="@+id/itemDayAdjustableValueContainer"
+        android:layout_width="wrap_content"
         android:layout_height="42dp"
-        android:layout_marginTop="10dp">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" >
         <androidx.appcompat.widget.AppCompatCheckedTextView
-            android:id="@+id/itemDayValue"
+            android:id="@+id/itemDayAdjustableValue"
             style="@style/Models16Text"
             android:layout_gravity="center"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:background="@drawable/item_day_selector"
             android:gravity="center"
             android:checked="true"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
             android:textColor="@color/day_text_color"
-            app:layout_constraintEnd_toEndOf="@+id/itemDayName"
-            app:layout_constraintStart_toStartOf="@+id/itemDayName"
-            app:layout_constraintTop_toBottomOf="@+id/itemDayName"
+            app:layout_constraintEnd_toEndOf="@+id/itemDayAdjustableName"
+            app:layout_constraintStart_toStartOf="@+id/itemDayAdjustableName"
+            app:layout_constraintTop_toBottomOf="@+id/itemDayAdjustableName"
             tools:text="52" />
     </FrameLayout>
 
