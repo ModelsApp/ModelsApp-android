@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#643ec7</color>
-    <color name="colorPrimaryDark">#643EC7</color>
-    <color name="colorAccent">#643EC7</color>
+    <color name="colorPrimary">@color/nice_pink</color>
+    <color name="colorPrimaryDark">@color/nice_pink</color>
+    <color name="colorAccent">@color/nice_pink</color>
 
     <color name="divider">#1F000000</color>
     <color name="icon">#727272</color>

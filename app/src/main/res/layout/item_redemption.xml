@@ -125,18 +125,15 @@
 
         <TextView
             android:id="@+id/redemption_btn_top"
-            style="@style/Models13SemiBoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:visibility="gone"
-            tools:visibility="visible"
             app:autoSizeTextType="uniform"
             app:autoSizeMaxTextSize="13sp"
             android:maxLines="1"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:foreground="?attr/selectableItemBackground"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/redemption_divider"
             app:layout_constraintEnd_toEndOf="parent"
@@ -145,7 +142,7 @@
 
         <TextView
             android:id="@+id/redemption_btn_bottom"
-            style="@style/Models13SemiBoldText"
+            style="@style/Models12SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:autoSizeTextType="uniform"

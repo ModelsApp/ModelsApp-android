@@ -370,7 +370,7 @@ class ActualRepository(private val api: ApiService,
         if (response.isSuccessful) {
             return response.body()!!
         } else {
-            throw HttpException(response)
+            throw HttpException(response) as Throwable
         }
     }
 

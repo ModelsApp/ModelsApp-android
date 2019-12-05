@@ -1,5 +1,6 @@
 package com.square.android.ui.fragment.redemptions
 
+import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -59,6 +60,9 @@ class RedemptionsAdapter(data: List<Any>, private val handler: Handler)
         }
 
         private fun bindRedemption(redemptionInfo: RedemptionInfo) {
+            redemption_btn_top.text = redemption_btn_bottom.resources.getString(R.string.details)
+            redemption_btn_top.setTextColor(Color.BLACK)
+
             if (redemptionInfo.closed || redemptionInfo.claimed) {
                 redemption_image.makeBlackWhite()
 

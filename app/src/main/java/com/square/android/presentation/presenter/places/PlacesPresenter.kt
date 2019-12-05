@@ -215,7 +215,7 @@ class PlacesPresenter : BasePresenter<PlacesView>() {
         val data = if(isActual) data else filteredData
 
         data?.let {
-            eventBus.post(PlacesUpdatedEvent(data, updateDistances))
+            eventBus.post(PlacesUpdatedEvent(data.filter { it.freeSpots > 0 }.toMutableList(), updateDistances))
         }
     }
 

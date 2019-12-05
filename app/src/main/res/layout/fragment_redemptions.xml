@@ -66,9 +66,10 @@
         app:tabIndicator="@drawable/indicator"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:tabTextAppearance="@style/Models18SemiBoldText"
+        app:tabTextAppearance="@style/Models14SemiBoldText"
         app:tabIndicatorColor="@color/placesPrimary"
-        app:tabSelectedTextColor="@color/placesPrimary"
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabBackground="@android:color/transparent"
         app:tabTextColor="@color/secondary_text"  />
 
     <com.square.android.utils.widget.PagingViewPager
