@@ -125,7 +125,7 @@
 
         <TextView
             android:id="@+id/redemption_btn_top"
-            style="@style/Models12SemiBoldText"
+            style="@style/Models13SemiBoldText"
             android:foreground="?attr/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -143,7 +143,7 @@
 
         <TextView
             android:id="@+id/redemption_btn_bottom"
-            style="@style/Models12SemiBoldText"
+            style="@style/Models13SemiBoldText"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:autoSizeTextType="uniform"

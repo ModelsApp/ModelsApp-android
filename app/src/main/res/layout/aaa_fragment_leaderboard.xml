@@ -11,80 +11,242 @@
     android:clipToPadding="false"
     android:fitsSystemWindows="false" >
 
-<!--  top 3 container  -->
+    <!--  top 3 container  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_height="350dp"
+        android:layout_height="0dp"
         android:background="@drawable/leaderboard_bg"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/userContainer" >
 
-        <TextView
-            android:id="@+id/hashtag"
-            style="@style/Models14SemiBoldText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            tools:text="#releaseyoursweat" />
-
-<!--   TODO rounded corners(16dp? 24dp? IN PIXELS) - same with white border   -->
         <ImageView
             android:id="@+id/imgFirstPlace"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_width="@dimen/top1ImgSize"
+            android:layout_height="@dimen/top1ImgSize"
+            android:layout_marginTop="@dimen/firstPlaceMarginTop"
             android:background="@drawable/rounded_background_white"
-            tools:src="@drawable/rounded_background_white"
-            tools:tint="@color/nice_pink"
             android:padding="1.5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hashtag" />
+            app:layout_constraintTop_toBottomOf="@+id/hashtag"
+            tools:src="@drawable/rounded_background_white"
+            tools:tint="@color/nice_pink" />
 
+        <!--   TODO rounded corners(16dp? 24dp? IN PIXELS) - same with white border   -->
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            tools:src="@color/nice_purple"
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/top1MedalWidth"
+            android:layout_height="@dimen/top1MedalHeight"
             app:layout_constraintEnd_toEndOf="@+id/imgFirstPlace"
             app:layout_constraintStart_toStartOf="@+id/imgFirstPlace"
-            app:layout_constraintTop_toBottomOf="@+id/imgFirstPlace" />
+            app:layout_constraintTop_toBottomOf="@+id/imgFirstPlace"
+            tools:src="@color/nice_purple" />
+
+        <ImageView
+            android:id="@+id/imgSecondPlace"
+            android:layout_width="@dimen/top2ImgSize"
+            android:layout_height="@dimen/top2ImgSize"
+            android:background="@drawable/rounded_background_white"
+            android:padding="1.5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgFirstPlace"
+            app:layout_constraintEnd_toStartOf="@+id/imgFirstPlace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgFirstPlace"
+            tools:src="@drawable/rounded_background_white"
+            tools:tint="@color/nice_pink" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="@dimen/top2MedalWidth"
+            android:layout_height="@dimen/top2MedalHeight"
+            app:layout_constraintEnd_toEndOf="@+id/imgSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/imgSecondPlace"
+            app:layout_constraintTop_toBottomOf="@+id/imgSecondPlace"
+            tools:src="@color/nice_purple" />
+
+        <ImageView
+            android:id="@+id/imgThirdPlace"
+            android:layout_width="@dimen/top3ImgSize"
+            android:layout_height="@dimen/top3ImgSize"
+            android:background="@drawable/rounded_background_white"
+            android:padding="1.5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgFirstPlace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgFirstPlace"
+            app:layout_constraintTop_toTopOf="@+id/imgFirstPlace"
+            tools:src="@drawable/rounded_background_white"
+            tools:tint="@color/nice_pink" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="@dimen/top3MedalWidth"
+            android:layout_height="@dimen/top3MedalHeight"
+            app:layout_constraintEnd_toEndOf="@+id/imgThirdPlace"
+            app:layout_constraintStart_toStartOf="@+id/imgThirdPlace"
+            app:layout_constraintTop_toBottomOf="@+id/imgThirdPlace"
+            tools:src="@color/nice_purple" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/backImgSize"
+            android:layout_height="@dimen/backImgSize"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="@dimen/topArrowMargin"
             android:src="@drawable/arrow_back"
             android:tint="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/hashtag"
+            style="@style/Models14SemiBoldText"
+            android:textSize="@dimen/hashtagTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/firstPlaceMarginTop"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:text="#releaseyoursweat" />
+
+        <TextView
+            android:id="@+id/nameFirstPlace"
+            style="@style/Models14SemiBoldText"
+            android:textSize="@dimen/topUserNames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxWidth="88dp"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="@+id/imgFirstPlace"
+            app:layout_constraintStart_toStartOf="@+id/imgFirstPlace"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            tools:text="Tim Harder" />
+
+        <TextView
+            android:id="@+id/votesFirstPlace"
+            style="@style/Models12Text"
+            android:textSize="@dimen/topUserScores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/nameFirstPlace"
+            app:layout_constraintStart_toStartOf="@+id/nameFirstPlace"
+            app:layout_constraintTop_toBottomOf="@+id/nameFirstPlace"
+            tools:text="160 Votes" />
+
+        <TextView
+            android:id="@+id/nameSecondPlace"
+            style="@style/Models14SemiBoldText"
+            android:textSize="@dimen/topUserNames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxWidth="88dp"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="@+id/imgSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/imgSecondPlace"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            tools:text="Lisa Guti" />
+
+        <TextView
+            android:id="@+id/votesSecondPlace"
+            style="@style/Models12Text"
+            android:textSize="@dimen/topUserScores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/nameSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/nameSecondPlace"
+            app:layout_constraintTop_toBottomOf="@+id/nameSecondPlace"
+            tools:text="110 Votes" />
+
+        <TextView
+            android:id="@+id/nameThirdPlace"
+            style="@style/Models14SemiBoldText"
+            android:textSize="@dimen/topUserNames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxWidth="88dp"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="@+id/imgThirdPlace"
+            app:layout_constraintStart_toStartOf="@+id/imgThirdPlace"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            tools:text="Lisa Guti" />
+
+        <TextView
+            android:id="@+id/votesThirdPlace"
+            style="@style/Models12Text"
+            android:textSize="@dimen/topUserScores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/nameThirdPlace"
+            app:layout_constraintStart_toStartOf="@+id/nameThirdPlace"
+            app:layout_constraintTop_toBottomOf="@+id/nameThirdPlace"
+            tools:text="110 Votes" />
+
+        <TextView
             android:id="@+id/placeName"
             style="@style/Models18SemiBoldText"
+            android:textSize="@dimen/titleTextSize"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="24dp"
-            android:layout_gravity="bottom"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Emporio Armani" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="@dimen/leaderBoardGuidelineVerticalPercentage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvScores"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/leaderBoardRvPAddingHorizontal"
+        android:paddingEnd="@dimen/leaderBoardRvPAddingHorizontal"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        tools:listitem="@layout/aaa_item_leaderboard"
+        tools:itemCount="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userContainer" />
 
 <!--  user's position in ranking  -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,97 +254,87 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
+        android:paddingStart="@dimen/userContainerSidePadding"
         android:paddingTop="8dp"
+        android:paddingEnd="@dimen/userContainerSidePadding"
         android:paddingBottom="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/topLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
-        
-        <TextView
-            android:id="@+id/userPositionTv"
-            style="@style/Models16SemiBoldText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="38dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="45" />
-        
+        app:layout_constraintBottom_toTopOf="@+id/guideline11" >
+
         <ImageView
             android:id="@+id/userImg"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/userRankingImgSize"
+            android:layout_height="@dimen/userRankingImgSize"
             android:layout_marginStart="8dp"
-            android:padding="1.5dp"
-            app:layout_constraintTop_toTopOf="@+id/userPositionTv"
-            app:layout_constraintBottom_toBottomOf="@+id/userPositionTv"
-            app:layout_constraintStart_toEndOf="@id/userPositionTv"
             android:background="@drawable/round_background"
             android:backgroundTint="@color/nice_pink"
+            android:padding="1.5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/userPositionTv"
+            app:layout_constraintStart_toEndOf="@id/userPositionTv"
+            app:layout_constraintTop_toTopOf="@+id/userPositionTv"
             tools:src="@drawable/round_background"
             tools:tint="@color/nice_pink_alpha_10" />
 
         <TextView
+            android:id="@+id/userPositionTv"
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/userRankingPrimaryTexSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:minWidth="38dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="45" />
+
+        <TextView
             android:id="@+id/userName"
             style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/userRankingPrimaryTexSize"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:maxLines="1"
             android:ellipsize="end"
-            tools:text="Thomas Hard"
-            app:layout_constraintStart_toEndOf="@+id/userImg"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@+id/userImg"
             app:layout_constraintEnd_toStartOf="@+id/userVotes"
+            app:layout_constraintStart_toEndOf="@+id/userImg"
             app:layout_constraintTop_toTopOf="@+id/userImg"
-            app:layout_constraintBottom_toBottomOf="@+id/userImg" />
+            tools:text="Thomas Hard" />
 
         <TextView
             style="@style/Models14Text"
-            android:textColor="@color/gray_hint"
+            android:textSize="@dimen/userRankingSecondaryTexSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:text="@string/you"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            app:layout_constraintStart_toStartOf="@+id/userName" />
+            android:textColor="@color/gray_hint"
+            app:layout_constraintStart_toStartOf="@+id/userName"
+            app:layout_constraintTop_toBottomOf="@+id/userName" />
 
         <TextView
             android:id="@+id/userVotes"
             style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/userRankingPrimaryTexSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="10 Votes"
+            app:layout_constraintBottom_toBottomOf="@+id/userName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/userName"
-            app:layout_constraintBottom_toBottomOf="@+id/userName" />
+            tools:text="10 Votes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvScores"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@+id/userContainer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp" />
 
     <View
         android:layout_width="0dp"
         android:layout_height="5dp"
         android:background="@drawable/shadow_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/userContainer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/userContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

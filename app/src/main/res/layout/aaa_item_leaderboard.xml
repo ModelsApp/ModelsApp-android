@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp"
+    tools:layout_marginBottom="16dp"
+    app:cardUseCompatPadding="false" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clipToPadding="false" >
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/userRankingImgSize"
+            android:layout_height="@dimen/userRankingImgSize"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/positionTv"
+            app:layout_constraintStart_toEndOf="@id/positionTv"
+            app:layout_constraintTop_toTopOf="@+id/positionTv"
+            tools:src="@drawable/round_background"
+            tools:tint="@color/nice_pink_alpha_10" />
+
+        <TextView
+            android:id="@+id/positionTv"
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/userRankingPrimaryTexSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/itemLeaderboardVerticalMargin"
+            android:gravity="center_horizontal"
+            android:minWidth="38dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/userNameTv"
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/userRankingPrimaryTexSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@+id/img"
+            app:layout_constraintEnd_toStartOf="@+id/votesTv"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toTopOf="@+id/img"
+            tools:text="Peter Parker" />
+
+        <TextView
+            android:id="@+id/votesTv"
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/userRankingPrimaryTexSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/itemLeaderboardVerticalMargin"
+            app:layout_constraintBottom_toBottomOf="@+id/userNameTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/userNameTv"
+            tools:text="90 Votes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

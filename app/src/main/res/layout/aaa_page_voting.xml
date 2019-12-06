@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFaceToFace"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/icSwipe" />
+
+<!--TODO change icon-->
+    <ImageView
+        android:id="@+id/icSwipe"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/r_hanger"
+        app:layout_constraintBottom_toTopOf="@+id/btnsLl"
+        app:layout_constraintEnd_toEndOf="@+id/btnsLl"
+        app:layout_constraintStart_toStartOf="@+id/btnsLl" />
+
+    <LinearLayout
+        android:id="@+id/btnsLl"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/votingButtonsHeight"
+        android:layout_marginStart="@dimen/votingMarginsHorizontal"
+        android:layout_marginEnd="@dimen/votingMarginsHorizontal"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_rounded6_gray_stroke_trans"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <TextView
+            android:id="@+id/btnLeft"
+            style="@style/Models14SemiBoldText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="3.5dp"
+            android:layout_marginTop="3.5dp"
+            android:layout_marginBottom="3.5dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/gradient_rounded_6dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/votingButtonTextSize"
+            app:autoSizeMaxTextSize="@dimen/votingButtonTextSize"
+            app:autoSizeTextType="uniform"
+            tools:text="Irina" />
+
+        <TextView
+            android:id="@+id/btnRight"
+            style="@style/Models14SemiBoldText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3.5dp"
+            android:layout_marginEnd="3.5dp"
+            android:layout_marginBottom="3.5dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/gradient_rounded_6dp"
+            android:backgroundTint="@android:color/white"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/gray_disabled"
+            android:textSize="@dimen/votingButtonTextSize"
+            app:autoSizeMaxTextSize="@dimen/votingButtonTextSize"
+            app:autoSizeTextType="uniform"
+            tools:text="Camilia" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="18dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            style="@style/Models12Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vote_favourite"
+            android:textSize="@dimen/votingSmallTextSize" />
+
+        <TextView
+            android:id="@+id/creditsTv"
+            style="@style/Models12Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/nice_pink"
+            android:textSize="@dimen/votingSmallTextSize"
+            tools:text="20 credits" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

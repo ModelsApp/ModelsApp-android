@@ -32,4 +32,38 @@
     <dimen name="loginForgotTextSize">12sp</dimen>
     <dimen name="loginMarginHeight">24dp</dimen>
 
+    <!-- leaderboard fragment -->
+    <dimen name="top1ImgSize">62dp</dimen>
+    <dimen name="top2MedalWidth">22dp</dimen>
+    <dimen name="top2MedalHeight">26dp</dimen>
+    <dimen name="top2ImgSize">50dp</dimen>
+    <dimen name="top1MedalWidth">28dp</dimen>
+    <dimen name="top1MedalHeight">32dp</dimen>
+    <dimen name="top3ImgSize">40dp</dimen>
+    <dimen name="top3MedalWidth">20dp</dimen>
+    <dimen name="top3MedalHeight">24dp</dimen>
+    <dimen name="hashtagTextSize">12sp</dimen>
+    <dimen name="topUserNames">12sp</dimen>
+    <dimen name="topUserScores">10sp</dimen>
+    <dimen name="userRankingPrimaryTexSize">13sp</dimen>
+    <dimen name="userRankingSecondaryTexSize">12sp</dimen>
+    <dimen name="userRankingImgSize">32dp</dimen>
+    <dimen name="userContainerSidePadding">28dp</dimen>
+    <dimen name="firstPlaceMarginTop">24dp</dimen>
+    <dimen name="titleTextSize">15sp</dimen>
+    <dimen name="backImgSize">20dp</dimen>
+    <dimen name="topArrowMargin">33dp</dimen>
+    <dimen name="leaderBoardGuidelineVerticalPercentage">0.65</dimen>
+    <dimen name="leaderBoardRvPAddingHorizontal">20dp</dimen>
+
+    <!-- leaderboard item -->
+    <dimen name="itemLeaderboardVerticalMargin">8dp</dimen>
+
+    <!--  page voting  -->
+    <dimen name="votingButtonTextSize">12sp</dimen>
+    <dimen name="votingMarginsHorizontal">40dp</dimen>
+    <dimen name="votingButtonsHeight">38dp</dimen>
+    <dimen name="votingSmallTextSize">9sp</dimen>
+
+
 </resources>
