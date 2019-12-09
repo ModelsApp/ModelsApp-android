@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
-import com.square.android.R
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.places.PlacesPresenter
 import com.square.android.presentation.view.places.PlacesView
@@ -22,6 +21,7 @@ import com.square.android.ui.fragment.map.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_places.*
 import androidx.core.content.ContextCompat
 import com.square.android.data.pojo.City
+import com.square.android.R
 
 class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, DaysShortAdapter.Handler {
 
@@ -163,12 +163,13 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
 
         placesCitiesLl.setOnClickListener {
             presenter.cities?.let {
-                val dialog = DialogCities(it, presenter.selectedCity, object : DialogCities.Handler{
+                val bottomSheetCities = BottomSheetCities(it, presenter.selectedCity, object : BottomSheetCities.Handler {
                     override fun cityClicked(selectedCity: City) {
                         presenter.citySelected(selectedCity)
                     }
                 })
-                dialog.show(fragmentManager, "")
+
+                bottomSheetCities.show(fragmentManager, BottomSheetCities.TAG)
             }
         }
     }

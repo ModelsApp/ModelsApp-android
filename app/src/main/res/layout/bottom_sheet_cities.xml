@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="24dp"
-    tools:layout_gravity="bottom"
-    app:cardElevation="0dp"
-    app:cardUseCompatPadding="false"
-    android:background="@android:color/white" >
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp" >
+        android:background="@drawable/bg_rounded_top_16dp"
+        android:paddingBottom="32dp" >
 
         <View
             android:id="@+id/view"
-            android:layout_width="72dp"
+            android:layout_width="40dp"
             android:layout_height="5dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/background_rounded_max"
             android:backgroundTint="@color/gray_btn_disabled"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="@string/select_your_destination"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -56,5 +47,3 @@
             tools:itemCount="1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>

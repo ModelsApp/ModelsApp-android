@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.square.android.R
@@ -79,6 +80,8 @@ class ReviewUploadFragment(private var actionType: String): BaseNoMvpFragment(),
 
         imageUri = uri
 
+        uploadImv.scaleType = ImageView.ScaleType.FIT_CENTER
+
         uploadImv.loadImage(imageUri!!, withoutCropping = true)
 
         uploadImv.background = ContextCompat.getDrawable(uploadImv.context, R.drawable.rounded_background_white)
@@ -91,6 +94,8 @@ class ReviewUploadFragment(private var actionType: String): BaseNoMvpFragment(),
         updateLabel(true)
 
         imageUri = null
+
+        uploadImv.scaleType = ImageView.ScaleType.FIT_XY
 
         uploadImv.loadImage(R.drawable.upload_bg, fitOnly = true)
 
