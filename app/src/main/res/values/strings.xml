@@ -606,7 +606,9 @@
     <string name="minimal_tip">Minimal Tip:</string>
 
     <string name="profile">Profile</string>
-
+    <string name="change">Change</string>
+    <string name="buy">Buy</string>
+    <string name="apply">Apply</string>
 
     <string name="foodpic">FoodPic</string>
     <string name="atmosphere">Atmosphere</string>

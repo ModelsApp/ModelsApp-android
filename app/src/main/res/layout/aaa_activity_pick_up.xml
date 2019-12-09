@@ -130,6 +130,7 @@
                 android:layout_marginEnd="10dp"
                 app:autoSizeTextType="uniform"
                 android:maxLines="1"
+                android:gravity="center_vertical"
                 android:text="@string/collection" />
         </LinearLayout>
 
@@ -190,6 +191,7 @@
                 android:layout_marginEnd="10dp"
                 app:autoSizeTextType="uniform"
                 android:maxLines="1"
+                android:gravity="center_vertical"
                 android:text="@string/shipment" />
         </LinearLayout>
 
@@ -249,6 +251,7 @@
                 android:layout_marginEnd="10dp"
                 app:autoSizeTextType="uniform"
                 android:maxLines="1"
+                android:gravity="center_vertical"
                 android:text="@string/purchase" />
         </LinearLayout>
 

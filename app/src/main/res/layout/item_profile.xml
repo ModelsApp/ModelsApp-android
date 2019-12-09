@@ -37,6 +37,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
         android:maxLines="1"
+        android:gravity="center_vertical"
         app:autoSizeTextType="uniform"
         app:layout_constraintTop_toTopOf="@+id/icon"
         app:layout_constraintBottom_toBottomOf="@+id/icon"
@@ -58,7 +59,7 @@
 
     <TextView
         android:id="@+id/tv"
-        style="@style/Models15SemiBoldText"
+        style="@style/Models16SemiBoldText"
         android:textColor="@color/nice_pink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,13 +70,13 @@
         app:layout_constraintTop_toTopOf="@+id/icon"
         tools:text="2.500" />
 
+<!-- TODO subitems will have only margin bottom = 12dp-->
     <LinearLayout
         android:id="@+id/itemsLl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="12dp"
-        android:paddingBottom="12dp"
         android:visibility="gone"
         tools:visibility="visible"
         tools:background="@color/nice_red"
