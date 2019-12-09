@@ -19,7 +19,7 @@ import com.square.android.ui.activity.event.DriverDialog
 import com.square.android.ui.activity.event.DriverExtras
 import com.square.android.ui.fragment.BaseFragment
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_old_profile.*
 
 class ProfileFragment: BaseFragment(), ProfileView {
 
@@ -33,7 +33,7 @@ class ProfileFragment: BaseFragment(), ProfileView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_old_profile, container, false)
     }
 
     override fun displayNationality(country: Country?) {

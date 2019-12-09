@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO check if shadow is displaying correctly in container-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:elevation="2dp"
+    android:background="@drawable/background_rounded_8dp" >
+
+<!--  TODO round corners  -->
+    <ImageView
+        android:id="@+id/channelImg"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        tools:src="@drawable/facebook_logo" />
+
+    <TextView
+        android:id="@+id/channelTv"
+        style="@style/Models16Text"
+        android:layout_marginStart="32dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        app:autoSizeTextType="uniform"
+        android:layout_height="wrap_content"
+        tools:text="CONNECT WITH FACEBOOK" />
+
+</LinearLayout>
