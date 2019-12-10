@@ -29,6 +29,7 @@ import com.square.android.App
 import com.square.android.R
 import com.square.android.R.color.placeholder
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Transformation
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.ByteArrayOutputStream
 
@@ -47,13 +48,19 @@ fun ImageView.loadImageForIcon(url: String) {
 fun ImageView.loadImage(url: String,
                         @ColorRes placeholder: Int = R.color.placeholder,
                         roundedCornersRadiusPx: Int = 0,
-                        whichCornersToRound: RoundedCornersTransformation.CornerType = RoundedCornersTransformation.CornerType.ALL) {
+                        whichCornersToRound: List<RoundedCornersTransformation.CornerType> = listOf(RoundedCornersTransformation.CornerType.ALL) ) {
+
+    val cornerTransformations: MutableList<Transformation> = mutableListOf()
+    for(cornerType in whichCornersToRound){
+        cornerTransformations.add(RoundedCornersTransformation(roundedCornersRadiusPx,0, cornerType))
+    }
+
     if (URLUtil.isValidUrl(url)) {
         Picasso.get()
                 .load(url)
                 .fit()
                 .centerCrop()
-                .transform(RoundedCornersTransformation(roundedCornersRadiusPx, 0, whichCornersToRound))
+                .transform(cornerTransformations)
                 .placeholder(placeholder)
                 .into(this)
     } else{
@@ -61,7 +68,7 @@ fun ImageView.loadImage(url: String,
                 .load(R.drawable.placeholder)
                 .fit()
                 .centerCrop()
-                .transform(RoundedCornersTransformation(roundedCornersRadiusPx, 0, whichCornersToRound))
+                .transform(cornerTransformations)
                 .into(this)
     }
 }
@@ -70,10 +77,10 @@ fun ImageView.loadImage(uri: Uri,
                         @ColorRes placeholder: Int = R.color.placeholder,
                         roundedCornersRadiusPx: Int = 0,
                         withoutCropping: Boolean = false,
-                        whichCornersToRound: RoundedCornersTransformation.CornerType = RoundedCornersTransformation.CornerType.ALL) {
+                        whichCornersToRound: List<Transformation> = listOf(RoundedCornersTransformation(roundedCornersRadiusPx,0,RoundedCornersTransformation.CornerType.ALL))) {
         val creator = Picasso.get()
                 .load(uri)
-                .transform(RoundedCornersTransformation(roundedCornersRadiusPx, 0, whichCornersToRound))
+                .transform(whichCornersToRound)
                 .fit()
                 .placeholder(placeholder)
 

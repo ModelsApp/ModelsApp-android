@@ -597,10 +597,20 @@
     <string name="premium_month_feature3">Priority booking features</string>
     <string name="premium_month_feature4">Fast lane action approval</string>
 
+    <string name="basic">Basic</string>
+    <string name="premium">Premium</string>
+
+    <string name="social">Social</string>
+    <string name="business">Business</string>
+    <string name="wallet">Wallet</string>
+
+    <string name="level_format">Level %d</string>
+
+    <string name="member">Member</string>
 
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
-
+    <string name="unlimited">Unlimited</string>
 
     <string name="dress_code">Dress Code:</string>
     <string name="minimal_tip">Minimal Tip:</string>

@@ -34,7 +34,6 @@ import com.square.android.ui.activity.passEligible.PASS_CAN_BACK_EXTRA
 import com.square.android.ui.activity.passEligible.PassEligibleActivity
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID
 import com.square.android.ui.activity.place.PlaceActivity
-
 import com.square.android.ui.activity.selectOffer.SelectOfferActivity
 import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
@@ -44,7 +43,6 @@ import com.square.android.ui.fragment.places.PlacesFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.redemptions.RedemptionsFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
-import com.square.android.ui.fragment.review.EXTRA_REDEMPTION_ID
 import com.square.android.utils.DialogDepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.notifications_badge.*
@@ -61,8 +59,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
-
-    private var checkedInitial = false
 
     override fun provideNavigator(): Navigator = MainNavigator(this)
 

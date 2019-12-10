@@ -117,7 +117,7 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
         user.mainImage?.run {
             profileEditAvatar.loadImage(this, placeholder = R.color.colorPrimary,
                     roundedCornersRadiusPx = 100,
-                    whichCornersToRound = RoundedCornersTransformation.CornerType.BOTTOM)
+                    whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.BOTTOM))
         }
 
         formEditProfileName.content = user.name

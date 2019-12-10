@@ -8,7 +8,6 @@
     android:clipToPadding="false"
     tools:background="@android:color/white" >
 
-<!--  TODO use this to handle onClick on closed tab  -->
     <View
         android:id="@+id/clickView"
         android:layout_width="0dp"
@@ -45,7 +44,6 @@
         app:layout_constraintEnd_toStartOf="@+id/tv"
         tools:text="Social channels" />
 
-<!--  TODO rotate animation when it expands/shrinks  -->
     <ImageView
         android:id="@+id/arrow"
         android:layout_width="24dp"
@@ -70,7 +68,6 @@
         app:layout_constraintTop_toTopOf="@+id/icon"
         tools:text="2.500" />
 
-<!-- TODO subitems will have only margin bottom = 12dp-->
     <LinearLayout
         android:id="@+id/itemsLl"
         android:layout_width="0dp"
