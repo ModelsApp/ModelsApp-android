@@ -1,37 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--TODO check if shadow is displaying correctly in container-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:paddingStart="28dp"
-    android:paddingEnd="28dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:layout_marginBottom="12dp"
-    android:elevation="2dp"
-    android:background="@drawable/background_rounded_8dp" >
+    android:clipToPadding="false"
+    android:orientation="vertical" >
 
-<!--  TODO round corners  -->
-    <ImageView
-        android:id="@+id/socialImg"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        tools:src="@drawable/facebook_logo" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp" />
 
-    <TextView
-        android:id="@+id/socialTv"
-        style="@style/Models15Text"
-        android:layout_marginStart="32dp"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:maxLines="1"
-        app:autoSizeTextType="uniform"
-        android:gravity="center_vertical"
+<!--TODO check if shadow is displaying correctly in container-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="CONNECT WITH FACEBOOK" />
+        android:background="@drawable/background_rounded_8dp"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/mainContainer"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:paddingStart="28dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="28dp"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/socialImg"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            tools:src="@drawable/facebook_logo" />
+
+        <TextView
+            android:id="@+id/socialTv"
+            style="@style/Models15Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            app:autoSizeTextType="uniform"
+            tools:text="CONNECT WITH FACEBOOK" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
 </LinearLayout>

@@ -317,8 +317,30 @@
     <string name="yelp_name">Yelp</string>
     <string name="facebook_name">Facebook</string>
     <string name="trip_advisor_name">Tripadvisor</string>
+    <string name="google_name">Google</string>
+    <string name="instagram_name">Instagram</string>
     <string name="google_places_name">Google Places</string>
 
+    <string name="connect_format">Connect with %s</string>
+    <string name="connected">Connected</string>
+
+    <string name="social_channels">Social channels</string>
+
+    <string name="ambassador_program">Ambassador program</string>
+
+    <string name="share_with_friend">Share with friends</string>
+    <string name="refer_a_venue">Refer a Venue</string>
+    <string name="introduce_a_brand">Introduce a Brand</string>
+
+    <string name="share">Share</string>
+    <string name="refer">Refer</string>
+
+    <string name="credits_500">500 credits</string>
+    <string name="credits_1000">1.000 credits</string>
+
+    <string name="buy_extra_credits">Buy extra credits</string>
+
+    <string name="join_our_team">Join our team</string>
 
     <string name="review_description_format">Open %s and make a review of this venue!</string>
 
@@ -358,6 +380,8 @@
     <string name="credits_">Credits:</string>
     <string name="points_">Points:</string>
 
+    <string name="points">Points</string>
+    <string name="active_plan">Active Plan</string>
 
     <string name="book_now">Book Now</string>
 
