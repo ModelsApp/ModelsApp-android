@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/noPicturesLl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/campaign_photos_marginTop"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/campaign_photo_bg" />
+
+        <TextView
+            style="@style/Models18SemiBoldText"
+            android:textSize="@dimen/campaign_photos_textSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/campaign_photos_textMarginTop"
+            android:text="@string/no_pictures_yet" />
+
+        <TextView
+            style="@style/Models14Text"
+            android:textSize="@dimen/campaign_photos_secondTextSize"
+            android:textColor="@color/gray_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/campaign_photos_secondTextMarginTop"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            app:autoSizeTextType="uniform"
+            android:text="@string/pictures_label_published" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:fabCustomSize="@dimen/fab_size"
+        android:src="@drawable/fab_gradient_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/notApprovedJoinBtn"
+        style="@style/Models15SemiBoldText"
+        android:textSize="@dimen/campaign_photos_pending_btnTextSize"
+        android:layout_width="@dimen/campaign_photos_pending_btnWidth"
+        android:layout_height="@dimen/campaign_photos_pending_btnHeight"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/nice_button_red_pink_alpha"
+        android:text="@string/done"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,9 +82,12 @@ class CampaignDetailsPresenter(val campaignId: Long): BasePresenter<CampaignDeta
             } else if (!locationWrappers.isNullOrEmpty() && data!!.isGiftTaken == false) {
                 router.replaceScreen(SCREENS.PICK_UP_SPOT, data!!.id)
             } else if (data!!.isPictureUploadAllow == true
-                    && (((count1 != data!!.images?.size && count1 > 0) || (count2 == data!!.images?.size && count2 > 0)))
+                    && ((count1 != data!!.images?.size && count1 > 0) || (count2 == data!!.images?.size && count2 > 0))
                     && data!!.isGiftTaken == true) {
+
+                //TODO
                 router.replaceScreen(SCREENS.UPLOAD_PICS, data)
+
             } else if (data!!.status!! >= 2 && !data!!.hasWinner) {
                 router.replaceScreen(SCREENS.APPROVAL, data)
             } else if (data!!.hasWinner){

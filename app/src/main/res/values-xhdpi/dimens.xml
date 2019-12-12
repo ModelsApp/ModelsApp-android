@@ -65,7 +65,21 @@
     <dimen name="votingButtonsHeight">48dp</dimen>
     <dimen name="votingSmallTextSize">12sp</dimen>
 
+    <!-- campaign photos fragment  -->
+    <dimen name="campaign_photos_marginTop">88dp</dimen>
+    <dimen name="campaign_photos_textMarginTop">56dp</dimen>
+    <dimen name="campaign_photos_secondTextMarginTop">24dp</dimen>
+    <dimen name="campaign_photos_textSize">18sp</dimen>
+    <dimen name="campaign_photos_secondTextSize">14sp</dimen>
 
+    <!-- campaign photos published  fragment  -->
+    <dimen name="campaign_photos_pending_btnHeight">42dp</dimen>
+    <dimen name="campaign_photos_pending_btnWidth">172dp</dimen>
+    <dimen name="campaign_photos_pending_btnTextSize">15sp</dimen>
 
+    <!-- fab  -->
+    <dimen name="fab_size">64dp</dimen>
+    <dimen name="fab_padding">18dp</dimen>
+    <dimen name="fab_line_width">5dp</dimen>
 
 </resources>

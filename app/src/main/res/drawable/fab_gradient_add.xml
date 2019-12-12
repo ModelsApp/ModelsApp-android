@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape
+            android:shape="oval">
+            <gradient
+                android:angle="90"
+                android:startColor="@color/nice_red"
+                android:endColor="@color/nice_pink" />
+            <size
+                android:width="@dimen/fab_size"
+                android:height="@dimen/fab_size" />
+        </shape>
+    </item>
+
+    <item
+        android:left="@dimen/fab_padding"
+        android:right="@dimen/fab_padding">
+        <shape android:shape="line">
+            <stroke
+                android:width="@dimen/fab_line_width"
+                android:color="#ffffff" />
+        </shape>
+    </item>
+
+    <item
+        android:left="@dimen/fab_padding"
+        android:right="@dimen/fab_padding">
+        <rotate
+            android:fromDegrees="90">
+            <shape android:shape="line">
+                <stroke
+                    android:width="@dimen/fab_line_width"
+                    android:color="#ffffff" />
+            </shape>
+        </rotate>
+    </item>
+
+</layer-list>
+
+

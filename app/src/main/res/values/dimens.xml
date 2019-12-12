@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="indicator_size">3dp</dimen>
     <dimen name="point_radius">5dp</dimen>
 
@@ -46,4 +46,6 @@
     <dimen name="value_4dp">4dp</dimen>
 
     <dimen name="bottomContainerHeight">93dp</dimen>
+
+    <dimen name="design_fab_image_size" tools:override="true">@dimen/fab_size</dimen>
 </resources>

@@ -307,6 +307,11 @@
     <string name="terms_">Terms</string>
     <string name="privacy">Privacy</string>
 
+    <string name="no_pictures_yet">No pictures yet</string>
+    <string name="pictures_label_pending">Please upload the contents you want to submit for approval to publish</string>
+    <string name="pictures_label_reviewed">In this section you will see the approved or rejected contents you previously submitted</string>
+    <string name="pictures_label_published">Please select the contents you\'re going to publish on your Instagram profile</string>
+
     <string name="insta_post">Instagram Post</string>
     <string name="insta_story">Instagram Story</string>
     <string name="trip_advisor">Tripadvisor review</string>
