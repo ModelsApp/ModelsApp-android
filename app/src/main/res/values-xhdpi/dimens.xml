@@ -82,4 +82,28 @@
     <dimen name="fab_padding">18dp</dimen>
     <dimen name="fab_line_width">5dp</dimen>
 
+    <!-- dialog photos add link  -->
+    <dimen name="dialog_photos_textSize">22sp</dimen>
+    <dimen name="dialog_photos_btnWidth">172dp</dimen>
+    <dimen name="dialog_photos_btnMargin">64dp</dimen>
+    <dimen name="dialog_photos_btnHeight">42dp</dimen>
+    <dimen name="dialog_photos_btnTextSize">15sp</dimen>
+    <dimen name="dialog_photos_etMinHeight">48dp</dimen>
+    <dimen name="dialog_photos_etTextSize">14sp</dimen>
+
+    <!-- item wrong correct  -->
+    <dimen name="wrong_correct_textSize">14sp</dimen>
+    <dimen name="wrong_correct_height">232dp</dimen>
+    <dimen name="wrong_correct_icSize">32dp</dimen>
+
+    <!-- item what's wrong -->
+    <dimen name="whats_wrong_textSize">16sp</dimen>
+    <dimen name="whats_wrong_marginTop">16dp</dimen>
+    <dimen name="whats_wrong_icSize">24dp</dimen>
+
+    <!-- fragment_campaign_photos... -->
+    <dimen name="photosTextSize">16sp</dimen>
+    <dimen name="photosReviewedTextMargin">24dp</dimen>
+    <dimen name="photosReviewedBetweenMargin">48dp</dimen>
+
 </resources>

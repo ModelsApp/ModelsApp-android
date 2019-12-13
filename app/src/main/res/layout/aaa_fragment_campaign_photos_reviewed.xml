@@ -14,6 +14,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginTop="@dimen/campaign_photos_marginTop"
         android:orientation="vertical"
+        tools:visibility="gone"
+        android:visibility="gone"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,5 +46,97 @@
             app:autoSizeTextType="uniform"
             android:text="@string/pictures_label_reviewed" />
     </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="32dp"
+            android:paddingTop="8dp"
+            android:clipToPadding="false"
+            tools:background="@android:color/white" >
+
+            <LinearLayout
+                android:id="@+id/acceptedLl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <TextView
+                    style="@style/Models16Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accepted"
+                    android:textSize="@dimen/photosTextSize" />
+
+                <!--     TODO staggered grid       -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAccepted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/photosReviewedTextMargin"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/acceptedLabel"
+                    tools:background="@color/gray_hint"
+                    tools:layout_height="24dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/declinedLl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:layout_marginTop="@dimen/photosReviewedBetweenMargin"
+                app:layout_constraintTop_toBottomOf="@+id/acceptedLl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" >
+
+                <TextView
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/photosTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/declined" />
+
+<!--     TODO staggered grid       -->
+<!--    Alpha reduced by default    -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDeclined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:layout_marginTop="@dimen/photosReviewedTextMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/acceptedLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:background="@color/gray_hint"
+                    tools:layout_height="24dp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

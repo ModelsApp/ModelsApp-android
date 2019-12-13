@@ -307,6 +307,11 @@
     <string name="terms_">Terms</string>
     <string name="privacy">Privacy</string>
 
+    <string name="accepted">Accepted</string>
+    <string name="declined">Declined</string>
+    <string name="whats_wrong">What\'s wrong?</string>
+
+
     <string name="no_pictures_yet">No pictures yet</string>
     <string name="pictures_label_pending">Please upload the contents you want to submit for approval to publish</string>
     <string name="pictures_label_reviewed">In this section you will see the approved or rejected contents you previously submitted</string>
@@ -432,6 +437,14 @@
     <string name="username_instagram_account">Username - Instagram Account</string>
     <string name="your_mother_agency">Your mother agency</string>
     <string name="your_current_agency">Your current agency</string>
+
+
+    <string name="add_link_to_your_post">Add link to your post</string>
+    <string name="add_link_to_your_story">Add link to your story</string>
+    <string name="paste_social_link_here">Paste your social link here..</string>
+
+    <string name="heres_why">Here\'s why</string>
+    <string name="i_got_it">I got it</string>
 
     <string name="name_error">Enter your name</string>
     <string name="last_name_error">Enter your last name</string>

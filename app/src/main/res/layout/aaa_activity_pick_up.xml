@@ -118,8 +118,7 @@
                     tools:visibility="visible"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:tint="@color/nice_pink"
-                    android:src="@drawable/ic_check_circle" />
+                    android:src="@drawable/ic_check_circle_whiteinside" />
             </RelativeLayout>
 
             <TextView
@@ -179,8 +178,7 @@
                     android:visibility="gone"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:tint="@color/nice_pink"
-                    android:src="@drawable/ic_check_circle" />
+                    android:src="@drawable/ic_check_circle_whiteinside" />
             </RelativeLayout>
 
             <TextView
@@ -239,8 +237,7 @@
                     android:visibility="gone"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:tint="@color/nice_pink"
-                    android:src="@drawable/ic_check_circle" />
+                    android:src="@drawable/ic_check_circle_whiteinside" />
             </RelativeLayout>
 
             <TextView

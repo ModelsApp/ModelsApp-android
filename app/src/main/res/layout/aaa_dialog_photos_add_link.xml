@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="false"
+    android:background="@android:color/white" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" >
+
+        <TextView
+            style="@style/Models20SemiBoldText"
+            android:textSize="@dimen/dialog_photos_textSize"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/add_link_to_your_post"
+            android:gravity="center_horizontal" />
+
+        <com.square.android.utils.widget.ErrorEditText
+            android:id="@+id/formProfileMotherAgency"
+            style="@style/NewInputField"
+            android:textSize="@dimen/dialog_photos_etTextSize"
+            android:minHeight="@dimen/dialog_photos_etMinHeight"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/paste_social_link_here"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Models15SemiBoldText"
+            android:textSize="@dimen/dialog_photos_btnTextSize"
+            android:layout_width="@dimen/dialog_photos_btnWidth"
+            android:layout_height="@dimen/dialog_photos_btnHeight"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/nice_button_red_pink_alpha"
+            android:text="@string/save"
+            android:textAllCaps="true"
+            android:enabled="false"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="64dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -304,8 +304,7 @@
                         android:layout_height="24dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_check_circle"
-                        android:tint="@color/nice_pink" />
+                        android:src="@drawable/ic_check_circle_whiteinside" />
                 </FrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
