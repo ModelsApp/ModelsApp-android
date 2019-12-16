@@ -9,7 +9,7 @@
     android:paddingEnd="24dp"
     tools:background="@android:color/white" >
 
-<!--   TODO rv with item_profile    -->
+    <!--   TODO rv with item_profile    -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvItems"
         android:layout_width="0dp"

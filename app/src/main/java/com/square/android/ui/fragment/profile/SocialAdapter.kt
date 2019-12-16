@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.profile_subitem_earn_credits.view.*
 import kotlinx.android.synthetic.main.profile_subitem_plan.view.*
 import kotlinx.android.synthetic.main.profile_subitem_social.view.*
 
-class SocialAdapter(data: List<SocialItem>, private val handler: Handler) : BaseAdapter<SocialItem, SocialAdapter.Holder>(data) {
+class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : BaseAdapter<ProfileItem, SocialAdapter.Holder>(data) {
 
     var openedItems: MutableList<Int> = mutableListOf()
 
@@ -48,25 +48,25 @@ class SocialAdapter(data: List<SocialItem>, private val handler: Handler) : Base
         notifyItemChanged(position, OpenedPayload)
     }
 
-    class Holder(containerView: View, var handler: Handler) : BaseHolder<SocialItem>(containerView) {
+    class Holder(containerView: View, var handler: Handler) : BaseHolder<ProfileItem>(containerView) {
 
-        override fun bind(item: SocialItem, vararg extras: Any? ) {
+        override fun bind(item: ProfileItem, vararg extras: Any? ) {
             val openedItems = if(extras[0] == null) null else extras[0] as MutableList<Int>
 
             bindOpened(item, openedItems)
 
-            clickView.visibility = if(item.type == SOCIAL_ITEM_TYPE_DROPDOWN) View.VISIBLE else View.GONE
-            arrow.visibility = if(item.type == SOCIAL_ITEM_TYPE_DROPDOWN) View.VISIBLE else View.GONE
-            tv.visibility = if(item.type == SOCIAL_ITEM_TYPE_PLAIN) View.VISIBLE else View.GONE
+            clickView.visibility = if(item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
+            arrow.visibility = if(item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
+            tv.visibility = if(item.type == TYPE_PLAIN) View.VISIBLE else View.GONE
 
             clickView.setOnClickListener { handler.clickViewClicked(adapterPosition) }
 
             icon.setImageDrawable(icon.context.getDrawable(item.iconRes))
             title.text = item.title
 
-            if(item.type == SOCIAL_ITEM_TYPE_PLAIN){
+            if(item.type == TYPE_PLAIN){
                 tv.text = item.textValue
-            } else if(item.type == SOCIAL_ITEM_TYPE_DROPDOWN){
+            } else if(item.type == TYPE_DROPDOWN){
 
                 if (itemsLl.childCount <= 0){
                     item.subItems?.let {
@@ -257,9 +257,9 @@ class SocialAdapter(data: List<SocialItem>, private val handler: Handler) : Base
             return list
         }
 
-        fun bindOpened(item: SocialItem, openedItems: MutableList<Int>?) {
+        fun bindOpened(item: ProfileItem, openedItems: MutableList<Int>?) {
                 openedItems?.let {
-                    if(item.type == SOCIAL_ITEM_TYPE_DROPDOWN){
+                    if(item.type == TYPE_DROPDOWN){
                     val opened = adapterPosition in it
 
                     arrow.animate().rotation( if(!opened) 0f else 90f).setDuration(50).start();

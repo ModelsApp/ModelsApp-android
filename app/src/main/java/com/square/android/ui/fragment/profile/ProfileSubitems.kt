@@ -2,6 +2,7 @@ package com.square.android.ui.fragment.profile
 
 import androidx.annotation.DrawableRes
 
+// SOCIAL //
 class Plan(
         var text: String = "",
         var canChange: Boolean = true)
@@ -34,3 +35,14 @@ class Ambassador(
         var type: Int = 0, // one of AMBASSADOR_TYPE...
         @DrawableRes
         var smallIconRes: Int)
+
+
+// BUSINESS //
+const val DETAIL_TYPE_DOUBLE = 1
+const val DETAIL_TYPE_FULL = 2
+class Detail(
+        var type: Int = 0, // one of DETAIL_TYPE...
+        var firstTitle: String = "",
+        var firstText: String = "",
+        var secondTitle: String = "",
+        var secondText: String = "")

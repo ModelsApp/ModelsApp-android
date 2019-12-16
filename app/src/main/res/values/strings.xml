@@ -482,6 +482,20 @@
 
     <string name="tut_5_1">Select which social media\nactions you would like to do.</string>
 
+    <string name="height_">Height:</string>
+    <string name="bust_">Bust:</string>
+    <string name="typology_">Typology:</string>
+    <string name="waist_">Waist:</string>
+    <string name="skin_">Skin:</string>
+    <string name="hip_">Hip:</string>
+    <string name="eyes_">Eyes:</string>
+    <string name="bra_">Bra:</string>
+    <string name="hair_">Hair:</string>
+    <string name="size_">Size:</string>
+    <string name="length_">Length:</string>
+    <string name="shoes_">Shoes:</string>
+    <string name="particular_signs_">Particular signs:</string>
+    <string name="height_format">%s cm</string>
 
     <string name="add_three_photos">Add 3 of your photos</string>
     <string name="photo_missing">One of the 3 photos is missing</string>
