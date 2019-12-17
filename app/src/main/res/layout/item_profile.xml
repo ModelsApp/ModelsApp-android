@@ -30,18 +30,32 @@
     <TextView
         android:id="@+id/title"
         style="@style/Models16SemiBoldText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
-        android:maxLines="1"
         android:gravity="center_vertical"
+        android:maxLines="1"
         app:autoSizeTextType="uniform"
-        app:layout_constraintTop_toTopOf="@+id/icon"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/icon"
-        app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintEnd_toStartOf="@+id/tv"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="@+id/icon"
         tools:text="Social channels" />
+
+    <ImageView
+        android:id="@+id/rightIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintTop_toTopOf="@+id/icon"
+        android:layout_marginStart="8dp"
+        tools:src="@drawable/ic_warning_red" />
 
     <ImageView
         android:id="@+id/arrow"

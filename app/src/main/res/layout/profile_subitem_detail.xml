@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:paddingBottom="4dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_rounded_8dp"
+            android:elevation="2dp"
+            android:layout_weight="0.6"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:id="@+id/detailFirstContainer"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:padding="12dp" >
+
+            <TextView
+                android:id="@+id/detailFirstTitle"
+                style="@style/Models15SemiBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingEnd="3dp"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"
+                tools:text="Height:" />
+
+            <TextView
+                android:id="@+id/detailFirstText"
+                style="@style/Models15Text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"
+                tools:text="179 cm" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_rounded_8dp"
+            android:elevation="2dp"
+            android:layout_weight="0.3"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:id="@+id/detailSecondContainer"
+            android:padding="12dp" >
+
+            <TextView
+                android:id="@+id/detailSecondTitle"
+                style="@style/Models15SemiBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"
+                tools:text="Bust:" />
+
+            <TextView
+                android:id="@+id/detailSecondText"
+                style="@style/Models15Text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"
+                tools:text="90" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+</LinearLayout>

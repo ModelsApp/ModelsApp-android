@@ -34,7 +34,9 @@ class ProfileItem(
         var textValue: String? = null,
         @DrawableRes
         var iconRes: Int,
-        var subItems: List<Any>? = null)
+        var subItems: List<Any>? = null,
+        @DrawableRes
+        var rightIconRes: Int? = null)
 
 class ProfileFragment: BaseFragment(), ProfileView {
 
@@ -87,6 +89,8 @@ class ProfileFragment: BaseFragment(), ProfileView {
     }
 
     private fun setupFragmentAdapter(user: Profile.User, actualTokenInfo: BillingTokenInfo) {
+        viewPager.isPagingEnabled = false
+        viewPager.animationEnabled = false
         viewPager.adapter = ProfileFragmentAdapter(childFragmentManager, user, actualTokenInfo )
         tabLayout.setupWithViewPager(viewPager)
 

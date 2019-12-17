@@ -6,6 +6,7 @@ import com.square.android.R
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_profile.*
 import android.view.LayoutInflater
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.profile_subitem_ambassador.view.*
 import kotlinx.android.synthetic.main.profile_subitem_buy_credits.view.*
@@ -51,45 +52,59 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
     class Holder(containerView: View, var handler: Handler) : BaseHolder<ProfileItem>(containerView) {
 
         override fun bind(item: ProfileItem, vararg extras: Any? ) {
-            val openedItems = if(extras[0] == null) null else extras[0] as MutableList<Int>
 
+            val openedItems = if (extras[0] == null) null else extras[0] as MutableList<Int>
             bindOpened(item, openedItems)
 
-            clickView.visibility = if(item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
-            arrow.visibility = if(item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
-            tv.visibility = if(item.type == TYPE_PLAIN) View.VISIBLE else View.GONE
+            clickView.visibility = if (item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
+            arrow.visibility = if (item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
+            tv.visibility = if (item.type == TYPE_PLAIN) View.VISIBLE else View.GONE
 
             clickView.setOnClickListener { handler.clickViewClicked(adapterPosition) }
 
             icon.setImageDrawable(icon.context.getDrawable(item.iconRes))
             title.text = item.title
 
-            if(item.type == TYPE_PLAIN){
+            item.rightIconRes?.let {
+                rightIcon.visibility = View.VISIBLE
+                rightIcon.setImageDrawable(itemsLl.context.getDrawable(it))
+
+                (title.layoutParams as ConstraintLayout.LayoutParams).also { layoutParams ->
+                    layoutParams.marginEnd = itemsLl.context.resources.getDimensionPixelSize(R.dimen.value_32dp)
+                }
+
+            } ?: run {
+                rightIcon.visibility = View.GONE
+                (title.layoutParams as ConstraintLayout.LayoutParams).also { layoutParams ->
+                    layoutParams.marginEnd = itemsLl.context.resources.getDimensionPixelSize(R.dimen.value_16dp)
+                }
+            }
+
+            itemsLl.removeAllViews()
+
+            if (item.type == TYPE_PLAIN) {
                 tv.text = item.textValue
-            } else if(item.type == TYPE_DROPDOWN){
+            } else if (item.type == TYPE_DROPDOWN) {
+                item.subItems?.let {
+                    val subItems: MutableList<View>? = when (item.subItems?.firstOrNull()) {
+                        is ProfileSubItems.Plan -> bindPlan(item.subItems!!.filterIsInstance<ProfileSubItems.Plan>())
+                        is ProfileSubItems.Social -> bindSocial(item.subItems!!.filterIsInstance<ProfileSubItems.Social>())
+                        is ProfileSubItems.EarnCredits -> bindEarn(item.subItems!!.filterIsInstance<ProfileSubItems.EarnCredits>())
+                        is ProfileSubItems.BuyCredits -> bindBuy(item.subItems!!.filterIsInstance<ProfileSubItems.BuyCredits>())
+                        is ProfileSubItems.Ambassador -> bindAmbassador(item.subItems!!.filterIsInstance<ProfileSubItems.Ambassador>())
+                        else -> null
+                    }
 
-                if (itemsLl.childCount <= 0){
-                    item.subItems?.let {
-                        val subItems: MutableList<View>? = when(item.subItems?.firstOrNull()){
-                            is Plan -> bindPlan(item.subItems!!.filterIsInstance<Plan>())
-                            is Social -> bindSocial(item.subItems!!.filterIsInstance<Social>())
-                            is EarnCredits -> bindEarn(item.subItems!!.filterIsInstance<EarnCredits>())
-                            is BuyCredits -> bindBuy(item.subItems!!.filterIsInstance<BuyCredits>())
-                            is Ambassador -> bindAmbassador(item.subItems!!.filterIsInstance<Ambassador>())
-                            else -> null
-                        }
-
-                        if(!subItems.isNullOrEmpty()){
-                            for(subItem in subItems){
-                                itemsLl.addView(subItem)
-                            }
+                    if (!subItems.isNullOrEmpty()) {
+                        for (subItem in subItems) {
+                            itemsLl.addView(subItem)
                         }
                     }
                 }
             }
         }
 
-        private fun bindPlan(items: List<Plan>): MutableList<View>? {
+        private fun bindPlan(items: List<ProfileSubItems.Plan>): MutableList<View>? {
             val list: MutableList<View> = mutableListOf()
 
             for(item in items){
@@ -106,7 +121,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             return list
         }
 
-        private fun bindSocial(items: List<Social>): MutableList<View>?{
+        private fun bindSocial(items: List<ProfileSubItems.Social>): MutableList<View>?{
             val list: MutableList<View> = mutableListOf()
 
             for(item in items){
@@ -145,7 +160,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             return list
         }
 
-        private fun bindEarn(items: List<EarnCredits>): MutableList<View>?{
+        private fun bindEarn(items: List<ProfileSubItems.EarnCredits>): MutableList<View>?{
             val list: MutableList<View> = mutableListOf()
 
             for(item in items){
@@ -188,7 +203,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             return list
         }
 
-        private fun bindBuy(items: List<BuyCredits>): MutableList<View>?{
+        private fun bindBuy(items: List<ProfileSubItems.BuyCredits>): MutableList<View>?{
             val list: MutableList<View> = mutableListOf()
 
             for(item in items){
@@ -220,7 +235,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             return list
         }
 
-        private fun bindAmbassador(items: List<Ambassador>): MutableList<View>?{
+        private fun bindAmbassador(items: List<ProfileSubItems.Ambassador>): MutableList<View>?{
             val list: MutableList<View> = mutableListOf()
 
             for(item in items){

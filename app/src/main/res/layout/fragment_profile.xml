@@ -234,7 +234,7 @@
             </RelativeLayout>
 
 <!-- TODO: fragments are not showing -->
-            <com.square.android.utils.widget.PagingViewPager
+            <com.square.android.utils.widget.WrapContentPagingViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

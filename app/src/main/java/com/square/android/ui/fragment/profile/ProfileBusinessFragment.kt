@@ -45,14 +45,14 @@ class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, BusinessAdap
 
     override fun showData(user: Profile.User) {
 //      TODO get details
-        val details = ProfileItem(TYPE_DROPDOWN, getString(R.string.points), null, R.drawable.r_shop, listOf(
-                Detail(DETAIL_TYPE_DOUBLE, getString(R.string.height_), getString(R.string.height_format, "179"), getString(R.string.bust_), "90"),
-                Detail(DETAIL_TYPE_DOUBLE, getString(R.string.typology_), "Curvy", getString(R.string.waist_), "60"),
-                Detail(DETAIL_TYPE_DOUBLE, getString(R.string.skin_), "Caucasian", getString(R.string.hip_), "90"),
-                Detail(DETAIL_TYPE_DOUBLE, getString(R.string.eyes_), "Blue", getString(R.string.bra_), "B Cup"),
-                Detail(DETAIL_TYPE_DOUBLE, getString(R.string.hair_), "brown", getString(R.string.size_), "S"),
-                Detail(DETAIL_TYPE_DOUBLE, getString(R.string.length_), "Medium", getString(R.string.shoes_), "37"),
-                Detail(DETAIL_TYPE_FULL, getString(R.string.particular_signs_),"2 tattoos on the back")
+        val details = ProfileItem(TYPE_DROPDOWN, getString(R.string.details), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.Detail(DETAIL_TYPE_DOUBLE, getString(R.string.height_), getString(R.string.height_format, "179"), getString(R.string.bust_), "90"),
+                ProfileSubItems.Detail(DETAIL_TYPE_DOUBLE, getString(R.string.typology_), "Curvy", getString(R.string.waist_), "60"),
+                ProfileSubItems.Detail(DETAIL_TYPE_DOUBLE, getString(R.string.skin_), "Caucasian", getString(R.string.hip_), "90"),
+                ProfileSubItems.Detail(DETAIL_TYPE_DOUBLE, getString(R.string.eyes_), "Blue", getString(R.string.bra_), "B Cup"),
+                ProfileSubItems.Detail(DETAIL_TYPE_DOUBLE, getString(R.string.hair_), "Brown", getString(R.string.size_), "S"),
+                ProfileSubItems.Detail(DETAIL_TYPE_DOUBLE, getString(R.string.length_), "Medium", getString(R.string.shoes_), "37"),
+                ProfileSubItems.Detail(DETAIL_TYPE_FULL, getString(R.string.particular_signs_),"2 tattoos on the back")
         ))
 
         businessAdapter = BusinessAdapter(listOf(details), this)
