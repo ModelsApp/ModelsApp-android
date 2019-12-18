@@ -20,6 +20,14 @@ const val AMBASSADOR_TYPE_JOIN_TEAM = 1
 const val DETAIL_TYPE_DOUBLE = 1
 const val DETAIL_TYPE_FULL = 2
 
+const val CREATE_CLICKED_TYPE_POLAROID = 1
+const val CREATE_CLICKED_TYPE_PORTFOLIO = 2
+const val CREATE_CLICKED_TYPE_COMP_CARD = 3
+
+const val PREFERENCE_TYPE_SOCIAL = 1
+const val PREFERENCE_TYPE_HOSTESS = 2
+const val PREFERENCE_TYPE_NIGHT_OUT = 3
+
 class ProfileSubItems {
 
 // SOCIAL //
@@ -57,10 +65,33 @@ class ProfileSubItems {
                 var secondTitle: String = "",
                 var secondText: String = "")
 
+        class Polaroid(
+                var title: String = "",
+                var expired: Boolean = false,
+                var albumId: Long)
 
+        class Create(
+                var clickedType: Int = 0 // one of CREATE_CLICKED_TYPE...
+                 )
 
+        class Portfolio(
+                var title: String = "",
+                var portfolioId: Long)
 
+        class Agency(
+                var title: String = "",
+                var agencyId: Long)
 
+        class CompCard(
+                var title: String = "",
+                var compCardId: Long)
+
+        class Preference(
+                var type: Int = 0, // one of PREFERENCE_TYPE...
+                var checked: Boolean)
+
+        class ModelsCom(
+                var modelsComUserName: String = "")
 
 }
 

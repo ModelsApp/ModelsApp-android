@@ -55,11 +55,77 @@ class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, BusinessAdap
                 ProfileSubItems.Detail(DETAIL_TYPE_FULL, getString(R.string.particular_signs_),"2 tattoos on the back")
         ))
 
-        businessAdapter = BusinessAdapter(listOf(details), this)
+        //TODO get data
+        val polaroids = ProfileItem(TYPE_DROPDOWN, getString(R.string.polaroids), null, R.drawable.r_shop, listOf(
+        ProfileSubItems.Polaroid("Album", true , 124),
+        ProfileSubItems.Create(CREATE_CLICKED_TYPE_POLAROID)
+        ), R.drawable.ic_warning_red)
+
+        //TODO get data
+        val portfolios = ProfileItem(TYPE_DROPDOWN, getString(R.string.portfolios), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.Portfolio("Editorial Portfolio",  132),
+                ProfileSubItems.Portfolio("Commercial Portfolio",  122),
+                ProfileSubItems.Portfolio("Acting Portfolio",  1452),
+                ProfileSubItems.Create(CREATE_CLICKED_TYPE_PORTFOLIO)
+        ))
+
+        //TODO get data
+        val agencies = ProfileItem(TYPE_DROPDOWN, getString(R.string.agencies), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.Agency("My network",  44)
+        ))
+
+        //TODO get data
+        val compCard = ProfileItem(TYPE_DROPDOWN, getString(R.string.comp_card), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.CompCard("Commercial Comp card",  635),
+                ProfileSubItems.CompCard("Acting Comp card",  421),
+                ProfileSubItems.Create(CREATE_CLICKED_TYPE_COMP_CARD)
+        ))
+
+        //TODO get data
+        val preferences = ProfileItem(TYPE_DROPDOWN, getString(R.string.preferences), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.Preference(PREFERENCE_TYPE_SOCIAL, true),
+                ProfileSubItems.Preference(PREFERENCE_TYPE_HOSTESS, false),
+                ProfileSubItems.Preference(PREFERENCE_TYPE_NIGHT_OUT, true)
+        ))
+
+        //TODO get data
+        val modelsCom = ProfileItem(TYPE_DROPDOWN, getString(R.string.models_com_profile), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.ModelsCom("")
+        ))
+
+        businessAdapter = BusinessAdapter(listOf(details, polaroids, portfolios, agencies, compCard, preferences, modelsCom), this)
 
         rvItems.itemAnimator = null
         rvItems.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)
         rvItems.adapter = businessAdapter
+    }
+
+    override fun modelsComClicked(modelsComUserName: String) {
+        //TODO open dialog - edit models.com user name?
+    }
+
+    override fun preferenceClicked(type: Int, isChecked: Boolean) {
+        //TODO
+    }
+
+    override fun compCardOpenClicked(compCardId: Long) {
+        //TODO
+    }
+
+    override fun agencyViewClicked(agencyId: Long) {
+        //TODO
+    }
+
+    override fun portfolioOpenClicked(portfolioId: Long) {
+        // TODO
+    }
+
+    override fun polaroidOpenClicked(albumId: Long) {
+        // TODO
+    }
+
+    override fun createClicked(clickedType: Int) {
+        // TODO
     }
 
     override fun clickViewClicked(position: Int) {

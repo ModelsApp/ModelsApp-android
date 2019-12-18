@@ -10,8 +10,8 @@
         android:id="@+id/title"
         style="@style/Models20SemiBoldText"
         android:layout_width="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="@dimen/frag_profile_margin"
+        android:layout_marginEnd="@dimen/frag_profile_margin"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/profile"
@@ -23,7 +23,7 @@
         android:id="@+id/iconSettings"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="@dimen/frag_profile_margin"
         android:src="@drawable/ic_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title"
@@ -44,13 +44,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:tabIndicator="@drawable/indicator"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="@dimen/frag_profile_margin"
+        android:layout_marginEnd="@dimen/frag_profile_margin"
         app:tabTextAppearance="@style/Models14SemiBoldText"
         app:tabIndicatorColor="@color/placesPrimary"
         app:tabSelectedTextColor="@android:color/black"
@@ -71,17 +70,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="32dp"
+            android:paddingStart="@dimen/frag_profile_margin"
+            android:paddingEnd="@dimen/frag_profile_margin"
+            android:paddingBottom="@dimen/frag_profile_padding_bottom"
             android:paddingTop="8dp"
             android:clipToPadding="false"
             tools:background="@android:color/white" >
 
             <ImageView
                 android:id="@+id/userImg"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
+                android:layout_width="@dimen/frag_profile_user_img_size"
+                android:layout_height="@dimen/frag_profile_user_img_size"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/fill_profile_header_1"
                 app:layout_constraintTop_toTopOf="parent"
@@ -90,10 +89,11 @@
             <TextView
                 android:id="@+id/userName"
                 style="@style/Models20BoldText"
+                android:textSize="@dimen/frag_profile_text_size_large"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="@dimen/frag_profile_margin"
+                android:layout_marginEnd="@dimen/frag_profile_margin"
                 android:maxLines="2"
                 app:autoSizeTextType="uniform"
                 android:gravity="center_vertical"
@@ -121,15 +121,16 @@
             <TextView
                 android:id="@+id/memberLabel"
                 style="@style/Models16Text"
+                android:textSize="@dimen/frag_profile_text_size_normal"
                 android:textColor="@color/gray_hint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="@dimen/frag_profile_margin"
+                android:layout_marginEnd="@dimen/frag_profile_margin"
                 android:maxLines="2"
                 app:autoSizeTextType="uniform"
                 android:gravity="center_vertical"
-                android:visibility="gone"
+                android:visibility="invisible"
                 tools:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/userImg"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -140,12 +141,12 @@
                 android:id="@+id/businessInfoLl"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="@dimen/frag_profile_business_margin_top"
+                android:layout_marginStart="@dimen/frag_profile_margin"
+                android:layout_marginEnd="@dimen/frag_profile_margin"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:visibility="gone"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/userImg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/userImg"
@@ -154,6 +155,7 @@
                 <TextView
                     android:id="@+id/heightTv"
                     style="@style/Models14Text"
+                    android:textSize="@dimen/frag_profile_text_size_small"
                     android:textColor="@color/gray_hint"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -167,6 +169,7 @@
                 <TextView
                     android:id="@+id/sizeTv"
                     style="@style/Models14Text"
+                    android:textSize="@dimen/frag_profile_text_size_small"
                     android:textColor="@color/gray_hint"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -180,6 +183,7 @@
                 <TextView
                     android:id="@+id/cityTv"
                     style="@style/Models14Text"
+                    android:textSize="@dimen/frag_profile_text_size_small"
                     android:textColor="@color/gray_hint"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -196,14 +200,15 @@
 
             <ImageView
                 android:id="@+id/icMedal"
-                android:layout_width="32dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="106dp"
+                android:layout_width="@dimen/frag_profile_medal_width"
+                android:layout_height="@dimen/frag_profile_medal_height"
+                android:layout_marginEnd="@dimen/frag_profile_medal_right_margin"
+                android:layout_marginTop="@dimen/frag_profile_medal_margin_top"
+                android:layout_marginStart="@dimen/frag_profile_medal_margin_start"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 tools:visibility="visible"
-                app:layout_constraintEnd_toStartOf="@+id/memberLabel"
+                app:layout_constraintStart_toStartOf="@+id/userImg"
                 app:layout_constraintTop_toTopOf="@+id/userImg"
                 tools:src="@drawable/gold_medal" />
 
@@ -211,23 +216,23 @@
                 android:id="@+id/statusRl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="@dimen/frag_profile_status_margin_top"
                 android:visibility="gone"
                 tools:visibility="visible"
                 app:layout_constraintTop_toTopOf="@+id/icMedal"
                 app:layout_constraintStart_toStartOf="@+id/icMedal"
                 app:layout_constraintEnd_toEndOf="@id/icMedal" >
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/frag_profile_status_bg_size"
+                    android:layout_height="@dimen/frag_profile_status_bg_size"
                     android:layout_centerInParent="true"
                     android:background="@drawable/round_background"
                     android:backgroundTint="@android:color/white" />
 
                 <ImageView
                     android:id="@+id/statusCircle"
-                    android:layout_width="16.5dp"
-                    android:layout_height="16.5dp"
+                    android:layout_width="@dimen/frag_profile_status_size"
+                    android:layout_height="@dimen/frag_profile_status_size"
                     android:layout_centerInParent="true"
                     android:background="@drawable/round_background"
                     android:backgroundTint="@color/status_green" />
@@ -241,8 +246,7 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginTop="@dimen/frag_profile_padding_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userImg" />
@@ -255,7 +259,7 @@
                 android:gravity="center"
                 android:visibility="invisible"
                 tools:visibility="visible"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/frag_profile_bottom_label_margin"
                 app:layout_constraintTop_toBottomOf="@+id/viewPager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" >
@@ -263,36 +267,39 @@
                 <TextView
                     android:id="@+id/tutorialsTv"
                     style="@style/Models15SemiBoldText"
+                    android:textSize="@dimen/frag_profile_text_size_smaller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tutorials" />
 
                 <ImageView
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="@dimen/frag_profile_round_icon_size"
+                    android:layout_height="@dimen/frag_profile_round_icon_size"
+                    android:layout_marginStart="@dimen/frag_profile_round_icon_size"
+                    android:layout_marginEnd="@dimen/frag_profile_round_icon_size"
                     android:src="@drawable/round_background"
                     android:tint="@color/gray_hint_light" />
 
                 <TextView
                     android:id="@+id/termsTv"
                     style="@style/Models15SemiBoldText"
+                    android:textSize="@dimen/frag_profile_text_size_smaller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/terms_" />
 
                 <ImageView
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="@dimen/frag_profile_round_icon_size"
+                    android:layout_height="@dimen/frag_profile_round_icon_size"
+                    android:layout_marginStart="@dimen/frag_profile_round_icon_size"
+                    android:layout_marginEnd="@dimen/frag_profile_round_icon_size"
                     android:src="@drawable/round_background"
                     android:tint="@color/gray_hint_light" />
 
                 <TextView
                     android:id="@+id/privacyTv"
                     style="@style/Models15SemiBoldText"
+                    android:textSize="@dimen/frag_profile_text_size_smaller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/privacy" />

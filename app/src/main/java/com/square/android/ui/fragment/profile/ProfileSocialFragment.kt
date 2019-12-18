@@ -66,24 +66,36 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, SocialAdapter.Ha
         val plainPoints = ProfileItem(TYPE_PLAIN, getString(R.string.points), "550", R.drawable.r_shop)
 
         //TODO how to determine if user can change plan?
-        val socialPlan = ProfileItem(TYPE_DROPDOWN, getString(R.string.active_plan),null, R.drawable.r_shop, listOf(ProfileSubItems.Plan(subText+" | "+subTypeText), true))
+        val socialPlan = ProfileItem(TYPE_DROPDOWN, getString(R.string.active_plan),null, R.drawable.r_shop, listOf(
+                ProfileSubItems.Plan(subText+" | "+subTypeText)
+        , true))
 
         //TODO get social "connected" value for every type of social
         val socialChannels = ProfileItem(TYPE_DROPDOWN, getString(R.string.social_channels),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.Social(SOCIAL_APP_TYPE_INSTAGRAM, true), ProfileSubItems.Social(SOCIAL_APP_TYPE_FACEBOOK, false), ProfileSubItems.Social(SOCIAL_APP_TYPE_GOOGLE, true),
-                ProfileSubItems.Social(SOCIAL_APP_TYPE_TRIPADVISOR, true),ProfileSubItems.Social(SOCIAL_APP_TYPE_YELP, false)))
+                ProfileSubItems.Social(SOCIAL_APP_TYPE_INSTAGRAM, true),
+                ProfileSubItems.Social(SOCIAL_APP_TYPE_FACEBOOK, false),
+                ProfileSubItems.Social(SOCIAL_APP_TYPE_GOOGLE, true),
+                ProfileSubItems.Social(SOCIAL_APP_TYPE_TRIPADVISOR, true),
+                ProfileSubItems.Social(SOCIAL_APP_TYPE_YELP, false)
+        ))
 
         //TODO get credits value etc
         val socialEarnCredits = ProfileItem(TYPE_DROPDOWN, getString(R.string.earn_more_credits),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.EarnCredits(EARN_TYPE_SHARE_FRIENDS, 150), ProfileSubItems.EarnCredits(EARN_TYPE_REFER_VENUE, 300), ProfileSubItems.EarnCredits(EARN_TYPE_INTRODUCE_BRAND, 500)))
+                ProfileSubItems.EarnCredits(EARN_TYPE_SHARE_FRIENDS, 150),
+                ProfileSubItems.EarnCredits(EARN_TYPE_REFER_VENUE, 300),
+                ProfileSubItems.EarnCredits(EARN_TYPE_INTRODUCE_BRAND, 500)
+        ))
 
         //TODO get price value etc
         val socialBuyCredits = ProfileItem(TYPE_DROPDOWN, getString(R.string.buy_extra_credits),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.BuyCredits(BUY_TYPE_500, 500, "€ 30,00"), ProfileSubItems.BuyCredits(BUY_TYPE_1000, 1000, "€ 50,00")))
+                ProfileSubItems.BuyCredits(BUY_TYPE_500, 500, "€ 30,00"),
+                ProfileSubItems.BuyCredits(BUY_TYPE_1000, 1000, "€ 50,00")
+        ))
 
         //TODO
         val socialAmbassador = ProfileItem(TYPE_DROPDOWN, getString(R.string.ambassador_program),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.Ambassador(AMBASSADOR_TYPE_JOIN_TEAM, R.drawable.r_shop)))
+                ProfileSubItems.Ambassador(AMBASSADOR_TYPE_JOIN_TEAM, R.drawable.r_shop)
+        ))
 
         socialAdapter = SocialAdapter(listOf(plainCredits, plainPoints, socialPlan, socialChannels, socialEarnCredits, socialBuyCredits, socialAmbassador), this)
         rvItems.itemAnimator = null

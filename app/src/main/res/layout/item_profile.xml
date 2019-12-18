@@ -10,7 +10,7 @@
     <View
         android:id="@+id/clickView"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/item_profile_clickable_size"
         android:alpha="0.2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +20,9 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="@dimen/item_profile_icon_size"
+        android:layout_height="@dimen/item_profile_icon_size"
+        android:layout_marginTop="@dimen/item_profile_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@drawable/r_shop" />
@@ -30,10 +30,11 @@
     <TextView
         android:id="@+id/title"
         style="@style/Models16SemiBoldText"
+        android:textSize="@dimen/item_profile_text_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/item_profile_margin"
+        android:layout_marginEnd="@dimen/item_profile_subicon_size"
         android:gravity="center_vertical"
         android:maxLines="1"
         app:autoSizeTextType="uniform"
@@ -47,20 +48,20 @@
 
     <ImageView
         android:id="@+id/rightIcon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="@dimen/item_profile_subicon_size"
+        android:layout_height="@dimen/item_profile_subicon_size"
         android:visibility="gone"
         tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/icon"
         app:layout_constraintStart_toEndOf="@+id/title"
         app:layout_constraintTop_toTopOf="@+id/icon"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/item_profile_subicon_margin"
         tools:src="@drawable/ic_warning_red" />
 
     <ImageView
         android:id="@+id/arrow"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/item_profile_arrow_size"
+        android:layout_height="@dimen/item_profile_arrow_size"
         tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +72,7 @@
     <TextView
         android:id="@+id/tv"
         style="@style/Models16SemiBoldText"
+        android:textSize="@dimen/item_profile_text_size"
         android:textColor="@color/nice_pink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +88,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/item_profile_margin"
         android:visibility="gone"
         tools:visibility="visible"
         tools:background="@color/nice_red"
@@ -102,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="1.5dp"
         android:background="@color/divider"
-        app:layout_goneMarginTop="12dp"
+        app:layout_goneMarginTop="@dimen/item_profile_margin"
         app:layout_constraintTop_toBottomOf="@+id/itemsLl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

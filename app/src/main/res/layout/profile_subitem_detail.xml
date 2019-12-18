@@ -30,11 +30,12 @@
             android:id="@+id/detailFirstContainer"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
-            android:padding="12dp" >
+            android:padding="@dimen/subitem_tv_padding" >
 
             <TextView
                 android:id="@+id/detailFirstTitle"
                 style="@style/Models15SemiBoldText"
+                android:textSize="@dimen/subitem_text_size_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -46,12 +47,13 @@
             <TextView
                 android:id="@+id/detailFirstText"
                 style="@style/Models15Text"
+                android:textSize="@dimen/subitem_text_size_normal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:maxLines="1"
                 app:autoSizeTextType="uniform"
+                app:autoSizeMaxTextSize="15sp"
                 tools:text="179 cm" />
         </LinearLayout>
 
@@ -61,16 +63,17 @@
             android:background="@drawable/background_rounded_8dp"
             android:elevation="2dp"
             android:layout_weight="0.3"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="@dimen/subitem_details_second_margin"
             android:layout_marginEnd="2dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:id="@+id/detailSecondContainer"
-            android:padding="12dp" >
+            android:padding="@dimen/subitem_tv_padding" >
 
             <TextView
                 android:id="@+id/detailSecondTitle"
                 style="@style/Models15SemiBoldText"
+                android:textSize="@dimen/subitem_text_size_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -81,11 +84,11 @@
             <TextView
                 android:id="@+id/detailSecondText"
                 style="@style/Models15Text"
+                android:textSize="@dimen/subitem_text_size_normal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="3dp"
-                android:gravity="center_vertical"
                 android:maxLines="1"
                 app:autoSizeTextType="uniform"
                 tools:text="90" />
@@ -95,6 +98,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="12dp" />
+        android:layout_height="@dimen/subitem_tv_bottom_margin" />
 
 </LinearLayout>

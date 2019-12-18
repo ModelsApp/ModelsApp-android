@@ -398,10 +398,26 @@
     <string name="total_credits">Total credits</string>
     <string name="qt">Qt.</string>
     <string name="details">Details</string>
+    <string name="polaroids">Polaroids</string>
+    <string name="portfolios">Portfolios</string>
+    <string name="comp_card">Comp card</string>
+    <string name="preferences">Preferences</string>
+    <string name="models_com_profile">models.com profile</string>
+    <string name="view">View</string>
 
+    <string name="open">Open</string>
+    <string name="expired_">(expired)</string>
+    <string name="create_new">Create new</string>
 
     <string name="add_a">Add a</string>
     <string name="step">Step</string>
+
+    <string name="models_com_models_">models.com/models/</string>
+    <string name="models_com_empty_text">insertyourinfo</string>
+
+    <string name="social_contents">Social contents</string>
+    <string name="hostess">Hostess</string>
+    <string name="night_out_experiences">Night out experiences</string>
 
     <string name="full">Full</string>
     <string name="booked_for">Booked for:</string>

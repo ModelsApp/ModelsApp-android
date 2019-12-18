@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/createClickView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/subitem_top_margin"
+        android:paddingBottom="@dimen/subitem_top_margin"
+        android:paddingEnd="@dimen/subitem_top_margin"
+        android:layout_marginStart="@dimen/subitem_left_margin" >
+
+        <ImageView
+            android:layout_width="@dimen/subitem_create_small_image_size"
+            android:layout_height="@dimen/subitem_create_small_image_size"
+            android:src="@drawable/add"
+            android:tint="@color/nice_pink" />
+
+        <TextView
+            style="@style/Models12SemiBoldText"
+            android:textSize="@dimen/subitem_text_size_small"
+            android:textColor="@color/nice_pink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/create_new"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/subitem_create_bottom_margin"
+        android:layout_marginStart="@dimen/subitem_left_margin" />
+
+</LinearLayout>
