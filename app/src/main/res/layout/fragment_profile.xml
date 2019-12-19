@@ -82,6 +82,8 @@
                 android:layout_width="@dimen/frag_profile_user_img_size"
                 android:layout_height="@dimen/frag_profile_user_img_size"
                 android:scaleType="centerCrop"
+                android:visibility="invisible"
+                tools:visibility="visible"
                 tools:src="@drawable/fill_profile_header_1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -94,6 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/frag_profile_margin"
                 android:layout_marginEnd="@dimen/frag_profile_margin"
+                android:visibility="invisible"
+                tools:visibility="invisible"
                 android:maxLines="2"
                 app:autoSizeTextType="uniform"
                 android:gravity="center_vertical"
@@ -109,8 +113,8 @@
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
-                android:visibility="gone"
-                tools:visibility="visible"
+                android:visibility="invisible"
+                tools:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/memberLabel"
                 app:layout_constraintEnd_toEndOf="@+id/userName"
                 app:layout_constraintStart_toStartOf="@+id/userName"
@@ -131,7 +135,7 @@
                 app:autoSizeTextType="uniform"
                 android:gravity="center_vertical"
                 android:visibility="invisible"
-                tools:visibility="visible"
+                tools:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/userImg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/userImg"
@@ -146,7 +150,8 @@
                 android:layout_marginEnd="@dimen/frag_profile_margin"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:visibility="gone"
+                android:visibility="invisible"
+                tools:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/userImg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/userImg"
@@ -195,6 +200,66 @@
                     android:drawablePadding="3dp"
                     tools:text="Milan"
                     android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/walletLl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/userImg"
+                app:layout_constraintStart_toStartOf="@id/userImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <TextView
+                    android:id="@+id/walletBalanceTv"
+                    style="@style/Models24SemiBoldText"
+                    android:textSize="@dimen/frag_profile_text_size_very_large"
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    tools:text="€ 1.273,00" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/walletCurrencyShortTv"
+                        style="@style/Models24SemiBoldText"
+                        android:textSize="@dimen/frag_profile_text_size_large"
+                        android:textColor="@color/gray_hint"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        tools:text="EUR" />
+
+                    <ImageView
+                        android:layout_width="@dimen/frag_profile_small_round_icon_size"
+                        android:layout_height="@dimen/frag_profile_small_round_icon_size"
+                        android:layout_marginStart="@dimen/frag_profile_small_round_icon_margin"
+                        android:layout_marginEnd="@dimen/frag_profile_small_round_icon_margin"
+                        android:src="@drawable/round_background"
+                        android:tint="@color/gray_hint_light" />
+
+                    <TextView
+                        android:id="@+id/walletCurrencyTv"
+                        style="@style/Models24SemiBoldText"
+                        android:textSize="@dimen/frag_profile_text_size_large"
+                        android:textColor="@color/gray_hint"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        tools:text="Euro" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -277,7 +342,7 @@
                     android:layout_marginStart="@dimen/frag_profile_round_icon_size"
                     android:layout_marginEnd="@dimen/frag_profile_round_icon_size"
                     android:src="@drawable/round_background"
-                    android:tint="@color/gray_hint_light" />
+                    android:tint="@color/gray_disabled" />
 
                 <TextView
                     android:id="@+id/termsTv"
@@ -293,7 +358,7 @@
                     android:layout_marginStart="@dimen/frag_profile_round_icon_size"
                     android:layout_marginEnd="@dimen/frag_profile_round_icon_size"
                     android:src="@drawable/round_background"
-                    android:tint="@color/gray_hint_light" />
+                    android:tint="@color/gray_disabled" />
 
                 <TextView
                     android:id="@+id/privacyTv"

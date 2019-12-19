@@ -132,15 +132,4 @@ class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, BusinessAdap
         businessAdapter?.setOpenedItem(position)
     }
 
-// from old "invite your friends" button
-//    private fun share(referralCode: String) {
-//        val text = getString(R.string.shareContent, referralCode)
-//
-//        val shareIntent = Intent(Intent.ACTION_SEND)
-//        shareIntent.type = "text/plain"
-//        shareIntent.putExtra(Intent.EXTRA_TEXT, text)
-//
-//        startActivity(shareIntent)
-//    }
-
 }

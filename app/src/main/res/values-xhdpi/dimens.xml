@@ -121,7 +121,10 @@
     <dimen name="frag_profile_padding_bottom">32dp</dimen>
     <dimen name="frag_profile_margin">24dp</dimen>
     <!-- (frag_profile_margin ) 24 / 2 -->
-    <dimen name="frag_profile_business_margin_top">12dp</dimen>
+    <dimen name="frag_profile_business_margin_top">8dp</dimen>
+    <dimen name="frag_profile_text_size_very_large">30sp</dimen>
+    <dimen name="frag_profile_small_round_icon_size">3.5dp</dimen>
+    <dimen name="frag_profile_small_round_icon_margin">6dp</dimen>
     <dimen name="frag_profile_text_size_large">20sp</dimen>
     <dimen name="frag_profile_text_size_normal">16sp</dimen>
     <dimen name="frag_profile_text_size_smaller">15sp</dimen>

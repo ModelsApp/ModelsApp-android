@@ -79,11 +79,19 @@ class ProfileFragment: BaseFragment(), ProfileView {
 
         memberLabel.text = subText + " " + getString(R.string.member) + "\n" + getString(R.string.level_format, user.level)
 
-//      TODO  show/hide icMedal(when?), change statusCircle color(when?)
+//      TODO fill social data (show/hide icMedal(when?), change statusCircle color(when?) populate rvSocials)
 
-//      TODO  populate rvSocials
+//      TODO fill business data (businessInfoLl - heightTv, sizeTv, cityTv)
 
-//      TODO fill business data(businessInfoLl - heightTv, sizeTv, cityTv)
+//      TODO fill wallet data (walletBalanceTv, walletCurrencyShortTv, walletCurrencyTv)
+
+        //TODO just for testing, delete later
+        heightTv.text = "Height: 179cm"
+        sizeTv.text = "90 - 60 - 90"
+        cityTv.text = "Milan"
+        walletBalanceTv.text = "€ 1.273,00"
+        walletCurrencyShortTv.text = "EUR"
+        walletCurrencyTv.text = "Euro"
 
         setupFragmentAdapter(user, actualTokenInfo)
     }
@@ -104,13 +112,22 @@ class ProfileFragment: BaseFragment(), ProfileView {
                 setUpPage(currentPagerPosition)
             }
         })
+
+        setUpPage(0)
     }
 
     fun setUpPage(position: Int){
         memberLabel.visibility = if(position == POSITION_SOCIAL) View.VISIBLE else View.INVISIBLE
         rvSocials.visibility = if(position == POSITION_SOCIAL) View.VISIBLE else View.INVISIBLE
 
-        businessInfoLl.visibility = if(position == POSITION_BUSINESS) View.VISIBLE else View.GONE
+        businessInfoLl.visibility = if(position == POSITION_BUSINESS) View.VISIBLE else View.INVISIBLE
+
+        userImg.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
+        userName.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
+        icMedal.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
+        statusRl.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
+
+        walletLl.visibility = if(position == POSITION_WALLET) View.VISIBLE else View.INVISIBLE
     }
 
     override fun showProgress() {

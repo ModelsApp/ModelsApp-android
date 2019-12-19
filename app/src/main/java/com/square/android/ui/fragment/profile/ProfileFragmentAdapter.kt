@@ -10,8 +10,7 @@ import com.square.android.utils.widget.WrapContentPagingViewPager
 
 private var PAGE_TITLES_RES = listOf(R.string.social, R.string.business, R.string.wallet)
 
-//TODO change to 3
-private const val ITEM_COUNT = 2
+private const val ITEM_COUNT = 3
 
 const val POSITION_SOCIAL = 0
 const val POSITION_BUSINESS = 1
@@ -27,10 +26,7 @@ class ProfileFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentMana
         return when (position) {
             POSITION_SOCIAL -> ProfileSocialFragment.newInstance(user, actualTokenInfo)
             POSITION_BUSINESS -> ProfileBusinessFragment.newInstance(user)
-
-//            TODO implement 1 remaining fragment
-//            POSITION_WALLET -> null
-
+            POSITION_WALLET -> ProfileWalletFragment.newInstance(user)
             else -> throw IllegalArgumentException("Unknown position: $position")
         }
     }
