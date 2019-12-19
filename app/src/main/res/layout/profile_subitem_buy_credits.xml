@@ -36,7 +36,7 @@
             <TextView
                 android:id="@+id/buyTitle"
                 style="@style/Models15SemiBoldText"
-                android:textSize="@dimen/subitem_text_size_normal"
+                android:textSize="@dimen/frag_profile_text_size_smaller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -47,7 +47,7 @@
             <TextView
                 android:id="@+id/buyPrice"
                 style="@style/Models15SemiBoldText"
-                android:textSize="@dimen/subitem_text_size_normal"
+                android:textSize="@dimen/frag_profile_text_size_smaller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"

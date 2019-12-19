@@ -92,7 +92,7 @@
         android:visibility="gone"
         tools:visibility="visible"
         tools:background="@color/nice_red"
-        tools:layout_height="48dp"
+        tools:layout_height="40dp"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@+id/icon"
         app:layout_constraintStart_toStartOf="parent"

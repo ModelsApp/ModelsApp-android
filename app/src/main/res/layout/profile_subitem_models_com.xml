@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/modelsComText"
             style="@style/Models15Text"
-            android:textSize="@dimen/subitem_text_size_normal"
+            android:textSize="@dimen/frag_profile_text_size_smaller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Text"
@@ -30,7 +30,7 @@
             android:elevation="2dp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
-            android:padding="@dimen/subitem_tv_padding" />
+            android:padding="@dimen/subitem_tv_bottom_margin" />
 
     </LinearLayout>
 

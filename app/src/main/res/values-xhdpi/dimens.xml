@@ -107,23 +107,15 @@
     <dimen name="photosReviewedBetweenMargin">48dp</dimen>
 
     <!-- fragment profile & item profile & profile subitems -->
-
     <dimen name="frag_profile_user_img_size">128dp</dimen>
-    <!-- TODO figure out how to calculate this when frag_profile_user_img_size will change in hdpi -->
     <dimen name="frag_profile_medal_margin_top">106dp</dimen>
-    <!-- TODO figure out how to calculate this when frag_profile_user_img_size will change in hdpi -->
     <dimen name="frag_profile_medal_margin_start">108dp</dimen>
-
-    <!-- TODO figure out how to calculate this when sizes will change in hdpi -->
     <dimen name="frag_profile_status_margin_top">6dp</dimen>
     <dimen name="frag_profile_status_size">16.5dp</dimen>
     <dimen name="frag_profile_status_bg_size">20dp</dimen>
-
     <dimen name="frag_profile_medal_width">32dp</dimen>
     <dimen name="frag_profile_medal_height">40dp</dimen>
     <!-- (frag_profile_margin ) 24 / 2  -->
-    <dimen name="frag_profile_medal_right_margin">12dp</dimen>
-    <dimen name="frag_profile_medal_top_margin">104dp</dimen>
     <dimen name="frag_profile_round_icon_size">8dp</dimen>
     <dimen name="frag_profile_bottom_label_margin">48dp</dimen>
     <dimen name="frag_profile_padding_bottom">32dp</dimen>
@@ -145,14 +137,12 @@
     <dimen name="item_profile_text_size">16sp</dimen>
 <!--    -->
     <dimen name="subitem_tv_bottom_margin">12dp</dimen>
-    <dimen name="subitem_tv_padding">12dp</dimen>
     <dimen name="subitem_icon_size">48dp</dimen>
     <dimen name="subitem_left_margin">28dp</dimen>
     <dimen name="subitem_bottom_margin">16dp</dimen>
     <dimen name="subitem_top_margin">4dp</dimen>
     <dimen name="subitem_text_size_very_small">10sp</dimen>
     <dimen name="subitem_text_size_small">12sp</dimen>
-    <dimen name="subitem_text_size_normal">15sp</dimen>
 <!--    -->
     <dimen name="subitem_preference_switch_size">36dp</dimen>
     <dimen name="subitem_preference_bottom_margin">8dp</dimen>

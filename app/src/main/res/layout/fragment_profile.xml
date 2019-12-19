@@ -116,7 +116,7 @@
                 app:layout_constraintStart_toStartOf="@+id/userName"
                 app:layout_constraintTop_toBottomOf="@+id/userName"
                 tools:background="@color/gray_hint"
-                tools:layout_height="24dp" />
+                tools:layout_height="16dp" />
 
             <TextView
                 android:id="@+id/memberLabel"
@@ -146,7 +146,7 @@
                 android:layout_marginEnd="@dimen/frag_profile_margin"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/userImg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/userImg"
@@ -202,7 +202,6 @@
                 android:id="@+id/icMedal"
                 android:layout_width="@dimen/frag_profile_medal_width"
                 android:layout_height="@dimen/frag_profile_medal_height"
-                android:layout_marginEnd="@dimen/frag_profile_medal_right_margin"
                 android:layout_marginTop="@dimen/frag_profile_medal_margin_top"
                 android:layout_marginStart="@dimen/frag_profile_medal_margin_start"
                 android:scaleType="fitXY"

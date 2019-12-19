@@ -16,18 +16,20 @@
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/preferenceSwitch"
         style="@style/Models15Text"
-        android:textSize="@dimen/subitem_text_size_normal"
-        android:textColor="@color/grey_dark"
         android:layout_width="match_parent"
         android:layout_height="@dimen/subitem_preference_switch_size"
-        android:enabled="false"
         android:layout_marginStart="@dimen/subitem_left_margin"
+        android:enabled="false"
+        android:gravity="center_vertical"
+        android:textColor="@color/grey_dark"
+        tools:background="@color/nice_pink"
+        android:textSize="@dimen/frag_profile_text_size_smaller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v1"
         app:thumbTint="@color/switch_color_thumb"
         app:trackTint="@color/switch_color_track"
-        app:layout_constraintTop_toBottomOf="@+id/v1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center_vertical"
         tools:text="Social contents" />
 
     <View

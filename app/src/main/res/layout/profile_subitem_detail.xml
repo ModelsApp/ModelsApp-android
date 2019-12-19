@@ -30,12 +30,12 @@
             android:id="@+id/detailFirstContainer"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
-            android:padding="@dimen/subitem_tv_padding" >
+            android:padding="@dimen/subitem_tv_bottom_margin" >
 
             <TextView
                 android:id="@+id/detailFirstTitle"
                 style="@style/Models15SemiBoldText"
-                android:textSize="@dimen/subitem_text_size_normal"
+                android:textSize="@dimen/frag_profile_text_size_smaller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -47,7 +47,7 @@
             <TextView
                 android:id="@+id/detailFirstText"
                 style="@style/Models15Text"
-                android:textSize="@dimen/subitem_text_size_normal"
+                android:textSize="@dimen/frag_profile_text_size_smaller"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -68,12 +68,12 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:id="@+id/detailSecondContainer"
-            android:padding="@dimen/subitem_tv_padding" >
+            android:padding="@dimen/subitem_tv_bottom_margin" >
 
             <TextView
                 android:id="@+id/detailSecondTitle"
                 style="@style/Models15SemiBoldText"
-                android:textSize="@dimen/subitem_text_size_normal"
+                android:textSize="@dimen/frag_profile_text_size_smaller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -84,7 +84,7 @@
             <TextView
                 android:id="@+id/detailSecondText"
                 style="@style/Models15Text"
-                android:textSize="@dimen/subitem_text_size_normal"
+                android:textSize="@dimen/frag_profile_text_size_smaller"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

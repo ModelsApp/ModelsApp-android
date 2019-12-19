@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/portfolioTitle"
         style="@style/Models15Text"
-        android:textSize="@dimen/subitem_text_size_normal"
+        android:textSize="@dimen/frag_profile_text_size_smaller"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/subitem_left_margin"

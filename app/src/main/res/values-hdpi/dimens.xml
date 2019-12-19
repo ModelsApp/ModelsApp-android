@@ -106,4 +106,50 @@
     <dimen name="photosReviewedTextMargin">16dp</dimen>
     <dimen name="photosReviewedBetweenMargin">32dp</dimen>
 
+
+    <!-- fragment profile & item profile & profile subitems -->
+    <dimen name="frag_profile_user_img_size">104dp</dimen>
+    <dimen name="frag_profile_medal_margin_top">88dp</dimen>
+    <dimen name="frag_profile_medal_margin_start">90dp</dimen>
+    <dimen name="frag_profile_status_margin_top">4dp</dimen>
+    <dimen name="frag_profile_status_size">12dp</dimen>
+    <dimen name="frag_profile_status_bg_size">14.7dp</dimen>
+    <dimen name="frag_profile_medal_width">24dp</dimen>
+    <dimen name="frag_profile_medal_height">30dp</dimen>
+    <dimen name="frag_profile_round_icon_size">6dp</dimen>
+    <dimen name="frag_profile_bottom_label_margin">36dp</dimen>
+    <dimen name="frag_profile_padding_bottom">24dp</dimen>
+    <dimen name="frag_profile_margin">18dp</dimen>
+    <!-- (frag_profile_margin ) / 2 -->
+    <dimen name="frag_profile_business_margin_top">9dp</dimen>
+    <dimen name="frag_profile_text_size_large">16sp</dimen>
+    <dimen name="frag_profile_text_size_normal">13sp</dimen>
+    <dimen name="frag_profile_text_size_smaller">11sp</dimen>
+    <dimen name="frag_profile_text_size_small">10sp</dimen>
+<!--    -->
+    <dimen name="item_profile_arrow_size">18dp</dimen>
+    <dimen name="item_profile_icon_size">25dp</dimen>
+    <dimen name="item_profile_subicon_size">12dp</dimen>
+    <dimen name="item_profile_subicon_margin">6dp</dimen>
+    <dimen name="item_profile_margin">10dp</dimen>
+    <!--  (iconSize) 32 + 24 (item_profile_margin * 2)-->
+    <dimen name="item_profile_clickable_size">45dp</dimen>
+    <dimen name="item_profile_text_size">12sp</dimen>
+<!--    -->
+    <dimen name="subitem_tv_bottom_margin">9dp</dimen>
+    <dimen name="subitem_icon_size">36dp</dimen>
+    <dimen name="subitem_left_margin">22dp</dimen>
+    <dimen name="subitem_bottom_margin">12dp</dimen>
+    <dimen name="subitem_top_margin">3dp</dimen>
+    <dimen name="subitem_text_size_very_small">7sp</dimen>
+    <dimen name="subitem_text_size_small">9sp</dimen>
+<!--    -->
+    <dimen name="subitem_preference_switch_size">29dp</dimen>
+    <dimen name="subitem_preference_bottom_margin">6dp</dimen>
+<!--    -->
+    <dimen name="subitem_create_bottom_margin">9dp</dimen>
+    <dimen name="subitem_create_small_image_size">10dp</dimen>
+<!--    -->
+    <dimen name="subitem_details_second_margin">11dp</dimen>
+
 </resources>

@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/polaroidTitle"
         style="@style/Models15Text"
-        android:textSize="@dimen/subitem_text_size_normal"
+        android:textSize="@dimen/frag_profile_text_size_smaller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constrainedWidth="true"
