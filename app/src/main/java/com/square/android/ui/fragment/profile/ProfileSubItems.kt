@@ -23,10 +23,14 @@ const val DETAIL_TYPE_FULL = 2
 const val CREATE_CLICKED_TYPE_POLAROID = 1
 const val CREATE_CLICKED_TYPE_PORTFOLIO = 2
 const val CREATE_CLICKED_TYPE_COMP_CARD = 3
+const val CREATE_CLICKED_TYPE_ACCOUNT = 4
 
 const val PREFERENCE_TYPE_SOCIAL = 1
 const val PREFERENCE_TYPE_HOSTESS = 2
 const val PREFERENCE_TYPE_NIGHT_OUT = 3
+
+const val ACCOUNT_TYPE_DISPLAY = 1
+const val ACCOUNT_TYPE_EDIT = 2
 
 class ProfileSubItems {
 
@@ -92,6 +96,15 @@ class ProfileSubItems {
 
         class ModelsCom(
                 var modelsComUserName: String = "")
+
+// BUSINESS //
+        class Account(
+                // if type: display - profile_subitem_account, edit - profile_subitem_account_edit
+                var type: Int = 0, // one of ACCOUNT_TYPE...
+                var nameSurname: String = "",
+                var iban: String = "",
+                var swiftBic: String = "",
+                var isPrimary: Boolean)
 
 }
 

@@ -16,7 +16,7 @@ import com.square.android.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.page_profile_business.*
 import org.jetbrains.anko.bundleOf
 
-class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, BusinessAdapter.Handler {
+class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, ProfileItemAdapter.Handler, ProfileItemAdapter.BusinessHandler {
 
     companion object {
         @Suppress("DEPRECATION")
@@ -36,7 +36,7 @@ class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, BusinessAdap
     @ProvidePresenter
     fun providePresenter() = ProfileBusinessPresenter(arguments?.getParcelable(EXTRA_USER) as Profile.User)
 
-    private var businessAdapter: BusinessAdapter? = null
+    private var businessAdapter: ProfileItemAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -93,7 +93,7 @@ class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, BusinessAdap
                 ProfileSubItems.ModelsCom("")
         ))
 
-        businessAdapter = BusinessAdapter(listOf(details, polaroids, portfolios, agencies, compCard, preferences, modelsCom), this)
+        businessAdapter = ProfileItemAdapter(listOf(details, polaroids, portfolios, agencies, compCard, preferences, modelsCom), this, businessHandler = this)
 
         rvItems.itemAnimator = null
         rvItems.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)

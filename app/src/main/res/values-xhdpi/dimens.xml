@@ -138,6 +138,7 @@
     <!--  (iconSize) 32 + 24 (item_profile_margin * 2)-->
     <dimen name="item_profile_clickable_size">56dp</dimen>
     <dimen name="item_profile_text_size">16sp</dimen>
+    <dimen name="item_profile_text_size_large">18sp</dimen>
 <!--    -->
     <dimen name="subitem_tv_bottom_margin">12dp</dimen>
     <dimen name="subitem_icon_size">48dp</dimen>
@@ -154,5 +155,16 @@
     <dimen name="subitem_create_small_image_size">13dp</dimen>
 <!--    -->
     <dimen name="subitem_details_second_margin">14dp</dimen>
+<!--    -->
+    <dimen name="subitem_account_edit_rb_margin">10dp</dimen>
+    <dimen name="subitem_account_edit_rb_size">17dp</dimen>
+    <dimen name="subitem_account_btn_height">48dp</dimen>
+    <dimen name="subitem_account_btn_margin">10dp</dimen>
+
+
+
+    <dimen name="v_1dp">1dp</dimen>
+    <dimen name="v_8dp">8dp</dimen>
+<!--  TODO: difference in dp between xhdpi and hdpi is 1 : 0.75 -> 10dp in xhdpi is 7.5dp in hdpi  -->
 
 </resources>

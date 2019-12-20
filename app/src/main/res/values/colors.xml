@@ -44,6 +44,7 @@
     <color name="status_red">#E12B2A</color>
 
 
+
     <color name="gray_light">#F6F6F6</color>
     <color name="gray_divider"> #EAEAEA</color>
     <color name="gray_purple">#F7ECFC</color>
@@ -51,6 +52,7 @@
     <color name="nice_pink">#E82E90</color>
     <color name="nice_pink2">#E93187</color>
     <color name="nice_pinkish">#E95B81</color>
+    <color name="checked_nice_pink">#FE8BC2</color>
     <color name="nice_purple">#B833E6</color>
     <color name="nice_violet">#9550E7</color>
     <color name="nice_violet_trans">#F4EBFC</color>

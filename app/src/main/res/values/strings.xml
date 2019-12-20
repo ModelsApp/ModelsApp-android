@@ -412,6 +412,19 @@
     <string name="add_a">Add a</string>
     <string name="step">Step</string>
 
+    <string name="first_last_name">First and last name</string>
+    <string name="iban">Iban</string>
+    <string name="swift_bic">Swift/BIC</string>
+    <string name="set_method_primary">Set this method as primary</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="accounts">Accounts</string>
+    <string name="paypal">PayPal</string>
+    <string name="login_with_paypal">Login with PayPal</string>
+    <string name="statement">Statement</string>
+    <string name="total_balance_">Total Balance:</string>
+    <string name="unlink">Unlink</string>
+
     <string name="models_com_models_">models.com/models/</string>
     <string name="models_com_empty_text">insertyourinfo</string>
 

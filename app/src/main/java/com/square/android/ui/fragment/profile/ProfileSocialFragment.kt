@@ -17,7 +17,7 @@ import com.square.android.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.page_profile_social.*
 import org.jetbrains.anko.bundleOf
 
-class ProfileSocialFragment: BaseFragment(), ProfileSocialView, SocialAdapter.Handler {
+class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapter.Handler, ProfileItemAdapter.SocialHandler {
 
     companion object {
         @Suppress("DEPRECATION")
@@ -37,7 +37,7 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, SocialAdapter.Ha
     @ProvidePresenter
     fun providePresenter() = ProfileSocialPresenter(arguments?.getParcelable(EXTRA_USER) as Profile.User, arguments?.getParcelable(EXTRA_BILLING_TOKEN_INFO) as BillingTokenInfo)
 
-    private var socialAdapter: SocialAdapter? = null
+    private var profileItemAdapter: ProfileItemAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -97,14 +97,14 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, SocialAdapter.Ha
                 ProfileSubItems.Ambassador(AMBASSADOR_TYPE_JOIN_TEAM, R.drawable.r_shop)
         ))
 
-        socialAdapter = SocialAdapter(listOf(plainCredits, plainPoints, socialPlan, socialChannels, socialEarnCredits, socialBuyCredits, socialAmbassador), this)
+        profileItemAdapter = ProfileItemAdapter(listOf(plainCredits, plainPoints, socialPlan, socialChannels, socialEarnCredits, socialBuyCredits, socialAmbassador), this, socialHandler = this)
         rvItems.itemAnimator = null
         rvItems.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        rvItems.adapter = socialAdapter
+        rvItems.adapter = profileItemAdapter
     }
 
     override fun clickViewClicked(position: Int) {
-        socialAdapter?.setOpenedItem(position)
+        profileItemAdapter?.setOpenedItem(position)
     }
 
     override fun changePlanClicked() {
@@ -135,6 +135,10 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, SocialAdapter.Ha
         // TODO
 
         println("ProfileSocialFragment: ambassadorClicked() type = "+type)
+    }
+
+    override fun createClicked(clickedType: Int) {
+
     }
 
 // from old "invite your friends" button

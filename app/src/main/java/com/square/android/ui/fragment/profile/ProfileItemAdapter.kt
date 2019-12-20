@@ -1,6 +1,9 @@
 package com.square.android.ui.fragment.profile
 
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import com.square.android.R
 import com.square.android.ui.base.BaseAdapter
@@ -8,19 +11,29 @@ import kotlinx.android.synthetic.main.item_profile.*
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.square.android.utils.CustomTypefaceSpan
+import kotlinx.android.synthetic.main.profile_subitem_agency.view.*
 import kotlinx.android.synthetic.main.profile_subitem_ambassador.view.*
 import kotlinx.android.synthetic.main.profile_subitem_buy_credits.view.*
+import kotlinx.android.synthetic.main.profile_subitem_comp_card.view.*
+import kotlinx.android.synthetic.main.profile_subitem_create.view.*
+import kotlinx.android.synthetic.main.profile_subitem_detail.view.*
 import kotlinx.android.synthetic.main.profile_subitem_earn_credits.view.*
+import kotlinx.android.synthetic.main.profile_subitem_models_com.view.*
 import kotlinx.android.synthetic.main.profile_subitem_plan.view.*
+import kotlinx.android.synthetic.main.profile_subitem_polaroid.view.*
+import kotlinx.android.synthetic.main.profile_subitem_portfolio.view.*
+import kotlinx.android.synthetic.main.profile_subitem_preference.view.*
 import kotlinx.android.synthetic.main.profile_subitem_social.view.*
 
-class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : BaseAdapter<ProfileItem, SocialAdapter.Holder>(data) {
+class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, private val socialHandler: SocialHandler? = null,
+                         private var businessHandler: BusinessHandler? = null, private var walletHandler: WalletHandler? = null) : BaseAdapter<ProfileItem, ProfileItemAdapter.Holder>(data) {
 
     var openedItems: MutableList<Int> = mutableListOf()
 
     override fun getLayoutId(viewType: Int) = R.layout.item_profile
 
-    override fun instantiateHolder(view: View): Holder = Holder(view, handler)
+    override fun instantiateHolder(view: View): Holder = Holder(view, handler, socialHandler, businessHandler, walletHandler)
 
     override fun getItemCount() = data.size
 
@@ -49,11 +62,12 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
         notifyItemChanged(position, OpenedPayload)
     }
 
-    class Holder(containerView: View, var handler: Handler) : BaseHolder<ProfileItem>(containerView) {
+    class Holder(containerView: View, var handler: Handler, var socialHandler: SocialHandler?,
+                 var businessHandler: BusinessHandler?, var walletHandler: WalletHandler?) : BaseHolder<ProfileItem>(containerView) {
 
         override fun bind(item: ProfileItem, vararg extras: Any?) {
-
             val openedItems = if (extras[0] == null) null else extras[0] as MutableList<Int>
+
             bindOpened(item, openedItems)
 
             clickView.visibility = if (item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
@@ -91,11 +105,22 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
 
                         for(objc in it){
                             val subItem: View? = when (objc) {
+                                is ProfileSubItems.Create -> bindCreate(objc)
+                                // Social
                                 is ProfileSubItems.Plan -> bindPlan(objc)
                                 is ProfileSubItems.Social -> bindSocial(objc)
                                 is ProfileSubItems.EarnCredits -> bindEarn(objc)
                                 is ProfileSubItems.BuyCredits -> bindBuy(objc)
                                 is ProfileSubItems.Ambassador -> bindAmbassador(objc)
+                                // Business
+                                is ProfileSubItems.Detail -> bindDetail(objc)
+                                is ProfileSubItems.Polaroid -> bindPolaroid(objc)
+                                is ProfileSubItems.Portfolio -> bindPortfolio(objc)
+                                is ProfileSubItems.Agency -> bindAgency(objc)
+                                is ProfileSubItems.CompCard -> bindCompCard(objc)
+                                is ProfileSubItems.Preference -> bindPreference(objc)
+                                is ProfileSubItems.ModelsCom -> bindModelsCom(objc)
+                                // Wallet
                                 else -> null
                             }
 
@@ -120,7 +145,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             view.planText.text = item.text
             view.planChangeBtn.text = itemsLl.context.resources.getString(R.string.change)
             view.planChangeBtn.visibility = if (item.canChange) View.VISIBLE else View.GONE
-            view.planChangeBtn.setOnClickListener { handler.changePlanClicked() }
+            view.planChangeBtn.setOnClickListener { socialHandler?.changePlanClicked() }
 
             return view
         }
@@ -153,7 +178,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             view.socialTv.text = if (item.connected) itemsLl.context.getString(R.string.connected) else itemsLl.context.getString(R.string.connect_format, appName)
             view.socialTv.setTextColor(ContextCompat.getColor(itemsLl.context, if (item.connected) R.color.nice_pink else android.R.color.black))
 
-            view.mainContainer.setOnClickListener { handler.socialConnectClicked(item.type, item.connected) }
+            view.mainContainer.setOnClickListener { socialHandler?.socialConnectClicked(item.type, item.connected) }
 
             return view
         }
@@ -190,7 +215,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             }
             view.earnBtn.text = btnText
 
-            view.earnBtn.setOnClickListener { handler.earnMoreClicked(item.type) }
+            view.earnBtn.setOnClickListener { socialHandler?.earnMoreClicked(item.type) }
 
             return view
         }
@@ -216,7 +241,7 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             view.buyTitle.text = title
 
             view.buyPrice.text = item.priceText
-            view.buyBtn.setOnClickListener { handler.buyExtraClicked(item.type) }
+            view.buyBtn.setOnClickListener { socialHandler?.buyExtraClicked(item.type) }
 
             return view
         }
@@ -247,7 +272,138 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
             }
             view.ambassadorBtn.text = btnText
 
-            view.ambassadorBtn.setOnClickListener { handler.ambassadorClicked(item.type) }
+            view.ambassadorBtn.setOnClickListener { socialHandler?.ambassadorClicked(item.type) }
+
+            return view
+        }
+
+        private fun bindDetail(item: ProfileSubItems.Detail): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_detail, null)
+
+            if(item.type == DETAIL_TYPE_DOUBLE){
+                view.detailFirstTitle.visibility = View.VISIBLE
+                view.detailSecondContainer.visibility = View.VISIBLE
+                view.detailFirstText.minLines = 1
+                view.detailFirstText.maxLines = 1
+
+                view.detailFirstTitle.text = item.firstTitle
+                view.detailFirstText.text = item.firstText
+                view.detailSecondTitle.text = item.secondTitle
+                view.detailSecondText.text = item.secondText
+
+            } else if(item.type == DETAIL_TYPE_FULL){
+                view.detailFirstTitle.visibility = View.GONE
+                view.detailSecondContainer.visibility = View.GONE
+                view.detailFirstText.minLines = 2
+                view.detailFirstText.maxLines = Integer.MAX_VALUE
+
+                val typeface = Typeface.createFromAsset(view.detailFirstText.context.assets, view.detailFirstText.context.getString(R.string.font_poppins_medium))
+                val ss = SpannableStringBuilder(item.firstTitle+" "+item.firstText)
+                ss.setSpan(CustomTypefaceSpan("", typeface), 0, item.firstTitle.length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+
+                view.detailFirstTitle.text = ""
+                view.detailFirstText.text = ss
+                view.detailSecondTitle.text = ""
+                view.detailSecondText.text = ""
+            }
+
+            return view
+        }
+
+        private fun bindPolaroid(item: ProfileSubItems.Polaroid): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_polaroid, null)
+
+            view.polaroidTitle.text = item.title
+            view.polaroidOpenBtn.setOnClickListener { businessHandler?.polaroidOpenClicked(item.albumId) }
+
+            if(item.expired){
+                view.expiredText.visibility = View.VISIBLE
+
+                (view.polaroidTitle.layoutParams as ConstraintLayout.LayoutParams).also { layoutParams ->
+                    layoutParams.marginEnd = itemsLl.context.resources.getDimensionPixelSize(R.dimen.subitem_bottom_margin) + view.expiredText.measuredWidth
+                }
+            } else{
+                view.expiredText.visibility = View.GONE
+
+                (view.polaroidTitle.layoutParams as ConstraintLayout.LayoutParams).also { layoutParams ->
+                    layoutParams.marginEnd = itemsLl.context.resources.getDimensionPixelSize(R.dimen.subitem_left_margin)
+                }
+            }
+
+            return view
+        }
+
+        private fun bindPortfolio(item: ProfileSubItems.Portfolio): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_portfolio, null)
+
+            view.portfolioTitle.text = item.title
+            view.portfolioOpenBtn.setOnClickListener { businessHandler?.portfolioOpenClicked(item.portfolioId) }
+
+            return view
+        }
+
+        private fun bindAgency(item: ProfileSubItems.Agency): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_agency, null)
+
+            view.agencyTitle.text = item.title
+            view.agencyViewBtn.setOnClickListener { businessHandler?.agencyViewClicked(item.agencyId) }
+
+            return view
+        }
+
+        private fun bindCompCard(item: ProfileSubItems.CompCard): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_comp_card, null)
+
+            view.compCardTitle.text = item.title
+            view.compCardOpenBtn.setOnClickListener { businessHandler?.compCardOpenClicked(item.compCardId) }
+
+            return view
+        }
+
+        private fun bindPreference(item: ProfileSubItems.Preference): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_preference, null)
+
+            view.preferenceSwitch.text = when(item.type){
+                PREFERENCE_TYPE_SOCIAL -> itemsLl.context.getString(R.string.social_contents)
+                PREFERENCE_TYPE_HOSTESS -> itemsLl.context.getString(R.string.hostess)
+                PREFERENCE_TYPE_NIGHT_OUT -> itemsLl.context.getString(R.string.night_out_experiences)
+                else -> ""
+            }
+
+            view.preferenceSwitch.isChecked = item.checked
+
+            view.preferenceClickView.setOnClickListener {
+                val checked = view.preferenceSwitch.isChecked.not()
+
+                item.checked = checked
+                view.preferenceSwitch.isChecked = checked
+                businessHandler?.preferenceClicked(item.type, checked)
+            }
+
+            return view
+        }
+
+        private fun bindModelsCom(item: ProfileSubItems.ModelsCom): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_models_com, null)
+
+            val modelsLink = itemsLl.context.getString(R.string.models_com_models_)
+            val emptyText = itemsLl.context.getString(R.string.models_com_empty_text)
+
+            val ss = SpannableString(modelsLink + if(TextUtils.isEmpty(item.modelsComUserName)) emptyText else item.modelsComUserName)
+
+            if(TextUtils.isEmpty(item.modelsComUserName)){
+                ss.setSpan(ForegroundColorSpan(ContextCompat.getColor(itemsLl.context, R.color.grey_dark)), modelsLink.length, ss.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            }
+
+            view.modelsComText.text = ss
+            view.modelsComText.setOnClickListener { businessHandler?.modelsComClicked(item.modelsComUserName) }
+
+            return view
+        }
+
+        private fun bindCreate(item: ProfileSubItems.Create): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_create, null)
+            view.createClickView.setOnClickListener { handler.createClicked(item.clickedType) }
 
             return view
         }
@@ -267,11 +423,28 @@ class SocialAdapter(data: List<ProfileItem>, private val handler: Handler) : Bas
 
     interface Handler {
         fun clickViewClicked(position: Int)
+        fun createClicked(clickedType: Int)
+    }
+
+    interface SocialHandler{
         fun changePlanClicked()
         fun socialConnectClicked(type: Int, isConnected: Boolean)
         fun earnMoreClicked(type: Int)
         fun buyExtraClicked(type: Int)
         fun ambassadorClicked(type: Int)
+    }
+
+    interface BusinessHandler{
+        fun polaroidOpenClicked(albumId: Long)
+        fun portfolioOpenClicked(portfolioId: Long)
+        fun agencyViewClicked(agencyId: Long)
+        fun compCardOpenClicked(compCardId: Long)
+        fun preferenceClicked(type: Int, isChecked: Boolean)
+        fun modelsComClicked(modelsComUserName: String)
+    }
+
+    interface WalletHandler{
+        // TODO
     }
 
     object OpenedPayload

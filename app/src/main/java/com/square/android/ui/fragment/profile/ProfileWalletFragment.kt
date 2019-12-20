@@ -16,7 +16,7 @@ import com.square.android.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.page_profile_wallet.*
 import org.jetbrains.anko.bundleOf
 
-class ProfileWalletFragment: BaseFragment(), ProfileWalletView, WalletAdapter.Handler {
+class ProfileWalletFragment: BaseFragment(), ProfileWalletView, ProfileItemAdapter.Handler, ProfileItemAdapter.WalletHandler {
 
     companion object {
         @Suppress("DEPRECATION")
@@ -36,7 +36,7 @@ class ProfileWalletFragment: BaseFragment(), ProfileWalletView, WalletAdapter.Ha
     @ProvidePresenter
     fun providePresenter() = ProfileWalletPresenter(arguments?.getParcelable(EXTRA_USER) as Profile.User)
 
-    private var walletAdapter: WalletAdapter? = null
+    private var walletAdapter: ProfileItemAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -44,8 +44,13 @@ class ProfileWalletFragment: BaseFragment(), ProfileWalletView, WalletAdapter.Ha
     }
 
     override fun showData(user: Profile.User) {
+        // TODO in ProfileSubItems -> create models for: (profile_subitem_login_with : {show unlink/set as primary/save widgets, change textcolor of text} when connected = true else gone ), profile_subitem_balance
 
-        walletAdapter = WalletAdapter(listOf(), this)
+        // TODO add items to adapter
+
+        // TODO bind items in adapter
+
+        walletAdapter = ProfileItemAdapter(listOf(), this)
 
         rvItems.itemAnimator = null
         rvItems.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)
@@ -55,6 +60,8 @@ class ProfileWalletFragment: BaseFragment(), ProfileWalletView, WalletAdapter.Ha
     override fun clickViewClicked(position: Int) {
         walletAdapter?.setOpenedItem(position)
     }
+
+    // TODO handler clicks etc.
 
     override fun createClicked(clickedType: Int) {
         // TODO

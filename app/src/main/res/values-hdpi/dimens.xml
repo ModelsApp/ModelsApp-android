@@ -106,7 +106,6 @@
     <dimen name="photosReviewedTextMargin">16dp</dimen>
     <dimen name="photosReviewedBetweenMargin">32dp</dimen>
 
-
     <!-- fragment profile & item profile & profile subitems -->
     <dimen name="frag_profile_user_img_size">104dp</dimen>
     <dimen name="frag_profile_medal_margin_top">88dp</dimen>
@@ -138,6 +137,7 @@
     <!--  (iconSize) 32 + 24 (item_profile_margin * 2)-->
     <dimen name="item_profile_clickable_size">45dp</dimen>
     <dimen name="item_profile_text_size">12sp</dimen>
+    <dimen name="item_profile_text_size_large">13sp</dimen>
 <!--    -->
     <dimen name="subitem_tv_bottom_margin">9dp</dimen>
     <dimen name="subitem_icon_size">36dp</dimen>
@@ -154,5 +154,16 @@
     <dimen name="subitem_create_small_image_size">10dp</dimen>
 <!--    -->
     <dimen name="subitem_details_second_margin">11dp</dimen>
+<!--    -->
+    <dimen name="subitem_account_edit_rb_margin">7.5dp</dimen>
+    <dimen name="subitem_account_edit_rb_size">12.5dp</dimen>
+    <dimen name="subitem_account_btn_height">36dp</dimen>
+    <dimen name="subitem_account_btn_margin">7.5dp</dimen>
+
+
+
+    <dimen name="v_1dp">0.75dp</dimen>
+    <dimen name="v_8dp">6dp</dimen>
+<!--  TODO: difference in dp between xhdpi and hdpi is 1 : 0.75 -> 10dp in xhdpi is 7.5dp in hdpi  -->
 
 </resources>

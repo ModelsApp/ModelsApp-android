@@ -22,7 +22,6 @@
         android:enabled="false"
         android:gravity="center_vertical"
         android:textColor="@color/grey_dark"
-        tools:background="@color/nice_pink"
         android:textSize="@dimen/frag_profile_text_size_smaller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

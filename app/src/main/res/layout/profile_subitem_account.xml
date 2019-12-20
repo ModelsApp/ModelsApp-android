@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/subitem_top_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/circleLl"
+        android:layout_width="@dimen/item_profile_icon_size"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/profileText"
+        app:layout_constraintBottom_toBottomOf="@id/profileText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+<!--   visibility = invisible if is not primary?     -->
+        <ImageView
+            android:layout_width="@dimen/v_8dp"
+            android:layout_height="@dimen/v_8dp"
+            android:tint="@color/checked_nice_pink"
+            android:src="@drawable/round_background" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profileText"
+        style="@style/Models15Text"
+        android:textSize="@dimen/frag_profile_text_size_smaller"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/subitem_left_margin"
+        android:maxLines="1"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/profileEditBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/circleLl"
+        app:layout_constraintTop_toBottomOf="@+id/v1"
+        tools:text="Anna Markova  •  ***279" />
+
+    <TextView
+        android:id="@+id/profileEditBtn"
+        style="@style/Models16SemiBoldText"
+        android:textSize="@dimen/item_profile_text_size"
+        android:textColor="@color/nice_pink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit"
+        app:layout_constraintTop_toTopOf="@+id/profileText"
+        app:layout_constraintBottom_toBottomOf="@id/profileText"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/subitem_bottom_margin"
+        app:layout_constraintTop_toBottomOf="@+id/profileText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
