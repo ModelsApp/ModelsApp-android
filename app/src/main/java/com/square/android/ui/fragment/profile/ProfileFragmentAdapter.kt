@@ -31,7 +31,7 @@ class ProfileFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentMana
         }
     }
 
-    //TODO used only with WrapContentPagingViewPager to measure height of every fragment
+//    //TODO used only with WrapContentPagingViewPager to measure height of every fragment
     override fun setPrimaryItem(container: ViewGroup, position: Int, objc: Any) {
         super.setPrimaryItem(container, position, objc)
         if (position != mCurrentPosition) {

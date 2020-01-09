@@ -9,9 +9,15 @@ class PagingViewPager : ViewPager {
 
     var isPagingEnabled = true
 
+    var animationEnabled = true
+
     constructor(context: Context) : super(context) {}
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+
+    override fun setCurrentItem(item: Int) {
+        super.setCurrentItem(item, animationEnabled)
+    }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return this.isPagingEnabled && super.onTouchEvent(event)
