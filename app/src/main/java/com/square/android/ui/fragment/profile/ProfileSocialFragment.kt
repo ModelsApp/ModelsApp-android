@@ -59,16 +59,19 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapt
             else -> ""
         }
 
+        //TODO how to determine if user can change plan?
+        val socialPlan = ProfileItem(TYPE_DROPDOWN, getString(R.string.active_plan), null,null, listOf(
+                ProfileSubItems.Plan(subText + " | " + subTypeText)
+                , true), subIconRes = R.drawable.ic_star, subText = subText )
+
+
+
+
         //TODO get credits value
         val plainCredits = ProfileItem(TYPE_PLAIN, getString(R.string.credits), user.credits.toString(), R.drawable.r_shop)
 
         //TODO get points value(from where?)
         val plainPoints = ProfileItem(TYPE_PLAIN, getString(R.string.points), "550", R.drawable.r_shop)
-
-        //TODO how to determine if user can change plan?
-        val socialPlan = ProfileItem(TYPE_DROPDOWN, getString(R.string.active_plan),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.Plan(subText+" | "+subTypeText)
-        , true))
 
         //TODO get social "connected" value for every type of social
         val socialChannels = ProfileItem(TYPE_DROPDOWN, getString(R.string.social_channels),null, R.drawable.r_shop, listOf(

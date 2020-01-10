@@ -132,7 +132,7 @@
 <!--    -->
     <dimen name="item_profile_arrow_size">24dp</dimen>
     <dimen name="item_profile_icon_size">32dp</dimen>
-    <dimen name="item_profile_subicon_size">16dp</dimen>
+    <dimen name="item_profile_subicon_size">24dp</dimen>
     <dimen name="item_profile_subicon_margin">8dp</dimen>
     <dimen name="item_profile_margin">12dp</dimen>
     <!--  (iconSize) 32 + 24 (item_profile_margin * 2)-->
@@ -161,31 +161,39 @@
     <dimen name="subitem_account_btn_height">48dp</dimen>
     <dimen name="subitem_account_btn_margin">10dp</dimen>
 
-
-
     <!-- fragment_profile -->
-    <dimen name="profile_toolbarHeight">200dp</dimen>
-    <dimen name="profile_bgImageSize">372dp</dimen>
+    <dimen name="profile_toolbarHeight">232dp</dimen>
+    <dimen name="profile_bgImageSize">400dp</dimen>
 <!-- it probably should stay 28dp because of status bar height-->
-    <dimen name="profile_toolbarMarginTop">28dp</dimen>
-    <dimen name="profile_scrimVisibleHeightTrigger">296dp</dimen>
-    <dimen name="profile_topPadding">200dp</dimen>
+    <dimen name="profile_toolbarMarginTop">32dp</dimen>
+    <dimen name="profile_scrimVisibleHeightTrigger">300dp</dimen>
+    <dimen name="profile_topPadding">24dp</dimen>
     <dimen name="profile_roundedViewHeight">24dp</dimen>
     <dimen name="profile_imageSize">96dp</dimen>
     <dimen name="profile_imageInitialMarginTop">-96dp</dimen>
     <dimen name="profile_imageBorderSize">2dp</dimen>
     <dimen name="profile_resizedImageSize">64dp</dimen>
     <dimen name="profile_textMarginTop">6dp</dimen>
-    <dimen name="profile_pointsImageSize">24dp</dimen>
+    <dimen name="profile_pointsImageSize">32dp</dimen>
+    <dimen name="profile_pointsMarginTop">12dp</dimen>
     <dimen name="profile_pointsPaddingEnd">8dp</dimen>
-    <dimen name="profile_defaultPadding">16dp</dimen>
-
-
-
+    <dimen name="profile_defaultPadding">24dp</dimen>
+    <dimen name="profile_tabsPadding">12dp</dimen>
+    <dimen name="profile_iconsPadding">16dp</dimen>
+    <dimen name="profile_iconsSize">32dp</dimen>
+    <dimen name="profile_iconsInsidePadding">4dp</dimen>
+<!--  profile_resizedImageSize(64) + paddingStart(16dp) + profile_defaultPadding(24dp) -->
+    <dimen name="profile_secondaryContainerMargin">104dp</dimen>
 
 
     <dimen name="v_1dp">1dp</dimen>
     <dimen name="v_8dp">8dp</dimen>
+
+
+    <dimen name="text_13">13sp</dimen>
+    <dimen name="text_14">14sp</dimen>
+    <dimen name="text_16">16sp</dimen>
+
 <!--  TODO: difference in dp between xhdpi and hdpi is 1 : 0.75 -> 10dp in xhdpi is 7.5dp in hdpi  -->
 
 </resources>

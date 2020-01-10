@@ -74,12 +74,29 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
             arrow.visibility = if (item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
             tv.visibility = if (item.type == TYPE_PLAIN) View.VISIBLE else View.GONE
 
+            divider.visibility = if(item.dividerVisible) View.VISIBLE else View.GONE
+
             clickView.setOnClickListener { handler.clickViewClicked(adapterPosition) }
 
-            icon.setImageDrawable(icon.context.getDrawable(item.iconRes))
+            if(item.subIconRes == null){
+                if(item.subText == null){
+                    tv.setTextColor(ContextCompat.getColor(itemsLl.context,  R.color.nice_pink))
+                } else{
+                    tv.setTextColor(ContextCompat.getColor(itemsLl.context,  R.color.grey_dark))
+                }
+            } else{
+                tv.setTextColor(ContextCompat.getColor(itemsLl.context,  R.color.status_yellow))
+            }
+
+            item.iconRes?.let {
+                icon.visibility = View.VISIBLE
+                icon.setImageDrawable(icon.context.getDrawable(it))
+
+            } ?: run{ icon.visibility = View.GONE}
+
             title.text = item.title
 
-            item.rightIconRes?.let {
+            item.subIconRes?.let {
                 rightIcon.visibility = View.VISIBLE
                 rightIcon.setImageDrawable(itemsLl.context.getDrawable(it))
 
@@ -99,6 +116,10 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
             if (item.type == TYPE_PLAIN) {
                 tv.text = item.textValue
             } else if (item.type == TYPE_DROPDOWN) {
+
+                tv.text = if (!TextUtils.isEmpty(item.subText)) item.subText else ""
+                tv.visibility = if (!TextUtils.isEmpty(item.subText)) View.VISIBLE else View.GONE
+
                 if (itemsLl.childCount <= 0) {
                     item.subItems?.let {
                         val subItems: MutableList<View> = mutableListOf()

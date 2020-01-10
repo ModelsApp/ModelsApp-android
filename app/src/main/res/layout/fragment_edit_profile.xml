@@ -5,8 +5,9 @@
     android:id="@+id/editProfileContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/profile_toolbarMarginTop"
     android:background="@android:color/background_light"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

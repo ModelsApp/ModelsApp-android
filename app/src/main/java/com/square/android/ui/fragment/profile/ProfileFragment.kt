@@ -1,16 +1,17 @@
 package com.square.android.ui.fragment.profile
 
+import android.annotation.TargetApi
 import android.app.Activity
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.ViewPager
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -23,6 +24,7 @@ import com.square.android.extensions.loadImage
 import com.square.android.presentation.presenter.profile.*
 import com.square.android.presentation.view.profile.ProfileView
 import com.square.android.ui.fragment.BaseFragment
+import com.square.android.utils.ActivityUtils
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.aaa_item_campaign_photo.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -45,15 +47,17 @@ class ProfileItem(
         var title: String = "",
         var textValue: String? = null,
         @DrawableRes
-        var iconRes: Int,
+        var iconRes: Int?,
         var subItems: List<Any>? = null,
         @DrawableRes
-        var rightIconRes: Int? = null)
+        var subIconRes: Int? = null,
+        var subText: String? = null,
+        var dividerVisible: Boolean = false)
 
 class ProfileFragment: BaseFragment(), ProfileView {
 
     private var currentPagerPosition = 0
-    private var isStatusBarLight: Boolean = false
+    private var isStatusBarLight: Boolean = true
 
     private var screenWidth: Int = 0
 
@@ -61,7 +65,19 @@ class ProfileFragment: BaseFragment(), ProfileView {
 
     private var imageMovePoint: Float = 0F
 
+    private var separatorHidePoint: Float = 0F
+
+    private var roundedResizePoint: Float = 0F
+    private var roundedResizeWeight: Float = 0F
+
+    private var profileBgAlphaPoint = 0f
+    private var profileBgAlphaWeight = 0f
+
     private var imageMoveWeight: Float = 0F
+
+    private var firstContentHidePoint: Float = 0f
+
+    private var secondContentShowPoint: Float = 0f
 
     @InjectPresenter
     lateinit var presenter: ProfilePresenter
@@ -74,7 +90,8 @@ class ProfileFragment: BaseFragment(), ProfileView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        iconSettings.setOnClickListener { presenter.openSettings() }
+//        TODO move openEditProfile to "edit profile" btn in social tab
+        iconSettings.setOnClickListener { presenter.openEditProfile() }
 //
 //        tutorialsTv.setOnClickListener { presenter.navigateTutorialVideos() }
 //
@@ -92,48 +109,63 @@ class ProfileFragment: BaseFragment(), ProfileView {
                         imageMovePoint = 0f
                         imageMoveWeight =  1 / (1 - imageMovePoint)
 
+                        firstContentHidePoint = 0.1f
+
+                        secondContentShowPoint = 0.95f
+
+                        roundedResizePoint = 0f
+
+                        roundedResizeWeight = 1 / (1 - roundedResizePoint)
+
+                        profileBgAlphaPoint = 0.3f
+                        profileBgAlphaWeight = 1 / (1 - profileBgAlphaPoint)
+
+                        separatorHidePoint = 0.9999f
+
                         isCalculated = true
                     }
                     updateViews(Math.abs(i / appBarLayout.totalScrollRange.toFloat()))
                 })
-
-
     }
 
     private fun updateViews(offset: Float) {
-        when (offset) {
-            in 0.555F..1F -> {
+        var defaultImagePaddingStart = Math.round((screenWidth / 2) - (resources.getDimension(R.dimen.profile_imageSize) / 2))
 
+        when (offset) {
+            in 0.74F..1F -> {
                 if (!isStatusBarLight) {
                     isStatusBarLight = true
                     setLightStatusBar((activity as Activity))
                 }
 
-                //TODO tint of two icons to black
-//                placeArrowBack.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.black))
+                iconSettings.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
+                iconNotifications.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
             }
-            in 0F..0.555F -> {
+            in 0F..0.74F -> {
                 if (isStatusBarLight) {
                     isStatusBarLight = false
                     clearLightStatusBar((activity as Activity))
                 }
-                //TODO tint of two icons to white
-//                placeArrowBack.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white))
+
+                iconSettings.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.white))
+                iconNotifications.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.white))
             }
         }
-
 
         userImg.apply {
             when {
                 offset > imageMovePoint -> {
+                    imageContainer.gravity = Gravity.START
+
                     val imageOffset = (offset - imageMovePoint) * imageMoveWeight
 
                     val measuredMarginTop = Math.round(resources.getDimension(R.dimen.profile_imageInitialMarginTop) + (abs(resources.getDimension(R.dimen.profile_imageInitialMarginTop)) * imageOffset))
-                    val measuredMarginStart = 0 - Math.round(((screenWidth - resources.getDimension(R.dimen.profile_resizedImageSize)) - resources.getDimension(R.dimen.profile_defaultPadding)) * imageOffset)
+                    val measuredMarginStart = Math.round(defaultImagePaddingStart - ((defaultImagePaddingStart - resources.getDimension(R.dimen.profile_defaultPadding)) * imageOffset))
 
                     val measuredSize = Math.round(resources.getDimension(R.dimen.profile_imageSize) - ((resources.getDimension(R.dimen.profile_imageSize) - resources.getDimension(R.dimen.profile_resizedImageSize)) * imageOffset))
 
                     this.layoutParams.also {
+
                         (it as LinearLayout.LayoutParams).setMargins(measuredMarginStart, measuredMarginTop, 0, 0)
                         it.height = measuredSize
                         it.width = measuredSize
@@ -142,37 +174,73 @@ class ProfileFragment: BaseFragment(), ProfileView {
                 }
 
                 else -> {
+                    imageContainer.gravity = Gravity.CENTER_HORIZONTAL
                     this.layoutParams.also {
                         (it as LinearLayout.LayoutParams).setMargins(0, Math.round(resources.getDimension(R.dimen.profile_imageInitialMarginTop)), 0, 0)
                     }
-
                 }
 
             }
         }
 
+        userLabel.visibility = if(offset > firstContentHidePoint) View.GONE else View.VISIBLE
 
+        secondaryLabel.visibility = if(offset > secondContentShowPoint) View.VISIBLE else View.GONE
 
+        roundedView.apply {
+            when {
+                offset > roundedResizePoint -> {
+                    val roundedOffset = (offset - roundedResizePoint) * roundedResizeWeight
 
+                    val roundedMeasuredHeight = Math.round( resources.getDimension(R.dimen.profile_roundedViewHeight) - (resources.getDimension(R.dimen.profile_roundedViewHeight) * (roundedOffset * 1.25f))   )
+
+                    this.layoutParams.also {
+                        it.height = roundedMeasuredHeight
+                    }
+                }
+
+                else -> {
+                    this.layoutParams.also {
+                        it.height = Math.round(resources.getDimension(R.dimen.profile_roundedViewHeight))
+                    }
+                }
+            }
+        }
+
+        profileBgImage.apply {
+            when {
+                offset > profileBgAlphaPoint -> {
+                    val imageOffset = (offset - profileBgAlphaPoint) * profileBgAlphaWeight
+
+                    alpha = 1f - (1f * imageOffset * 1.25f)
+                }
+                else ->{
+                    alpha = 1f
+                }
+            }
+        }
+
+        separator.visibility = if(offset > separatorHidePoint) View.INVISIBLE else View.VISIBLE
     }
 
     override fun showData(user: Profile.User, actualTokenInfo: BillingTokenInfo) {
-        userName.text = user.name
+        userName.text = user.name + " " + user.surname
         secondaryName.text = user.name
 
         //TODO get user speciality from API and set: userSpeciality, secondarySpeciality
+        userSpeciality.text = "Fitness Instructor"
+        secondarySpeciality.text = "Fitness Instructor"
+
+        //TODO format string o be like 1,234,324
+        pointsTv.text = user.credits.toString()
 
 
-
-
-
-//        user.mainImage?.run {
-//            userImg.loadImage(this,
-//                    roundedCornersRadiusPx = 48,
-//                    whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.TOP_LEFT, RoundedCornersTransformation.CornerType.TOP_RIGHT, RoundedCornersTransformation.CornerType.BOTTOM_LEFT))
-//        }
-//
-//        userName.text = user.name + "\n" + user.surname
+        user.mainImage?.run {
+            userImg.loadImage(this,
+                    placeholder = android.R.color.transparent,
+                    roundedCornersRadiusPx = 360,
+                    whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.ALL))
+        }
 
 
 
@@ -185,12 +253,6 @@ class ProfileFragment: BaseFragment(), ProfileView {
 //        }
 //
 //        memberLabel.text = subText + " " + getString(R.string.member) + "\n" + getString(R.string.level_format, user.level)
-
-//      TODO fill social data (show/hide icMedal(when?), change statusCircle color(when?) populate rvSocials)
-
-//      TODO fill business data (businessInfoLl - heightTv, sizeTv, cityTv)
-
-//      TODO fill wallet data (walletBalanceTv, walletCurrencyShortTv, walletCurrencyTv)
 
         //TODO just for testing, delete later
 //        heightTv.text = "Height: 179cm"
@@ -247,6 +309,24 @@ class ProfileFragment: BaseFragment(), ProfileView {
 //        progressBar.visibility = View.GONE
 //        statusRl.visibility = View.VISIBLE
 //        bottomLl.visibility = View.VISIBLE
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if(isStatusBarLight){
+            setLightStatusBar((activity as Activity))
+        } else{
+            clearLightStatusBar((activity as Activity))
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if(!isStatusBarLight){
+            setLightStatusBar((activity as Activity))
+        }
     }
 
     private fun setLightStatusBar(activity: Activity) {

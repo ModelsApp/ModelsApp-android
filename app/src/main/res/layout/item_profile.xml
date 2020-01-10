@@ -23,6 +23,7 @@
         android:layout_width="@dimen/item_profile_icon_size"
         android:layout_height="@dimen/item_profile_icon_size"
         android:layout_marginTop="@dimen/item_profile_margin"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@drawable/r_shop" />
@@ -31,19 +32,21 @@
         android:id="@+id/title"
         style="@style/Models16SemiBoldText"
         android:textSize="@dimen/item_profile_text_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/item_profile_icon_size"
+        android:layout_marginTop="@dimen/item_profile_margin"
         android:layout_marginStart="@dimen/item_profile_margin"
-        android:layout_marginEnd="@dimen/item_profile_subicon_size"
+        app:layout_goneMarginStart="0dp"
+        android:layout_marginEnd="@dimen/item_profile_margin"
         android:gravity="center_vertical"
         android:maxLines="1"
         app:autoSizeTextType="uniform"
+        app:autoSizeMaxTextSize="@dimen/item_profile_text_size"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="@+id/icon"
-        app:layout_constraintEnd_toStartOf="@+id/tv"
+        app:layout_constraintEnd_toStartOf="@+id/rightIcon"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Social channels" />
 
     <ImageView
@@ -52,10 +55,10 @@
         android:layout_height="@dimen/item_profile_subicon_size"
         android:visibility="gone"
         tools:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/icon"
-        app:layout_constraintStart_toEndOf="@+id/title"
-        app:layout_constraintTop_toTopOf="@+id/icon"
-        android:layout_marginStart="@dimen/item_profile_subicon_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toStartOf="@+id/tv"
+        app:layout_constraintTop_toTopOf="@+id/title"
+        android:layout_marginEnd="@dimen/item_profile_subicon_margin"
         tools:src="@drawable/ic_warning_red" />
 
     <ImageView
@@ -65,8 +68,8 @@
         tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/icon"
-        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
         android:src="@drawable/chevron_right" />
 
     <TextView
@@ -78,9 +81,11 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         tools:visibility="visible"
+        android:layout_marginEnd="@dimen/item_profile_subicon_margin"
+        app:layout_goneMarginEnd="0dp"
         app:layout_constraintEnd_toStartOf="@+id/arrow"
-        app:layout_constraintBottom_toBottomOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="@+id/icon"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintTop_toTopOf="@+id/title"
         tools:text="2.500" />
 
     <LinearLayout
@@ -94,7 +99,7 @@
         tools:background="@color/nice_red"
         tools:layout_height="40dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@+id/icon"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" >
     </LinearLayout>
@@ -104,6 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="1.5dp"
         android:background="@color/divider"
+        android:visibility="gone"
         app:layout_goneMarginTop="@dimen/item_profile_margin"
         app:layout_constraintTop_toBottomOf="@+id/itemsLl"
         app:layout_constraintEnd_toEndOf="parent"

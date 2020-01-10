@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-<!--   TODO: set correct  scrimVisibleHeightTrigger  -->
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/profileCollapsing"
             android:layout_width="match_parent"
@@ -21,6 +20,7 @@
             android:clipToPadding="false"
             android:background="@android:color/white"
             app:contentScrim="@android:color/white"
+            app:scrimAnimationDuration="200"
             app:scrimVisibleHeightTrigger="@dimen/profile_scrimVisibleHeightTrigger"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" >
 
@@ -36,28 +36,49 @@
                     android:scaleType="centerCrop"
                     android:fitsSystemWindows="true"
                     android:background="@color/placeholder"
-                    android:src="@drawable/fill_profile_header_1" />
+                    android:src="@drawable/fill_profile_header_2" />
             </FrameLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/profileToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/profile_toolbarHeight"
                 android:layout_marginTop="@dimen/profile_toolbarMarginTop"
+                android:layout_height="@dimen/profile_toolbarHeight"
+                android:fitsSystemWindows="false"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin"
                 app:title="@null"
                 android:gravity="top"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
-                <ImageView
-                    android:id="@+id/profileArrowBack"
-                    android:layout_width="@dimen/backArrowSize"
-                    android:layout_height="@dimen/backArrowSize"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:layout_marginStart="@dimen/backArrowMarginStart"
-                    android:src="@drawable/ic_arrow_back"
-                    android:tint="@android:color/white" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/profile_iconsPadding"
+                    android:layout_marginEnd="@dimen/profile_iconsPadding" >
+
+                    <ImageView
+                        android:id="@+id/iconSettings"
+                        android:layout_width="@dimen/profile_iconsSize"
+                        android:layout_height="@dimen/profile_iconsSize"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:padding="@dimen/profile_iconsInsidePadding"
+                        android:tint="@android:color/white"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_settings" />
+
+                    <ImageView
+                        android:id="@+id/iconNotifications"
+                        android:layout_width="@dimen/profile_iconsSize"
+                        android:layout_height="@dimen/profile_iconsSize"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:padding="@dimen/profile_iconsInsidePadding"
+                        android:tint="@android:color/white"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_notifications" />
+                </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
 
             <LinearLayout
@@ -89,8 +110,8 @@
                         android:layout_height="@dimen/profile_resizedImageSize"
                         android:clipChildren="false"
                         android:clipToPadding="false"
-                        android:layout_marginTop="@dimen/profile_topPadding"
                         android:gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/profile_topPadding"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" >
@@ -105,8 +126,8 @@
                             android:padding="@dimen/profile_imageBorderSize"
                             android:scaleType="centerCrop"
                             android:layout_marginTop="@dimen/profile_imageInitialMarginTop"
+                            android:backgroundTint="@android:color/white"
                             tools:tint="@color/nice_pink"
-                            tools:backgroundTint="@android:color/white"
                             tools:src="@drawable/round_background" />
                     </LinearLayout>
 
@@ -119,6 +140,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:visibility="visible"
+                        tools:visibility="gone"
                         app:layout_constraintTop_toTopOf="@+id/imageContainer"
                         app:layout_constraintBottom_toBottomOf="@+id/imageContainer"
                         app:layout_constraintStart_toStartOf="parent"
@@ -127,16 +149,18 @@
                         <TextView
                             android:id="@+id/userName"
                             style="@style/Models16SemiBoldText"
+                            android:textSize="@dimen/text_16"
                             app:autoSizeTextType="uniform"
                             android:maxLines="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Rosemary Edwards" />
+                            tools:text="Rosemary Edwards" />
 
                         <TextView
                             android:id="@+id/userSpeciality"
                             style="@style/Models13Text"
+                            android:textSize="@dimen/text_13"
                             android:textColor="@color/grey_dark"
                             android:layout_marginTop="@dimen/profile_textMarginTop"
                             app:autoSizeTextType="uniform"
@@ -144,7 +168,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Fitness Instructor" />
+                            tools:text="Fitness Instructor" />
                     </LinearLayout>
 
                     <!--      margin start = 64(final resized image size) + 16(image start margin) + 16(label start margin) = 96 dp -->
@@ -152,12 +176,12 @@
                         android:id="@+id/secondaryLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/profile_imageSize"
+                        android:layout_marginStart="@dimen/profile_secondaryContainerMargin"
                         android:layout_marginEnd="@dimen/profile_defaultPadding"
                         android:orientation="vertical"
                         android:gravity="center_vertical"
                         android:visibility="gone"
-                        tools:visibility="gone"
+                        tools:visibility="visible"
                         app:layout_constraintTop_toTopOf="@+id/imageContainer"
                         app:layout_constraintBottom_toBottomOf="@+id/imageContainer"
                         app:layout_constraintStart_toStartOf="parent"
@@ -166,6 +190,7 @@
                         <TextView
                             android:id="@+id/secondaryName"
                             style="@style/Models16SemiBoldText"
+                            android:textSize="@dimen/text_16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:autoSizeTextType="uniform"
@@ -176,6 +201,7 @@
                         <TextView
                             android:id="@+id/secondarySpeciality"
                             style="@style/Models13Text"
+                            android:textSize="@dimen/text_13"
                             android:textColor="@color/grey_dark"
                             android:layout_marginTop="@dimen/profile_textMarginTop"
                             android:layout_width="match_parent"
@@ -192,12 +218,12 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="2dp"
                         android:paddingEnd="@dimen/profile_pointsPaddingEnd"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/profile_pointsMarginTop"
                         android:gravity="center_vertical"
                         app:layout_constraintTop_toBottomOf="@+id/imageContainer"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:background="@drawable/background_rounded_12dp"
+                        android:background="@drawable/background_rounded_max"
                         android:backgroundTint="@android:color/black"
                         android:orientation="horizontal" >
 
@@ -209,6 +235,7 @@
                         <TextView
                             android:id="@+id/pointsTv"
                             style="@style/Models13Text"
+                            android:textSize="@dimen/text_13"
                             android:textColor="@android:color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -220,7 +247,7 @@
                             android:id="@+id/tabLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/profile_defaultPadding"
+                            android:layout_marginTop="@dimen/profile_tabsPadding"
                             app:layout_constraintTop_toBottomOf="@+id/pointsLl"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -232,6 +259,15 @@
                             app:tabSelectedTextColor="@android:color/black"
                             app:tabBackground="@android:color/transparent"
                             app:tabTextColor="@color/secondary_text" />
+
+                    <View
+                        android:id="@+id/separator"
+                        android:layout_width="0dp"
+                        android:layout_height="1.5dp"
+                        android:background="@color/divider_light"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

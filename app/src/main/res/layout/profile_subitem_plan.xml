@@ -25,6 +25,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:maxLines="1"
+            app:autoSizeMaxTextSize="@dimen/frag_profile_text_size_smaller"
             app:autoSizeTextType="uniform"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/subitem_left_margin"

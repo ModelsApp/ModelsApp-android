@@ -179,7 +179,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
         Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> error: ${error.toString()}")
     })
 
-    fun openSettings() {
+    fun openEditProfile() {
         router.navigateTo(SCREENS.EDIT_PROFILE)
     }
 

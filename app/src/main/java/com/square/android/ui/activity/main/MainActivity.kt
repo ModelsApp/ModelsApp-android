@@ -1,6 +1,7 @@
 package com.square.android.ui.activity.main
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -43,6 +44,7 @@ import com.square.android.ui.fragment.places.PlacesFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.redemptions.RedemptionsFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
+import com.square.android.utils.ActivityUtils
 import com.square.android.utils.DialogDepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.notifications_badge.*
@@ -64,6 +66,15 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ActivityUtils.setTransparentStatusAndDrawBehind(this)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            var flags = window.decorView.systemUiVisibility
+            flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            window.decorView.systemUiVisibility = flags
+        }
+
         setContentView(R.layout.activity_main)
 
         pending_text_2.movementMethod = LinkMovementMethod.getInstance()
