@@ -336,6 +336,12 @@
 
     <string name="social_channels">Social channels</string>
 
+    <string name="your_activity">Your activity</string>
+
+    <string name="specialities">Specialities</string>
+
+    <string name="capabilities">Capabilities</string>
+
     <string name="ambassador_program">Ambassador program</string>
 
     <string name="share_with_friend">Share with friends</string>
@@ -398,6 +404,7 @@
     <string name="total_credits">Total credits</string>
     <string name="qt">Qt.</string>
     <string name="details">Details</string>
+    <string name="appearance_characteristics">Appearance characteristics</string>
     <string name="polaroids">Polaroids</string>
     <string name="portfolios">Portfolios</string>
     <string name="comp_card">Comp card</string>
@@ -418,6 +425,7 @@
     <string name="set_method_primary">Set this method as primary</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="accounts">Accounts</string>
     <string name="paypal">PayPal</string>
     <string name="login_with_paypal">Login with PayPal</string>
@@ -467,6 +475,10 @@
     <string name="your_mother_agency">Your mother agency</string>
     <string name="your_current_agency">Your current agency</string>
 
+    <string name="personal_info">Personal info</string>
+    <string name="my_jobs">My jobs</string>
+    <string name="my_interests">My interests</string>
+    <string name="my_portfolio">My portfolio</string>
 
     <string name="add_link_to_your_post">Add link to your post</string>
     <string name="add_link_to_your_story">Add link to your story</string>
@@ -497,6 +509,7 @@
     <string name="how_to">How to</string>
     <string name="book_a_spot">Book a spot</string>
     <string name="earn_more_credits">Earn more credits</string>
+    <string name="earn_credits">Earn credits</string>
 
     <string name="tut_1_1">The label here is telling\nthe offer availability.</string>
     <string name="tut_1_2">Tab over an offer to\nsee it\'s composition.</string>

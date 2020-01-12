@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
 import android.widget.LinearLayout
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -41,6 +42,7 @@ const val EXTRA_BILLING_TOKEN_INFO = "EXTRA_BILLING_TOKEN_INFO"
 
 const val TYPE_PLAIN = 1 // (only right text, non-clickable)
 const val TYPE_DROPDOWN = 2
+const val TYPE_BUTTON = 3
 
 class ProfileItem(
         var type: Int = 0, // one of TYPE_...
@@ -52,7 +54,9 @@ class ProfileItem(
         @DrawableRes
         var subIconRes: Int? = null,
         var subText: String? = null,
-        var dividerVisible: Boolean = false)
+        var dividerVisible: Boolean = false,
+        @ColorRes
+        var arrowTint: Int? = null)
 
 class ProfileFragment: BaseFragment(), ProfileView {
 
@@ -91,7 +95,7 @@ class ProfileFragment: BaseFragment(), ProfileView {
         super.onViewCreated(view, savedInstanceState)
 
 //        TODO move openEditProfile to "edit profile" btn in social tab
-        iconSettings.setOnClickListener { presenter.openEditProfile() }
+        iconSettings.setOnClickListener { }
 //
 //        tutorialsTv.setOnClickListener { presenter.navigateTutorialVideos() }
 //
@@ -225,7 +229,7 @@ class ProfileFragment: BaseFragment(), ProfileView {
 
     override fun showData(user: Profile.User, actualTokenInfo: BillingTokenInfo) {
         userName.text = user.name + " " + user.surname
-        secondaryName.text = user.name
+        secondaryName.text = user.name + " " + user.surname
 
         //TODO get user speciality from API and set: userSpeciality, secondarySpeciality
         userSpeciality.text = "Fitness Instructor"

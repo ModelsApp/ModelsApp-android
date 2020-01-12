@@ -60,47 +60,53 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapt
         }
 
         //TODO how to determine if user can change plan?
+        val socialEditProfile = ProfileItem(TYPE_BUTTON, getString(R.string.edit_profile), null,null, null)
+
+        //TODO how to determine if user can change plan?
         val socialPlan = ProfileItem(TYPE_DROPDOWN, getString(R.string.active_plan), null,null, listOf(
                 ProfileSubItems.Plan(subText + " | " + subTypeText)
-                , true), subIconRes = R.drawable.ic_star, subText = subText )
+                , true), subIconRes = R.drawable.star_yellow, subText = subText, arrowTint = R.color.gray_hint_light)
 
-
-
-
-        //TODO get credits value
-        val plainCredits = ProfileItem(TYPE_PLAIN, getString(R.string.credits), user.credits.toString(), R.drawable.r_shop)
-
-        //TODO get points value(from where?)
-        val plainPoints = ProfileItem(TYPE_PLAIN, getString(R.string.points), "550", R.drawable.r_shop)
-
-        //TODO get social "connected" value for every type of social
-        val socialChannels = ProfileItem(TYPE_DROPDOWN, getString(R.string.social_channels),null, R.drawable.r_shop, listOf(
+        //TODO get social "connected" value for every type of social + set subtext
+        val socialChannels = ProfileItem(TYPE_DROPDOWN, getString(R.string.social_channels),null, null, listOf(
                 ProfileSubItems.Social(SOCIAL_APP_TYPE_INSTAGRAM, true),
                 ProfileSubItems.Social(SOCIAL_APP_TYPE_FACEBOOK, false),
                 ProfileSubItems.Social(SOCIAL_APP_TYPE_GOOGLE, true),
                 ProfileSubItems.Social(SOCIAL_APP_TYPE_TRIPADVISOR, true),
                 ProfileSubItems.Social(SOCIAL_APP_TYPE_YELP, false)
-        ))
-
-        //TODO get credits value etc
-        val socialEarnCredits = ProfileItem(TYPE_DROPDOWN, getString(R.string.earn_more_credits),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.EarnCredits(EARN_TYPE_SHARE_FRIENDS, 150),
-                ProfileSubItems.EarnCredits(EARN_TYPE_REFER_VENUE, 300),
-                ProfileSubItems.EarnCredits(EARN_TYPE_INTRODUCE_BRAND, 500)
-        ))
-
-        //TODO get price value etc
-        val socialBuyCredits = ProfileItem(TYPE_DROPDOWN, getString(R.string.buy_extra_credits),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.BuyCredits(BUY_TYPE_500, 500, "€ 30,00"),
-                ProfileSubItems.BuyCredits(BUY_TYPE_1000, 1000, "€ 50,00")
-        ))
+        ), arrowTint = R.color.gray_hint_light, subText = "Instagram, Google, +1 more")
 
         //TODO
-        val socialAmbassador = ProfileItem(TYPE_DROPDOWN, getString(R.string.ambassador_program),null, R.drawable.r_shop, listOf(
-                ProfileSubItems.Ambassador(AMBASSADOR_TYPE_JOIN_TEAM, R.drawable.r_shop)
-        ))
+        val socialActivity = ProfileItem(TYPE_DROPDOWN, getString(R.string.your_activity),null, null, listOf(ProfileSubItems.YourActivity()),
+                arrowTint = R.color.gray_hint_light, subText = "Content creator")
 
-        profileItemAdapter = ProfileItemAdapter(listOf(plainCredits, plainPoints, socialPlan, socialChannels, socialEarnCredits, socialBuyCredits, socialAmbassador), this, socialHandler = this)
+        //TODO
+        val socialSpecialities = ProfileItem(TYPE_DROPDOWN, getString(R.string.specialities),null, null, listOf(ProfileSubItems.Specialities()),
+                arrowTint = R.color.gray_hint_light, subText = "Fashion, Sport, +3 more")
+
+        //TODO
+        val socialCapabilities = ProfileItem(TYPE_DROPDOWN, getString(R.string.capabilities),null, null, listOf(ProfileSubItems.Capabilities()),
+                arrowTint = R.color.gray_hint_light, subText = "Writing, +2 more")
+
+//        //TODO get credits value
+//        val plainCredits = ProfileItem(TYPE_PLAIN, getString(R.string.credits), user.credits.toString(), null, arrowTint = R.color.gray_hint_light)
+//
+//        //TODO get points value(from where?)
+//        val plainPoints = ProfileItem(TYPE_PLAIN, getString(R.string.points), "550", null, arrowTint = R.color.gray_hint_light)
+//
+//
+//        //TODO get price value etc
+//        val socialBuyCredits = ProfileItem(TYPE_DROPDOWN, getString(R.string.buy_extra_credits),null, null, listOf(
+//                ProfileSubItems.BuyCredits(BUY_TYPE_500, 500, "€ 30,00"),
+//                ProfileSubItems.BuyCredits(BUY_TYPE_1000, 1000, "€ 50,00")
+//        ), arrowTint = R.color.gray_hint_light)
+//
+//        //TODO
+//        val socialAmbassador = ProfileItem(TYPE_DROPDOWN, getString(R.string.ambassador_program),null, null, listOf(
+//                ProfileSubItems.Ambassador(AMBASSADOR_TYPE_JOIN_TEAM, R.drawable.r_shop)
+//        ), arrowTint = R.color.gray_hint_light)
+
+        profileItemAdapter = ProfileItemAdapter(listOf(socialEditProfile, socialPlan, socialChannels, socialActivity, socialSpecialities, socialCapabilities), this, socialHandler = this)
         rvItems.itemAnimator = null
         rvItems.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvItems.adapter = profileItemAdapter
@@ -109,6 +115,12 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapt
     override fun clickViewClicked(position: Int) {
         profileItemAdapter?.setOpenedItem(position)
     }
+
+    override fun editProfileClicked() {
+        presenter.openEditProfile()
+    }
+
+
 
     override fun changePlanClicked() {
         // TODO
@@ -120,12 +132,6 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapt
         // TODO
 
         println("ProfileSocialFragment: socialConnectClicked() type = "+type+", isConnecte = "+isConnected)
-    }
-
-    override fun earnMoreClicked(type: Int) {
-        // TODO
-
-        println("ProfileSocialFragment: earnMoreClicked() type = "+type)
     }
 
     override fun buyExtraClicked(type: Int) {

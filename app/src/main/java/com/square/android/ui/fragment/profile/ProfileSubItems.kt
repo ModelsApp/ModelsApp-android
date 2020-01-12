@@ -44,60 +44,67 @@ class ProfileSubItems {
                 var type: Int = 0, // one of SOCIAL_APP_TYPE...
                 var connected: Boolean = true)
 
+        class YourActivity()
 
-        class EarnCredits(
-                var type: Int = 0, // one of EARN_TYPE...
-                var credits: Int = 0)
+        class Specialities()
 
+        class Capabilities()
 
+// TODO not used?
         class BuyCredits(
                 var type: Int = 0, // one of BUY_TYPE...
                 var credits: Int = 0,
                 var priceText: String = "")
-
-
         class Ambassador(
                 var type: Int = 0, // one of AMBASSADOR_TYPE...
                 @DrawableRes
                 var smallIconRes: Int)
 
 // BUSINESS //
-        class Detail(
+        class PersonalInfo()
+
+        class MyJobs()
+
+        class MyInterests()
+
+        class BusinessSocialChannels()
+
+        class Agency(
+                var title: String = "",
+                var agencyId: Long)
+
+        class AppearanceCharacteristics(
                 var type: Int = 0, // one of DETAIL_TYPE...
                 var firstTitle: String = "",
                 var firstText: String = "",
                 var secondTitle: String = "",
                 var secondText: String = "")
 
+        class EarnCredits(
+                var type: Int = 0, // one of EARN_TYPE...
+                var credits: Int = 0)
+
+// TODO not used?
         class Polaroid(
                 var title: String = "",
                 var expired: Boolean = false,
                 var albumId: Long)
-
         class Create(
                 var clickedType: Int = 0 // one of CREATE_CLICKED_TYPE...
                  )
-
         class Portfolio(
                 var title: String = "",
                 var portfolioId: Long)
-
-        class Agency(
-                var title: String = "",
-                var agencyId: Long)
-
         class CompCard(
                 var title: String = "",
                 var compCardId: Long)
-
         class Preference(
                 var type: Int = 0, // one of PREFERENCE_TYPE...
                 var checked: Boolean)
-
         class ModelsCom(
                 var modelsComUserName: String = "")
 
-// BUSINESS //
+// WALLET //
         class Account(
                 // if type: display - profile_subitem_account, edit - profile_subitem_account_edit
                 var type: Int = 0, // one of ACCOUNT_TYPE...

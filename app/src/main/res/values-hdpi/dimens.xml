@@ -130,12 +130,16 @@
     <dimen name="frag_profile_text_size_small">10sp</dimen>
 <!--    -->
     <dimen name="item_profile_arrow_size">18dp</dimen>
-    <dimen name="item_profile_icon_size">25dp</dimen>
+    <dimen name="item_profile_icon_size">18dp</dimen>
     <dimen name="item_profile_subicon_size">18dp</dimen>
-    <dimen name="item_profile_subicon_margin">6dp</dimen>
-    <dimen name="item_profile_margin">10dp</dimen>
-    <!--  (iconSize) 32 + 24 (item_profile_margin * 2)-->
-    <dimen name="item_profile_clickable_size">45dp</dimen>
+    <!--  (subiconSize) 18 + 4.5 (subiconMargin)-->
+    <dimen name="item_profile_subicon_size_margin">22.5dp</dimen>
+    <dimen name="item_profile_subicon_margin">4.5dp</dimen>
+    <!--  item_profile_margin /2  -->
+    <dimen name="item_profile_btn_margin">5.75dp</dimen>
+    <dimen name="item_profile_margin">10.5dp</dimen>
+    <!--  (iconSize) 18 + 21 (item_profile_margin * 2)-->
+    <dimen name="item_profile_clickable_size">39dp</dimen>
     <dimen name="item_profile_text_size">12sp</dimen>
     <dimen name="item_profile_text_size_large">13sp</dimen>
 <!--    -->

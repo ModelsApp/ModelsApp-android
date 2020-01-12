@@ -1,6 +1,7 @@
 package com.square.android.presentation.presenter.profile
 
 import com.arellomobile.mvp.InjectViewState
+import com.square.android.SCREENS
 import com.square.android.data.pojo.BillingTokenInfo
 import com.square.android.data.pojo.Profile
 import com.square.android.presentation.presenter.BasePresenter
@@ -11,5 +12,9 @@ class ProfileSocialPresenter(user: Profile.User, actualTokenInfo: BillingTokenIn
 
     init {
         viewState.showData(user, actualTokenInfo)
+    }
+
+    fun openEditProfile() {
+        router.navigateTo(SCREENS.EDIT_PROFILE)
     }
 }
