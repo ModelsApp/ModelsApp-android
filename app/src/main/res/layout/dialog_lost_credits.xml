@@ -92,7 +92,7 @@
                 style="@style/Models12Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/current_balance"
+                android:text="@string/current_balance_"
                 android:textColor="@color/secondary_text"
                 android:layout_marginEnd="3dp" />
 

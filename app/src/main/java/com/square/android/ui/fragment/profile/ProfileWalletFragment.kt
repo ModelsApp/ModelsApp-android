@@ -44,13 +44,22 @@ class ProfileWalletFragment: BaseFragment(), ProfileWalletView, ProfileItemAdapt
     }
 
     override fun showData(user: Profile.User) {
-        // TODO in ProfileSubItems -> create models for: (profile_subitem_login_with : {show unlink/set as primary/save widgets, change textcolor of text} when connected = true else gone ), profile_subitem_balance
+        //TODO
+        val balance = ProfileItem(TYPE_CUSTOM, "€ 2.340,00", null,null, null, customType = CUSTOM_TYPE_BALANCE)
 
-        // TODO add items to adapter
+        //TODO
+        val bankAccount = ProfileItem(TYPE_ADD, getString(R.string.bank_accounts), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.BankAccount(BANK_ACCOUNT_TYPE_MASTER_CARD, "*** 3453", false),
+                ProfileSubItems.BankAccount(BANK_ACCOUNT_TYPE_MASTER_CARD, "*** 1100", true),
+                ProfileSubItems.BankAccount(BANK_ACCOUNT_TYPE_VISA, "*** 4522", false)
+        ), addType = ADD_TYPE_BANK_ACCOUNT)
 
-        // TODO bind items in adapter
+        //TODO
+        val paypalAccount = ProfileItem(TYPE_ADD, getString(R.string.paypal_account), null, R.drawable.r_shop, listOf(
+                ProfileSubItems.PaypalAccount()
+        ), addType = ADD_TYPE_PAYPAL_ACCOUNT)
 
-        walletAdapter = ProfileItemAdapter(listOf(), this)
+        walletAdapter = ProfileItemAdapter(listOf(balance, bankAccount, paypalAccount), this)
 
         rvItems.itemAnimator = null
         rvItems.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)
@@ -61,10 +70,18 @@ class ProfileWalletFragment: BaseFragment(), ProfileWalletView, ProfileItemAdapt
         walletAdapter?.setOpenedItem(position)
     }
 
-    // TODO handler clicks etc.
+    override fun createClicked(clickedType: Int) { }
 
-    override fun createClicked(clickedType: Int) {
-        // TODO
+    override fun addBankAccountClicked() {
+        //TODO
+    }
+
+    override fun bankAccountCheckClicked(isChecked: Boolean) {
+        //TODO
+    }
+
+    override fun addPaypalAccountClicked() {
+        //TODO
     }
 
 }

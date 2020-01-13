@@ -46,6 +46,38 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Social channels" />
 
+    <LinearLayout
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        tools:layout_marginEnd="128dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:paddingTop="@dimen/subitem_top_margin"
+        android:paddingBottom="@dimen/subitem_top_margin"
+        app:layout_constraintTop_toTopOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <ImageView
+            android:layout_width="@dimen/subitem_create_small_image_size"
+            android:layout_height="@dimen/subitem_create_small_image_size"
+            android:src="@drawable/add"
+            android:tint="@color/gray_hint_light" />
+
+        <TextView
+            style="@style/Models12SemiBoldText"
+            android:textSize="@dimen/subitem_text_size_small"
+            android:textColor="@color/gray_hint_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/add"/>
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/rightIcon"
         android:layout_width="@dimen/item_profile_subicon_size"

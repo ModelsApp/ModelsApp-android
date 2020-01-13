@@ -416,6 +416,8 @@
     <string name="expired_">(expired)</string>
     <string name="create_new">Create new</string>
 
+    <string name="add">Add</string>
+
     <string name="add_a">Add a</string>
     <string name="step">Step</string>
 
@@ -460,8 +462,10 @@
     <string name="you_lost_credits">You\'ve lost credits</string>
     <string name="lost_credits_message_format">Since you didn\'t show up at %s have lost credits.</string>
     <string name="lost_credits_format">- %d credits</string>
-    <string name="current_balance">Current balance:</string>
+    <string name="current_balance_">Current balance:</string>
     <string name="credits_format_lowercase">%d credits</string>
+
+    <string name="current_balance">Current balance</string>
 
     <string name="calendar_format">%s %d</string>
     <string name="spots_available">Spots available:</string>
@@ -479,6 +483,9 @@
     <string name="my_jobs">My jobs</string>
     <string name="my_interests">My interests</string>
     <string name="my_portfolio">My portfolio</string>
+
+    <string name="bank_accounts">Bank accounts</string>
+    <string name="paypal_account">Paypal account</string>
 
     <string name="add_link_to_your_post">Add link to your post</string>
     <string name="add_link_to_your_story">Add link to your story</string>

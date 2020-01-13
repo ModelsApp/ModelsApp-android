@@ -29,8 +29,8 @@ const val PREFERENCE_TYPE_SOCIAL = 1
 const val PREFERENCE_TYPE_HOSTESS = 2
 const val PREFERENCE_TYPE_NIGHT_OUT = 3
 
-const val ACCOUNT_TYPE_DISPLAY = 1
-const val ACCOUNT_TYPE_EDIT = 2
+const val BANK_ACCOUNT_TYPE_VISA = 1
+const val BANK_ACCOUNT_TYPE_MASTER_CARD = 2
 
 class ProfileSubItems {
 
@@ -105,13 +105,13 @@ class ProfileSubItems {
                 var modelsComUserName: String = "")
 
 // WALLET //
-        class Account(
+        class BankAccount(
                 // if type: display - profile_subitem_account, edit - profile_subitem_account_edit
-                var type: Int = 0, // one of ACCOUNT_TYPE...
-                var nameSurname: String = "",
-                var iban: String = "",
-                var swiftBic: String = "",
+                var type: Int = 0, // one of BANK_ACCOUNT_TYPE...
+                var number: String = "",
                 var isPrimary: Boolean)
+
+        class PaypalAccount()
 
 }
 

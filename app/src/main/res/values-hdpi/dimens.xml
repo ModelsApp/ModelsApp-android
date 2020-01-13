@@ -121,7 +121,7 @@
     <dimen name="frag_profile_margin">18dp</dimen>
     <!-- (frag_profile_margin ) / 2 -->
     <dimen name="frag_profile_business_margin_top">6dp</dimen>
-    <dimen name="frag_profile_text_size_very_large">23sp</dimen>
+    <dimen name="frag_profile_text_size_very_large">20sp</dimen>
     <dimen name="frag_profile_small_round_icon_size">2.5dp</dimen>
     <dimen name="frag_profile_small_round_icon_margin">5dp</dimen>
     <dimen name="frag_profile_text_size_large">16sp</dimen>
@@ -163,6 +163,12 @@
     <dimen name="subitem_account_edit_rb_size">12.5dp</dimen>
     <dimen name="subitem_account_btn_height">36dp</dimen>
     <dimen name="subitem_account_btn_margin">7.5dp</dimen>
+    <!--    -->
+    <dimen name="subitem_bank_account_img_height">18dp</dimen>
+    <dimen name="subitem_bank_account_img_width">30dp</dimen>
+    <dimen name="subitem_bank_account_start_margin">9dp</dimen>
+    <!--    -->
+    <dimen name="item_profile_item_balance_padding">18dp</dimen>
 
     <!-- fragment_profile -->
     <dimen name="profile_toolbarHeight">174dp</dimen>

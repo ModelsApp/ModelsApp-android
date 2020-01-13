@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clipToPadding="false"
+    android:paddingTop="@dimen/item_profile_item_balance_padding"
+    android:paddingBottom="@dimen/item_profile_item_balance_padding" >
+
+    <TextView
+        android:id="@+id/balanceText"
+        style="@style/Models20SemiBoldText"
+        android:textSize="@dimen/frag_profile_text_size_very_large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="€ 2.340,00"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        style="@style/Models15Text"
+        android:textSize="@dimen/frag_profile_text_size_small"
+        android:textColor="@color/gray_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_balance"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/balanceText"
+        app:layout_constraintStart_toStartOf="@+id/balanceText"
+        app:layout_constraintTop_toBottomOf="@+id/balanceText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

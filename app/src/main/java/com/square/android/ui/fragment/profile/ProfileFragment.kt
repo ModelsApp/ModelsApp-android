@@ -42,7 +42,14 @@ const val EXTRA_BILLING_TOKEN_INFO = "EXTRA_BILLING_TOKEN_INFO"
 
 const val TYPE_PLAIN = 1 // (only right text, non-clickable)
 const val TYPE_DROPDOWN = 2
-const val TYPE_BUTTON = 3
+const val TYPE_ADD = 3
+const val TYPE_BUTTON = 4
+const val TYPE_CUSTOM = 0
+
+const val ADD_TYPE_BANK_ACCOUNT = 1
+const val ADD_TYPE_PAYPAL_ACCOUNT = 2
+
+const val CUSTOM_TYPE_BALANCE = 2
 
 class ProfileItem(
         var type: Int = 0, // one of TYPE_...
@@ -56,7 +63,9 @@ class ProfileItem(
         var subText: String? = null,
         var dividerVisible: Boolean = false,
         @ColorRes
-        var arrowTint: Int? = null)
+        var arrowTint: Int? = null,
+        var addType: Int? = null,
+        var customType: Int? = null)
 
 class ProfileFragment: BaseFragment(), ProfileView {
 

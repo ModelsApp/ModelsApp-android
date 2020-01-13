@@ -13,9 +13,11 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.square.android.utils.CustomTypefaceSpan
+import kotlinx.android.synthetic.main.item_profile_balance.*
 import kotlinx.android.synthetic.main.item_profile_button.*
 import kotlinx.android.synthetic.main.profile_subitem_agency.view.*
 import kotlinx.android.synthetic.main.profile_subitem_ambassador.view.*
+import kotlinx.android.synthetic.main.profile_subitem_bank_account.view.*
 import kotlinx.android.synthetic.main.profile_subitem_buy_credits.view.*
 import kotlinx.android.synthetic.main.profile_subitem_comp_card.view.*
 import kotlinx.android.synthetic.main.profile_subitem_create.view.*
@@ -30,18 +32,29 @@ import kotlinx.android.synthetic.main.profile_subitem_social.view.*
 
 const val ITEM_PROFILE = 0
 const val ITEM_BUTTON = 1
+const val ITEM_BALANCE = 2
 
 class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, private val socialHandler: SocialHandler? = null,
                          private var businessHandler: BusinessHandler? = null, private var walletHandler: WalletHandler? = null) : BaseAdapter<ProfileItem, ProfileItemAdapter.Holder>(data) {
 
     var openedItems: MutableList<Int> = mutableListOf()
 
-    override fun getViewType(position: Int) = if (data[position].type == TYPE_BUTTON) ITEM_BUTTON else ITEM_PROFILE
+    override fun getViewType(position: Int) =
+            when(data[position].type){
+                TYPE_BUTTON -> ITEM_BUTTON
+                TYPE_CUSTOM ->{
+                    // TODO change when more custom items
+                    ITEM_BALANCE
+                }
+                else -> ITEM_PROFILE
+            }
 
     override fun getLayoutId(viewType: Int) = when(viewType){
         ITEM_PROFILE -> R.layout.item_profile
 
         ITEM_BUTTON -> R.layout.item_profile_button
+
+        ITEM_BALANCE -> R.layout.item_profile_balance
 
         else -> R.layout.item_profile
     }
@@ -86,13 +99,27 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
             if(item.type == TYPE_BUTTON){
 
                 bindButton(item)
-
-            } else{
+            }
+            else if(item.type == TYPE_CUSTOM){
+                when(item.customType){
+                    CUSTOM_TYPE_BALANCE -> bindBalance(item)
+                }
+            }
+            else{
                 clickView.visibility = if (item.type == TYPE_DROPDOWN) View.VISIBLE else View.INVISIBLE
                 arrow.visibility = if (item.type == TYPE_DROPDOWN) View.VISIBLE else View.GONE
                 tv.visibility = if (item.type == TYPE_PLAIN) View.VISIBLE else View.GONE
 
                 divider.visibility = if(item.dividerVisible) View.VISIBLE else View.GONE
+
+                addBtn.visibility = if (item.type == TYPE_ADD) View.VISIBLE else View.GONE
+
+                addBtn.setOnClickListener {
+                    when (item.addType) {
+                        ADD_TYPE_BANK_ACCOUNT -> walletHandler?.addBankAccountClicked()
+                        ADD_TYPE_PAYPAL_ACCOUNT -> walletHandler?.addPaypalAccountClicked()
+                    }
+                }
 
                 item.arrowTint?.let {
                     arrow.imageTintList =  ColorStateList.valueOf(ContextCompat.getColor(arrow.context, it))
@@ -137,7 +164,7 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
 
                 if (item.type == TYPE_PLAIN) {
                     tv.text = item.textValue
-                } else if (item.type == TYPE_DROPDOWN) {
+                } else if (item.type == TYPE_DROPDOWN || item.type == TYPE_ADD) {
 
                     tv.text = if (!TextUtils.isEmpty(item.subText)) item.subText else ""
                     tv.visibility = if (!TextUtils.isEmpty(item.subText)) View.VISIBLE else View.GONE
@@ -177,6 +204,9 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
                                     is ProfileSubItems.Polaroid -> bindPolaroid(objc)
 
                                     // Wallet
+                                    is ProfileSubItems.BankAccount -> bindBankAccount(objc)
+                                    is ProfileSubItems.PaypalAccount -> bindPaypalAccount(objc)
+
                                     else -> null
                                 }
 
@@ -194,6 +224,40 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
                     }
                 }
             }
+        }
+
+        private fun bindBankAccount(item: ProfileSubItems.BankAccount): View {
+            val view = LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_bank_account, null)
+
+            val drawable: Drawable? = when (item.type) {
+                BANK_ACCOUNT_TYPE_VISA -> itemsLl.context.getDrawable(R.drawable.r_shop)
+                BANK_ACCOUNT_TYPE_MASTER_CARD -> itemsLl.context.getDrawable(R.drawable.r_shop)
+                else -> null
+            }
+
+            drawable?.let {
+                view.bankAccountIcon.setImageDrawable(it)
+            }
+
+            view.bankAccountRb.isChecked = item.isPrimary
+
+            view.bankAccountRb.setOnClickListener { walletHandler?.bankAccountCheckClicked(item.isPrimary) }
+
+            view.bankAccountTitle.text = item.number
+
+            return view
+        }
+
+        private fun bindPaypalAccount(item: ProfileSubItems.PaypalAccount): View {
+            //TODO just a polaceholder
+            val view = View(arrow.context)
+//                    LayoutInflater.from(itemsLl.context).inflate(R.layout.profile_subitem_paypal_account, null)
+
+            return view
+        }
+
+        private fun bindBalance(item: ProfileItem){
+            balanceText.text = item.title
         }
 
         private fun bindButton(item: ProfileItem){
@@ -528,13 +592,18 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
         }
 
         fun bindOpened(item: ProfileItem, openedItems: MutableList<Int>?) {
-            openedItems?.let {
-                if (item.type == TYPE_DROPDOWN) {
-                    val opened = adapterPosition in it
 
-                    arrow.animate().rotation(if (!opened) 0f else 90f).setDuration(50).start();
+            if(item.type == TYPE_ADD){
+                itemsLl.visibility = View.VISIBLE
+            } else{
+                openedItems?.let {
+                    if (item.type == TYPE_DROPDOWN) {
+                        val opened = adapterPosition in it
 
-                    itemsLl.visibility = if (opened) View.VISIBLE else View.GONE
+                        arrow.animate().rotation(if (!opened) 0f else 90f).setDuration(50).start();
+
+                        itemsLl.visibility = if (opened) View.VISIBLE else View.GONE
+                    }
                 }
             }
         }
@@ -564,7 +633,9 @@ class ProfileItemAdapter(data: List<ProfileItem>, private val handler: Handler, 
     }
 
     interface WalletHandler{
-        // TODO
+        fun addBankAccountClicked()
+        fun bankAccountCheckClicked(isChecked: Boolean)
+        fun addPaypalAccountClicked()
     }
 
     object OpenedPayload
