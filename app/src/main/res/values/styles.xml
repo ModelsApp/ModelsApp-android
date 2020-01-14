@@ -107,6 +107,24 @@
     </style>
 
 
+    <style name="RedesignedInputField" parent="BaseEditText">
+        <item name="android:minHeight">@dimen/auth_btn_height</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="colorAccent">@color/nice_pink</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingStart">@dimen/v_16dp</item>
+        <item name="android:paddingEnd">@dimen/v_16dp</item>
+        <item name="android:paddingTop">@dimen/v_4dp</item>
+        <item name="android:paddingBottom">@dimen/v_4dp</item>
+        <item name="android:textColorHint">@color/grey_dark</item>
+        <item name="android:background">@drawable/et_bg_rounded_stroke</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+
     <style name="NewInputSpinner" parent="NewInputField">
         <item name="android:paddingEnd">8dp</item>
         <item name="android:drawableRight">@drawable/spinner_arrow_selector</item>
@@ -253,6 +271,11 @@
 
     <style name="Models24SemiBoldText" parent="ModelsText">
         <item name="android:textSize">24sp</item>
+        <item name="fontPath">@string/font_poppins_medium</item>
+    </style>
+
+    <style name="Models26SemiBoldText" parent="ModelsText">
+        <item name="android:textSize">26sp</item>
         <item name="fontPath">@string/font_poppins_medium</item>
     </style>
 

@@ -5,7 +5,7 @@
     android:id="@+id/editProfileContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/profile_toolbarMarginTop"
+    android:layout_marginTop="@dimen/statusMargin"
     android:background="@android:color/background_light"
     android:fitsSystemWindows="true" >
 

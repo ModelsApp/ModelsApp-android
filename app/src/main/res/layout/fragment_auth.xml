@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@color/login_background"
-        tools:context=".ui.fragment.auth.AuthFragment">
+        android:background="@android:color/white"
+        tools:context=".ui.fragment.auth.AuthFragment" >
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+            android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -22,280 +18,17 @@
         <com.square.android.utils.widget.CropImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="false"
-            android:src="@drawable/auth_background"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="@dimen/auth_logo_margin_top"
+            android:src="@drawable/login_bg_image"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_login_or_register"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3"
-            app:layout_constraintEnd_toEndOf="@id/guideline4"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_width="0dp"
-            android:layout_height="0dp">
-            <TextView
-                android:id="@+id/authRegisterButton"
-                style="@style/Models14SemiBoldText"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:background="@drawable/login_button"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@string/register"
-                android:textColor="@color/white"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_or"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_or"
-                style="@style/Models14Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:text="@string/or"
-                android:textColor="@color/white"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
-
-            <TextView
-                android:id="@+id/authButton"
-                style="@style/Models14SemiBoldText"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:background="@drawable/login_button"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_or"
-                app:layout_constraintVertical_bias="0.36" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_register_login_data"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3"
-            app:layout_constraintEnd_toEndOf="@id/guideline4"
-            android:background="@color/login_background"
-            android:animateLayoutChanges="true"
-            android:visibility="gone"
-            android:layout_width="0dp"
-            android:layout_height="0dp">
-            <EditText
-                android:id="@+id/et_email"
-                style="@style/BaseEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingEnd="12dp"
-                android:paddingStart="12dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/email_label"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/white"
-                android:maxLines="1"
-                android:inputType="textEmailAddress"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintBottom_toTopOf="@+id/et_password"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-            <EditText
-                android:id="@+id/et_password"
-                style="@style/BaseEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingEnd="12dp"
-                android:paddingStart="12dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/password_label"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/white"
-                android:maxLines="1"
-                android:inputType="textPassword"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/et_email"
-                app:layout_constraintBottom_toTopOf="@+id/et_confirm_password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-            <EditText
-                android:id="@+id/et_confirm_password"
-                style="@style/BaseEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingEnd="12dp"
-                android:paddingStart="12dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/confirm_password_label"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="8dp"
-                android:maxLines="1"
-                android:inputType="textPassword"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/et_password"
-                app:layout_constraintBottom_toTopOf="@+id/do_action_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/do_action_button"
-                style="@style/Models14SemiBoldText"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:background="@drawable/login_button"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@string/register"
-                android:textColor="@color/white"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/et_confirm_password"
-                app:layout_constraintBottom_toTopOf="@+id/tv_already_user"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/tv_already_user"
-                style="@style/Models13Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:text="@string/already_a_user"
-                android:textColor="@color/white"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/do_action_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tv_not_a_user"/>
-
-            <TextView
-                android:id="@+id/tv_not_a_user"
-                style="@style/Models13Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:text="@string/not_a_user_yet"
-                android:textColor="@color/white"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/tv_already_user"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tv_forgot_password"/>
-
-            <TextView
-                android:id="@+id/tv_forgot_password"
-                style="@style/Models13Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:text="@string/forgot_password"
-                android:textColor="@color/white"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/tv_not_a_user"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tv_want_to_login"/>
-
-            <TextView
-                android:id="@+id/tv_want_to_login"
-                style="@style/Models13Text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:text="@string/want_to_login"
-                android:textColor="@color/white"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/tv_forgot_password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <ProgressBar
-            android:id="@+id/authProgress"
+            android:id="@+id/progress"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -307,83 +40,46 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.40"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            tools:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/pending_splash"
-            android:gravity="center"
-            android:padding="60dp"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:focusable="true"
-            android:layout_width="0dp"
-            android:layout_height="0dp" >
-            <ImageView
-                android:src="@drawable/pending_splash"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_gravity="center"
-                android:layout_width="180dp"
-                android:layout_height="180dp" />
-            <TextView
-                style="@style/Models18BoldText"
-                android:text="@string/thank_you_for_interest"
-                android:gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                style="@style/Models18Text"
-                android:text="@string/pending_text_1"
-                android:gravity="center"
-                android:layout_marginTop="12dp"
-                android:id="@+id/pending_text_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                style="@style/Models18Text"
-                android:text="@string/pending_text_2"
-                android:gravity="center"
-                android:layout_marginTop="12dp"
-                android:id="@+id/pending_text_2"
-                android:textColorLink="@color/models_text_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/pending_button_video"
-                style="@style/Models16SemiBoldText"
-                android:layout_width="200dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="24dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/nice_button_red_pink"
-                android:text="@string/watch_our_videos"
-                android:textStyle="normal"
-                android:textColorLink="@color/white"
-                android:textAllCaps="false"
-                android:textColor="@color/btn_text_color"
-                android:layout_marginBottom="24dp"/>
-            <TextView
-                android:id="@+id/read_acceptation_policy"
-                style="@style/Models18Text"
-                android:text="@string/read_acceptation_policy"
-                android:textColorLink="@color/models_text_color"
-                android:gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/v_24dp"
+        android:layout_marginEnd="@dimen/v_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/auth_btn_height"
+            android:background="@drawable/background_rounded_12dp"
+            android:backgroundTint="@color/gray_divider"
+            android:text="@string/log_in"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/btnSignup"
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/auth_btn_height"
+            android:layout_marginTop="@dimen/v_16dp"
+            android:background="@drawable/background_rounded_12dp"
+            android:backgroundTint="@android:color/black"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>

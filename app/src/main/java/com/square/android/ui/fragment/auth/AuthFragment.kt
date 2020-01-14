@@ -1,18 +1,13 @@
 package com.square.android.ui.fragment.auth
 
 import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.iid.InstanceIdResult
 import com.square.android.App
 import com.square.android.R
 import com.square.android.data.pojo.AuthData
@@ -23,7 +18,7 @@ import com.square.android.presentation.view.auth.AuthView
 import com.square.android.ui.dialogs.OAuthDialog
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.utils.TokenUtils
-import kotlinx.android.synthetic.main.fragment_auth.*
+import kotlinx.android.synthetic.main.fragment_auth_old.*
 
 
 class AuthFragment : BaseFragment(), AuthView {
@@ -35,7 +30,7 @@ class AuthFragment : BaseFragment(), AuthView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_auth, container, false)
+        return inflater.inflate(R.layout.fragment_auth_old, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

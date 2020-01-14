@@ -15,6 +15,9 @@
     <string name="next_step">Next &#8594;</string>
     <string name="lets_start">LET\'S START</string>
     <string name="login">Login</string>
+    <string name="log_in">Log in</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="sign_up">Sign up</string>
     <string name="register">Register</string>
     <string name="cancel">Cancel</string>
 
@@ -411,6 +414,11 @@
     <string name="preferences">Preferences</string>
     <string name="models_com_profile">models.com profile</string>
     <string name="view">View</string>
+
+    <string name="facebook_btn_text">We\'ll never post anything\nwithout your permission.</string>
+    <string name="no_account_text">Don\'t have an account?</string>
+    <string name="welcome_">Welcome,</string>
+    <string name="log_in_to_continue">Log in to continue</string>
 
     <string name="open">Open</string>
     <string name="expired_">(expired)</string>

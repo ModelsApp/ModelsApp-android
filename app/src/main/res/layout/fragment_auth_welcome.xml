@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white"
+    tools:context=".ui.fragment.auth.AuthFragment" >
+
+    <ImageView
+        android:id="@+id/arrowBack"
+        android:layout_width="@dimen/v_40dp"
+        android:layout_height="@dimen/v_40dp"
+        android:layout_marginStart="@dimen/v_12dp"
+        android:layout_marginTop="@dimen/v_12dp"
+        android:src="@drawable/chevron_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcomeTv"
+        style="@style/Models26SemiBoldText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_"
+        android:textSize="@dimen/text_26"
+        android:layout_marginStart="@dimen/v_24dp"
+        android:layout_marginTop="@dimen/v_12dp"
+        app:layout_constraintTop_toBottomOf="@+id/arrowBack"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/Models16SemiBoldText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/v_12dp"
+        android:text="@string/log_in_to_continue"
+        android:textColor="@color/gray_hint_light"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintStart_toStartOf="@+id/welcomeTv"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTv" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/v_24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/noAccountLl" >
+
+<!--  redesigned default edit text     -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_rv_height"
+            android:layout_marginBottom="@dimen/v_24dp" >
+<!--
+        android:drawableEnd="@drawable/ic_postscript"
+        android:drawablePadding="4dp"
+-->     <com.square.android.utils.widget.ErrorEditText
+            style="@style/RedesignedInputField"
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:inputType="textPersonName" />
+
+            <TextView
+                style="@style/Models15Text"
+                android:textSize="@dimen/text_15"
+                android:textColor="@color/gray_hint_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email_label"
+                android:paddingStart="@dimen/v_6dp"
+                android:paddingEnd="@dimen/v_6dp"
+                android:layout_marginStart="@dimen/v_12dp"
+                android:layout_marginEnd="@dimen/v_12dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/white"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_rv_height" >
+<!--
+                    android:drawableEnd="@drawable/ic_postscript"
+                    android:drawablePadding="4dp"
+-->     <com.square.android.utils.widget.ErrorEditText
+            style="@style/RedesignedInputField"
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:inputType="textPersonName" />
+
+            <TextView
+                style="@style/Models15Text"
+                android:textSize="@dimen/text_15"
+                android:textColor="@color/gray_hint_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password_label"
+                android:paddingStart="@dimen/v_6dp"
+                android:paddingEnd="@dimen/v_6dp"
+                android:layout_marginStart="@dimen/v_12dp"
+                android:layout_marginEnd="@dimen/v_12dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/white"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/forgotTv"
+            style="@style/Models15SemiBoldText"
+            android:textSize="@dimen/text_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/v_12dp"
+            android:layout_marginBottom="@dimen/v_24dp"
+            android:layout_gravity="end"
+            android:text="@string/forgot_password"
+            android:textColor="@android:color/black" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/login_button"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone"
+            tools:visibility="gone"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:id="@+id/btnsLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="visible"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btnLogin"
+                style="@style/Models16Text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/auth_btn_height"
+                android:layout_marginTop="@dimen/v_16dp"
+                android:background="@drawable/background_rounded_12dp"
+                android:backgroundTint="@android:color/black"
+                android:text="@string/log_in"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/v_16dp"
+                android:layout_marginBottom="@dimen/v_8dp"
+                android:text="@string/or"
+                android:textColor="@color/gray_hint_light"
+                android:textSize="@dimen/text_16" />
+
+            <LinearLayout
+                android:id="@+id/btnContinueFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/auth_btn_height"
+                android:background="@drawable/background_rounded_12dp"
+                android:backgroundTint="@color/gray_divider"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_12dp"
+                    android:src="@drawable/facebook_logo" />
+
+                <TextView
+                    style="@style/Models16Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/continue_with_facebook"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_16" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/Models12Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/v_16dp"
+                android:text="@string/facebook_btn_text"
+                android:textColor="@color/gray_disabled"
+                android:textSize="@dimen/text_12" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/noAccountLl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/v_24dp"
+        android:backgroundTint="@color/gray_divider"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/v_8dp"
+            android:text="@string/no_account_text"
+            android:textColor="@color/gray_hint_light" />
+
+        <TextView
+            android:id="@+id/signUpTv"
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/text_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,7 @@
 <!--  was 56dp  -->
     <dimen name="toolbarHeight">42dp</dimen>
 
-    <dimen name="statusMargin">28dp</dimen>
+    <dimen name="statusMargin">32dp</dimen>
 
 <!--  was 28  -->
     <dimen name="backArrowSize">24dp</dimen>

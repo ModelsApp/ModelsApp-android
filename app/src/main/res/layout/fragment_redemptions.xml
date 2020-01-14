@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
-    android:layout_marginTop="@dimen/profile_toolbarMarginTop"
+    android:layout_marginTop="@dimen/statusMargin"
     android:layout_height="match_parent" >
 
     <TextView

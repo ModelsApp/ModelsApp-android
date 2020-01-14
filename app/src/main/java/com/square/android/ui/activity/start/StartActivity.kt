@@ -56,6 +56,7 @@ class StartActivity : BaseActivity(), StartView {
                     else -> null
                 }
 
+        //TODO WHEN DONE - remove all old content(classes, layouts, icons, styles etc. )
         override fun createFragment(screenKey: String, data: Any?) =
                 when (screenKey) {
                     SCREENS.INTRO -> IntroFragment()

@@ -42,7 +42,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/profileToolbar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/profile_toolbarMarginTop"
+                android:layout_marginTop="@dimen/statusMargin"
                 android:layout_height="@dimen/profile_toolbarHeight"
                 android:fitsSystemWindows="false"
                 app:contentInsetStart="0dp"

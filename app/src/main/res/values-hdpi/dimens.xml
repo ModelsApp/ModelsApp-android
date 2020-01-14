@@ -174,7 +174,6 @@
     <dimen name="profile_toolbarHeight">174dp</dimen>
     <dimen name="profile_bgImageSize">300dp</dimen>
     <!-- it probably should stay 28dp because of status bar height-->
-    <dimen name="profile_toolbarMarginTop">32dp</dimen>
     <dimen name="profile_scrimVisibleHeightTrigger">225dp</dimen>
     <dimen name="profile_topPadding">18dp</dimen>
     <dimen name="profile_roundedViewHeight">18dp</dimen>
@@ -191,17 +190,32 @@
     <dimen name="profile_iconsPadding">12dp</dimen>
     <dimen name="profile_iconsSize">24dp</dimen>
     <dimen name="profile_iconsInsidePadding">3dp</dimen>
-    <!--  profile_resizedImageSize(64) + paddingStart(16dp) + profile_defaultPadding(24dp) -->
+<!--  profile_resizedImageSize(64) + paddingStart(16dp) + profile_defaultPadding(24dp) -->
     <dimen name="profile_secondaryContainerMargin">78dp</dimen>
 
+    <!-- fragment_auth -->
+    <dimen name="auth_logo_margin_top">72dp</dimen>
+    <dimen name="auth_btn_height">42dp</dimen>
+<!--  auth_btn_height + 8dp(6dp in hdpi)  -->
+    <dimen name="et_rv_height">48dp</dimen>
 
-
-    <dimen name="v_1dp">0.75dp</dimen>
+    <dimen name="v_40dp">30dp</dimen>
+    <dimen name="v_32dp">24dp</dimen>
+    <dimen name="v_24dp">18dp</dimen>
+    <dimen name="v_16dp">12dp</dimen>
+    <dimen name="v_12dp">9dp</dimen>
     <dimen name="v_8dp">6dp</dimen>
+    <dimen name="v_6dp">4.5dp</dimen>
+    <dimen name="v_4dp">3dp</dimen>
+    <dimen name="v_1dp">0.75dp</dimen>
 
+    <dimen name="text_12">9sp</dimen>
     <dimen name="text_13">9sp</dimen>
     <dimen name="text_14">10sp</dimen>
-    <dimen name="text_16">13sp</dimen>
+    <dimen name="text_15">11sp</dimen>
+    <dimen name="text_16">12sp</dimen>
+    <dimen name="text_26">20sp</dimen>
+
 
 <!--  TODO: difference in dp between xhdpi and hdpi is 1 : 0.75 -> 10dp in xhdpi is 7.5dp in hdpi  -->
 
