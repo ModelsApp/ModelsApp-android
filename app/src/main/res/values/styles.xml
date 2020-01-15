@@ -87,7 +87,6 @@
         <item name="android:background">@drawable/input_field_spinner_bg</item>
     </style>
 
-
     <style name="NewInputField" parent="BaseEditText">
         <item name="android:minHeight">48dp</item>
         <item name="android:maxLines">1</item>
@@ -107,22 +106,63 @@
     </style>
 
 
-    <style name="RedesignedInputField" parent="BaseEditText">
-        <item name="android:minHeight">@dimen/auth_btn_height</item>
+
+<!-- NEW UI FIELDS -->
+    <style name="RedesignedBaseEditText" parent="Models15Text">
+        <item name="android:textSize">@dimen/text_15</item>
         <item name="android:maxLines">1</item>
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:scrollHorizontally">true</item>
         <item name="colorAccent">@color/nice_pink</item>
+        <item name="android:textColorHint">@color/grey_dark</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <style name="RedesignedSpinnerArrow">
+        <item name="android:layout_width">@dimen/v_24dp</item>
+        <item name="android:layout_height">@dimen/v_24dp</item>
+        <item name="android:layout_marginEnd">@dimen/v_12dp</item>
+        <item name="android:src">@drawable/spinner_arrow_selector_black</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="RedesignedFieldHeader" parent="Models15Text">
+        <item name="android:textSize">@dimen/text_15</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:paddingStart">@dimen/v_6dp</item>
+        <item name="android:paddingEnd">@dimen/v_6dp</item>
+        <item name="android:layout_marginStart">@dimen/v_12dp</item>
+        <item name="android:layout_marginEnd">@dimen/v_12dp</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="RedesignedInputField" parent="RedesignedBaseEditText">
+        <item name="android:minHeight">@dimen/auth_btn_height</item>
         <item name="android:layout_marginTop">0dp</item>
         <item name="android:paddingStart">@dimen/v_16dp</item>
         <item name="android:paddingEnd">@dimen/v_16dp</item>
         <item name="android:paddingTop">@dimen/v_4dp</item>
         <item name="android:paddingBottom">@dimen/v_4dp</item>
-        <item name="android:textColorHint">@color/grey_dark</item>
         <item name="android:background">@drawable/et_bg_rounded_stroke</item>
-        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
     </style>
+
+    <style name="RedesignedSpinner" parent="RedesignedInputField">
+        <item name="android:paddingEnd">@dimen/v_12dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+
 
 
     <style name="NewInputSpinner" parent="NewInputField">

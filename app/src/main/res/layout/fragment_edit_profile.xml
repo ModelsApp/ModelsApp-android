@@ -274,13 +274,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:background="@android:color/transparent"
-            android:text="@string/nationality"
+            android:text="@string/nationality_"
             android:textColor="@color/grey_dark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/formEditProfileNationalityContainer"
             app:layout_constraintBottom_toBottomOf="@id/formEditProfileNationalityContainer"
             android:gravity="start" />
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/formEditProfileNationalityContainer"
