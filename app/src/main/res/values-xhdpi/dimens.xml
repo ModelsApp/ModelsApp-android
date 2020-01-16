@@ -200,24 +200,41 @@
 <!--  auth_btn_height + 8dp(6dp in hdpi)  -->
     <dimen name="et_rv_height">64dp</dimen>
 
+    <!-- fragment_sign_up -->
+    <dimen name="signup_checkbox_text_padding_top">9dp</dimen>
+    <dimen name="signup_checkbox_scale">1</dimen>
+    <dimen name="signup_checkbox_size">32dp</dimen>
+    <dimen name="signup_checkbox_margin_start">-8dp</dimen>
+
+    <dimen name="v_128dp">128dp</dimen>
+
+    <dimen name="v_88dp">88dp</dimen>
     <dimen name="v_56dp">56dp</dimen>
+    <dimen name="v_48dp">48dp</dimen>
+    <dimen name="v_44dp">44dp</dimen>
     <dimen name="v_40dp">40dp</dimen>
     <dimen name="v_32dp">32dp</dimen>
+    <dimen name="v_28dp">28dp</dimen>
     <dimen name="v_24dp">24dp</dimen>
     <dimen name="v_16dp">16dp</dimen>
     <dimen name="v_12dp">12dp</dimen>
+    <dimen name="v_10dp">10dp</dimen>
     <dimen name="v_8dp">8dp</dimen>
     <dimen name="v_6dp">6dp</dimen>
     <dimen name="v_4dp">4dp</dimen>
+    <dimen name="v_3_5dp">3.5dp</dimen>
+    <dimen name="v_3dp">3dp</dimen>
     <dimen name="v_2_5dp">2.5dp</dimen>
     <dimen name="v_2dp">2dp</dimen>
     <dimen name="v_1dp">1dp</dimen>
+    <dimen name="v_minus_24dp">-24dp</dimen>
 
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_13">13sp</dimen>
     <dimen name="text_14">14sp</dimen>
     <dimen name="text_15">15sp</dimen>
     <dimen name="text_16">16sp</dimen>
+    <dimen name="text_22">22sp</dimen>
     <dimen name="text_26">26sp</dimen>
 
 <!--  TODO: difference in dp between xhdpi and hdpi is 1 : 0.75 -> 10dp in xhdpi is 7.5dp in hdpi  -->

@@ -128,10 +128,11 @@
     </style>
 
     <style name="RedesignedFieldHeader" parent="Models15Text">
+        <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">@dimen/text_15</item>
         <item name="android:textColor">@color/text_gray</item>
-        <item name="android:paddingStart">@dimen/v_6dp</item>
-        <item name="android:paddingEnd">@dimen/v_6dp</item>
+        <item name="android:paddingStart">@dimen/v_3_5dp</item>
+        <item name="android:paddingEnd">@dimen/v_3_5dp</item>
         <item name="android:layout_marginStart">@dimen/v_12dp</item>
         <item name="android:layout_marginEnd">@dimen/v_12dp</item>
         <item name="android:layout_alignParentStart">true</item>

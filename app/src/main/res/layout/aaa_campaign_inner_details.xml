@@ -300,9 +300,9 @@
                                 android:textColor="@color/gray_hint" />
 
                             <ImageView
+                                android:src="@drawable/chevron_right"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:src="@drawable/chevron_right"
                                 android:tint="@color/gray_hint" />
                         </LinearLayout>
 

@@ -92,14 +92,14 @@
 
     <ImageView
         android:id="@+id/arrow"
+        android:src="@drawable/chevron_right"
         android:layout_width="@dimen/item_profile_arrow_size"
         android:layout_height="@dimen/item_profile_arrow_size"
         tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
-        android:src="@drawable/chevron_right" />
+        app:layout_constraintBottom_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/tv"

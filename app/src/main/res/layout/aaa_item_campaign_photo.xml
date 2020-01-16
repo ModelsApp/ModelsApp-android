@@ -78,9 +78,9 @@
             app:autoSizeTextType="uniform" />
 
         <ImageView
+            android:src="@drawable/chevron_right"
             android:layout_width="@dimen/whats_wrong_icSize"
-            android:layout_height="@dimen/whats_wrong_icSize"
-            android:src="@drawable/chevron_right" />
+            android:layout_height="@dimen/whats_wrong_icSize" />
 
     </LinearLayout>
 

@@ -72,9 +72,9 @@
 
             <ImageView
                 android:id="@+id/pickupDayRight"
+                android:src="@drawable/chevron_right"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/chevron_right"
                 android:foreground="?attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/pickupMonth"
                 app:layout_constraintStart_toEndOf="@+id/pickupMonth"

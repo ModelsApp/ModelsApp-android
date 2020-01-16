@@ -126,7 +126,7 @@
         android:elevation="0dp"
         android:background="@drawable/background_rounded_12dp"
         android:backgroundTint="@android:color/black"
-        android:text="@string/log_in"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_16"
@@ -147,8 +147,8 @@
         app:layout_constraintBottom_toBottomOf="parent" >
 
         <TextView
-            style="@style/Models16Text"
-            android:textSize="@dimen/text_16"
+            style="@style/Models15Text"
+            android:textSize="@dimen/text_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/v_8dp"
@@ -157,8 +157,8 @@
 
         <TextView
             android:id="@+id/logInTv"
-            style="@style/Models16SemiBoldText"
-            android:textSize="@dimen/text_16"
+            style="@style/Models15SemiBoldText"
+            android:textSize="@dimen/text_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/log_in"

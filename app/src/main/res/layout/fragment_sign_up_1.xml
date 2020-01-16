@@ -5,17 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:layout_height="match_parent"
-    android:paddingStart="@dimen/v_24dp"
-    android:paddingEnd="@dimen/v_24dp"
+    android:clipToPadding="false"
+    android:padding="@dimen/v_24dp"
     android:orientation="vertical"
     tools:background="@android:color/white" >
 
     <!--  redesigned default spinner     -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/et_rv_height"
-        android:layout_marginTop="@dimen/v_24dp" >
+        android:layout_height="@dimen/et_rv_height" >
 <!--   TODO: this view onClick -> call spinner onClick  -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,13 +174,15 @@
            android:layout_height="wrap_content"
            android:inputType="textPassword" />
 
-<!--   TODO: change drawable to the correct one     -->
+<!--   TODO clicking this icon will show/hide password? (change inputType = textVisiblePassword or textPassword)    -->
         <ImageView
-            android:layout_width="@dimen/v_24dp"
+            android:layout_width="@dimen/v_40dp"
             android:layout_height="@dimen/v_24dp"
-            android:layout_marginEnd="@dimen/v_16dp"
+            android:paddingEnd="@dimen/v_16dp"
+            android:paddingStart="@dimen/v_4dp"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/r_shop"
+            android:src="@drawable/ic_visibility_off"
+            android:tint="@color/text_gray"
             android:layout_alignTop="@+id/et_password"
             android:layout_alignBottom="@+id/et_password" />
 
@@ -190,5 +190,51 @@
             style="@style/RedesignedFieldHeader"
             android:text="@string/password_label" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/et_rv_height"
+        android:layout_marginTop="@dimen/v_24dp" >
+        <com.square.android.utils.widget.ErrorEditText
+            style="@style/RedesignedInputField"
+            android:id="@+id/et_referral"
+            android:digits="1234567890qwertyuiopasdfghjklzxcvbnm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <TextView
+            style="@style/RedesignedFieldHeader"
+            android:text="@string/referral_code_optional" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_44dp"
+        android:layout_marginTop="@dimen/v_12dp"
+        android:layout_marginStart="@dimen/signup_checkbox_margin_start"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:layout_width="@dimen/signup_checkbox_size"
+            android:layout_height="@dimen/signup_checkbox_size"
+            android:scaleX="@dimen/signup_checkbox_scale"
+            android:scaleY="@dimen/signup_checkbox_scale"
+            android:buttonTint="@color/checkbox_colors" />
+
+<!--   TODO spannable "Terms and Conditions" and "Privacy policy" - color black
+       TODO if spannable clicked - open link, else - trigger checkbox -->
+        <TextView
+            style="@style/Models13Text"
+            android:textSize="@dimen/text_13"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/v_2dp"
+            android:paddingTop="@dimen/signup_checkbox_text_padding_top"
+            android:lineSpacingExtra="@dimen/v_3dp"
+            android:text="@string/terms_privacy_text"
+            android:textColor="@color/text_gray" />
+
+    </LinearLayout>
 
 </LinearLayout>
