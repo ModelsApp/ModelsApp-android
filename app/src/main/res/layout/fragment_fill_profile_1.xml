@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:clipToPadding="false"
-    tools:context=".ui.fragment.fillProfileFirst.FillProfileFirstFragment" >
+    tools:context=".ui.fragment.signUp.FillProfileFirstFragment" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fillProfileHeader1"

@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileSecond
+package com.square.android.ui.fragment.signUp
 
 import android.os.Bundle
 import android.text.Editable
@@ -13,14 +13,14 @@ import com.square.android.R
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.extensions.content
 import com.square.android.extensions.hideKeyboard
-import com.square.android.presentation.presenter.fillProfileSecond.FillProfileSecondPresenter
-import com.square.android.presentation.view.fillProfileSecond.FillProfileSecondView
+import com.square.android.presentation.presenter.signUp.FillProfileSecondPresenter
+import com.square.android.presentation.view.signUp.FillProfileSecondView
 import com.square.android.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_fill_profile_2.*
 import kotlinx.android.synthetic.main.profile_form_2.view.*
 import org.jetbrains.anko.bundleOf
 
-private const val EXTRA_MODEL = "EXTRA_MODEL"
+private const val EXTRA_MODEL_SECOND = "EXTRA_MODEL"
 
 class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
 
@@ -49,7 +49,7 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
         fun newInstance(info: ProfileInfo): FillProfileSecondFragment {
             val fragment = FillProfileSecondFragment()
 
-            val args = bundleOf(EXTRA_MODEL to info)
+            val args = bundleOf(EXTRA_MODEL_SECOND to info)
             fragment.arguments = args
 
             return fragment
@@ -104,9 +104,9 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
 
         form.formProfileCity1.setOnClickListener {
             context?.let {
-                dialog = SelectCityDialog(it, presenter.cities){ city: String ->
+                dialog = SelectCityDialog(it, presenter.cities) { city: String ->
 
-                    if(!TextUtils.isEmpty(city.trim())){
+                    if (!TextUtils.isEmpty(city.trim())) {
                         form.formProfileAgency1Error.visibility = View.GONE
                     }
                     form.formProfileCity1.text = city
@@ -117,7 +117,7 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
 
         form.formProfileCity2.setOnClickListener {
             context?.let {
-                dialog = SelectCityDialog(it, presenter.cities){ city: String ->
+                dialog = SelectCityDialog(it, presenter.cities) { city: String ->
                     form.formProfileAgency2Error.visibility = View.GONE
 
                     form.formProfileCity2.text = city
@@ -128,7 +128,7 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
 
         form.formProfileCity3.setOnClickListener {
             context?.let {
-                dialog = SelectCityDialog(it, presenter.cities){ city: String ->
+                dialog = SelectCityDialog(it, presenter.cities) { city: String ->
                     form.formProfileAgency3Error.visibility = View.GONE
 
                     form.formProfileCity3.text = city
@@ -214,7 +214,7 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
         }
     }
 
-    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL) as ProfileInfo
+    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_SECOND) as ProfileInfo
 
     override fun onStop() {
         val profileInfo = presenter.info

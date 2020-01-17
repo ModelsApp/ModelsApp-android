@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileFirst
+package com.square.android.ui.fragment.signUp
 
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -15,8 +15,8 @@ import com.square.android.R
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.extensions.content
 import com.square.android.extensions.toOrdinalString
-import com.square.android.presentation.presenter.fillProfileFirst.FillProfileFirstPresenter
-import com.square.android.presentation.view.fillProfileFirst.FillProfileFirstView
+import com.square.android.presentation.presenter.signUp.FillProfileFirstPresenter
+import com.square.android.presentation.view.signUp.FillProfileFirstView
 import com.square.android.ui.dialogs.DatePickDialog
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.utils.ValidationCallback
@@ -29,6 +29,14 @@ private const val EXTRA_MODEL = "EXTRA_MODEL"
 private const val COUNTRY_DEFAULT_ISO = "US"
 
 class FillProfileFirstFragment : BaseFragment(), FillProfileFirstView,  ValidationCallback<CharSequence>, OnCountryPickerListener  {
+
+
+    override fun validate(): Boolean {
+        return true
+    }
+
+
+
 
     override fun showData(profileInfo: ProfileInfo) {
         form.formDialPhoneNumber.setText(profileInfo.phoneN)

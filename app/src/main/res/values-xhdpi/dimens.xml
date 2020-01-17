@@ -195,7 +195,6 @@
     <dimen name="profile_secondaryContainerMargin">104dp</dimen>
 
     <!-- fragment_auth -->
-    <dimen name="auth_logo_margin_top">96dp</dimen>
     <dimen name="auth_btn_height">56dp</dimen>
 <!--  auth_btn_height + 8dp(6dp in hdpi)  -->
     <dimen name="et_rv_height">64dp</dimen>

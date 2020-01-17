@@ -1,10 +1,10 @@
-package com.square.android.presentation.presenter.fillProfileSecond
+package com.square.android.presentation.presenter.signUp
 
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.SCREENS
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.view.fillProfileSecond.FillProfileSecondView
+import com.square.android.presentation.view.signUp.FillProfileSecondView
 
 @InjectViewState
 class FillProfileSecondPresenter(val info: ProfileInfo) : BasePresenter<FillProfileSecondView>() {

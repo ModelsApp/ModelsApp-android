@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="@dimen/v_24dp"
-    android:layout_marginEnd="@dimen/v_24dp"
-    android:layout_marginTop="@dimen/v_56dp">
+    android:background="@android:color/white"
+    android:clipToPadding="false"
+    android:paddingStart="@dimen/v_24dp"
+    android:paddingEnd="@dimen/v_24dp"
+    android:paddingTop="@dimen/v_56dp">
 
 <!--  TODO change src  -->
     <ImageView
         android:id="@+id/congratulationsImg"
         android:layout_width="@dimen/v_88dp"
         android:layout_height="@dimen/v_88dp"
-        android:layout_marginTop="@dimen/v_16dp"
+        android:layout_marginTop="@dimen/v_40dp"
         android:src="@drawable/r_shop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,9 +53,7 @@
         style="@style/Models16Text"
         android:layout_width="match_parent"
         android:layout_height="@dimen/auth_btn_height"
-        android:elevation="0dp"
         android:layout_marginTop="@dimen/v_48dp"
-        android:stateListAnimator="@null"
         android:background="@drawable/background_rounded_12dp"
         android:backgroundTint="@android:color/black"
         android:text="@string/follow_us_instagram"

@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:clipToPadding="false"
+    android:clipChildren="false"
     android:background="@android:color/white"
     tools:context=".ui.fragment.auth.AuthFragment" >
 
@@ -47,6 +49,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="@dimen/v_24dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintBottom_toTopOf="@+id/noAccountLl" >
 
@@ -100,87 +104,98 @@
             android:text="@string/forgot_password"
             android:textColor="@android:color/black" />
 
-        <ProgressBar
-            android:id="@+id/progress"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/login_button"
-            android:indeterminateTintMode="src_atop"
-            android:visibility="gone"
-            tools:visibility="gone"
-            android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:id="@+id/btnsLl"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:visibility="visible"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/btnLogin"
-                style="@style/Models16Text"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/auth_btn_height"
-                android:layout_marginTop="@dimen/v_16dp"
-                android:elevation="0dp"
-                android:stateListAnimator="@null"
-                android:background="@drawable/background_rounded_12dp"
-                android:backgroundTint="@android:color/black"
-                android:text="@string/log_in"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_16" />
-
-            <TextView
-                style="@style/Models16Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/v_16dp"
-                android:layout_marginBottom="@dimen/v_8dp"
-                android:text="@string/or"
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_16" />
+            android:clipToPadding="false"
+            android:clipChildren="false" >
 
             <LinearLayout
-                android:id="@+id/btnContinueFacebook"
+                android:id="@+id/btnsLl"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/auth_btn_height"
-                android:background="@drawable/background_rounded_12dp"
-                android:backgroundTint="@color/gray_divider"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:clipToPadding="false"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/v_12dp"
-                    android:src="@drawable/facebook_logo" />
+                <Button
+                    android:id="@+id/btnLogin"
+                    style="@style/Models16Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/auth_btn_height"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:background="@drawable/background_rounded_12dp"
+                    android:backgroundTint="@android:color/black"
+                    android:text="@string/log_in"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_16" />
 
                 <TextView
                     style="@style/Models16Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/continue_with_facebook"
-                    android:textColor="@android:color/black"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:layout_marginBottom="@dimen/v_8dp"
+                    android:text="@string/or"
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/text_16" />
+
+                <LinearLayout
+                    android:id="@+id/btnContinueFacebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/auth_btn_height"
+                    android:stateListAnimator="@animator/shadow_button_anim"
+                    android:background="@drawable/background_rounded_12dp"
+                    android:backgroundTint="@color/gray_divider"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/v_12dp"
+                        android:src="@drawable/facebook_logo" />
+
+                    <TextView
+                        style="@style/Models16Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/continue_with_facebook"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_16" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Models12Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/v_2_5dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:text="@string/facebook_btn_text"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_12" />
 
             </LinearLayout>
 
-            <TextView
-                style="@style/Models12Text"
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="@dimen/v_2_5dp"
-                android:layout_marginTop="@dimen/v_16dp"
-                android:text="@string/facebook_btn_text"
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_12" />
+                android:indeterminate="true"
+                android:indeterminateTint="@color/login_button"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="invisible"
+                tools:visibility="visible"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -9,6 +9,9 @@ object SCREENS {
 
     const val INTRO = "INTRO"
     const val AUTH = "AUTH"
+    const val LOGIN = "LOGIN"
+    const val RESET_PASSWORD = "RESET_PASSWORD"
+    const val SIGN_UP = "SIGN_UP"
 
     const val FILL_PROFILE_FIRST = "FILL_PROFILE_FIRST"
     const val FILL_PROFILE_SECOND = "FILL_PROFILE_SECOND"

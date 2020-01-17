@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileSecond
+package com.square.android.ui.fragment.signUp
 
 import android.annotation.SuppressLint
 import android.content.Context

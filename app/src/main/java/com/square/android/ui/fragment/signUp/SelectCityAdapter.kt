@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileSecond
+package com.square.android.ui.fragment.signUp
 
 import android.view.View
 import com.square.android.R

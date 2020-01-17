@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@android:color/white"
-        tools:context=".ui.fragment.auth.AuthFragment" >
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:background="@android:color/white"
+    tools:context=".ui.fragment.auth.AuthFragment" >
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -20,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:layout_marginTop="@dimen/auth_logo_margin_top"
+            android:layout_marginTop="@dimen/v_56dp"
             android:src="@drawable/login_bg_image"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +51,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:clipToPadding="false"
+        android:clipChildren="false"
         android:layout_marginStart="@dimen/v_24dp"
         android:layout_marginEnd="@dimen/v_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,5 +86,16 @@
             android:textColor="@android:color/white" />
 
     </LinearLayout>
+
+    <include
+        android:id="@+id/pending_screen"
+        layout="@layout/pending_congratulations"
+        android:visibility="gone"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

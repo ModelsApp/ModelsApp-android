@@ -1,4 +1,4 @@
-package com.square.android.presentation.view.fillProfileReferral
+package com.square.android.presentation.view.signUp
 
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType

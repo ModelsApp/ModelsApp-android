@@ -38,8 +38,10 @@ class MainPresenter : BasePresenter<MainView>() {
         } else {
             val user = repository.getCurrentUser().await()
             if (user.isAcceptationPending || !user.accepted) {
-                viewState.showUserPending()
                 allowAndCheckSubs()
+
+                viewState.showUserPending()
+
             } else {
                 viewState.hideUserPending()
                 if (!repository.isLoggedIn() || !repository.isProfileFilled()) {
@@ -62,10 +64,6 @@ class MainPresenter : BasePresenter<MainView>() {
 
             }
         }
-    }
-
-    fun navigateTutorialVideos(){
-        router.navigateTo(SCREENS.TUTORIAL_VIDEOS)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

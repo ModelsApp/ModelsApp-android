@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileFirst
+package com.square.android.ui.fragment.signUp
 
 import android.annotation.SuppressLint
 import android.content.Context

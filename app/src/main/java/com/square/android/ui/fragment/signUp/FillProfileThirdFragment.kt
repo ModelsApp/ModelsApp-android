@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileThird
+package com.square.android.ui.fragment.signUp
 
 import android.app.Activity
 import android.content.Intent
@@ -16,8 +16,8 @@ import com.square.android.R
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.extensions.loadImage
 import com.square.android.extensions.toBytes
-import com.square.android.presentation.presenter.fillProfileThird.FillProfileThirdPresenter
-import com.square.android.presentation.view.fillProfileThird.FillProfileThirdView
+import com.square.android.presentation.presenter.signUp.FillProfileThirdPresenter
+import com.square.android.presentation.view.signUp.FillProfileThirdView
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.utils.FileUtils
 import com.square.android.utils.IMAGE_PICKER_RC
@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.profile_form_3.*
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.dimen
 
-private const val EXTRA_MODEL = "EXTRA_MODEL"
+private const val EXTRA_MODEL_THIRD = "EXTRA_MODEL"
 
 class FillProfileThirdFragment: BaseFragment(), FillProfileThirdView, PermissionsListener {
 
@@ -66,7 +66,7 @@ class FillProfileThirdFragment: BaseFragment(), FillProfileThirdView, Permission
         fun newInstance(info: ProfileInfo): FillProfileThirdFragment {
             val fragment = FillProfileThirdFragment()
 
-            val args = bundleOf(EXTRA_MODEL to info)
+            val args = bundleOf(EXTRA_MODEL_THIRD to info)
             fragment.arguments = args
 
             return fragment
@@ -194,7 +194,7 @@ class FillProfileThirdFragment: BaseFragment(), FillProfileThirdView, Permission
 
     private fun checkImagesFilled() = images.filterNotNull().size == 3
 
-    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL) as ProfileInfo
+    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_THIRD) as ProfileInfo
 
     override fun onPermissionResult(granted: Boolean) {
         if (granted) {

@@ -690,6 +690,7 @@
     <string name="available_offers">Available Offers</string>
 
     <string name="send">Send</string>
+    <string name="send_request">Send request</string>
 
     <string name="pick_gift_at_location">Pick up the gift at location:</string>
     <string name="open_in_map">Open in map</string>

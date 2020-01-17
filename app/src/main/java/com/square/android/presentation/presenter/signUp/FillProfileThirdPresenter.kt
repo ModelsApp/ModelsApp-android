@@ -1,11 +1,11 @@
-package com.square.android.presentation.presenter.fillProfileThird
+package com.square.android.presentation.presenter.signUp
 
 import android.net.Uri
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.SCREENS
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.view.fillProfileThird.FillProfileThirdView
+import com.square.android.presentation.view.signUp.FillProfileThirdView
 
 @InjectViewState
 class FillProfileThirdPresenter(val info: ProfileInfo) : BasePresenter<FillProfileThirdView>() {

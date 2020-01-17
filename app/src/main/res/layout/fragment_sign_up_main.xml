@@ -9,6 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topContainer"
         android:layout_width="0dp"
+        android:paddingTop="@dimen/v_8dp"
+        android:paddingBottom="@dimen/v_4dp"
         android:layout_height="wrap_content"
         android:background="@color/greyish_app_bg"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,26 +32,27 @@
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="@+id/arrowBack"
             app:layout_constraintBottom_toBottomOf="@id/arrowBack"
-            app:layout_constraintStart_toEndOf="@+id/arrowBack"
-            app:layout_constraintEnd_toStartOf="@+id/nextTv" >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
 
             <TextView
                 android:id="@+id/signUpTv"
-                style="@style/Models16SemiBoldText"
-                android:textSize="@dimen/text_16"
+                style="@style/Models15SemiBoldText"
+                android:textSize="@dimen/text_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_up"
                 android:textColor="@android:color/black" />
 
             <TextView
-                style="@style/Models14Text"
+                android:id="@+id/signUpNumber"
+                style="@style/Models13Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="1/3"
                 android:layout_marginTop="@dimen/v_2dp"
                 android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_14" />
+                android:textSize="@dimen/text_13" />
         </LinearLayout>
 
         <TextView

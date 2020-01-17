@@ -1,11 +1,11 @@
-package com.square.android.presentation.presenter.fillProfileFirst
+package com.square.android.presentation.presenter.signUp
 
 import com.arellomobile.mvp.InjectViewState
 import com.mukesh.countrypicker.Country
 import com.square.android.SCREENS
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.view.fillProfileFirst.FillProfileFirstView
+import com.square.android.presentation.view.signUp.FillProfileFirstView
 
 @InjectViewState
 class FillProfileFirstPresenter(val info: ProfileInfo) : BasePresenter<FillProfileFirstView>() {

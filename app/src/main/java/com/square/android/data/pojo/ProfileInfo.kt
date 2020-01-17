@@ -13,6 +13,14 @@ data class ProfileInfo(var name: String = "",
                        var instagramName: String = "",
                        var phone: String = "",
                        var motherAgency: String = "",
+
+                       @Transient
+                       @JsonIgnore
+                       var email: String? = null,
+                       @Transient
+                       @JsonIgnore
+                       var password: String? = null,
+
                        @Transient
                        @JsonIgnore
                        var agency: String? = null,

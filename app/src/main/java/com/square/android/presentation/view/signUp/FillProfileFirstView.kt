@@ -1,4 +1,4 @@
-package com.square.android.presentation.view.fillProfileFirst
+package com.square.android.presentation.view.signUp
 
 import com.mukesh.countrypicker.Country
 import com.square.android.data.pojo.ProfileInfo

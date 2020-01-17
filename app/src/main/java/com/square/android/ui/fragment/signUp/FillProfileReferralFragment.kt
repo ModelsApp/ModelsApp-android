@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.fillProfileReferral
+package com.square.android.ui.fragment.signUp
 
 import android.app.Activity
 import android.os.Bundle
@@ -17,8 +17,8 @@ import com.square.android.R
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.extensions.content
 import com.square.android.extensions.hideKeyboard
-import com.square.android.presentation.presenter.fillProfileReferral.FillProfileReferralPresenter
-import com.square.android.presentation.view.fillProfileReferral.FillProfileReferralView
+import com.square.android.presentation.presenter.signUp.FillProfileReferralPresenter
+import com.square.android.presentation.view.signUp.FillProfileReferralView
 import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.utils.TokenUtils
@@ -26,7 +26,7 @@ import com.square.android.utils.ValidationCallback
 import kotlinx.android.synthetic.main.fragment_fill_profile_referral.*
 import org.jetbrains.anko.bundleOf
 
-private const val EXTRA_MODEL = "EXTRA_MODEL"
+private const val EXTRA_MODEL_REFERRAL = "EXTRA_MODEL"
 
 private const val CODE_LENGTH = 4
 
@@ -101,14 +101,14 @@ class FillProfileReferralFragment : BaseFragment(), FillProfileReferralView, Val
         loadingDialog?.dismiss()
     }
 
-    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL) as ProfileInfo
+    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_REFERRAL) as ProfileInfo
 
     companion object {
         @Suppress("DEPRECATION")
         fun newInstance(info: ProfileInfo): FillProfileReferralFragment {
             val fragment = FillProfileReferralFragment()
 
-            val args = bundleOf(EXTRA_MODEL to info)
+            val args = bundleOf(EXTRA_MODEL_REFERRAL to info)
             fragment.arguments = args
 
             return fragment

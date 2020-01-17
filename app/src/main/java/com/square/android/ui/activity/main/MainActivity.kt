@@ -3,7 +3,6 @@ package com.square.android.ui.activity.main
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -48,6 +47,7 @@ import com.square.android.utils.ActivityUtils
 import com.square.android.utils.DialogDepository
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.notifications_badge.*
+import kotlinx.android.synthetic.main.pending_congratulations.view.*
 import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
@@ -77,9 +77,9 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
         setContentView(R.layout.activity_main)
 
-        pending_text_2.movementMethod = LinkMovementMethod.getInstance()
-        read_acceptation_policy.movementMethod = LinkMovementMethod.getInstance()
-        pending_button_video.setOnClickListener { presenter.navigateTutorialVideos() }
+        pending_screen.btnFollow.setOnClickListener {
+            //TODO:F
+        }
 
         setUpNavigation()
         setUpNotifications()
@@ -101,11 +101,11 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     }
 
     override fun showUserPending() {
-        pending_splash.visibility = View.VISIBLE
+        pending_screen.visibility = View.VISIBLE
     }
 
     override fun hideUserPending() {
-        pending_splash.visibility = View.GONE
+        pending_screen.visibility = View.GONE
     }
 
     override fun setActiveRedemptions(count: Int) {
