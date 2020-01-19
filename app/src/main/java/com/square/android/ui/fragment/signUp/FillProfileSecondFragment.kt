@@ -24,6 +24,10 @@ private const val EXTRA_MODEL_SECOND = "EXTRA_MODEL"
 
 class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
 
+    override fun validate(): Boolean {
+        return true
+    }
+
     override fun showData(profileInfo: ProfileInfo) {
         form.formProfileMotherAgency.setText(profileInfo.motherAgency)
 

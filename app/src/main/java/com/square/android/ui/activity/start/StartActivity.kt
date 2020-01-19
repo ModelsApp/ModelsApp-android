@@ -21,6 +21,7 @@ import com.square.android.ui.fragment.auth.LogInFragment
 import com.square.android.ui.fragment.auth.ResetPasswordFragment
 import com.square.android.ui.fragment.intro.IntroFragment
 import com.square.android.ui.fragment.signUp.*
+import com.square.android.utils.ActivityUtils
 import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
@@ -36,6 +37,8 @@ class StartActivity : BaseActivity(), StartView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        ActivityUtils.setTransparentStatusAndDrawBehind(this)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             var flags = this.window.decorView.systemUiVisibility
             flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -46,7 +49,8 @@ class StartActivity : BaseActivity(), StartView {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.last() is FillProfileFirstFragment
+        //TODO:F check if it is ok
+        if (supportFragmentManager.fragments.last() is SignUpOneFragment
                 || supportFragmentManager.fragments.last() is AuthFragment
                 || supportFragmentManager.fragments.last() is zzc
                 || supportFragmentManager.fragments.last() is IntroFragment) {
@@ -77,10 +81,10 @@ class StartActivity : BaseActivity(), StartView {
                     SCREENS.RESET_PASSWORD -> ResetPasswordFragment()
                     SCREENS.SIGN_UP -> SignUpMainFragment()
 
-                    SCREENS.FILL_PROFILE_FIRST -> FillProfileFirstFragment.newInstance(data as ProfileInfo)
-                    SCREENS.FILL_PROFILE_SECOND -> FillProfileSecondFragment.newInstance(data as ProfileInfo)
-                    SCREENS.FILL_PROFILE_THIRD -> FillProfileThirdFragment.newInstance(data as ProfileInfo)
-                    SCREENS.FILL_PROFILE_REFERRAL -> FillProfileReferralFragment.newInstance(data as ProfileInfo)
+//                    SCREENS.FILL_PROFILE_FIRST -> SignUpOneFragment.newInstance(data as ProfileInfo)
+//                    SCREENS.FILL_PROFILE_SECOND -> FillProfileSecondFragment.newInstance(data as ProfileInfo)
+//                    SCREENS.FILL_PROFILE_THIRD -> FillProfileThirdFragment.newInstance(data as ProfileInfo)
+//                    SCREENS.FILL_PROFILE_REFERRAL -> FillProfileReferralFragment.newInstance(data as ProfileInfo)
                     else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
                 }
 

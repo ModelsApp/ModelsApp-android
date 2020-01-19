@@ -8,6 +8,7 @@
     android:animateLayoutChanges="true"
     android:clipToPadding="false"
     android:clipChildren="false"
+    android:paddingTop="@dimen/statusMargin"
     android:background="@android:color/white"
     tools:context=".ui.fragment.auth.AuthFragment" >
 

@@ -39,6 +39,19 @@
 
     <string name="accept">Accept</string>
 
+    <string name="select_nationality">Select nationality</string>
+    <string name="select_date_of_birth">Select date of birth</string>
+    <string name="select_gender">Select gender</string>
+    <string name="select_profession">Select profession</string>
+    <string name="select_speciality">Select speciality</string>
+    <string name="select_additional_specialities">Select additional specialities</string>
+    <string name="select_capabilities">Select capabilities</string>
+    <string name="select_preferences">Select preferences</string>
+    <string name="accept_terms">Accept Terms and the Privacy Policy</string>
+    <string name="email_error">Enter your email</string>
+    <string name="password_error">Enter your password</string>
+    <string name="referral_error">Enter valid or delete referral code</string>
+
     <string name="app_not_installed">This application is not installed on your device</string>
 
     <string name="upload_action_prntscr">Upload the print screen\nof the action you just done.</string>

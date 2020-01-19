@@ -112,6 +112,7 @@
         <item name="android:textSize">@dimen/text_15</item>
         <item name="android:maxLines">1</item>
         <item name="android:lines">1</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:ellipsize">end</item>
         <item name="android:scrollHorizontally">true</item>
         <item name="colorAccent">@color/nice_pink</item>
@@ -157,14 +158,28 @@
 
     <style name="RedesignedSpinner" parent="RedesignedInputField">
         <item name="android:paddingEnd">@dimen/v_12dp</item>
+        <item name="android:paddingStart">0dp</item>
         <item name="android:background">@null</item>
-        <item name="android:gravity">center_vertical</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
+        <item name="popupTheme">@style/RedesignedSpinnerPopupTheme</item>
+        <item name="android:popupBackground">@drawable/spinner_popup_rounded_stroke</item>
     </style>
 
+    <style name="RedesignedSpinnerPopupTheme">
+        <item name="android:overScrollMode">never</item>
+        <item name="overlapAnchor">false</item>
+    </style>
 
-
+    <style name="RedesignedSpinnerError" parent="Models13Text">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/error_text_size</item>
+        <item name="android:textColor">@color/nice_red</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginBottom">@dimen/v_8dp</item>
+    </style>
 
     <style name="NewInputSpinner" parent="NewInputField">
         <item name="android:paddingEnd">8dp</item>

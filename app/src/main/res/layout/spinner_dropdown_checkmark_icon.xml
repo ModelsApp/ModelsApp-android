@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.square.android.utils.widget.CheckableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/v_8dp"
+    android:paddingBottom="@dimen/v_8dp"
+    android:paddingStart="@dimen/v_12dp"
+    android:paddingEnd="@dimen/v_12dp"
     android:gravity="center_vertical"
+    android:id="@+id/checkableContainer"
     android:orientation="horizontal" >
 
     <CheckedTextView
-        android:id="@+id/specialityCheckableTv"
-        style="@style/Models16Text"
-        android:textSize="@dimen/text_16"
+        android:id="@+id/checkableTv"
+        style="@style/Models15Text"
+        android:textSize="@dimen/text_15"
         android:layout_width="match_parent"
         tools:checked="true"
         android:drawableEnd="@drawable/checkable_checked_drawable"

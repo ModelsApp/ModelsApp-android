@@ -195,14 +195,15 @@
 
     <!-- fragment_auth -->
     <dimen name="auth_btn_height">42dp</dimen>
-<!--  auth_btn_height + 8dp(6dp in hdpi)  -->
-    <dimen name="et_rv_height">48dp</dimen>
+<!--  auth_btn_height + margin(9dp in xhdpi)  -->
+    <dimen name="et_rl_height">48.75dp</dimen>
 
     <!-- fragment_sign_up -->
     <dimen name="signup_checkbox_text_padding_top">9dp</dimen>
     <dimen name="signup_checkbox_scale">0.75</dimen>
     <dimen name="signup_checkbox_size">28dp</dimen>
     <dimen name="signup_checkbox_margin_start">-9dp</dimen>
+    <dimen name="signup_checkbox_margin_start_positive">9dp</dimen>
 
 
     <dimen name="v_88dp">66dp</dimen>
@@ -234,6 +235,8 @@
     <dimen name="text_22">16sp</dimen>
     <dimen name="text_26">20sp</dimen>
 
+
+    <dimen name="error_text_size">9sp</dimen>
 
 <!--  TODO: difference in dp between xhdpi and hdpi is 1 : 0.75 -> 10dp in xhdpi is 7.5dp in hdpi  -->
 

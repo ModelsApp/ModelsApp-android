@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:clipToPadding="false"
     android:background="@color/greyish_app_bg"
-    tools:context=".ui.fragment.signUp.FillProfileFirstFragment" >
+    tools:context=".ui.fragment.signUp.SignUpOneFragment" >
 
     <ImageView
         android:id="@+id/fillProfileHeader4"

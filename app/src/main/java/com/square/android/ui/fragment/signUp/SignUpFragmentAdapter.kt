@@ -18,23 +18,17 @@ class SignUpFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentManag
 
     private var mCurrentPosition = -1
 
-    // TODO:F make all this three fragments of one, new base type
     private var registeredFragments = SparseArray<BaseFragment>()
 
-    //TODO:F check if working - there was instantiateItem in example
     override fun getItem(position: Int): Fragment{
         return when (position) {
             POSITION_ONE -> {
-
-                                             // rename to SignUpOneFragment
-                val fragment: BaseFragment = FillProfileFirstFragment.newInstance(profileInfo)
-
+                val fragment: BaseFragment = SignUpOneFragment.newInstance(profileInfo)
                 registeredFragments.put(position, fragment)
-
                 fragment
             }
             POSITION_TWO -> {
-                                             // rename to SignUpTwoFragment
+                                             //TODO:F rename to SignUpTwoFragment
                 val fragment: BaseFragment = FillProfileSecondFragment.newInstance(profileInfo)
 
                 registeredFragments.put(position, fragment)
@@ -42,7 +36,7 @@ class SignUpFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentManag
                 fragment
             }
             POSITION_THREE -> {
-                                             // rename to SignUpThreeFragment
+                                             //TODO:F rename to SignUpThreeFragment
                 val fragment: BaseFragment = FillProfileThirdFragment.newInstance(profileInfo)
 
                 registeredFragments.put(position, fragment)

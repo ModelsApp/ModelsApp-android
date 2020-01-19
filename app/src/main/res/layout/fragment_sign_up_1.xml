@@ -11,63 +11,103 @@
     tools:background="@android:color/white" >
 
     <!--  redesigned default spinner     -->
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/et_rv_height" >
-<!--   TODO: this view onClick -> call spinner onClick  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/et_bg_rounded_stroke"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true" >
-            <androidx.appcompat.widget.AppCompatSpinner
-                style="@style/RedesignedSpinner"
-                android:id="@+id/spinnerNationality"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-            <ImageView style="@style/RedesignedSpinnerArrow" />
-
-        </LinearLayout>
         <TextView
-            style="@style/RedesignedFieldHeader"
-            android:text="@string/nationality" />
-    </RelativeLayout>
+            android:id="@+id/nationalityError"
+            style="@style/RedesignedSpinnerError"
+            tools:visibility="visible"
+            android:text="@string/select_nationality" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_rl_height" >
+            <!--   TODO: this view onClick -> call spinner onClick  -->
+            <LinearLayout
+                android:id="@+id/nationalityLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/et_bg_rounded_stroke"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true" >
+                <androidx.appcompat.widget.AppCompatSpinner
+                    style="@style/RedesignedSpinner"
+                    android:id="@+id/spinnerNationality"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView style="@style/RedesignedSpinnerArrow" />
+
+            </LinearLayout>
+            <TextView
+                style="@style/RedesignedFieldHeader"
+                android:text="@string/nationality" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/v_24dp"
+        android:gravity="bottom"
         android:orientation="horizontal" >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:layout_weight="0.5" >
+
+            <TextView
+                android:id="@+id/dateOfBirthError"
+                style="@style/RedesignedSpinnerError"
+                tools:visibility="visible"
+                android:text="@string/select_date_of_birth" />
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/et_rv_height"
-            android:layout_weight="0.5"
-            android:layout_marginEnd="@dimen/v_12dp" >
-            <com.square.android.utils.widget.ErrorEditText
+            android:layout_height="@dimen/et_rl_height"
+            android:layout_weight="0.5" >
+            <TextView
                 style="@style/RedesignedInputField"
-                android:id="@+id/etDateOfBirth"
+                android:id="@+id/tvDateOfBirth"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date" />
+                android:layout_height="wrap_content" />
             <TextView
                 style="@style/RedesignedFieldHeader"
                 android:text="@string/hint_birth" />
         </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:layout_marginStart="@dimen/v_12dp" >
+
+            <TextView
+                android:id="@+id/genderError"
+                style="@style/RedesignedSpinnerError"
+                tools:visibility="visible"
+                android:text="@string/select_gender" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_marginStart="@dimen/v_12dp"
-            android:layout_height="@dimen/et_rv_height" >
+            android:layout_height="@dimen/et_rl_height" >
             <!--   TODO: this view onClick -> call spinner onClick  -->
             <LinearLayout
+                android:id="@+id/genderLl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -90,12 +130,13 @@
                 style="@style/RedesignedFieldHeader"
                 android:text="@string/hint_gender" />
         </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/et_rv_height"
+        android:layout_height="@dimen/et_rl_height"
         android:layout_marginTop="@dimen/v_24dp" >
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,22 +148,33 @@
             android:layout_alignParentBottom="true" >
 
             <LinearLayout
+                android:id="@+id/dialCodeLl"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/auth_btn_height"
                 android:orientation="horizontal" >
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spinnerMobile"
-                    style="@style/RedesignedSpinner"
-                    android:paddingEnd="@dimen/v_2dp"
-                    tools:layout_width="48dp"
+                <ImageView
+                    android:id="@+id/dialFlag"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/v_4dp"
+                    android:layout_marginStart="@dimen/v_16dp"
+                    tools:src="@drawable/flag_ac" />
+
+                <TextView
+                    android:id="@+id/dialCode"
+                    style="@style/Models13Text"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/text_13"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
+                    android:layout_height="match_parent"
+                    android:text="+1" />
 
                 <ImageView
                     android:layout_width="@dimen/v_12dp"
                     android:layout_height="@dimen/v_12dp"
+                    android:layout_marginStart="@dimen/v_2dp"
                     android:src="@drawable/spinner_arrow_selector_black"
                     android:layout_gravity="center_vertical" />
 
@@ -147,7 +199,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/et_rv_height"
+        android:layout_height="@dimen/et_rl_height"
         android:layout_marginTop="@dimen/v_24dp" >
         <com.square.android.utils.widget.ErrorEditText
             style="@style/RedesignedInputField"
@@ -163,7 +215,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/et_rv_height"
+        android:layout_height="@dimen/et_rl_height"
         android:layout_marginTop="@dimen/v_24dp" >
 
        <com.square.android.utils.widget.ErrorEditText
@@ -176,13 +228,14 @@
 
 <!--   TODO clicking this icon will show/hide password? (change inputType = textVisiblePassword or textPassword)    -->
         <ImageView
+            android:id="@+id/passwordIcon"
             android:layout_width="@dimen/v_40dp"
             android:layout_height="@dimen/v_24dp"
             android:paddingEnd="@dimen/v_16dp"
             android:paddingStart="@dimen/v_4dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_visibility_off"
-            android:tint="@color/text_gray"
+            android:tint="@android:color/black"
             android:layout_alignTop="@+id/et_password"
             android:layout_alignBottom="@+id/et_password" />
 
@@ -193,7 +246,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/et_rv_height"
+        android:layout_height="@dimen/et_rl_height"
         android:layout_marginTop="@dimen/v_24dp" >
         <com.square.android.utils.widget.ErrorEditText
             style="@style/RedesignedInputField"
@@ -201,6 +254,7 @@
             android:digits="1234567890qwertyuiopasdfghjklzxcvbnm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
             android:inputType="text" />
 
         <TextView
@@ -210,12 +264,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/v_44dp"
-        android:layout_marginTop="@dimen/v_12dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/v_16dp"
+        android:clipToPadding="true"
+        android:clipChildren="false"
         android:layout_marginStart="@dimen/signup_checkbox_margin_start"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/termsError"
+            style="@style/RedesignedSpinnerError"
+            android:layout_marginBottom="@dimen/v_4dp"
+            tools:visibility="visible"
+            android:layout_marginStart="@dimen/signup_checkbox_margin_start_positive"
+            android:text="@string/accept_terms" />
+
+    <LinearLayout
+        android:id="@+id/termsCbLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
         android:orientation="horizontal" >
 
         <CheckBox
+            android:id="@+id/termsCb"
             android:layout_width="@dimen/signup_checkbox_size"
             android:layout_height="@dimen/signup_checkbox_size"
             android:scaleX="@dimen/signup_checkbox_scale"
@@ -235,6 +306,7 @@
             android:text="@string/terms_privacy_text"
             android:textColor="@color/text_gray" />
 
+     </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -31,6 +31,10 @@ private const val EXTRA_MODEL_THIRD = "EXTRA_MODEL"
 
 class FillProfileThirdFragment: BaseFragment(), FillProfileThirdView, PermissionsListener {
 
+    override fun validate(): Boolean {
+        return true
+    }
+
     // Commented because we're not saving images on device right now
     override fun showData(profileInfo: ProfileInfo) {
 

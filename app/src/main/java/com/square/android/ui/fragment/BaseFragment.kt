@@ -24,7 +24,6 @@ abstract class BaseFragment : MvpFragment(), BaseView {
 
     open val PERMISSION_REQUEST_CODE : Int? = null
 
-    // TODO:F check all fields(et, spinners etc.) in fragment extending this and: show errors on empty/wrong ones and return FALSE OR return TRUE
     open fun validate(): Boolean { return false }
 
     private var waitAttempts: Int = 0

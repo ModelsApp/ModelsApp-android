@@ -20,6 +20,10 @@ data class ProfileInfo(var name: String = "",
                        @Transient
                        @JsonIgnore
                        var password: String? = null,
+                       @Transient
+                       @JsonIgnore
+                       var referral: String? = null,
+
 
                        @Transient
                        @JsonIgnore
@@ -39,10 +43,6 @@ data class ProfileInfo(var name: String = "",
                        @Transient
                        @JsonIgnore
                        var city3: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var referral: String? = null,
-
 //                  @JsonIgnore
 //                  var imagesUri: List<Uri>? = null,
                        @Transient

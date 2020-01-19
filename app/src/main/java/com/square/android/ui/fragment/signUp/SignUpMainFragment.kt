@@ -26,10 +26,6 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO:F find a way to make statusBar gray in this fragment - probably by using StartActivity theme in manifest and
-        // ActivityUtils.setTransparentStatusAndDrawBehind in StartActivity before setContentView and fillViewport = false in startAc layout AND adding top margins/paddings(equal to status bar height) in every startActivity's fragments
-
-
         setupFragmentAdapter()
 
         btnNext.setOnClickListener {
