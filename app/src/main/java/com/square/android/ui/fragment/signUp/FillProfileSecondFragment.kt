@@ -212,7 +212,7 @@ class FillProfileSecondFragment: BaseFragment(), FillProfileSecondView {
             val city3 = form.formProfileCity3.content
             val agency3 = form.formProfileAgency3.content
 
-            presenter.nextClicked(motherAgency = motherAgency, city1 = city1, agency1 = agency1, city2 = city2, agency2 = agency2, city3 = city3, agency3 = agency3)
+//            presenter.nextClicked(motherAgency = motherAgency, city1 = city1, agency1 = agency1, city2 = city2, agency2 = agency2, city3 = city3, agency3 = agency3)
 
             activity?.hideKeyboard()
         }

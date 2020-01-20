@@ -305,6 +305,12 @@ class ActualRepository(private val api: ApiService,
         localManager.setLoggedIn(isLogged)
     }
 
+    override fun isLoggedInFacebook(): Boolean = localManager.isLoggedInFacebook()
+
+    override fun setLoggedInFacebook(isLoggedFb: Boolean){
+        localManager.setLoggedInFacebook(isLoggedFb)
+    }
+
     override fun getCurrentUser(): Deferred<Profile.User> = GlobalScope.async {
         val data = performRequest { api.getCurrentProfile() }
         setUserPaymentRequired(data.isPaymentRequired)

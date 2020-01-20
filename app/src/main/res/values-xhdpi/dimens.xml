@@ -216,6 +216,7 @@
     <dimen name="v_32dp">32dp</dimen>
     <dimen name="v_28dp">28dp</dimen>
     <dimen name="v_24dp">24dp</dimen>
+    <dimen name="v_20dp">20dp</dimen>
     <dimen name="v_16dp">16dp</dimen>
     <dimen name="v_12dp">12dp</dimen>
     <dimen name="v_10dp">10dp</dimen>

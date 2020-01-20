@@ -1,26 +1,33 @@
 package com.square.android.presentation.presenter.start
 
 import com.arellomobile.mvp.InjectViewState
-import com.google.gson.Gson
+import com.facebook.AccessToken
 import com.square.android.SCREENS
-import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.start.StartView
-import java.lang.Exception
 
 @InjectViewState
 class StartPresenter : BasePresenter<StartView>() {
 
-    init {
-
+    fun navigate() {
         if(repository.shouldDisplayIntro()){
             router.replaceScreen(SCREENS.INTRO)
-        } else if(repository.isLoggedIn() && repository.isProfileFilled()){
+        }
+        else if(repository.isLoggedInFacebook() && repository.isProfileFilled()){
+            if(AccessToken.getCurrentAccessToken() != null && !AccessToken.getCurrentAccessToken().isExpired){
+                router.replaceScreen(SCREENS.MAIN)
+            } else{
+                repository.setLoggedIn(false)
+                repository.setLoggedInFacebook(false)
+                viewState.logOutFb()
+            }
+        }
+        else if(repository.isLoggedIn() && repository.isProfileFilled()){
             router.replaceScreen(SCREENS.MAIN)
-        } else {
+        }
+        else {
             router.replaceScreen(SCREENS.AUTH)
         }
-
 
    // Old code with sign up data saving
 //
@@ -65,5 +72,9 @@ class StartPresenter : BasePresenter<StartView>() {
 //            }
 //        }
 
+    }
+
+    fun navigateToAuth(){
+        router.replaceScreen(SCREENS.AUTH)
     }
 }

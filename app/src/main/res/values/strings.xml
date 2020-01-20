@@ -866,4 +866,8 @@
 
     <string name="select_the_method">Select the method you prefer to get the item</string>
 
+
+    <string name="facebook_app_id">595875637649319</string>
+    <string name="fb_login_protocol_scheme">fb595875637649319</string>
+
 </resources>

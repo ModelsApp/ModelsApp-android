@@ -187,6 +187,7 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
                 android:inputType="phone"
                 android:digits="0123456789" />
 
@@ -206,6 +207,7 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:inputType="textEmailAddress" />
 
         <TextView
@@ -224,6 +226,7 @@
            android:paddingEnd="@dimen/v_56dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:imeOptions="actionDone"
            android:inputType="textPassword" />
 
 <!--   TODO clicking this icon will show/hide password? (change inputType = textVisiblePassword or textPassword)    -->

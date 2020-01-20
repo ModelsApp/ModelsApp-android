@@ -1,6 +1,9 @@
 package com.square.android.ui.activity.main
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -78,7 +81,14 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         setContentView(R.layout.activity_main)
 
         pending_screen.btnFollow.setOnClickListener {
-            //TODO:F
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/_u/square.app"))
+            i.setPackage(getString(R.string.instagram_package))
+            try {
+                startActivity(i)
+            } catch (e: ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/square.app")))
+            }
         }
 
         setUpNavigation()

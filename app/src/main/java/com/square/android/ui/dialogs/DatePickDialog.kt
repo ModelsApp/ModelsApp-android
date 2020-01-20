@@ -8,7 +8,8 @@ import com.square.android.extensions.toOrdinalString
 import java.util.*
 
 class DatePickDialog(private val context: Context,
-                     private val minDate: Long ? = null) {
+                     private val minDate: Long? = null,
+                     private val maxDate: Long? = null) {
 
     companion object {
         fun minDateToday() : Long = System.currentTimeMillis() - 1000
@@ -33,6 +34,7 @@ class DatePickDialog(private val context: Context,
         val dialog = DatePickerDialog(context, onDateSetListener, year, month, day)
 
         minDate?.let { dialog.datePicker.minDate = it }
+        maxDate?.let { dialog.datePicker.maxDate = it }
 
         dialog.show()
     }

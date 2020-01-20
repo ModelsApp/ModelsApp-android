@@ -107,7 +107,7 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
             allOk = false
         }
 
-        if(!TextUtils.isEmpty(et_referral.content) && et_referral.content.length != 4){
+        if(!TextUtils.isEmpty(et_referral.content) && et_referral.content.length != REFERRAL_CODE_LENGTH){
             et_referral.setText("")
             et_referral.showCustomError(getString(R.string.referral_error))
 
@@ -215,14 +215,14 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
         }
     }
 
-    fun isValid(item: CharSequence) = item.toString().trim().isNotEmpty()
+    private fun isValid(item: CharSequence) = item.toString().trim().isNotEmpty()
 
     override fun showBirthday(displayBirthday: String) {
         tvDateOfBirth.text = displayBirthday
     }
 
     private fun showBirthDialog() {
-        DatePickDialog(activity!!)
+        DatePickDialog(activity!!, maxDate = Calendar.getInstance().timeInMillis)
                 .show { calendar: Calendar ->
                     val mothName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
                     val dayName = calendar.get(Calendar.DAY_OF_MONTH).toOrdinalString()
@@ -254,7 +254,7 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
         }
     }
 
-        // Old code for saving/restoring data
+        // Old code for restoring/saving data
     override fun showData(profileInfo: ProfileInfo) {
 //        form.formDialPhoneNumber.setText(profileInfo.phoneN)
 //

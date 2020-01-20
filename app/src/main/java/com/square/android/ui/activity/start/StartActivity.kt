@@ -1,31 +1,43 @@
 package com.square.android.ui.activity.start
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.facebook.*
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.common.api.internal.zzc
 import com.square.android.R
 import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
-import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.start.StartPresenter
 import com.square.android.presentation.view.start.StartView
 import com.square.android.ui.activity.BaseActivity
-import com.square.android.ui.activity.main.MainActivity
+import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.ui.fragment.auth.AuthFragment
 import com.square.android.ui.fragment.auth.LogInFragment
 import com.square.android.ui.fragment.auth.ResetPasswordFragment
 import com.square.android.ui.fragment.intro.IntroFragment
 import com.square.android.ui.fragment.signUp.*
 import com.square.android.utils.ActivityUtils
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.intentFor
+import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
+import java.lang.Exception
+import com.facebook.GraphRequest
+import com.facebook.AccessToken
+import com.square.android.ui.activity.main.MainActivity
+
+class FbData(val name:String, val surname: String, val imageUrl: String)
+class FacebookLoginEvent(val data: FbData)
 
 class StartActivity : BaseActivity(), StartView {
 
@@ -33,6 +45,12 @@ class StartActivity : BaseActivity(), StartView {
     lateinit var presenter: StartPresenter
 
     override fun provideNavigator(): Navigator = StartNavigator(this)
+
+    private var loadingDialog: LoadingDialog? = null
+
+    private val eventBus: EventBus by inject()
+
+    var callbackManager: CallbackManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +64,58 @@ class StartActivity : BaseActivity(), StartView {
         }
 
         setContentView(R.layout.activity_start)
+
+        callbackManager = CallbackManager.Factory.create()
+
+        loadingDialog = LoadingDialog(this)
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+                object : FacebookCallback<LoginResult> {
+                    override fun onSuccess(loginResult: LoginResult) {
+                        showLoadingDialog()
+
+                        val request: GraphRequest = GraphRequest.newMeRequest(loginResult.accessToken,
+                                GraphRequest.GraphJSONObjectCallback { objc, response ->
+                                    try {
+                                        val name = objc.get("first_name") as String
+                                        val surname = objc.get("last_name") as String
+                                        var imageUrl = ""
+
+                                        if (objc.has("picture")) {
+                                            val is_silhouette = objc.getJSONObject("picture").getJSONObject("data").getBoolean("is_silhouette")
+
+                                            if (!is_silhouette) {
+                                                imageUrl = objc.getJSONObject("picture").getJSONObject("data").getString("url")
+                                            } else{
+                                                // user has no added photos
+                                            }
+                                        }
+                                        eventBus.post(FacebookLoginEvent(FbData(name, surname, imageUrl)))
+                                    } catch (e: Exception){
+                                        //TODO:F show error
+                                    }
+
+                                    hideLoadingDialog()
+                                })
+
+                        val parameters = Bundle()
+                        parameters.putString("fields", "name,picture,first_name,last_name")
+                        request.parameters = parameters
+                        request.executeAsync()
+                    }
+
+                    override fun onCancel() { }
+
+                    override fun onError(exception: FacebookException) {
+                        //TODO:F show error
+                    }
+                })
+
+        presenter.navigate()
     }
 
     override fun onBackPressed() {
-        //TODO:F check if it is ok
-        if (supportFragmentManager.fragments.last() is SignUpOneFragment
-                || supportFragmentManager.fragments.last() is AuthFragment
+        if (supportFragmentManager.fragments.last() is AuthFragment
                 || supportFragmentManager.fragments.last() is zzc
                 || supportFragmentManager.fragments.last() is IntroFragment) {
             finishAffinity()
@@ -81,10 +145,6 @@ class StartActivity : BaseActivity(), StartView {
                     SCREENS.RESET_PASSWORD -> ResetPasswordFragment()
                     SCREENS.SIGN_UP -> SignUpMainFragment()
 
-//                    SCREENS.FILL_PROFILE_FIRST -> SignUpOneFragment.newInstance(data as ProfileInfo)
-//                    SCREENS.FILL_PROFILE_SECOND -> FillProfileSecondFragment.newInstance(data as ProfileInfo)
-//                    SCREENS.FILL_PROFILE_THIRD -> FillProfileThirdFragment.newInstance(data as ProfileInfo)
-//                    SCREENS.FILL_PROFILE_REFERRAL -> FillProfileReferralFragment.newInstance(data as ProfileInfo)
                     else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
                 }
 
@@ -93,13 +153,13 @@ class StartActivity : BaseActivity(), StartView {
                                                        nextFragment: Fragment,
                                                        fragmentTransaction: FragmentTransaction) {
 
-            if(command is Forward){
+            if (command is Forward) {
                 fragmentTransaction.setCustomAnimations(
                         R.anim.enter_from_right,
                         R.anim.exit_to_left,
                         R.anim.enter_from_left,
                         R.anim.exit_to_right)
-            } else{
+            } else {
                 fragmentTransaction.setCustomAnimations(R.anim.fade_in,
                         R.anim.fade_out,
                         R.anim.fade_in,
@@ -108,4 +168,42 @@ class StartActivity : BaseActivity(), StartView {
 
         }
     }
+
+    fun logInRegister(){
+        LoginManager.getInstance().logInWithReadPermissions(this, listOf("email", "public_profile"))
+    }
+
+    fun logOutRegister(){
+        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
+            AccessToken.setCurrentAccessToken(null)
+            LoginManager.getInstance().logOut()
+
+        }).executeAsync()
+    }
+
+    override fun logOutFb(){
+        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
+            AccessToken.setCurrentAccessToken(null)
+            LoginManager.getInstance().logOut()
+            presenter.navigateToAuth()
+        }).executeAsync()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun hideLoadingDialog() {
+        loadingDialog?.dismiss()
+    }
+
+    override fun showLoadingDialog() {
+        loadingDialog?.show()
+    }
+
+    override fun showProgress() {}
+
+    override fun hideProgress() {}
+
 }

@@ -21,6 +21,8 @@ private const val KEY_USER_PAYMENT_REQUIRED = "KEY_USER_PAYMENT_REQUIRED"
 private const val KEY_PROFILE_FILLED = "KEY_PROFILE_FILLED"
 private const val KEY_LOGGED_IN = "KEY_LOGGED_IN"
 
+private const val KEY_LOGGED_IN_FACEBOOK = "KEY_LOGGED_IN_FACEBOOK"
+
 private const val KEY_OAUTH_TOKEN = "KEY_OAUTH_TOKEN"
 
 private const val KEY_SOCIAL_LINK = "KEY_SOCIAL_LINK"
@@ -79,6 +81,14 @@ class LocalDataManager(context: Context) {
     fun setLoggedIn(isLogged: Boolean) {
         preferences.edit()
                 .putBoolean(KEY_LOGGED_IN, isLogged)
+                .apply()
+    }
+
+    fun isLoggedInFacebook(): Boolean = preferences.getBoolean(KEY_LOGGED_IN_FACEBOOK, false)
+
+    fun setLoggedInFacebook(isLoggedFb: Boolean){
+        preferences.edit()
+                .putBoolean(KEY_LOGGED_IN_FACEBOOK, isLoggedFb)
                 .apply()
     }
 
@@ -180,6 +190,7 @@ class LocalDataManager(context: Context) {
                 .remove(KEY_PROFILE_FILLED)
                 .remove(KEY_AUTH_TOKEN)
                 .remove(KEY_LOGGED_IN)
+                .remove(KEY_LOGGED_IN_FACEBOOK)
                 .remove(KEY_USER_NAME)
                 .remove(KEY_AVATAR_URL)
                 .remove(KEY_SOCIAL_LINK)

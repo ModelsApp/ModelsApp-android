@@ -29,7 +29,6 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
         setupFragmentAdapter()
 
         btnNext.setOnClickListener {
-      // make all this three fragments of one base type
             if(((viewPager.adapter as SignUpFragmentAdapter).getRegisteredFragment(currentPagerPosition) as BaseFragment).validate()){
 
                 if(currentPagerPosition < 2){
@@ -44,12 +43,14 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
         arrowBack.setOnClickListener { if(currentPagerPosition > 0) viewPager.setCurrentItem(currentPagerPosition -1, true) else activity?.onBackPressed() }
 
         nextTv.setOnClickListener { btnNext.callOnClick() }
+
+        logInTv.setOnClickListener { activity?.onBackPressed() }
     }
     private fun setupFragmentAdapter() {
         viewPager.isPagingEnabled = false
         viewPager.adapter = SignUpFragmentAdapter(childFragmentManager, presenter.profileInfo!!)
 
-        viewPager.offscreenPageLimit = 2
+        viewPager.offscreenPageLimit = 3
 
         viewPager.addOnPageChangeListener( object: ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) { }
@@ -66,10 +67,13 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
     fun setUpPage(position: Int){
         signUpNumber.text = (position + 1).toString() +"/"+"3"
 
-        btnNext.text = if(position < 2) getString(R.string.next) else getString(R.string.send_request)
+        //TODO will be (position < 2)
+        btnNext.text = if(position < 1) getString(R.string.next) else getString(R.string.send_request)
 
-        nextTv.text = if(position < 2) getString(R.string.next) else getString(R.string.send_request)
-        nextTv.setTextColor(ContextCompat.getColor(nextTv.context, if(position < 2) R.color.text_gray else android.R.color.black))
+        //TODO will be (position < 2)
+        nextTv.text = if(position < 1) getString(R.string.next) else getString(R.string.send_request)
+                                                                   //TODO will be (position < 2)
+        nextTv.setTextColor(ContextCompat.getColor(nextTv.context, if(position < 1) R.color.text_gray else android.R.color.black))
     }
 
     override fun showProgress() {

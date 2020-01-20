@@ -21,6 +21,10 @@ import com.square.android.utils.ValidationCallback
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import android.content.Intent
+import com.facebook.AccessToken
+import com.facebook.GraphRequest
+import com.facebook.HttpMethod
+import com.facebook.login.LoginManager
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.square.android.utils.PermissionsManager
 
@@ -49,7 +53,15 @@ class EditProfileFragment : BaseFragment(), EditProfileView, ValidationCallback<
 
         formEditProfileBirth.setOnClickListener { showBirthDialog() }
 
-        editProfileLogout.setOnClickListener { presenter.logout() }
+        editProfileLogout.setOnClickListener {
+            GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
+                AccessToken.setCurrentAccessToken(null)
+                LoginManager.getInstance().logOut()
+
+            }).executeAsync()
+
+            presenter.logout()
+        }
 
         tvSave.setOnClickListener { presenter.save(collectInfo()) }
 

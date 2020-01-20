@@ -45,6 +45,8 @@ interface Repository {
     fun introDisplayed()
 
     fun isLoggedIn(): Boolean
+    fun isLoggedInFacebook(): Boolean
+    fun setLoggedInFacebook(isLoggedFb: Boolean)
     fun setLoggedIn(isLogged: Boolean)
 
     fun setUserToken(token: String)

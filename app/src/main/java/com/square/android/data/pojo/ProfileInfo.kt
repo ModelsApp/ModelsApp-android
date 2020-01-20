@@ -23,6 +23,10 @@ data class ProfileInfo(var name: String = "",
                        @Transient
                        @JsonIgnore
                        var referral: String? = null,
+                       @Transient
+                       @JsonIgnore
+                       var imageUrl: String? = null,
+
 
 
                        @Transient

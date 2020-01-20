@@ -1,6 +1,7 @@
 package com.square.android.ui.fragment.auth
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +16,15 @@ import com.square.android.ui.fragment.BaseFragment
 import com.square.android.utils.TokenUtils
 import kotlinx.android.synthetic.main.fragment_auth.*
 import kotlinx.android.synthetic.main.pending_congratulations.view.*
+import android.content.ActivityNotFoundException
+import android.net.Uri
 
 class AuthFragment: BaseFragment(), AuthView {
 
     @InjectPresenter
     lateinit var presenter: AuthPresenter
+
+    private var pendingShown = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -30,15 +35,22 @@ class AuthFragment: BaseFragment(), AuthView {
         super.onViewCreated(view, savedInstanceState)
 
         btnSignup.setOnClickListener {
-            presenter.navigateToSignUp()
+            if(!pendingShown) presenter.navigateToSignUp()
         }
 
         btnLogin.setOnClickListener {
-            presenter.navigateLogIn()
+            if(!pendingShown) presenter.navigateLogIn()
         }
 
         pending_screen.btnFollow.setOnClickListener {
-            //TODO:F
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/_u/square.app"))
+            i.setPackage(getString(R.string.instagram_package))
+            try {
+                startActivity(i)
+            } catch (e: ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/square.app")))
+            }
         }
     }
 
@@ -59,10 +71,12 @@ class AuthFragment: BaseFragment(), AuthView {
     }
 
     override fun showUserPending() {
+        pendingShown = true
         pending_screen.visibility = View.VISIBLE
     }
 
     override fun hideUserPending() {
+        pendingShown = false
         pending_screen.visibility = View.GONE
     }
 }

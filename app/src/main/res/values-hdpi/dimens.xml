@@ -214,6 +214,7 @@
     <dimen name="v_32dp">24dp</dimen>
     <dimen name="v_28dp">21dp</dimen>
     <dimen name="v_24dp">18dp</dimen>
+    <dimen name="v_20dp">15dp</dimen>
     <dimen name="v_16dp">12dp</dimen>
     <dimen name="v_12dp">9dp</dimen>
     <dimen name="v_10dp">7.5dp</dimen>

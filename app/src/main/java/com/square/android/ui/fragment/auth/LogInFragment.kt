@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.facebook.AccessToken
 import com.google.firebase.iid.FirebaseInstanceId
 import com.square.android.App
 import com.square.android.R
@@ -37,7 +38,7 @@ class LogInFragment: BaseFragment(), LogInView {
         }
 
         btnContinueFacebook.setOnClickListener {
-            // TODO:F
+            // TODO:F when done -> send fb access token to api and set repository.setLoggedInFacebook(true)
         }
 
         btnLogin.setOnClickListener {
