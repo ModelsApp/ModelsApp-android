@@ -161,6 +161,9 @@
     <string name="agency_name">Agency name</string>
     <string name="mandatory_fields">These fields are mandatory</string>
 
+    <string name="enter_account_name">Enter your account name</string>
+    <string name="add_your_instagram_account">Add your Instagram account</string>
+
     <string name="birthday_format">%s of %s</string>
     <string name="birthday_display_format">%s/%s/%s</string>
     <string name="action_map">Map</string>

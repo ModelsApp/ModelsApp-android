@@ -14,13 +14,17 @@ class StartPresenter : BasePresenter<StartView>() {
             router.replaceScreen(SCREENS.INTRO)
         }
         else if(repository.isLoggedInFacebook() && repository.isProfileFilled()){
-            if(AccessToken.getCurrentAccessToken() != null && !AccessToken.getCurrentAccessToken().isExpired){
-                router.replaceScreen(SCREENS.MAIN)
-            } else{
-                repository.setLoggedIn(false)
-                repository.setLoggedInFacebook(false)
-                viewState.logOutFb()
-            }
+            //TODO:F remove later
+            router.replaceScreen(SCREENS.MAIN)
+
+            //TODO:F uncomment later
+//            if(AccessToken.getCurrentAccessToken() != null && !AccessToken.getCurrentAccessToken().isExpired){
+//                router.replaceScreen(SCREENS.MAIN)
+//            } else{
+//                repository.setLoggedIn(false)
+//                repository.setLoggedInFacebook(false)
+//                viewState.logOutFb()
+//            }
         }
         else if(repository.isLoggedIn() && repository.isProfileFilled()){
             router.replaceScreen(SCREENS.MAIN)

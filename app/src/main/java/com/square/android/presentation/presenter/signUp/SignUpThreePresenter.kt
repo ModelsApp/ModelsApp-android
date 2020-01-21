@@ -9,7 +9,6 @@ import com.square.android.presentation.view.signUp.SignUpThreeView
 
 @InjectViewState
 class SignUpThreePresenter(val info: ProfileInfo) : BasePresenter<SignUpThreeView>() {
-
 //    fun nextClicked(photos: List<ByteArray>, photosUri: List<Uri>) {
 //        // crashing - out of memory
 ////        info.imagesUri = photosUri

@@ -15,7 +15,7 @@ class SignUpOnePresenter(val info: ProfileInfo) : BasePresenter<SignUpOneView>()
 
     fun birthSelected(birthday: String, displayBirthday: String) {
         info.birthDate = birthday
-        info.displayBirthday = displayBirthday
+//        info.displayBirthday = displayBirthday
 
         viewState.showBirthday(displayBirthday)
     }
@@ -38,7 +38,7 @@ class SignUpOnePresenter(val info: ProfileInfo) : BasePresenter<SignUpOneView>()
 //    }
 
     fun countryDialSelected(country: Country) {
-        info.flagCode = country.flag
+//        info.flagCode = country.flag
 
         viewState.showDialInfo(country)
     }

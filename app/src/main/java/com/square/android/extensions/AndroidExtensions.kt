@@ -32,6 +32,7 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.ByteArrayOutputStream
+import java.nio.ByteBuffer
 
 private const val PREFIX_METER = "m"
 private const val PREFIX_KILOMETER = "km"
@@ -177,6 +178,12 @@ fun ImageView.makeBlackWhite() {
 
 fun ImageView.removeFilters() {
     colorFilter = null
+}
+
+fun Bitmap.convertToByteArray(): ByteArray {
+    val stream = ByteArrayOutputStream()
+    this.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+    return stream.toByteArray()
 }
 
 val TextView.content

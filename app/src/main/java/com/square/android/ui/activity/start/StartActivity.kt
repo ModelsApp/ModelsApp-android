@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -36,8 +37,10 @@ import com.facebook.GraphRequest
 import com.facebook.AccessToken
 import com.square.android.ui.activity.main.MainActivity
 
-class FbData(val name:String, val surname: String, val imageUrl: String)
-class FacebookLoginEvent(val data: FbData)
+class FbData(val name:String, val surname: String, val fbAccessToken: String, val imageUrl: String?)
+class RegisterFacebookEvent(val data: FbData)
+
+class FacebookLogInEvent(val data: String)
 
 class StartActivity : BaseActivity(), StartView {
 
@@ -49,6 +52,8 @@ class StartActivity : BaseActivity(), StartView {
     private var loadingDialog: LoadingDialog? = null
 
     private val eventBus: EventBus by inject()
+
+    private var loginFromRegister = true
 
     var callbackManager: CallbackManager? = null
 
@@ -72,42 +77,47 @@ class StartActivity : BaseActivity(), StartView {
         LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
-                        showLoadingDialog()
+                        if(loginFromRegister){
+                            showLoadingDialog()
 
-                        val request: GraphRequest = GraphRequest.newMeRequest(loginResult.accessToken,
-                                GraphRequest.GraphJSONObjectCallback { objc, response ->
-                                    try {
-                                        val name = objc.get("first_name") as String
-                                        val surname = objc.get("last_name") as String
-                                        var imageUrl = ""
+                            val request: GraphRequest = GraphRequest.newMeRequest(loginResult.accessToken,
+                                    GraphRequest.GraphJSONObjectCallback { objc, response ->
+                                        try {
+                                            val name = objc.get("first_name") as String
+                                            val surname = objc.get("last_name") as String
+                                            var imageUrl: String? = null
 
-                                        if (objc.has("picture")) {
-                                            val is_silhouette = objc.getJSONObject("picture").getJSONObject("data").getBoolean("is_silhouette")
+                                            if (objc.has("picture")) {
+                                                val is_silhouette = objc.getJSONObject("picture").getJSONObject("data").getBoolean("is_silhouette")
 
-                                            if (!is_silhouette) {
-                                                imageUrl = objc.getJSONObject("picture").getJSONObject("data").getString("url")
-                                            } else{
-                                                // user has no added photos
+                                                if (!is_silhouette) {
+                                                    imageUrl = objc.getJSONObject("picture").getJSONObject("data").getString("url")
+                                                } else{
+                                                    // user has no profile picture
+                                                }
+
                                             }
+                                            eventBus.post(RegisterFacebookEvent(FbData(name, surname, loginResult.accessToken.token, imageUrl)))
+                                        } catch (e: Exception){
+                                            Toast.makeText(this@StartActivity, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
                                         }
-                                        eventBus.post(FacebookLoginEvent(FbData(name, surname, imageUrl)))
-                                    } catch (e: Exception){
-                                        //TODO:F show error
-                                    }
 
-                                    hideLoadingDialog()
-                                })
+                                        hideLoadingDialog()
+                                    })
 
-                        val parameters = Bundle()
-                        parameters.putString("fields", "name,picture,first_name,last_name")
-                        request.parameters = parameters
-                        request.executeAsync()
+                            val parameters = Bundle()
+                            parameters.putString("fields", "name,picture,first_name,last_name")
+                            request.parameters = parameters
+                            request.executeAsync()
+                        } else{
+                            eventBus.post(FacebookLogInEvent(loginResult.accessToken.token))
+                        }
                     }
 
                     override fun onCancel() { }
 
                     override fun onError(exception: FacebookException) {
-                        //TODO:F show error
+                        Toast.makeText(this@StartActivity, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
                     }
                 })
 
@@ -135,7 +145,6 @@ class StartActivity : BaseActivity(), StartView {
                     else -> null
                 }
 
-        //TODO WHEN DONE - remove all old content(classes, layouts, icons, styles etc. )
         override fun createFragment(screenKey: String, data: Any?) =
                 when (screenKey) {
                     SCREENS.INTRO -> IntroFragment()
@@ -170,6 +179,12 @@ class StartActivity : BaseActivity(), StartView {
     }
 
     fun logInRegister(){
+        loginFromRegister = true
+        LoginManager.getInstance().logInWithReadPermissions(this, listOf("email", "public_profile"))
+    }
+
+    fun logInFacebook(){
+        loginFromRegister = false
         LoginManager.getInstance().logInWithReadPermissions(this, listOf("email", "public_profile"))
     }
 

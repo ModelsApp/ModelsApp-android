@@ -12,19 +12,19 @@ class FillProfileSecondPresenter(val info: ProfileInfo) : BasePresenter<FillProf
     var cities: MutableList<String> = mutableListOf()
 
     init {
-        loadData()
+//        loadData()
     }
 
-    private fun loadData(){
-        //TODO load cities from API
-        cities.add("Milan")
-        cities.add("London")
-        cities.add("Budapest")
-
-        cities.add(0,"")
-
-        viewState.showData(info)
-    }
+//    private fun loadData(){
+//        //TODO load cities from API
+//        cities.add("Milan")
+//        cities.add("London")
+//        cities.add("Budapest")
+//
+//        cities.add(0,"")
+//
+//        viewState.showData(info)
+//    }
 
 //    fun nextClicked(motherAgency: String, city1: String, agency1: String, city2: String, agency2: String, city3: String, agency3: String) {
 //        info.motherAgency = motherAgency

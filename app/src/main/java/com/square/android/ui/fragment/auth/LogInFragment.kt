@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.facebook.AccessToken
 import com.google.firebase.iid.FirebaseInstanceId
 import com.square.android.App
 import com.square.android.R
@@ -15,13 +14,30 @@ import com.square.android.extensions.content
 import com.square.android.extensions.hideKeyboard
 import com.square.android.presentation.presenter.auth.LogInPresenter
 import com.square.android.presentation.view.auth.LogInView
+import com.square.android.ui.activity.start.FacebookLogInEvent
+import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.utils.TokenUtils
 import kotlinx.android.synthetic.main.fragment_auth_login.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.android.ext.android.inject
 
 class LogInFragment: BaseFragment(), LogInView {
+
     @InjectPresenter
     lateinit var presenter: LogInPresenter
+
+    private val eventBus: EventBus by inject()
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onFacebookLogInEvent(event: FacebookLogInEvent) {
+        presenter.logInFb(event.data)
+
+        //TODO:F REMOVE
+        (activity as StartActivity).logOutRegister()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,6 +47,10 @@ class LogInFragment: BaseFragment(), LogInView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
+
         arrowBack.setOnClickListener { activity?.onBackPressed() }
 
         signUpTv.setOnClickListener {
@@ -38,7 +58,8 @@ class LogInFragment: BaseFragment(), LogInView {
         }
 
         btnContinueFacebook.setOnClickListener {
-            // TODO:F when done -> send fb access token to api and set repository.setLoggedInFacebook(true)
+            showProgress()
+            (activity as StartActivity).logInFacebook()
         }
 
         btnLogin.setOnClickListener {
@@ -60,6 +81,7 @@ class LogInFragment: BaseFragment(), LogInView {
             }
         }
     }
+
     override fun showProgress() {
         btnsLl.visibility = View.INVISIBLE
         progress.visibility = View.VISIBLE
@@ -68,6 +90,11 @@ class LogInFragment: BaseFragment(), LogInView {
     override fun hideProgress() {
         progress.visibility = View.INVISIBLE
         btnsLl.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        eventBus.unregister(this)
+        super.onDestroy()
     }
 
 }

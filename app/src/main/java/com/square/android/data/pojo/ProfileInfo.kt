@@ -12,7 +12,14 @@ data class ProfileInfo(var name: String = "",
                        var nationality: String = "",
                        var instagramName: String = "",
                        var phone: String = "",
+                       var referral: String? = null,
+
+                       //TODO:F will be deleted
                        var motherAgency: String = "",
+
+                       @Transient
+                       @JsonIgnore
+                       var image: ByteArray? = null,
 
                        @Transient
                        @JsonIgnore
@@ -22,46 +29,42 @@ data class ProfileInfo(var name: String = "",
                        var password: String? = null,
                        @Transient
                        @JsonIgnore
-                       var referral: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var imageUrl: String? = null,
+                       var fbToken: String? = null
 
 
-
-                       @Transient
-                       @JsonIgnore
-                       var agency: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var city: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var agency2: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var city2: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var agency3: String? = null,
-                       @Transient
-                       @JsonIgnore
-                       var city3: String? = null,
-//                  @JsonIgnore
-//                  var imagesUri: List<Uri>? = null,
-                       @Transient
-                       @JsonIgnore
-                       var images: List<ByteArray>? = null,
-                       @Transient
-                       @JsonIgnore
-                       var displayBirthday: String = "",
-                       @Transient
-                       @JsonIgnore
-                       var phoneN: String = "",
-                       @Transient
-                       @JsonIgnore
-                       var phoneC: String = "",
-                       @Transient
-                       @JsonIgnore
-                       var flagCode: Int = -1
+//                       @Transient
+//                       @JsonIgnore
+//                       var agency: String? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var city: String? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var agency2: String? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var city2: String? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var agency3: String? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var city3: String? = null,
+//                       @JsonIgnore
+//                       var imagesUri: List<Uri>? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var images: List<ByteArray>? = null,
+//                       @Transient
+//                       @JsonIgnore
+//                       var displayBirthday: String = "",
+//                       @Transient
+//                       @JsonIgnore
+//                       var phoneN: String = "",
+//                       @Transient
+//                       @JsonIgnore
+//                       var phoneC: String = "",
+//                       @Transient
+//                       @JsonIgnore
+//                       var flagCode: Int = -1
 ) : Parcelable

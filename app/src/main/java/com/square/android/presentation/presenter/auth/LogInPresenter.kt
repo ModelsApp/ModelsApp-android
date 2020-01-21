@@ -24,6 +24,21 @@ class LogInPresenter : BasePresenter<LogInView>() {
         })
     }
 
+    fun logInFb(fbToken: String) = launch({
+        //TODO:F REMOVE
+        viewState.hideProgress()
+
+//        viewState.showProgress()
+        //TODO:F send fb token to api
+//        val response = repository.loginUserFb(fbToken).await()
+
+//        authDone(response, true)
+    }, { error ->
+        viewState.hideProgress()
+
+        viewState.showMessage(error.errorMessage)
+    })
+
     fun forgotClicked(){
         router.navigateTo(SCREENS.RESET_PASSWORD)
     }
@@ -32,46 +47,26 @@ class LogInPresenter : BasePresenter<LogInView>() {
         router.navigateTo(SCREENS.SIGN_UP)
     }
 
-        // TODO:F register will work different now - all this will be moved to sign up
-//    fun registerClicked(authData: AuthData) {
-//        viewState.showProgress()
-//
-//        launch({
-//            val response = repository.registerUser(authData).await()
-//            authDone(response)
-//        }, { error ->
-//            viewState.hideProgress()
-//
-//            viewState.showMessage(error.errorMessage)
-//        })
-//    }
-
-    private fun authDone(response: AuthResponse) = launch({
+    private fun authDone(response: AuthResponse, loggedInFacebook: Boolean = false) = launch({
         repository.setUserToken(response.token!!)
 
         val profile = repository.getCurrentUser().await()
 
         repository.setUserId(profile.id)
         repository.setLoggedIn(true)
+        repository.setProfileFilled(true)
+        repository.setLoggedInFacebook(loggedInFacebook)
         repository.setAvatarUrl(profile.photo)
         repository.setUserName(profile.name, profile.surname)
         repository.setSocialLink(profile.instagram.username)
         repository.setUserPaymentRequired(profile.isPaymentRequired)
 
-//        when {
-//            TODO:F new sign up ac with fragments
-//            profile.newUser -> router.replaceScreen(SCREENS.FILL_PROFILE_FIRST, ProfileInfo())
-//            else -> {
-//                repository.setProfileFilled(true)
-//
-//                router.replaceScreen(SCREENS.MAIN)
-//            }
-//        }
+        FirebaseInstanceId.getInstance().token
+        viewState.sendFcmToken()
 
-//        FirebaseInstanceId.getInstance().token
-//        viewState.sendFcmToken()
-//
-//        router.showSystemMessage(response.message)
+        router.replaceScreen(SCREENS.MAIN)
+
+        router.showSystemMessage(response.message)
     }, { error ->
         viewState.hideProgress()
 
