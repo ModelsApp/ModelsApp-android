@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="@+id/title"
         app:layout_constraintBottom_toBottomOf="@+id/title" />
 
-    <com.google.android.material.tabs.TabLayout
+    <com.square.android.utils.widget.PoppinsTabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,11 +50,11 @@
         app:tabIndicator="@drawable/indicator"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:tabTextAppearance="@style/Models14SemiBoldText"
+        app:tabTextAppearance="@style/TabText"
         app:tabIndicatorColor="@color/placesPrimary"
         app:tabSelectedTextColor="@android:color/black"
         app:tabBackground="@android:color/transparent"
-        app:tabTextColor="@color/secondary_text"  />
+        app:tabTextColor="@color/gray_disabled"  />
 
     <com.square.android.utils.widget.PagingViewPager
         android:id="@+id/viewPager"

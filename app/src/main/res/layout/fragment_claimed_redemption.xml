@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
+    <com.square.android.utils.widget.PoppinsTabLayout
         android:id="@+id/claimedRedemptionTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,9 +34,10 @@
         app:tabIndicator="@drawable/indicator"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="38dp"
+        app:tabTextAppearance="@style/TabText"
         app:tabIndicatorColor="@color/placesPrimary"
         app:tabSelectedTextColor="@color/placesPrimary"
-        app:tabTextColor="@color/secondary_text"  />
+        app:tabTextColor="@color/gray_disabled"  />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/claimedRedemptionPager"

@@ -113,7 +113,7 @@
                 android:background="@color/black_trans_50"
                 android:overScrollMode="never" />
 
-            <com.google.android.material.tabs.TabLayout
+            <com.square.android.utils.widget.PoppinsTabLayout
                 android:id="@+id/finishedTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

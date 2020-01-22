@@ -243,7 +243,7 @@
 
                     </LinearLayout>
 
-                        <com.google.android.material.tabs.TabLayout
+                        <com.square.android.utils.widget.PoppinsTabLayout
                             android:id="@+id/tabLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -252,18 +252,21 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:tabIndicator="@drawable/indicator"
+                            android:visibility="visible"
+                            tools:visibility="visible"
                             android:layout_marginStart="@dimen/frag_profile_margin"
                             android:layout_marginEnd="@dimen/frag_profile_margin"
-                            app:tabTextAppearance="@style/Models14SemiBoldText"
+                            app:tabTextAppearance="@style/TabText"
                             app:tabIndicatorColor="@color/placesPrimary"
                             app:tabSelectedTextColor="@android:color/black"
                             app:tabBackground="@android:color/transparent"
-                            app:tabTextColor="@color/secondary_text" />
+                            app:tabTextColor="@color/gray_disabled" />
 
                     <View
                         android:id="@+id/separator"
                         android:layout_width="0dp"
                         android:layout_height="1.5dp"
+                        app:layout_goneMarginTop="@dimen/profile_tabsPadding"
                         android:background="@color/divider_light"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
