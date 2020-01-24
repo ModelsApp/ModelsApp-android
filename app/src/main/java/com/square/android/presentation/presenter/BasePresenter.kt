@@ -190,7 +190,8 @@ abstract class BasePresenter<V : BaseView> : MvpPresenter<V>(), KoinComponent {
                     }
 
                     if(!valid1 && !valid2 && !valid3 && valid4){
-                        router.navigateTo(SCREENS.PASS_ELIGIBLE)
+                        //TODO:F no more pass eligible?
+//                        router.navigateTo(SCREENS.PASS_ELIGIBLE)
                         Log.e("SUBSCRIPTIONS", "ELIGIBLE")
                     }
 

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navContainer"
+        android:layout_width="0dp"
+        android:paddingTop="@dimen/v_40dp"
+        android:paddingBottom="@dimen/v_4dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/arrowBack"
+            android:layout_width="@dimen/v_40dp"
+            android:layout_height="@dimen/v_40dp"
+            android:src="@drawable/chevron_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/text_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/active_plan"
+            android:textColor="@android:color/black"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@+id/arrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navContainer" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topContainer"
+        android:layout_width="0dp"
+        tools:layout_height="42dp"
+        android:paddingTop="@dimen/v_16dp"
+        android:paddingStart="@dimen/v_16dp"
+        android:paddingEnd="@dimen/v_16dp"
+        android:paddingBottom="@dimen/v_14dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintBottom_toTopOf="@+id/switchLl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/v_20dp"
+            android:paddingStart="@dimen/v_24dp"
+            android:paddingEnd="@dimen/v_24dp"
+            android:paddingBottom="@dimen/v_24dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/switchLl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/v_24dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+        <LinearLayout
+            android:id="@+id/btnSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/auth_btn_height"
+            android:stateListAnimator="@animator/shadow_button_anim"
+            android:background="@drawable/background_rounded_12dp"
+            android:backgroundTint="@android:color/black"
+            android:layout_marginStart="@dimen/v_24dp"
+            android:layout_marginEnd="@dimen/v_24dp"
+            android:layout_marginTop="@dimen/v_16dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/Models15SemiBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/switch_to_premium"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_15" />
+
+            <TextView
+                android:id="@+id/btnPrice"
+                style="@style/Models14Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/v_2dp"
+                tools:text="€9.99"
+                android:textColor="@color/white_50_alpha"
+                android:textSize="@dimen/text_14" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

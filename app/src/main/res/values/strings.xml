@@ -21,6 +21,8 @@
     <string name="register">Register</string>
     <string name="cancel">Cancel</string>
 
+    <string name="switch_to_premium">Switch to Premium</string>
+
     <string name="remember_to">Remember to:</string>
     <string name="avoid_to">Avoid to:</string>
     <string name="picture_typologies">Picture typologies:</string>

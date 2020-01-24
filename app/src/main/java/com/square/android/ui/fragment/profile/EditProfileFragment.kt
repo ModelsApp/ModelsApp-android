@@ -205,7 +205,7 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
 
     private fun collectInfo(): ProfileInfo {
         val nationality = spinnerNationality.selectedItem.toString()
-        //TODO:F gender is not saving correctly in API. heck in register too
+        //TODO:F gender is not saving correctly in API. check in register too
         val gender = spinnerGender.selectedItem.toString()
         val name = et_name.content
         val surname = et_surname.content

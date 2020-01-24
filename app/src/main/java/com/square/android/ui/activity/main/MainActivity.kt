@@ -206,9 +206,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                     SCREENS.TUTORIAL_VIDEOS ->
                         context.intentFor<TutorialVideosActivity>()
 
-                    SCREENS.PASS_ELIGIBLE -> {
-                        context.intentFor<PassEligibleActivity>(PASS_CAN_BACK_EXTRA to data as Boolean)
-                    }
+                    //TODO:F no more pass eligible? - if yes - delete all data(ac, fragments/ layouts etc.) related to it
+//                    SCREENS.PASS_ELIGIBLE -> {
+//                        context.intentFor<PassEligibleActivity>(PASS_CAN_BACK_EXTRA to data as Boolean)
+//                    }
 
                     SCREENS.CAMPAIGN_DETAILS ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)

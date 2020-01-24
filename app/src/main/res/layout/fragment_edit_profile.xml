@@ -220,7 +220,7 @@
             android:layout_width="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:paddingTop="@dimen/v_24dp"
+            android:paddingTop="@dimen/v_20dp"
             android:paddingStart="@dimen/v_24dp"
             android:paddingEnd="@dimen/v_24dp"
             android:paddingBottom="@dimen/v_24dp"
