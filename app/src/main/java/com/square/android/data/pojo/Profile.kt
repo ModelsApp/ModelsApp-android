@@ -1,6 +1,7 @@
 package com.square.android.data.pojo
 
 import android.os.Parcelable
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -34,6 +35,12 @@ class Profile(var message: String = "",
                var mainImage: String? = "",
                var images: List<Photo>? = null,
                var surname: String = "",
+
+               //TODO:F not in api for this moment
+               @Transient
+               @JsonIgnore
+               var coverImg: String? = null,
+
                @Json(name="isPaymentRequired")
                var isPaymentRequired: Boolean = true
     ) : Parcelable {

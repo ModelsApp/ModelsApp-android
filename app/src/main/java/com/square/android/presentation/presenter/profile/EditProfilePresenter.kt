@@ -1,4 +1,4 @@
-package com.square.android.presentation.presenter.editProfile
+package com.square.android.presentation.presenter.profile
 
 import android.text.TextUtils
 import com.arellomobile.mvp.InjectViewState
@@ -9,7 +9,7 @@ import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.profile.ProfileUpdatedEvent
-import com.square.android.presentation.view.editProfile.EditProfileView
+import com.square.android.presentation.view.profile.EditProfileView
 import org.greenrobot.eventbus.EventBus
 import org.koin.standalone.inject
 
@@ -25,30 +25,33 @@ class EditProfilePresenter : BasePresenter<EditProfileView>() {
 
     fun loadData() {
         launch {
-
-            viewState.showProgress()
+//            viewState.showLoadingDialog()
 
             user = repository.getCurrentUser().await()
 
-            viewState.showData(user!!, repository.getPushNotificationsAllowed())
+            viewState.showData(user!!)
 
-            viewState.hideProgress()
+            viewState.hideLoadingDialog()
         }
     }
 
     fun save(profileInfo: ProfileInfo) {
         launch {
-            viewState.showProgress()
+            viewState.showLoadingDialog()
 
             if(TextUtils.isEmpty(profileInfo.instagramName)){
-                profileInfo.instagramName = "???"
+                if(TextUtils.isEmpty(user!!.instagram.username)){
+                    profileInfo.instagramName = "???"
+                } else{
+                    profileInfo.instagramName = user!!.instagram.username
+                }
             }
 
-            if(TextUtils.isEmpty(profileInfo.referral)){
-                if(TextUtils.isEmpty(user!!.referralCode)){
-                    profileInfo.referral = "0000"
+            if(TextUtils.isEmpty(profileInfo.phone)){
+                if(TextUtils.isEmpty(user!!.phone)){
+                    profileInfo.phone = "000000000"
                 } else{
-                    profileInfo.referral = user!!.referralCode
+                    profileInfo.phone = user!!.phone
                 }
             }
 
@@ -60,25 +63,20 @@ class EditProfilePresenter : BasePresenter<EditProfileView>() {
             eventBus.post(event)
 
             router.showSystemMessage(result.message)
-            
-            router.exit()
+
+            viewState.changeSaveBtn(false)
+
+            viewState.hideLoadingDialog()
         }
     }
 
-    fun birthSelected(date: String) {
-        viewState.showBirthday(date)
-    }
-
+// TODO:F log out probably will be in other fragment
     fun logout() {
         //TODO:F call to API with null? fb access token -> user logged out from fb
 
         repository.clearUserData()
 
         router.replaceScreen(SCREENS.START)
-    }
-
-    fun countrySelected(country: Country) {
-        viewState.displayNationality(country)
     }
 
     fun openGallery() {

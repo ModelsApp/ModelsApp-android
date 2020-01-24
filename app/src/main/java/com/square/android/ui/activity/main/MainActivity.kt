@@ -28,7 +28,7 @@ import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
 import com.square.android.ui.activity.event.*
-import com.square.android.ui.fragment.editProfile.EditProfileFragment
+import com.square.android.ui.fragment.profile.EditProfileFragment
 import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
 import com.square.android.ui.fragment.campaigns.CAMPAIGN_EXTRA_ID

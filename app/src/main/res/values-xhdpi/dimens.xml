@@ -206,8 +206,10 @@
     <dimen name="signup_checkbox_margin_start">-8dp</dimen>
     <dimen name="signup_checkbox_margin_start_positive">8dp</dimen>
 
+    <dimen name="v_152dp">152dp</dimen>
     <dimen name="v_128dp">128dp</dimen>
-
+    <dimen name="v_112dp">112dp</dimen>
+    <dimen name="v_96dp">96dp</dimen>
     <dimen name="v_88dp">88dp</dimen>
     <dimen name="v_56dp">56dp</dimen>
     <dimen name="v_48dp">48dp</dimen>
@@ -218,6 +220,7 @@
     <dimen name="v_24dp">24dp</dimen>
     <dimen name="v_20dp">20dp</dimen>
     <dimen name="v_16dp">16dp</dimen>
+    <dimen name="v_14dp">14dp</dimen>
     <dimen name="v_12dp">12dp</dimen>
     <dimen name="v_10dp">10dp</dimen>
     <dimen name="v_8dp">8dp</dimen>

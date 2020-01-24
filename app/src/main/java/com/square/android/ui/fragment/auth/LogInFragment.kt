@@ -33,10 +33,14 @@ class LogInFragment: BaseFragment(), LogInView {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onFacebookLogInEvent(event: FacebookLogInEvent) {
-        presenter.logInFb(event.data)
+        event.data?.let {
+            presenter.logInFb(event.data)
 
-        //TODO:F REMOVE
-        (activity as StartActivity).logOutRegister()
+            //TODO:F REMOVE
+            (activity as StartActivity).logOutRegister()
+        }
+
+        hideProgress()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

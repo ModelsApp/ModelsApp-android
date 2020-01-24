@@ -13,11 +13,9 @@ class SignUpOnePresenter(val info: ProfileInfo) : BasePresenter<SignUpOneView>()
         viewState.showData(info)
     }
 
-    fun birthSelected(birthday: String, displayBirthday: String) {
+    fun birthSelected(birthday: String) {
         info.birthDate = birthday
-//        info.displayBirthday = displayBirthday
-
-        viewState.showBirthday(displayBirthday)
+        viewState.showBirthday(birthday)
     }
 
 //    fun nextClicked(name: String, surname: String, phone: String, phoneN: String, phoneC: String, account: String) {

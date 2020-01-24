@@ -224,17 +224,17 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
     private fun showBirthDialog() {
         DatePickDialog(activity!!, maxDate = Calendar.getInstance().timeInMillis)
                 .show { calendar: Calendar ->
-                    val mothName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
-                    val dayName = calendar.get(Calendar.DAY_OF_MONTH).toOrdinalString()
-                    val modelBirthday = activity!!.getString(R.string.birthday_format, dayName, mothName)
+//                    val mothName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+//                    val dayName = calendar.get(Calendar.DAY_OF_MONTH).toOrdinalString()
+//                    val modelBirthday = activity!!.getString(R.string.birthday_format, dayName, mothName)
 
                     val day = if (calendar.get(Calendar.DAY_OF_MONTH) < 10) "0" + calendar.get(Calendar.DAY_OF_MONTH).toString() else calendar.get(Calendar.DAY_OF_MONTH).toString()
                     val month = if ((calendar.get(Calendar.MONTH) + 1) < 10) "0" + (calendar.get(Calendar.MONTH) + 1).toString() else (calendar.get(Calendar.MONTH) + 1).toString()
                     val year = calendar.get(Calendar.YEAR).toString()
 
-                    val displayBirthday = activity!!.getString(R.string.birthday_display_format, day, month, year)
+                    val birthday = activity!!.getString(R.string.birthday_display_format, day, month, year)
 
-                    presenter.birthSelected(modelBirthday, displayBirthday)
+                    presenter.birthSelected(birthday)
                 }
     }
 

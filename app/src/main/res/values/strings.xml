@@ -39,6 +39,9 @@
 
     <string name="accept">Accept</string>
 
+    <string name="add_cover_image">Add cover image</string>
+    <string name="edit_cover_image">Edit cover image</string>
+
     <string name="select_nationality">Select nationality</string>
     <string name="select_date_of_birth">Select date of birth</string>
     <string name="select_gender">Select gender</string>
@@ -165,7 +168,7 @@
     <string name="add_your_instagram_account">Add your Instagram account</string>
 
     <string name="birthday_format">%s of %s</string>
-    <string name="birthday_display_format">%s/%s/%s</string>
+    <string name="birthday_display_format">%s.%s.%s</string>
     <string name="action_map">Map</string>
     <string name="action_places">Places</string>
     <string name="action_redemptions">Redemptions</string>

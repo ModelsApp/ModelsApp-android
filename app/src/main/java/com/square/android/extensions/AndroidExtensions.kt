@@ -32,7 +32,6 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.ByteArrayOutputStream
-import java.nio.ByteBuffer
 
 private const val PREFIX_METER = "m"
 private const val PREFIX_KILOMETER = "km"
@@ -46,7 +45,7 @@ fun ImageView.loadImageForIcon(url: String) {
     }
 }
 
-fun ImageView.loadImage(url: String,
+fun ImageView.loadImage(url: String?,
                         @ColorRes placeholder: Int = R.color.placeholder,
                         roundedCornersRadiusPx: Int = 0,
                         whichCornersToRound: List<RoundedCornersTransformation.CornerType> = listOf(RoundedCornersTransformation.CornerType.ALL) ) {

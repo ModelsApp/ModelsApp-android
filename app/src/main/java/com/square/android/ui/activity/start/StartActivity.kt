@@ -40,7 +40,7 @@ import com.square.android.ui.activity.main.MainActivity
 class FbData(val name:String, val surname: String, val fbAccessToken: String, val imageUrl: String?)
 class RegisterFacebookEvent(val data: FbData)
 
-class FacebookLogInEvent(val data: String)
+class FacebookLogInEvent(val data: String?)
 
 class StartActivity : BaseActivity(), StartView {
 
@@ -100,6 +100,7 @@ class StartActivity : BaseActivity(), StartView {
                                             eventBus.post(RegisterFacebookEvent(FbData(name, surname, loginResult.accessToken.token, imageUrl)))
                                         } catch (e: Exception){
                                             Toast.makeText(this@StartActivity, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
+                                            eventBus.post(FacebookLogInEvent(null))
                                         }
 
                                         hideLoadingDialog()
@@ -114,10 +115,11 @@ class StartActivity : BaseActivity(), StartView {
                         }
                     }
 
-                    override fun onCancel() { }
+                    override fun onCancel() { eventBus.post(FacebookLogInEvent(null)) }
 
                     override fun onError(exception: FacebookException) {
                         Toast.makeText(this@StartActivity, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
+                        eventBus.post(FacebookLogInEvent(null))
                     }
                 })
 

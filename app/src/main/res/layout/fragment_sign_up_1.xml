@@ -26,7 +26,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_rl_height" >
-            <!--   TODO: this view onClick -> call spinner onClick  -->
             <LinearLayout
                 android:id="@+id/nationalityLl"
                 android:layout_width="match_parent"
@@ -105,7 +104,6 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="@dimen/et_rl_height" >
-            <!--   TODO: this view onClick -> call spinner onClick  -->
             <LinearLayout
                 android:id="@+id/genderLl"
                 android:layout_width="match_parent"
@@ -229,7 +227,6 @@
            android:imeOptions="actionDone"
            android:inputType="textPassword" />
 
-<!--   TODO clicking this icon will show/hide password? (change inputType = textVisiblePassword or textPassword)    -->
         <ImageView
             android:id="@+id/passwordIcon"
             android:layout_width="@dimen/v_40dp"
