@@ -60,7 +60,7 @@
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/v_1dp"
         android:background="@color/gray_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -197,7 +197,7 @@
     <View
         android:id="@+id/divider2"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/v_1dp"
         android:background="@color/gray_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

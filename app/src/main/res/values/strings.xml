@@ -526,10 +526,25 @@
     <string name="your_mother_agency">Your mother agency</string>
     <string name="your_current_agency">Your current agency</string>
 
+    <string name="choose_your_plan">Choose your plan</string>
+    <string name="current_plan">Current plan</string>
+    <string name="upgrade_membership_text">Upgrade your membership now to\nenjoy more benefits around you!</string>
+
     <string name="personal_info">Personal info</string>
     <string name="my_jobs">My jobs</string>
     <string name="my_interests">My interests</string>
     <string name="my_portfolio">My portfolio</string>
+
+    <string name="basic_1">Up to 9 bookings</string>
+    <string name="basic_2">Limited perks based\non availability</string>
+    <string name="basic_3">Actions approval\nwithin 24 hours</string>
+
+    <string name="premium_1">Up to 15 bookings</string>
+    <string name="premium_2">Access to exclusive perks</string>
+    <string name="premium_3">Priority booking feature</string>
+    <string name="premium_4">Fast lane actions approval</string>
+
+    <string name="subscription_description">The subscription will automatically renew unless turned off in your Google Play Settings at least 24 hours before current period ends. You can go to your Google Play Settings to manage your subscription and turn off auto-renew</string>
 
     <string name="bank_accounts">Bank accounts</string>
     <string name="paypal_account">Paypal account</string>
@@ -752,12 +767,15 @@
 
     <string name="basic">Basic</string>
     <string name="premium">Premium</string>
+    <string name="free">Free</string>
 
     <string name="social">Social</string>
     <string name="business">Business</string>
     <string name="wallet">Wallet</string>
 
     <string name="level_format">Level %d</string>
+
+    <string name="price_subscription_week_format">%s / week</string>
 
     <string name="member">Member</string>
 

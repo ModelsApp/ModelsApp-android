@@ -218,6 +218,7 @@
     <dimen name="v_32dp">32dp</dimen>
     <dimen name="v_28dp">28dp</dimen>
     <dimen name="v_24dp">24dp</dimen>
+    <dimen name="v_22dp">22dp</dimen>
     <dimen name="v_20dp">20dp</dimen>
     <dimen name="v_16dp">16dp</dimen>
     <dimen name="v_14dp">14dp</dimen>
@@ -230,8 +231,13 @@
     <dimen name="v_3dp">3dp</dimen>
     <dimen name="v_2_5dp">2.5dp</dimen>
     <dimen name="v_2dp">2dp</dimen>
+    <dimen name="v_1_5dp">1.5dp</dimen>
     <dimen name="v_1dp">1dp</dimen>
     <dimen name="v_minus_24dp">-24dp</dimen>
+
+    <dimen name="rb_scale_24dp">1.15</dimen>
+    <dimen name="rb_scale_padding_20dp">20dp</dimen>
+
 
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_13">13sp</dimen>

@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="false"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navContainer"
+        android:layout_width="0dp"
+        android:paddingTop="@dimen/v_40dp"
+        android:paddingBottom="@dimen/v_4dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/arrowBack"
+            android:layout_width="@dimen/v_40dp"
+            android:layout_height="@dimen/v_40dp"
+            android:src="@drawable/chevron_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/text_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/active_plan"
+            android:textColor="@android:color/black"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@+id/arrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navContainer" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topContainer"
+        android:layout_width="0dp"
+        android:padding="@dimen/v_20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <ImageView
+            android:id="@+id/icPlan"
+            android:layout_width="@dimen/v_44dp"
+            android:layout_height="@dimen/v_44dp"
+            android:src="@drawable/star_rounded"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/choosePlanTv"
+            style="@style/Models15Text"
+            android:layout_marginTop="@dimen/v_12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_your_plan"
+            android:textSize="@dimen/text_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icPlan" />
+
+        <TextView
+            style="@style/Models15Text"
+            android:layout_marginTop="@dimen/v_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upgrade_membership_text"
+            android:textSize="@dimen/text_15"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choosePlanTv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintBottom_toTopOf="@+id/switchLl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/v_20dp"
+            android:paddingStart="@dimen/v_24dp"
+            android:paddingEnd="@dimen/v_24dp"
+            android:paddingBottom="@dimen/v_48dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content" >
+
+            <com.square.android.utils.widget.CheckableConstraintLayout
+                android:id="@+id/clPremium"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/v_24dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:background="@drawable/bg_rounded_16_stroke_checkable"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/premiumCurrentTv"
+                    style="@style/Models12Text"
+                    android:textSize="@dimen/text_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_plan"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:background="@drawable/bg_rounded_top_bottom"
+                    android:paddingTop="@dimen/v_8dp"
+                    android:paddingBottom="@dimen/v_8dp"
+                    android:paddingStart="@dimen/v_10dp"
+                    android:paddingEnd="@dimen/v_10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/icon_premium"
+                    android:layout_width="@dimen/v_40dp"
+                    android:layout_height="@dimen/v_40dp"
+                    android:src="@drawable/i_premium"
+                    android:layout_marginTop="@dimen/v_14dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+<!--     TODO:A radio button scaled this way looks bad           -->
+                <RadioButton
+                    android:id="@+id/premium_rb"
+                    android:button="@drawable/radio_btn_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/rb_scale_padding_20dp"
+                    android:layout_marginTop="@dimen/rb_scale_padding_20dp"
+                    android:scaleX="@dimen/rb_scale_24dp"
+                    android:scaleY="@dimen/rb_scale_24dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:clickable="false"
+                    android:checked="false"
+                    tools:checked="true"
+                    android:enabled="false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/premiumTitle"
+                    style="@style/Models16SemiBoldText"
+                    android:textSize="@dimen/text_16"
+                    android:layout_marginTop="@dimen/v_12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/premium"
+                    app:layout_constraintTop_toBottomOf="@+id/icon_premium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    style="@style/Models15Text"
+                    android:textSize="@dimen/text_15"
+                    android:id="@+id/premiumPrice"
+                    android:layout_marginTop="@dimen/v_3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray"
+                    tools:text="€9.99 / week"
+                    app:layout_constraintTop_toBottomOf="@+id/premiumTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/v_1dp"
+                    android:layout_marginTop="@dimen/v_12dp"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/premiumPrice" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/v_20dp"
+                    android:layout_marginStart="@dimen/v_20dp"
+                    android:layout_marginEnd="@dimen/v_20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider4" >
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/premium_1"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/v_4dp"
+                        android:drawableStart="@drawable/checkmark_gray" />
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/premium_2"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/v_4dp"
+                        android:drawableStart="@drawable/checkmark_gray" />
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/premium_3"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/v_4dp"
+                        android:drawableStart="@drawable/checkmark_gray" />
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/premium_4"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/v_4dp"
+                        android:drawableStart="@drawable/checkmark_gray" />
+
+                </LinearLayout>
+
+            </com.square.android.utils.widget.CheckableConstraintLayout>
+
+            <com.square.android.utils.widget.CheckableConstraintLayout
+                android:id="@+id/clBasic"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/v_24dp"
+                android:paddingBottom="@dimen/v_24dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:background="@drawable/bg_rounded_16_stroke_checkable"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/basicCurrentTv"
+                    style="@style/Models12Text"
+                    android:textSize="@dimen/text_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_plan"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:background="@drawable/bg_rounded_top_bottom"
+                    android:paddingTop="@dimen/v_8dp"
+                    android:paddingBottom="@dimen/v_8dp"
+                    android:paddingStart="@dimen/v_10dp"
+                    android:paddingEnd="@dimen/v_10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/icon_basic"
+                    android:layout_width="@dimen/v_40dp"
+                    android:layout_height="@dimen/v_40dp"
+                    android:src="@drawable/i_basic"
+                    android:layout_marginTop="@dimen/v_14dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+<!--     TODO:A radio button scaled this way looks bad           -->
+                <RadioButton
+                    android:id="@+id/basic_rb"
+                    android:button="@drawable/radio_btn_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/rb_scale_padding_20dp"
+                    android:layout_marginTop="@dimen/rb_scale_padding_20dp"
+                    android:scaleX="@dimen/rb_scale_24dp"
+                    android:scaleY="@dimen/rb_scale_24dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:clickable="false"
+                    android:checked="false"
+                    android:enabled="false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/basicTitle"
+                    style="@style/Models16SemiBoldText"
+                    android:textSize="@dimen/text_16"
+                    android:layout_marginTop="@dimen/v_12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/basic"
+                    app:layout_constraintTop_toBottomOf="@+id/icon_basic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    style="@style/Models15Text"
+                    android:textSize="@dimen/text_15"
+                    android:id="@+id/basicPrice"
+                    android:layout_marginTop="@dimen/v_3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray"
+                    android:text="@string/free"
+                    app:layout_constraintTop_toBottomOf="@+id/basicTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/v_1dp"
+                    android:layout_marginTop="@dimen/v_12dp"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/basicPrice" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/v_20dp"
+                    android:layout_marginStart="@dimen/v_20dp"
+                    android:layout_marginEnd="@dimen/v_20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider5" >
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/basic_1"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/v_4dp"
+                        android:drawableStart="@drawable/checkmark_gray" />
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/basic_2"
+                        android:lineSpacingExtra="@dimen/v_2dp"
+                        android:gravity="center" />
+
+                    <TextView
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/basic_3"
+                        android:lineSpacingExtra="@dimen/v_2dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </com.square.android.utils.widget.CheckableConstraintLayout>
+
+            <TextView
+                android:id="@+id/descTv"
+                style="@style/Models13Text"
+                android:textSize="@dimen/text_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/v_32dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="@string/subscription_description"
+                android:gravity="center"
+                android:textColor="@color/text_gray" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/v_32dp"
+                android:indeterminateTint="@color/nice_red"
+                android:layout_gravity="center"
+                tools:visibility="gone"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/switchLl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/v_24dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/v_1dp"
+            android:background="@color/gray_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+        <LinearLayout
+            android:id="@+id/btnSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/auth_btn_height"
+            android:stateListAnimator="@animator/shadow_button_anim"
+            android:background="@drawable/background_rounded_12dp"
+            android:backgroundTint="@android:color/black"
+            android:layout_marginStart="@dimen/v_24dp"
+            android:layout_marginEnd="@dimen/v_24dp"
+            android:layout_marginTop="@dimen/v_16dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/btnText"
+                style="@style/Models15SemiBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/switch_to_premium"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_15" />
+
+            <TextView
+                android:id="@+id/btnPrice"
+                style="@style/Models14Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/v_1dp"
+                tools:text="€9.99"
+                android:textColor="@color/white_50_alpha"
+                android:textSize="@dimen/text_14" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

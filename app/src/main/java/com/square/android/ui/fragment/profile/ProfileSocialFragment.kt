@@ -52,7 +52,7 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapt
             else -> ""
         }
 
-        val subTypeText = when(actualTokenInfo.subscriptionType){
+        val subTypeText = when(actualTokenInfo.planType){
             SUBSCRIPTION_TYPE_WEEKLY -> getString(R.string.weekly)
             SUBSCRIPTION_TYPE_MONTHLY -> getString(R.string.monthly)
             SUBSCRIPTION_TYPE_NO_LIMIT -> getString(R.string.unlimited)
@@ -120,12 +120,8 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView, ProfileItemAdapt
         presenter.openEditProfile()
     }
 
-
-
     override fun changePlanClicked() {
-        // TODO
-
-        println("ProfileSocialFragment: changePlanClicked()")
+        presenter.navigateToActivePlan()
     }
 
     override fun socialConnectClicked(type: Int, isConnected: Boolean) {

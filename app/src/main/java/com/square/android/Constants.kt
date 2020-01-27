@@ -51,6 +51,8 @@ object SCREENS {
 
     const val PASS_ELIGIBLE = "PASS_ELIGIBLE"
 
+    const val ACTIVE_PLAN = "ACTIVE_PLAN"
+
     const val SCAN_QR = "SCAN_QR"
 
     const val EVENT = "EVENT"

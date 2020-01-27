@@ -21,11 +21,16 @@ import com.square.android.R
 import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
 import com.square.android.data.network.fcm.NotificationType
+import com.square.android.data.pojo.BillingTokenInfo
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
+import com.square.android.ui.activity.activePlan.ActivePlanActivity
+import com.square.android.ui.activity.activePlan.ActivePlanExtras
+import com.square.android.ui.activity.activePlan.BILLING_TOKEN_EXTRA
+import com.square.android.ui.activity.activePlan.CAN_BACK_EXTRA
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
 import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.profile.EditProfileFragment
@@ -210,6 +215,11 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 //                    SCREENS.PASS_ELIGIBLE -> {
 //                        context.intentFor<PassEligibleActivity>(PASS_CAN_BACK_EXTRA to data as Boolean)
 //                    }
+
+                    SCREENS.ACTIVE_PLAN -> {
+                        val extras = data as ActivePlanExtras
+                        context.intentFor<ActivePlanActivity>(CAN_BACK_EXTRA to extras.canGoBack, BILLING_TOKEN_EXTRA to extras.billingTokenInfo)
+                    }
 
                     SCREENS.CAMPAIGN_DETAILS ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
