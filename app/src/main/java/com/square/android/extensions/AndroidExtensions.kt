@@ -22,6 +22,7 @@ import android.webkit.URLUtil
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
@@ -212,11 +213,15 @@ fun TextView.setTextCarryingEmpty(content: String?) {
     visibility = if (content.isNullOrEmpty()) View.GONE else View.VISIBLE
 }
 
-fun Context.copyToClipboard(text: String) {
+fun Context.copyToClipboard(text: String, showToast: Boolean = false) {
     val clipManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clipData = ClipData.newPlainText(null, text)
 
     clipManager.primaryClip = clipData
+
+    if(showToast){
+        Toast.makeText(this, getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT).show()
+    }
 }
 
 fun TextView.onTextChanged(block: (CharSequence) -> Unit) {

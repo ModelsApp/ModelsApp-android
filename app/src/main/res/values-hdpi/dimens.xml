@@ -211,6 +211,7 @@
     <dimen name="v_96dp">72dp</dimen>
     <dimen name="v_88dp">66dp</dimen>
     <dimen name="v_56dp">42dp</dimen>
+    <dimen name="v_50dp">37.5dp</dimen>
     <dimen name="v_48dp">36dp</dimen>
     <dimen name="v_44dp">33dp</dimen>
     <dimen name="v_40dp">30dp</dimen>
@@ -220,6 +221,7 @@
     <dimen name="v_22dp">16.5dp</dimen>
     <dimen name="v_20dp">15dp</dimen>
     <dimen name="v_16dp">12dp</dimen>
+    <dimen name="v_15dp">11.25dp</dimen>
     <dimen name="v_14dp">10.5dp</dimen>
     <dimen name="v_12dp">9dp</dimen>
     <dimen name="v_10dp">7.5dp</dimen>

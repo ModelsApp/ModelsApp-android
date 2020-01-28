@@ -129,7 +129,7 @@ class ProfileBusinessFragment: BaseFragment(), ProfileBusinessView, ProfileItemA
 
 
     override fun earnCreditsClicked(type: Int) {
-
+        presenter.navigateToEarnMoreCredits()
     }
 
     override fun modelsComClicked(modelsComUserName: String) {

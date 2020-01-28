@@ -389,6 +389,8 @@
     <string name="share">Share</string>
     <string name="refer">Refer</string>
 
+    <string name="credits_150">150 credits</string>
+    <string name="credits_300">300 credits</string>
     <string name="credits_500">500 credits</string>
     <string name="credits_1000">1.000 credits</string>
 
@@ -580,6 +582,13 @@
     <string name="earn_more_credits">Earn more credits</string>
     <string name="earn_credits">Earn credits</string>
 
+    <string name="support_square_text">Support SQUARE growth by spreading the project throughout your personal network</string>
+    <string name="share_with_friends">Share with friends</string>
+    <string name="refer_local_business">Refer a local business</string>
+    <string name="introduce_a_brand_">Introduce a brand</string>
+    <string name="introduce">Introduce</string>
+    <string name="your_personal_referal_code">Your personal referal code</string>
+
     <string name="tut_1_1">The label here is telling\nthe offer availability.</string>
     <string name="tut_1_2">Tab over an offer to\nsee it\'s composition.</string>
 
@@ -718,6 +727,7 @@
     <string name="place_availability_format">%s - %d spots left</string>
     <string name="place_availability_one_format">%s - %d spot left</string>
 
+    <string name="copied_to_clipboard">Copied to Clipboard</string>
 
     <string name="search_uppercase">Search</string>
 

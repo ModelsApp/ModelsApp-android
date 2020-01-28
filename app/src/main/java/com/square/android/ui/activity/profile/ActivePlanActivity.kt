@@ -1,4 +1,4 @@
-package com.square.android.ui.activity.activePlan
+package com.square.android.ui.activity.profile
 
 import android.os.Bundle
 import android.util.Log

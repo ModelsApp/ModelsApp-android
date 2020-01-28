@@ -6,7 +6,7 @@ import com.square.android.data.pojo.BillingTokenInfo
 import com.square.android.data.pojo.Profile
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.profile.ProfileSocialView
-import com.square.android.ui.activity.activePlan.ActivePlanExtras
+import com.square.android.ui.activity.profile.ActivePlanExtras
 
 @InjectViewState
 class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTokenInfo): BasePresenter<ProfileSocialView>(){

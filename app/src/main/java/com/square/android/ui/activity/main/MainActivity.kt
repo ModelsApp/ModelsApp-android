@@ -21,16 +21,11 @@ import com.square.android.R
 import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
 import com.square.android.data.network.fcm.NotificationType
-import com.square.android.data.pojo.BillingTokenInfo
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
-import com.square.android.ui.activity.activePlan.ActivePlanActivity
-import com.square.android.ui.activity.activePlan.ActivePlanExtras
-import com.square.android.ui.activity.activePlan.BILLING_TOKEN_EXTRA
-import com.square.android.ui.activity.activePlan.CAN_BACK_EXTRA
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
 import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.profile.EditProfileFragment
@@ -38,10 +33,9 @@ import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
 import com.square.android.ui.fragment.campaigns.CAMPAIGN_EXTRA_ID
 import com.square.android.ui.activity.noConnection.NoConnectionActivity
-import com.square.android.ui.activity.passEligible.PASS_CAN_BACK_EXTRA
-import com.square.android.ui.activity.passEligible.PassEligibleActivity
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID
 import com.square.android.ui.activity.place.PlaceActivity
+import com.square.android.ui.activity.profile.*
 import com.square.android.ui.activity.selectOffer.SelectOfferActivity
 import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
@@ -223,6 +217,9 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.CAMPAIGN_DETAILS ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
+
+                    SCREENS.EARN_MORE_CREDITS ->
+                        context.intentFor<EarnMoreCreditsActivity>()
 
                     SCREENS.CAMPAIGN_FINISHED ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
