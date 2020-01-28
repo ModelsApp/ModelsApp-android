@@ -38,7 +38,7 @@
         <item name="navigationIcon">@drawable/ic_arrow_back</item>
     </style>
 
-    <style name="StartActivity" parent="AppTheme">
+    <style name="TranscActivityFull" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 

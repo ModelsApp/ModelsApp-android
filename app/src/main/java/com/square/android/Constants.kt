@@ -54,6 +54,8 @@ object SCREENS {
     const val ACTIVE_PLAN = "ACTIVE_PLAN"
     const val EARN_MORE_CREDITS = "EARN_MORE_CREDITS"
 
+    const val SETTINGS = "SETTINGS"
+
     const val SCAN_QR = "SCAN_QR"
 
     const val EVENT = "EVENT"

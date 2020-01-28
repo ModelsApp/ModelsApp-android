@@ -32,6 +32,8 @@ class EarnMoreCreditsActivity: BaseActivity(), EarnMoreCreditsView{
 //      TODO: get and set personal referal code
         tvReferal.text = "1234"
 
+        arrowBack.setOnClickListener { onBackPressed() }
+
         referalCopyLl.setOnClickListener {  copyToClipboard(tvReferal.text.toString(), true)  }
 
         btnShare.setOnClickListener {

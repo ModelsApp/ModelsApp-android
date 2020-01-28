@@ -721,6 +721,18 @@
 
     <string name="address_">Address:</string>
 
+    <string name="credentials">Credentials</string>
+    <string name="push_notifications">Push notifications</string>
+    <string name="hidden_mood">Hidden mood</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="language">Language</string>
+    <string name="distance_units">Distance units</string>
+    <string name="time_settings">Time settings</string>
+    <string name="community_guidelines">Community guidelines</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="app_version">App version</string>
+    <string name="delete_my_account">Delete my account</string>
+
     <string name="google_pay_not_available">Unfortunately, Google Pay is not available on this device</string>
     <string name="something_went_wrong">Something went wrong</string>
 

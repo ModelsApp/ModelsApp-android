@@ -37,6 +37,7 @@ import com.square.android.ui.activity.place.PLACE_EXTRA_ID
 import com.square.android.ui.activity.place.PlaceActivity
 import com.square.android.ui.activity.profile.*
 import com.square.android.ui.activity.selectOffer.SelectOfferActivity
+import com.square.android.ui.activity.settings.SettingsActivity
 import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
 import com.square.android.ui.activity.tutorialVideos.TutorialVideosActivity
@@ -220,6 +221,9 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.EARN_MORE_CREDITS ->
                         context.intentFor<EarnMoreCreditsActivity>()
+
+                    SCREENS.SETTINGS ->
+                        context.intentFor<SettingsActivity>()
 
                     SCREENS.CAMPAIGN_FINISHED ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)

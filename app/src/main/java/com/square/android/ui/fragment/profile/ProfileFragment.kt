@@ -103,8 +103,7 @@ class ProfileFragment: BaseFragment(), ProfileView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        TODO move openEditProfile to "edit profile" btn in social tab
-        iconSettings.setOnClickListener { }
+        iconSettings.setOnClickListener { presenter.navigateToSettings() }
 //
 //        tutorialsTv.setOnClickListener { presenter.navigateTutorialVideos() }
 //

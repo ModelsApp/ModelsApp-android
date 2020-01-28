@@ -1,6 +1,7 @@
 package com.square.android.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -18,6 +19,7 @@ import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import android.os.Build
 import android.provider.Settings
+import android.view.View
 import com.square.android.data.Repository
 import com.square.android.ui.base.tutorial.Tutorial
 import com.square.android.ui.base.tutorial.TutorialLoadedEvent
@@ -37,6 +39,8 @@ abstract class BaseActivity : MvpActivity(), BaseView {
 
     private val eventBus: EventBus by inject()
     private val repository: Repository by inject()
+
+    private var statusBarIsLight: Boolean = false
 
     override fun showMessage(message: String) {
         contentView?.let {
@@ -128,6 +132,15 @@ abstract class BaseActivity : MvpActivity(), BaseView {
         }
     }
 
+// If you want to unset light status bar, call the code after super.onStart() in onStart() -> see ProfileFragment
+    override fun onStart() {
+        if(!statusBarIsLight){
+            statusBarIsLight = true
+            setLightStatusBar(this)
+        }
+        super.onStart()
+    }
+
     override fun onPause() {
         navigatorHolder.removeNavigator()
         super.onPause()
@@ -181,5 +194,13 @@ abstract class BaseActivity : MvpActivity(), BaseView {
             }
 
     protected abstract fun provideNavigator(): Navigator
+
+    private fun setLightStatusBar(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            var flags = activity.window.decorView.systemUiVisibility
+            flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            activity.window.decorView.systemUiVisibility = flags
+        }
+    }
 
 }

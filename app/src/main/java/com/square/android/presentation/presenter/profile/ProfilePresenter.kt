@@ -191,6 +191,10 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
         //TODO
     }
 
+    fun navigateToSettings(){
+        router.navigateTo(SCREENS.SETTINGS)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
