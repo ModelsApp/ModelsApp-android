@@ -32,6 +32,8 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
     private val eventBus: EventBus by inject()
     var actualTokenInfo: BillingTokenInfo? = null
 
+    private var user: Profile.User? = null
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onProfileUpdatedEvent(event: ProfileUpdatedEvent) {
         loadData()
@@ -44,9 +46,9 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
     private fun loadData() = launch {
         viewState.showProgress()
 
-        val user = repository.getCurrentUser().await()
+        user = repository.getCurrentUser().await()
 
-        loadSubscriptions(user)
+        loadSubscriptions(user!!)
     }
 
     private fun loadSubscriptions(user: Profile.User) = launch ({
@@ -192,7 +194,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
     }
 
     fun navigateToSettings(){
-        router.navigateTo(SCREENS.SETTINGS)
+        router.navigateTo(SCREENS.SETTINGS, user)
     }
 
     override fun onDestroy() {

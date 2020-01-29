@@ -26,6 +26,7 @@ object SCREENS {
     const val REVIEW = "REVIEW"
     const val OFFERS_LIST = "OFFERS_LIST"
 
+
     const val CLAIMED_REDEMPTION = "CLAIMED_REDEMPTION"
 
     const val NO_CONNECTION = "NO_CONNECTION"
@@ -55,6 +56,7 @@ object SCREENS {
     const val EARN_MORE_CREDITS = "EARN_MORE_CREDITS"
 
     const val SETTINGS = "SETTINGS"
+    const val SETTINGS_MAIN = "SETTINGS_MAIN"
 
     const val SCAN_QR = "SCAN_QR"
 

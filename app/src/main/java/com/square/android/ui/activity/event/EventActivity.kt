@@ -55,7 +55,7 @@ class EventActivity: LocationActivity(), EventView {
 
     private var titleMinHeight: Int = 0
 
-    private var isStatusBarLight: Boolean = false
+    private var isStatusBarLight: Boolean = true
 
     private var timeframeSelected = false
 
@@ -331,6 +331,24 @@ class EventActivity: LocationActivity(), EventView {
                         R.anim.fade_out)
             }
 
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if(isStatusBarLight){
+            setLightStatusBar(this)
+        } else{
+            clearLightStatusBar(this)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if(!isStatusBarLight){
+            setLightStatusBar(this)
         }
     }
 

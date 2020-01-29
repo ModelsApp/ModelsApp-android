@@ -54,7 +54,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
 
     private var titleMinHeight: Int = 0
 
-    private var isStatusBarLight: Boolean = false
+    private var isStatusBarLight: Boolean = true
 
     private var adapter: AboutAdapter? = null
 
@@ -402,12 +402,30 @@ class PlaceActivity : LocationActivity(), PlaceView {
                     checkAndShowAboutRv()
                 }
             }
-        }
+         }
     }
 
     private fun checkAndShowAboutRv(){
         if(placeAboutSize > 0){
             placeAboutRv.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if(isStatusBarLight){
+            setLightStatusBar(this)
+        } else{
+            clearLightStatusBar(this)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if(!isStatusBarLight){
+            setLightStatusBar(this)
         }
     }
 

@@ -223,7 +223,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<EarnMoreCreditsActivity>()
 
                     SCREENS.SETTINGS ->
-                        context.intentFor<SettingsActivity>()
+                        context.intentFor<SettingsActivity>(com.square.android.ui.activity.settings.USER_EXTRA to data as Profile.User)
 
                     SCREENS.CAMPAIGN_FINISHED ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
