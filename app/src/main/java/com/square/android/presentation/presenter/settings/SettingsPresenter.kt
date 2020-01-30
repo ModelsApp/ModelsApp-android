@@ -16,7 +16,6 @@ class SettingsPresenter(var user: Profile.User): BaseTabPresenter<SettingsView>(
 
     fun navigateToMain(tabData: TabData){
         routerNavigate(SCREENS.SETTINGS_MAIN, user, tabData)
-        routerNavigate(SCREENS.SETTINGS_MAIN, user, tabData)
     }
 
     fun exit(){

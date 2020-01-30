@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.square.android.utils.widget.PreImeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/tabAcContainer"
     android:background="@android:color/white"
     android:fitsSystemWindows="false" >
 
@@ -27,12 +28,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/settingsTitle"
+            android:id="@+id/titleTv"
             style="@style/Models16SemiBoldText"
             android:textSize="@dimen/text_16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/settings"
+            tools:text="Title"
             android:textColor="@android:color/black"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="@+id/arrowBack"
@@ -83,10 +84,10 @@
         app:layout_constraintEnd_toEndOf="parent" >
 
         <FrameLayout
-            android:id="@+id/settingsContainer"
+            android:id="@+id/tabsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.square.android.utils.widget.PreImeConstraintLayout>

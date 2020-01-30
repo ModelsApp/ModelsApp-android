@@ -3,11 +3,12 @@ package com.square.android.utils.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.widget.EditText
 import androidx.core.content.ContextCompat
 import com.square.android.R
+import android.graphics.drawable.Drawable
+import androidx.appcompat.widget.AppCompatEditText
 
-class ErrorEditText(context: Context, attributeSet: AttributeSet): EditText(context, attributeSet){
+class ErrorEditText(context: Context, attributeSet: AttributeSet): AppCompatEditText(context, attributeSet){
 
     var errorShowing: Boolean = false
     var normalHint: String = ""
@@ -35,4 +36,25 @@ class ErrorEditText(context: Context, attributeSet: AttributeSet): EditText(cont
         hint = errorText
         errorShowing = true
     }
+
+    fun setCustomIconError(error: String){
+        setError(error, context.getDrawable(R.drawable.ic_info_error))
+    }
+
+    override fun setError(error: CharSequence?, icon: Drawable) {
+        icon.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight);
+
+        super.setError(error, icon)
+//        setCompoundDrawables(null, null, icon, null)
+//
+//
+//
+//        if (error == null) {
+//
+//        } else if (error.toString() == "")
+//            setCompoundDrawables(null, null, icon, null)
+//        else
+
+    }
+
 }

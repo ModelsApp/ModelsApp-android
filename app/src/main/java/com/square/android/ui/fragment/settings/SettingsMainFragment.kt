@@ -10,8 +10,11 @@ import com.square.android.R
 import com.square.android.data.pojo.Profile
 import com.square.android.presentation.presenter.settings.SettingsMainPresenter
 import com.square.android.presentation.view.settings.SettingsMainView
+import com.square.android.ui.activity.BaseTabActivity
+import com.square.android.ui.activity.TabData
 import com.square.android.ui.activity.settings.USER_EXTRA
 import com.square.android.ui.fragment.BaseTabFragment
+import kotlinx.android.synthetic.main.fragment_settings_main.*
 import org.jetbrains.anko.bundleOf
 
 class SettingsMainFragment: BaseTabFragment(), SettingsMainView {
@@ -43,6 +46,7 @@ class SettingsMainFragment: BaseTabFragment(), SettingsMainView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        credentialsLl.setOnClickListener { presenter.navigateCredentials(TabData(getString(R.string.credentials), BaseTabActivity.BTN_TYPE.NEXT, btnVisible = true)) }
     }
 
     override fun tabBtnClicked() {

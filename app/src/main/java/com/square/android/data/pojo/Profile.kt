@@ -36,6 +36,11 @@ class Profile(var message: String = "",
                var images: List<Photo>? = null,
                var surname: String = "",
 
+            //TODO:F not in api for this moment
+               @Transient
+               @JsonIgnore
+               var emailConfirmed: Boolean = false,
+
                //TODO:F not in api for this moment
                @Transient
                @JsonIgnore

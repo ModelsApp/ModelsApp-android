@@ -154,6 +154,8 @@
     <string name="email">Email:</string>
     <string name="email_label">Email</string>
     <string name="password_label">Password</string>
+    <string name="actual_password">Actual password</string>
+    <string name="new_password">New password</string>
     <string name="confirm_password_label">Confirm password</string>
     <string name="phone">Phone</string>
     <string name="your_mobile_number">Your mobile number</string>
@@ -335,8 +337,15 @@
     <string name="insta_story_description">Tag the venue and the app in an Instagram story showing yourself there!</string>
     <string name="send_photo_description">Make and send a photo!</string>
 
+    <string name="change_password">Change password</string>
+    <string name="confirm_your_email">Confirm your email</string>
 
     <string name="checked_in_at">Checked in at</string>
+
+    <string name="sure_discard_changes">Are you sure you want to discard all changes?</string>
+
+    <string name="discard">Discard</string>
+
     <string name="notes_">Notes:</string>
     <string name="present_coupon">Present this coupon\nto staff members\nbefore to order</string>
 

@@ -126,7 +126,7 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
             presenter.info.nationality = spinnerNationality.selectedItem.toString()
             // date of birth is added in presenter
             presenter.info.gender = spinnerGender.selectedItem.toString()
-            presenter.info.phone = "${dialCode.content} ${etMobileNumber.content}"
+            presenter.info.phone = "${dialCode.content} ${etMobileNumber.content.trim()}"
             presenter.info.email = et_email.content
             presenter.info.password = et_password.content
             presenter.info.referral = et_referral.content

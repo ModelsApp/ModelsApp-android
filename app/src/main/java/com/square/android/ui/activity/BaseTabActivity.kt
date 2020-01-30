@@ -1,89 +1,131 @@
 package com.square.android.ui.activity
 
-import android.content.Context
-import android.content.Intent
+import android.os.Bundle
 import android.util.SparseArray
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.square.android.R
 import com.square.android.androidx.navigator.AppNavigator
+import com.square.android.extensions.hideKeyboard
+import com.square.android.ui.dialogs.DiscardChangesDialog
 import com.square.android.ui.fragment.BaseTabFragment
+import com.square.android.utils.ActivityUtils
+import kotlinx.android.synthetic.main.base_tab_ac.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import java.lang.Exception
 
-class TabData(var title: String?, var btnType: BaseTabActivity.BTN_TYPE = BaseTabActivity.BTN_TYPE.SAVE, var btnVisible: Boolean = false, var btnEnabled: Boolean = true)
+class TabData(var title: String?, var btnType: BaseTabActivity.BTN_TYPE = BaseTabActivity.BTN_TYPE.SAVE, var btnVisible: Boolean = false, var btnEnabled: Boolean = false, var setEditing: Boolean = false)
 
 class TabFragmentData(var data: Any?, var tabData: TabData)
 
-class TabFragmentAndData(var fragment: BaseTabFragment, var data: TabData)
+class TabFragmentAndData(var fragment: BaseTabFragment, var data: TabData, var isEditing: Boolean)
 
 abstract class BaseTabActivity: BaseActivity(){
-    var titleTv: TextView? = null
-    var navButton: TextView? = null
-    var backArrow: ImageView? = null
 
     var currentFragmentIndex: Int = -1
 
-    var backFromActivity: Boolean = false
-
     val tabsList: SparseArray<TabFragmentAndData> = SparseArray()
+
+    private var discardDialog: DiscardChangesDialog? = null
 
     override fun provideNavigator(): Navigator = provideTabNavigator()
 
     protected abstract fun provideTabNavigator(): BaseTabNavigator
 
-    open fun provideNavViews(titleTv: TextView?, navButton: TextView?, backArrow: ImageView?){
-        this.titleTv = titleTv
-        this.navButton = navButton
-        this.backArrow = backArrow
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ActivityUtils.setTransparentStatusAndDrawBehind(this)
 
+        setContentView(R.layout.base_tab_ac)
+
+        discardDialog = DiscardChangesDialog(this)
+
+        tabAcContainer.setAc(this)
+
+        arrowBack.setOnClickListener { onBackPressed() }
+
+        rightButton.setOnClickListener { getCurrentFragmentAndData().fragment.tabBtnClicked() }
+    }
     enum class BTN_TYPE {
         NEXT,
         SAVE
     }
 
-    fun enableBtn(enabled: Boolean){
-        navButton?.isEnabled = enabled
+    fun enableBtn(enabled: Boolean, setEditing: Boolean = false){
+        if(setEditing){
+          setIsEditing(true)
+        }
+
+        rightButton.isEnabled = enabled
         getCurrentFragmentAndData().data.btnEnabled = enabled
     }
 
-    open fun initFragment(tabData: TabData){
-        try {
-            navButton?.visibility = if(tabData.btnVisible) View.VISIBLE else View.GONE
-            titleTv?.text = tabData.title
-            navButton?.isEnabled = tabData.btnEnabled
+    fun setIsEditing(editing: Boolean){
+        setEditing(editing)
+    }
 
-            navButton?.text = when(tabData.btnType){
+    private fun isEditing() = getCurrentFragmentAndData().isEditing
+
+    private fun setEditing(editing: Boolean){
+        getCurrentFragmentAndData().isEditing = editing
+    }
+
+    open fun initFragment(tabData: TabData?){
+        tabData?.let {
+            rightButton.visibility = if(it.btnVisible) View.VISIBLE else View.GONE
+            titleTv.text = it.title
+            rightButton.isEnabled = it.btnEnabled
+
+            rightButton.text = when(it.btnType){
                 BTN_TYPE.NEXT -> getString(R.string.next)
                 BTN_TYPE.SAVE -> getString(R.string.save)
             }
-
-            navButton?.setOnClickListener { getCurrentFragmentAndData().fragment.tabBtnClicked() }
-
-            backArrow?.setOnClickListener { onBackPressed() }
-        } catch (e: Exception){ }
+        }
     }
 
     private fun getCurrentFragmentAndData(): TabFragmentAndData{
         return tabsList[currentFragmentIndex]
     }
 
-    abstract class BaseTabNavigator(var tabActivity: BaseTabActivity, containerId: Int, private var skipFirstTransaction: Boolean = false) : AppNavigator(tabActivity, containerId) {
+    override fun getCurrentFocus(): View? {
+        return if (window != null) window.currentFocus else null
+    }
 
-        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? {
-            //TODO CHECK may not be needed(may be wrong) - back may only be triggered inside this navigator? not in new ac with own navigator?
-            tabActivity.backFromActivity = true
+    fun isLastFragment(): Boolean = currentFragmentIndex == 0
 
-            return createTabActivityIntent(context, screenKey, data)
+    override fun onBackPressed() {
+        val focusedView = currentFocus
+
+        if(currentFocus != null){
+
+            if(currentFocus is EditText){
+                hideKeyboard()
+            }
+
+            focusedView!!.clearFocus()
+
+        } else{
+            if(isEditing()){
+                discardDialog?.show()
+            } else{
+                super.onBackPressed()
+                onBack()
+            }
         }
+    }
 
-        abstract fun createTabActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent?
+    private fun onBack(){
+        tabsList.removeAt(currentFragmentIndex)
+        currentFragmentIndex--
+
+        initFragment(tabsList[currentFragmentIndex].data)
+    }
+
+    abstract class BaseTabNavigator(var tabActivity: BaseTabActivity, private var skipFirstTransaction: Boolean = false) : AppNavigator(tabActivity, R.id.tabsContainer) {
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment {
             try {
@@ -98,7 +140,7 @@ abstract class BaseTabActivity: BaseActivity(){
             val fragment: BaseTabFragment = createTabFragment(screenKey, data)
             tabActivity.currentFragmentIndex ++
 
-            tabActivity.tabsList.put(tabActivity.currentFragmentIndex, TabFragmentAndData(fragment, tabData))
+            tabActivity.tabsList.put(tabActivity.currentFragmentIndex, TabFragmentAndData(fragment, tabData, tabData.setEditing))
             tabActivity.initFragment(tabData)
 
             return fragment
@@ -126,24 +168,6 @@ abstract class BaseTabActivity: BaseActivity(){
                             R.anim.fade_out)
                 }
             }
-
         }
-
-        //TODO BACK IS NOT TRIGGERED
-        //TODO CHECK may not be triggered? check
-        override fun back() {
-            super.back()
-
-            //TODO CHECK may not be needed(may be wrong) - back may only be triggered inside this navigator? not in new ac with own navigator?
-            if (!tabActivity.backFromActivity) {
-                tabActivity.tabsList.removeAt(tabActivity.currentFragmentIndex)
-                tabActivity.currentFragmentIndex--
-
-                tabActivity.initFragment(tabActivity.tabsList[tabActivity.currentFragmentIndex].data)
-            } else {
-                tabActivity.backFromActivity = false
-            }
-        }
-
     }
 }
