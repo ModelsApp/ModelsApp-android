@@ -10,4 +10,8 @@ abstract class BaseTabPresenter<V : BaseView>: BasePresenter<V>(){
         router.navigateTo(screenKey, TabFragmentData(data, tabData))
     }
 
+    fun exit(){
+        router.finishChain()
+    }
+
 }

@@ -70,15 +70,6 @@ class EditProfilePresenter : BasePresenter<EditProfileView>() {
         }
     }
 
-// TODO:F log out probably will be in other fragment
-    fun logout() {
-        //TODO:F call to API with null? fb access token -> user logged out from fb
-
-        repository.clearUserData()
-
-        router.replaceScreen(SCREENS.START)
-    }
-
     fun openGallery() {
         router.navigateTo(GALLERY, user)
     }

@@ -434,7 +434,7 @@ class ActualRepository(private val api: ApiService,
 
     override fun grantAllUserEntitlements() = localManager.grantAllUserEntitlements()
 
-    override fun getPushNotificationsAllowed(): Boolean = localManager.getPushNotificationsAllowed()
+
 
     override fun getGeolocationAllowed(): Boolean = localManager.getGeolocationAllowed()
 
@@ -450,9 +450,42 @@ class ActualRepository(private val api: ApiService,
         localManager.setLocationPermissionsOneTimeChecked(checkedAlready)
     }
 
-    override fun setPushNotificationsAllowed(allowed: Boolean) {
-        localManager.setPushNotificationsAllowed(allowed)
+/////////// push notifications
+    override fun setSpotsCloseAllowed(allowed: Boolean) {
+        localManager.setSpotsCloseAllowed(allowed)
     }
+    override fun getSpotsCloseAllowed(): Boolean = localManager.getSpotsCloseAllowed()
+
+    override fun setNewLocationsAllowed(allowed: Boolean) {
+        localManager.setNewLocationsAllowed(allowed)
+    }
+    override fun getNewLocationsAllowed(): Boolean = localManager.getNewLocationsAllowed()
+
+    override fun setNewJobMatchingAllowed(allowed: Boolean) {
+        localManager.setNewJobMatchingAllowed(allowed)
+    }
+    override fun getNewJobMatchingAllowed(): Boolean = localManager.getNewJobMatchingAllowed()
+
+    override fun setEventsInCityAllowed(allowed: Boolean) {
+        localManager.setEventsInCityAllowed(allowed)
+    }
+    override fun getEventsInCityAllowed(): Boolean = localManager.getEventsInCityAllowed()
+
+    override fun setCreditsAddedAllowed(allowed: Boolean) {
+        localManager.setCreditsAddedAllowed(allowed)
+    }
+    override fun getCreditsAddedAllowed(): Boolean = localManager.getCreditsAddedAllowed()
+
+    override fun setFriendMessagesAllowed(allowed: Boolean) {
+        localManager.setFriendMessagesAllowed(allowed)
+    }
+    override fun getFriendMessagesAllowed(): Boolean = localManager.getFriendMessagesAllowed()
+
+    override fun setBusinessMessagesAllowed(allowed: Boolean) {
+        localManager.setBusinessMessagesAllowed(allowed)
+    }
+    override fun getBusinessMessagesAllowed(): Boolean = localManager.getBusinessMessagesAllowed()
+///////////
 
     override fun setGeolocationAllowed(allowed: Boolean) {
        localManager.setGeolocationAllowed(allowed)

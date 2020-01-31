@@ -7,16 +7,16 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import com.afollestad.materialdialogs.MaterialDialog
 import com.square.android.R
-import kotlinx.android.synthetic.main.dialog_discard_changes.*
+import kotlinx.android.synthetic.main.dialog_log_out.*
 
-class DiscardChangesDialog(private val context: Context) {
+class LogOutDialog(private val context: Context) {
 
     var dialog: MaterialDialog? = null
 
     @SuppressLint("InflateParams")
     fun show(onAction: () -> Unit) {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.dialog_discard_changes, null, false)
+        val view = inflater.inflate(R.layout.dialog_log_out, null, false)
 
         dialog = MaterialDialog.Builder(context)
                 .customView(view, false)
@@ -26,8 +26,8 @@ class DiscardChangesDialog(private val context: Context) {
         dialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
-        dialog!!.discard.setOnClickListener { onAction.invoke()
-        dialog?.dismiss()
+        dialog!!.logOut.setOnClickListener { onAction.invoke()
+            dialog?.dismiss()
         }
 
         dialog!!.cancel.setOnClickListener { dialog!!.dismiss() }

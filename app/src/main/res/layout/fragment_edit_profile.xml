@@ -179,19 +179,6 @@
             app:layout_constraintStart_toStartOf="@+id/userImgContainer"
             app:layout_constraintEnd_toEndOf="@id/userImgContainer" />
 
-<!--   TODO:F log out probably will be in other fragment  -->
-        <TextView
-            android:id="@+id/editProfileLogout"
-            style="@style/Models16SemiBoldText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/v_2dp"
-            android:textSize="@dimen/text_16"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="128dp"
-            tools:text="@string/log_out" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -226,38 +213,6 @@
             android:paddingBottom="@dimen/v_24dp"
             android:orientation="vertical"
             android:layout_height="wrap_content" >
-
-<!--    TODO:F Switches will be added later, in other fragment?       -->
-
-<!--             <Switch-->
-<!--               android:id="@+id/switchPushNotifi"-->
-<!--               style="@style/Models16Text"-->
-<!--               android:textSize="@dimen/text_16"-->
-<!--               android:layout_width="match_parent"-->
-<!--               android:layout_height="@dimen/v_48dp"-->
-<!--               tools:checked="true"-->
-<!--               android:text="@string/push_notification"-->
-<!--               android:thumb="@drawable/switch_thumb"-->
-<!--               android:track="@drawable/switch_track" />-->
-
-<!--            <FrameLayout-->
-<!--                android:id="@+id/allowGeoClickView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/v_48dp"-->
-<!--                android:layout_marginTop="@dimen/v_8dp" >-->
-<!--                <Switch-->
-<!--                    android:id="@+id/switchAllowGeo"-->
-<!--                    style="@style/Models16Text"-->
-<!--                    android:textSize="@dimen/text_16"-->
-<!--                    android:textColor="@android:color/black"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    tools:checked="true"-->
-<!--                    android:enabled="false"-->
-<!--                    android:text="@string/allow_geolocation"-->
-<!--                    android:thumb="@drawable/switch_thumb"-->
-<!--                    android:track="@drawable/switch_track" />-->
-<!--            </FrameLayout>-->
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -11,10 +11,13 @@ import com.square.android.presentation.presenter.settings.SettingsPresenter
 import com.square.android.presentation.view.settings.SettingsView
 import com.square.android.ui.activity.BaseTabActivity
 import com.square.android.ui.activity.TabData
+import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.fragment.BaseTabFragment
 import com.square.android.ui.fragment.settings.SettingsChangePasswordFragment
 import com.square.android.ui.fragment.settings.SettingsCredentialsFragment
 import com.square.android.ui.fragment.settings.SettingsMainFragment
+import com.square.android.ui.fragment.settings.SettingsPushNotificationsFragment
+import org.jetbrains.anko.intentFor
 
 const val USER_EXTRA = "USER_EXTRA"
 
@@ -34,17 +37,18 @@ class SettingsActivity: BaseTabActivity(), SettingsView {
         presenter.navigateToMain(TabData(getString(R.string.settings)))
     }
 
-    override fun onBackPressed() {
-        if(currentFragmentIndex == 0){
-            presenter.exit()
-        } else{
-            super.onBackPressed()
-        }
+    override fun onLastFragmentBackPressed() {
+        presenter.exit()
     }
 
-    private class SettingsNavigator(activity: BaseTabActivity): BaseTabNavigator(activity, skipFirstTransaction = true) {
+    private class SettingsNavigator(activity: BaseTabActivity): BaseTabNavigator(activity) {
 
-        override fun createActivityIntent(context: Context, screenKey: String, data: Any?) = null
+        override fun createActivityIntent(context: Context, screenKey: String, data: Any?) =
+                when (screenKey) {
+                    SCREENS.START ->
+                        context.intentFor<StartActivity>()
+                    else -> null
+                }
 
         override fun createTabFragment(screenKey: String?, data: Any?): BaseTabFragment = when (screenKey) {
 
@@ -54,9 +58,10 @@ class SettingsActivity: BaseTabActivity(), SettingsView {
 
             SCREENS.SETTINGS_CHANGE_PASSWORD -> { SettingsChangePasswordFragment.newInstance(data as Profile.User) }
 
+            SCREENS.SETTINGS_PUSH_NOTIFICATIONS -> { SettingsPushNotificationsFragment.newInstance() }
+
             else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
         }
-
     }
 
 }

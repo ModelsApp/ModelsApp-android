@@ -34,17 +34,25 @@ private const val KEY_ENTITLEMENT = "KEY_ENTITLEMENT"
 private const val KEY_PROFILE_INFO = "KEY_PROFILE_INFO"
 private const val KEY_FRAGMENT_NUMBER = "KEY_FRAGMENT_NUMBER"
 
-private const val KEY_ALLOW_PUSH_NOTIFICATIONS = "KEY_ALLOW_PUSH_NOTIFICATIONS"
-
 private const val KEY_ALLOW_GEOLOCATION = "KEY_ALLOW_GEOLOCATION"
 
 private const val KEY_LOCATION_DONT_ASK = "KEY_LOCATION_DONT_ASK"
 private const val KEY_LOCATION_ONE_TIME = "KEY_LOCATION_ONE_TIME"
 
+private const val KEY_HIDDEN_MOOD_DONT_ASK = "KEY_HIDDEN_MOOD_DONT_ASK"
+
 private const val DISPLAY_INTRO_DEFAULT = true
 private const val PROFILE_FILLED_DEFAULT = false
 private const val LOGGED_IN_DEFAULT = false
 private const val ID_DEFAULT = 0L
+
+private const val KEY_PUSH_SPOTS_CLOSE = "KEY_PUSH_SPOTS_CLOSE"
+private const val KEY_PUSH_NEW_LOCATIONS = "KEY_PUSH_NEW_LOCATIONS"
+private const val KEY_PUSH_NEW_JOB_MATCHING = "KEY_PUSH_NEW_JOB_MATCHING"
+private const val KEY_PUSH_EVENTS_IN_CITY = "KEY_PUSH_EVENTS_IN_CITY"
+private const val KEY_PUSH_CREDITS_ADDED = "KEY_PUSH_CREDITS_ADDED"
+private const val KEY_PUSH_FRIEND_MESSAGES = "KEY_PUSH_FRIEND_MESSAGES"
+private const val KEY_PUSH_BUSINESS_MESSAGES = "KEY_PUSH_BUSINESS_MESSAGES"
 
 class LocalDataManager(context: Context) {
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -271,10 +279,6 @@ class LocalDataManager(context: Context) {
 
     fun getId() = preferences.getLong(KEY_ID, ID_DEFAULT)
 
-    fun getPushNotificationsAllowed(): Boolean {
-        return preferences.getBoolean(KEY_ALLOW_PUSH_NOTIFICATIONS, false)
-    }
-
     fun getGeolocationAllowed(): Boolean {
         return preferences.getBoolean(KEY_ALLOW_GEOLOCATION, true)
     }
@@ -299,9 +303,65 @@ class LocalDataManager(context: Context) {
                 .apply()
     }
 
-    fun setPushNotificationsAllowed(allowed: Boolean) {
+/////////// push notifications
+// TODO: which of those should be true by default?
+    fun setSpotsCloseAllowed(allowed: Boolean) {
         preferences.edit()
-                .putBoolean(KEY_ALLOW_PUSH_NOTIFICATIONS, allowed)
+                .putBoolean(KEY_PUSH_SPOTS_CLOSE, allowed)
+                .apply()
+    }
+    fun getSpotsCloseAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_SPOTS_CLOSE, false)
+
+    fun setNewLocationsAllowed(allowed: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_PUSH_NEW_LOCATIONS, allowed)
+                .apply()
+    }
+    fun getNewLocationsAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_NEW_LOCATIONS, false)
+
+    fun setNewJobMatchingAllowed(allowed: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_PUSH_NEW_JOB_MATCHING, allowed)
+                .apply()
+    }
+    fun getNewJobMatchingAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_NEW_JOB_MATCHING, true)
+
+    fun setEventsInCityAllowed(allowed: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_PUSH_EVENTS_IN_CITY, allowed)
+                .apply()
+    }
+    fun getEventsInCityAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_EVENTS_IN_CITY, false)
+
+    fun setCreditsAddedAllowed(allowed: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_PUSH_CREDITS_ADDED, allowed)
+                .apply()
+    }
+    fun getCreditsAddedAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_CREDITS_ADDED, true)
+
+    fun setFriendMessagesAllowed(allowed: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_PUSH_FRIEND_MESSAGES, allowed)
+                .apply()
+    }
+    fun getFriendMessagesAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_FRIEND_MESSAGES, true)
+
+    fun setBusinessMessagesAllowed(allowed: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_PUSH_BUSINESS_MESSAGES, allowed)
+                .apply()
+    }
+    fun getBusinessMessagesAllowed(): Boolean = preferences.getBoolean(KEY_PUSH_BUSINESS_MESSAGES, true)
+///////////
+
+    fun getHiddenMoodDontAsk(): Boolean {
+        return preferences.getBoolean(KEY_HIDDEN_MOOD_DONT_ASK, false)
+    }
+
+    fun setHiddenMoodDontAsk(dontAsk: Boolean) {
+        preferences.edit()
+                .putBoolean(KEY_HIDDEN_MOOD_DONT_ASK, dontAsk)
                 .apply()
     }
 

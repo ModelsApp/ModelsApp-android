@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/v_12dp"
@@ -25,7 +24,7 @@
             android:layout_marginEnd="@dimen/v_20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sure_discard_changes"
+            android:text="@string/sure_log_out"
             android:gravity="center_horizontal" />
 
         <LinearLayout
@@ -61,7 +60,7 @@
                 android:gravity="center" />
 
             <TextView
-                android:id="@+id/discard"
+                android:id="@+id/logOut"
                 style="@style/Models15Text"
                 android:textSize="@dimen/text_15"
                 android:textColor="@color/nice_pink"
@@ -72,7 +71,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/discard"
+                android:text="@string/log_out"
                 android:gravity="center" />
 
         </LinearLayout>

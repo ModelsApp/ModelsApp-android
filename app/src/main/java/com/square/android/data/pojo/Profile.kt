@@ -41,6 +41,11 @@ class Profile(var message: String = "",
                @JsonIgnore
                var emailConfirmed: Boolean = false,
 
+            //TODO:F not in api for this moment
+               @Transient
+               @JsonIgnore
+               var hiddenMoodOn: Boolean = false,
+
                //TODO:F not in api for this moment
                @Transient
                @JsonIgnore

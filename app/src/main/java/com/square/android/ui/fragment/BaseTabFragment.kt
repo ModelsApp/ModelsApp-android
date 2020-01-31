@@ -10,6 +10,6 @@ abstract class BaseTabFragment: BaseFragment(){
         (activity as BaseTabActivity).enableBtn(enabled, setEditing)
     }
 
-    fun isValid(item: CharSequence) = item.toString().trim().isNotEmpty()
+    fun setIsEditing(isEditing: Boolean) = (activity as BaseTabActivity).setIsEditing(isEditing)
 
 }

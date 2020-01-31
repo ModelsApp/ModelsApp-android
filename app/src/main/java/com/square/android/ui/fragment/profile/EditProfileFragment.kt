@@ -11,14 +11,9 @@ import com.square.android.presentation.view.profile.EditProfileView
 import com.square.android.ui.dialogs.DatePickDialog
 import com.square.android.ui.fragment.BaseFragment
 import android.widget.AdapterView
-import com.facebook.AccessToken
-import com.facebook.GraphRequest
-import com.facebook.HttpMethod
-import com.facebook.login.LoginManager
 import com.square.android.extensions.content
 import com.square.android.extensions.loadImage
 import com.square.android.extensions.onTextChanged
-import com.square.android.extensions.toOrdinalString
 import com.square.android.ui.DROPDOWN_ITEM_TYPE_CHECKMARK
 import com.square.android.ui.SimpleSpinnerAdapter
 import com.square.android.ui.dialogs.LoadingDialog
@@ -45,17 +40,6 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
         super.onViewCreated(view, savedInstanceState)
 
         loadingDialog = LoadingDialog(activity!!)
-
-//  TODO:F log out probably will be in other fragment
-        editProfileLogout.setOnClickListener {
-            GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
-                AccessToken.setCurrentAccessToken(null)
-                LoginManager.getInstance().logOut()
-
-            }).executeAsync()
-
-            presenter.logout()
-        }
 
         saveTv.setOnClickListener {
             if(validate()){
@@ -167,36 +151,6 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
 
         changeSaveBtn(false)
 
-//  TODO:F Switches will be added later, in other fragment?
-//
-//        arePushNotificationsAllowed = in presenter -> repository.getPushNotificationsAllowed()
-//
-//        if(PermissionsManager.areLocationPermissionsGranted(activity!!)){
-//            if(!repository.getLocationPermissionsOneTimeChecked()){
-//                repository.setGeolocationAllowed(true)
-//                repository.setLocationPermissionsOneTimeChecked(true)
-//            }
-//        }
-//
-//        switchPushNotifi.isChecked = arePushNotificationsAllowed
-//
-//        permissionsManager = PermissionsManager(this)
-//
-//        switchAllowGeo.isChecked = PermissionsManager.areOwnLocationPermissionsGranted(activity!!)
-//
-//        allowGeoClickView.setOnClickListener {
-//            if(PermissionsManager.areLocationPermissionsGranted(activity!!)){
-//                switchAllowGeo.isChecked = repository.getGeolocationAllowed().not()
-//                repository.setGeolocationAllowed(repository.getGeolocationAllowed().not())
-//            } else{
-//                val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-//                ActivityCompat.requestPermissions(activity!!, permissions, 1387)
-//
-//                permissionsManager!!.requestLocationPermissions(this)
-//            }
-//        }
-//
-//        switchPushNotifi.setOnCheckedChangeListener { buttonView, isChecked -> repository.setPushNotificationsAllowed(isChecked) }
     }
 
     override fun changeSaveBtn(enabled: Boolean){
@@ -295,14 +249,6 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
     override fun showBirthday(birthday: String) {
         tvDateOfBirth.text = birthday
     }
-
-//  TODO:F Switches will be added later, in other fragment?
-//
-//    override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) { }
-//
-//    override fun onPermissionResult(granted: Boolean) {
-//            switchAllowGeo.isChecked = granted
-//    }
 
     override fun onResume() {
         super.onResume()

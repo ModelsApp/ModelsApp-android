@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingTop="@dimen/v_16dp"
+    android:paddingStart="@dimen/v_24dp"
+    android:paddingEnd="@dimen/v_24dp"
+    android:paddingBottom="@dimen/v_16dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/availableSpotsLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_available_spots" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchAvailableSpots"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            tools:checked="true"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/newLocationsLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_new_locations" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchNewLocations"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            tools:checked="true"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/jobMatchingLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_job_matching" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchJobMatching"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/eventsInCityLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_events_in_city" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchEventsInCity"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/creditsAddedLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_credits_added" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchCreditsAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/friendMessagesLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_friend_messages" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchFriendMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/businessMessagesLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/push_business_messages" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchBusinessMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -340,9 +340,26 @@
     <string name="change_password">Change password</string>
     <string name="confirm_your_email">Confirm your email</string>
 
+    <string name="hidden_mood_on">Do you want to switch your actual status to hidden mood?</string>
+    <string name="hidden_mood_on_text">Activating this mood you won\'t be visible in the researches and not eligible to participate to jobs and events.</string>
+    <string name="hidden_mood_off">Do you want to turn off hidden mood?</string>
+    <string name="hidden_mood_off_text">Deactivating this mood you\'ll be visible in the researches and eligible to participate to jobs and events.</string>
+    <string name="lets_do_it">Sure, let\'s do it</string>
+    <string name="dont_show_me_this">Don\'t show me this anymore</string>
+
+    <string name="push_available_spots">Available spots close to you</string>
+    <string name="push_new_locations">New locations in app</string>
+    <string name="push_job_matching">New job matching your interests</string>
+    <string name="push_events_in_city">New events in your current city</string>
+    <string name="push_credits_added">Credits added after actions\' review</string>
+    <string name="push_friend_messages">Incoming friend messages</string>
+    <string name="push_business_messages">Incoming business messages</string>
+
     <string name="checked_in_at">Checked in at</string>
 
     <string name="sure_discard_changes">Are you sure you want to discard all changes?</string>
+
+    <string name="sure_log_out">Are you sure you want to log out?</string>
 
     <string name="discard">Discard</string>
 

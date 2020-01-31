@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.square.android.R
 import com.square.android.androidx.navigator.AppNavigator
 import com.square.android.extensions.hideKeyboard
+import com.square.android.presentation.presenter.BasePresenter
+import com.square.android.presentation.view.BaseView
 import com.square.android.ui.dialogs.DiscardChangesDialog
 import com.square.android.ui.fragment.BaseTabFragment
 import com.square.android.utils.ActivityUtils
@@ -36,8 +38,11 @@ abstract class BaseTabActivity: BaseActivity(){
 
     protected abstract fun provideTabNavigator(): BaseTabNavigator
 
+    abstract fun onLastFragmentBackPressed()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         ActivityUtils.setTransparentStatusAndDrawBehind(this)
 
         setContentView(R.layout.base_tab_ac)
@@ -100,20 +105,27 @@ abstract class BaseTabActivity: BaseActivity(){
     override fun onBackPressed() {
         val focusedView = currentFocus
 
-        if(currentFocus != null){
+        if(focusedView != null){
 
-            if(currentFocus is EditText){
+            if(focusedView is EditText){
                 hideKeyboard()
             }
 
-            focusedView!!.clearFocus()
+            focusedView.clearFocus()
 
         } else{
             if(isEditing()){
-                discardDialog?.show()
+                discardDialog?.show {
+                    setIsEditing(false)
+                    onBackPressed()
+                }
             } else{
-                super.onBackPressed()
-                onBack()
+                if(isLastFragment()){
+                  onLastFragmentBackPressed()
+                } else{
+                    super.onBackPressed()
+                    onBack()
+                }
             }
         }
     }
@@ -125,11 +137,11 @@ abstract class BaseTabActivity: BaseActivity(){
         initFragment(tabsList[currentFragmentIndex].data)
     }
 
-    abstract class BaseTabNavigator(var tabActivity: BaseTabActivity, private var skipFirstTransaction: Boolean = false) : AppNavigator(tabActivity, R.id.tabsContainer) {
+    abstract class BaseTabNavigator(var tabActivity: BaseTabActivity, private var skipFirstTransaction: Boolean = true) : AppNavigator(tabActivity, R.id.tabsContainer) {
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment {
             try {
-                val allData: TabFragmentData = data as TabFragmentData
+                val allData = data as TabFragmentData
                 return initAndReturn(screenKey, allData.data, allData.tabData)
             } catch (e: Exception){
                 throw IllegalArgumentException("BaseTabNavigator's fragment data should be type of TabFragmentData: $screenKey")

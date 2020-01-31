@@ -80,7 +80,45 @@
 
     </LinearLayout>
 
-    <!-- TODO: radio clicked on ll click -->
+    <LinearLayout
+        android:id="@+id/allowGeoLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="@dimen/v_24dp"
+            android:layout_height="@dimen/v_24dp"
+            android:src="@drawable/r_shop"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/v_12dp"
+            android:layout_marginEnd="@dimen/v_12dp"
+            android:text="@string/allow_geolocation" />
+
+        <Switch
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:id="@+id/switchAllowGeo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/v_32dp"
+            android:clickable="false"
+            android:enabled="false"
+            android:checked="false"
+            tools:checked="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/hiddenMoodLl"
         android:layout_width="match_parent"
@@ -120,7 +158,7 @@
 
     </LinearLayout>
 
-    <!-- TODO: radio clicked on ll click -->
+    <!-- TODO: radio clicked on ll click? -->
     <LinearLayout
         android:id="@+id/darkModeLl"
         android:layout_width="match_parent"
@@ -497,6 +535,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:stateListAnimator="@animator/alpha_pressed_anim"
             android:text="@string/log_out" />
 
     </LinearLayout>
@@ -516,6 +555,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:stateListAnimator="@animator/alpha_pressed_anim"
             android:text="@string/delete_my_account" />
 
     </LinearLayout>

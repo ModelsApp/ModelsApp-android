@@ -146,8 +146,6 @@ interface Repository {
 
     fun grantAllUserEntitlements()
 
-    fun getPushNotificationsAllowed(): Boolean
-
     fun getGeolocationAllowed(): Boolean
 
     fun getLocationDontAsk(): Boolean
@@ -158,7 +156,22 @@ interface Repository {
 
     fun setLocationPermissionsOneTimeChecked(checkedAlready: Boolean)
 
-    fun setPushNotificationsAllowed(allowed: Boolean)
+/////////// push notifications
+    fun setSpotsCloseAllowed(allowed: Boolean)
+    fun getSpotsCloseAllowed(): Boolean
+    fun setNewLocationsAllowed(allowed: Boolean)
+    fun getNewLocationsAllowed(): Boolean
+    fun setNewJobMatchingAllowed(allowed: Boolean)
+    fun getNewJobMatchingAllowed(): Boolean
+    fun setEventsInCityAllowed(allowed: Boolean)
+    fun getEventsInCityAllowed(): Boolean
+    fun setCreditsAddedAllowed(allowed: Boolean)
+    fun getCreditsAddedAllowed(): Boolean
+    fun setFriendMessagesAllowed(allowed: Boolean)
+    fun getFriendMessagesAllowed(): Boolean
+    fun setBusinessMessagesAllowed(allowed: Boolean)
+    fun getBusinessMessagesAllowed(): Boolean
+///////////
 
     fun setGeolocationAllowed(allowed: Boolean)
 

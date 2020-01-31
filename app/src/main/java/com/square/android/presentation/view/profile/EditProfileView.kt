@@ -10,5 +10,4 @@ interface EditProfileView : LoadingView {
 
     fun changeSaveBtn(enabled: Boolean)
 
-//    fun showData(user: Profile.User, arePushNotificationsAllowed: Boolean)
 }
