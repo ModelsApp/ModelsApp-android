@@ -13,8 +13,4 @@ class ProfileBusinessPresenter(user: Profile.User): BasePresenter<ProfileBusines
         viewState.showData(user)
     }
 
-    fun navigateToEarnMoreCredits(){
-        router.navigateTo(SCREENS.EARN_MORE_CREDITS)
-    }
-
 }

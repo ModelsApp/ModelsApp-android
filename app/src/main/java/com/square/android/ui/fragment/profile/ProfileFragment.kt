@@ -1,9 +1,7 @@
 package com.square.android.ui.fragment.profile
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -12,12 +10,9 @@ import android.widget.LinearLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.ViewPager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.square.android.R
 import com.square.android.data.pojo.BillingTokenInfo
 import com.square.android.data.pojo.Profile
@@ -25,47 +20,36 @@ import com.square.android.extensions.loadImage
 import com.square.android.presentation.presenter.profile.*
 import com.square.android.presentation.view.profile.ProfileView
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.utils.ActivityUtils
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
-import kotlinx.android.synthetic.main.aaa_item_campaign_photo.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlin.math.abs
-
-//import kotlinx.android.synthetic.main.fragment_profile.memberLabel
-//import kotlinx.android.synthetic.main.fragment_profile.privacyTv
-//import kotlinx.android.synthetic.main.fragment_profile.rvSocials
-//import kotlinx.android.synthetic.main.fragment_profile.termsTv
-//import kotlinx.android.synthetic.main.fragment_profile.tutorialsTv
 
 const val EXTRA_USER = "EXTRA_USER"
 const val EXTRA_BILLING_TOKEN_INFO = "EXTRA_BILLING_TOKEN_INFO"
 
-const val TYPE_PLAIN = 1 // (only right text, non-clickable)
-const val TYPE_DROPDOWN = 2
+const val TYPE_PLAIN = 1 // (only right text)
+const val TYPE_ARROW = 2
 const val TYPE_ADD = 3
 const val TYPE_BUTTON = 4
 const val TYPE_CUSTOM = 0
 
-const val ADD_TYPE_BANK_ACCOUNT = 1
-const val ADD_TYPE_PAYPAL_ACCOUNT = 2
-
 const val CUSTOM_TYPE_BALANCE = 2
 
 class ProfileItem(
-        var type: Int = 0, // one of TYPE_...
+        var type: Int = TYPE_ARROW,
         var title: String = "",
-        var textValue: String? = null,
         @DrawableRes
-        var iconRes: Int?,
-        var subItems: List<Any>? = null,
-        @DrawableRes
-        var subIconRes: Int? = null,
+        var iconRes: Int? = null,
         var subText: String? = null,
         var dividerVisible: Boolean = false,
         @ColorRes
-        var arrowTint: Int? = null,
+        var arrowTint: Int = R.color.text_gray,
+        @ColorRes
+        var subTextColor: Int = R.color.text_gray,
         var addType: Int? = null,
-        var customType: Int? = null)
+        var customType: Int? = null,
+        var onClick: () -> Unit = {},
+        var onAdd: () -> Unit = {})
 
 class ProfileFragment: BaseFragment(), ProfileView {
 
@@ -104,12 +88,6 @@ class ProfileFragment: BaseFragment(), ProfileView {
         super.onViewCreated(view, savedInstanceState)
 
         iconSettings.setOnClickListener { presenter.navigateToSettings() }
-//
-//        tutorialsTv.setOnClickListener { presenter.navigateTutorialVideos() }
-//
-//        termsTv.setOnClickListener { presenter.navigateTerms() }
-//
-//        privacyTv.setOnClickListener { presenter.navigatePrivacy() }
 
         val displayMetrics: DisplayMetrics = DisplayMetrics()
         activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -239,13 +217,17 @@ class ProfileFragment: BaseFragment(), ProfileView {
         userName.text = user.name + " " + user.surname
         secondaryName.text = user.name + " " + user.surname
 
-        //TODO get user speciality from API and set: userSpeciality, secondarySpeciality
-        userSpeciality.text = "Fitness Instructor"
-        secondarySpeciality.text = "Fitness Instructor"
+        //TODO get active from API
+        activeLabel.text = "Active user"
+        secondaryActiveLabel.text = "Active user"
 
-        //TODO format string o be like 1,234,324
-        pointsTv.text = user.credits.toString()
+        //TODO activeIcon and secondaryActiveIcon
+        activeIcon.visibility = View.VISIBLE
+        secondaryActiveIcon.visibility = View.VISIBLE
 
+        //TODO userIcon and secondaryUserIcon
+        userIcon.visibility = View.VISIBLE
+        secondaryUserIcon.visibility = View.VISIBLE
 
         user.mainImage?.run {
             userImg.loadImage(this,
@@ -253,26 +235,6 @@ class ProfileFragment: BaseFragment(), ProfileView {
                     roundedCornersRadiusPx = 360,
                     whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.ALL))
         }
-
-
-
-
-
-//        val subText = when(actualTokenInfo.subscriptionType){
-//            SUBSCRIPTION_NORMAL -> getString(R.string.basic)
-//            SUBSCRIPTION_PREMIUM -> getString(R.string.premium)
-//            else -> ""
-//        }
-//
-//        memberLabel.text = subText + " " + getString(R.string.member) + "\n" + getString(R.string.level_format, user.level)
-
-        //TODO just for testing, delete later
-//        heightTv.text = "Height: 179cm"
-//        sizeTv.text = "90 - 60 - 90"
-//        cityTv.text = "Milan"
-//        walletBalanceTv.text = "€ 1.273,00"
-//        walletCurrencyShortTv.text = "EUR"
-//        walletCurrencyTv.text = "Euro"
 
         setupFragmentAdapter(user, actualTokenInfo)
     }
@@ -290,38 +252,13 @@ class ProfileFragment: BaseFragment(), ProfileView {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
             override fun onPageSelected(position: Int) {
                 currentPagerPosition = position
-                setUpPage(currentPagerPosition)
             }
         })
-
-        setUpPage(0)
     }
 
-    fun setUpPage(position: Int){
-//        memberLabel.visibility = if(position == POSITION_SOCIAL) View.VISIBLE else View.INVISIBLE
-//        rvSocials.visibility = if(position == POSITION_SOCIAL) View.VISIBLE else View.INVISIBLE
-//
-//        businessInfoLl.visibility = if(position == POSITION_BUSINESS) View.VISIBLE else View.INVISIBLE
-//
-//        userImg.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
-//        userName.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
-//        icMedal.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
-//        statusRl.visibility = if(position == POSITION_WALLET) View.INVISIBLE else View.VISIBLE
-//
-//        walletLl.visibility = if(position == POSITION_WALLET) View.VISIBLE else View.INVISIBLE
-    }
+    override fun showProgress() { }
 
-    override fun showProgress() {
-//        statusRl.visibility = View.GONE
-//        bottomLl.visibility = View.GONE
-//        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-//        progressBar.visibility = View.GONE
-//        statusRl.visibility = View.VISIBLE
-//        bottomLl.visibility = View.VISIBLE
-    }
+    override fun hideProgress() { }
 
     override fun onStart() {
         super.onStart()

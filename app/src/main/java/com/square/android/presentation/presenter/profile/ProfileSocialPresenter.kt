@@ -22,4 +22,8 @@ class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTok
     fun navigateToActivePlan(){
         router.navigateTo(SCREENS.ACTIVE_PLAN, ActivePlanExtras(true, actualTokenInfo))
     }
+
+    fun navigateToEarnMoreCredits(){
+        router.navigateTo(SCREENS.EARN_MORE_CREDITS)
+    }
 }

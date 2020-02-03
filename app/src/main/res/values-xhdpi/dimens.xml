@@ -106,86 +106,18 @@
     <dimen name="photosReviewedTextMargin">24dp</dimen>
     <dimen name="photosReviewedBetweenMargin">48dp</dimen>
 
-    <!-- fragment profile & item profile & profile subitems -->
-    <dimen name="frag_profile_user_img_size">128dp</dimen>
-    <dimen name="frag_profile_medal_margin_top">106dp</dimen>
-    <dimen name="frag_profile_medal_margin_start">108dp</dimen>
-    <dimen name="frag_profile_status_margin_top">6dp</dimen>
-    <dimen name="frag_profile_status_size">16.5dp</dimen>
-    <dimen name="frag_profile_status_bg_size">20dp</dimen>
-    <dimen name="frag_profile_medal_width">32dp</dimen>
-    <dimen name="frag_profile_medal_height">40dp</dimen>
-    <!-- (frag_profile_margin ) 24 / 2  -->
-    <dimen name="frag_profile_round_icon_size">8dp</dimen>
-    <dimen name="frag_profile_bottom_label_margin">48dp</dimen>
-    <dimen name="frag_profile_padding_bottom">32dp</dimen>
-    <dimen name="frag_profile_margin">24dp</dimen>
-    <!-- (frag_profile_margin ) 24 / 2 -->
-    <dimen name="frag_profile_business_margin_top">8dp</dimen>
-    <dimen name="frag_profile_text_size_very_large">26sp</dimen>
-    <dimen name="frag_profile_small_round_icon_size">3.5dp</dimen>
-    <dimen name="frag_profile_small_round_icon_margin">6dp</dimen>
-    <dimen name="frag_profile_text_size_large">20sp</dimen>
-    <dimen name="frag_profile_text_size_normal">16sp</dimen>
-    <dimen name="frag_profile_text_size_smaller">15sp</dimen>
-    <dimen name="frag_profile_text_size_small">14sp</dimen>
-<!--    -->
-    <dimen name="item_profile_arrow_size">24dp</dimen>
-    <dimen name="item_profile_icon_size">24dp</dimen>
-    <dimen name="item_profile_subicon_size">24dp</dimen>
-    <!--  item_profile_margin /2  -->
-    <dimen name="item_profile_btn_margin">7dp</dimen>
-    <!--  (subiconSize) 24 + 6 (subiconMargin)-->
-    <dimen name="item_profile_subicon_size_margin">30dp</dimen>
-    <dimen name="item_profile_subicon_margin">6dp</dimen>
-    <dimen name="item_profile_margin">14dp</dimen>
-    <!--  (iconSize) 24 + 28 (item_profile_margin * 2)-->
-    <dimen name="item_profile_clickable_size">52dp</dimen>
-    <dimen name="item_profile_text_size">16sp</dimen>
-    <dimen name="item_profile_text_size_large">18sp</dimen>
-<!--    -->
-    <dimen name="subitem_tv_bottom_margin">12dp</dimen>
-    <dimen name="subitem_icon_size">48dp</dimen>
-    <dimen name="subitem_left_margin">28dp</dimen>
-    <dimen name="subitem_bottom_margin">16dp</dimen>
-    <dimen name="subitem_top_margin">4dp</dimen>
-    <dimen name="subitem_text_size_very_small">10sp</dimen>
-    <dimen name="subitem_text_size_small">12sp</dimen>
-<!--    -->
-    <dimen name="subitem_preference_switch_size">36dp</dimen>
-    <dimen name="subitem_preference_bottom_margin">8dp</dimen>
-<!--    -->
-    <dimen name="subitem_create_bottom_margin">12dp</dimen>
-    <dimen name="subitem_create_small_image_size">13dp</dimen>
-<!--    -->
-    <dimen name="subitem_details_second_margin">14dp</dimen>
-<!--    -->
-    <dimen name="subitem_account_edit_rb_margin">10dp</dimen>
-    <dimen name="subitem_account_edit_rb_size">17dp</dimen>
-    <dimen name="subitem_account_btn_height">48dp</dimen>
-    <dimen name="subitem_account_btn_margin">10dp</dimen>
-<!--    -->
-    <dimen name="subitem_bank_account_img_height">24dp</dimen>
-    <dimen name="subitem_bank_account_img_width">40dp</dimen>
-    <dimen name="subitem_bank_account_start_margin">12dp</dimen>
-<!--    -->
-    <dimen name="item_profile_item_balance_padding">24dp</dimen>
-
     <!-- fragment_profile -->
-    <dimen name="profile_toolbarHeight">232dp</dimen>
-    <dimen name="profile_bgImageSize">400dp</dimen>
+    <dimen name="profile_toolbarHeight">152dp</dimen>
+    <dimen name="profile_bgImageSize">350dp</dimen>
 <!-- it probably should stay 28dp because of status bar height-->
-    <dimen name="profile_scrimVisibleHeightTrigger">300dp</dimen>
+    <dimen name="profile_scrimVisibleHeightTrigger">250dp</dimen>
     <dimen name="profile_topPadding">24dp</dimen>
-    <dimen name="profile_roundedViewHeight">24dp</dimen>
-    <dimen name="profile_imageSize">96dp</dimen>
-    <dimen name="profile_imageInitialMarginTop">-96dp</dimen>
+    <dimen name="profile_roundedViewHeight">32dp</dimen>
+    <dimen name="profile_imageSize">116dp</dimen>
+    <dimen name="profile_imageInitialMarginTop">-116dp</dimen>
     <dimen name="profile_imageBorderSize">2dp</dimen>
     <dimen name="profile_resizedImageSize">64dp</dimen>
     <dimen name="profile_textMarginTop">6dp</dimen>
-    <dimen name="profile_pointsImageSize">32dp</dimen>
-    <dimen name="profile_pointsMarginTop">12dp</dimen>
-    <dimen name="profile_pointsPaddingEnd">8dp</dimen>
     <dimen name="profile_defaultPadding">24dp</dimen>
     <dimen name="profile_tabsPadding">12dp</dimen>
     <dimen name="profile_iconsPadding">16dp</dimen>
@@ -206,21 +138,28 @@
     <dimen name="signup_checkbox_margin_start">-8dp</dimen>
     <dimen name="signup_checkbox_margin_start_positive">8dp</dimen>
 
+    <dimen name="v_256dp">256dp</dimen>
+    <dimen name="v_180dp">180dp</dimen>
     <dimen name="v_152dp">152dp</dimen>
     <dimen name="v_128dp">128dp</dimen>
     <dimen name="v_112dp">112dp</dimen>
     <dimen name="v_96dp">96dp</dimen>
     <dimen name="v_88dp">88dp</dimen>
+    <dimen name="v_80dp">80dp</dimen>
+    <dimen name="v_60dp">60dp</dimen>
     <dimen name="v_56dp">56dp</dimen>
     <dimen name="v_50dp">50dp</dimen>
     <dimen name="v_48dp">48dp</dimen>
     <dimen name="v_44dp">44dp</dimen>
     <dimen name="v_40dp">40dp</dimen>
     <dimen name="v_32dp">32dp</dimen>
+    <dimen name="v_30dp">30dp</dimen>
     <dimen name="v_28dp">28dp</dimen>
     <dimen name="v_24dp">24dp</dimen>
     <dimen name="v_22dp">22dp</dimen>
+    <dimen name="v_21dp">21dp</dimen>
     <dimen name="v_20dp">20dp</dimen>
+    <dimen name="v_17dp">17dp</dimen>
     <dimen name="v_16dp">16dp</dimen>
     <dimen name="v_15dp">15dp</dimen>
     <dimen name="v_14dp">14dp</dimen>
@@ -249,6 +188,7 @@
     <dimen name="text_15">15sp</dimen>
     <dimen name="text_16">16sp</dimen>
     <dimen name="text_18">18sp</dimen>
+    <dimen name="text_20">20sp</dimen>
     <dimen name="text_22">22sp</dimen>
     <dimen name="text_26">26sp</dimen>
 

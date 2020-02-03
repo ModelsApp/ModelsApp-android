@@ -140,35 +140,71 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:visibility="visible"
-                        tools:visibility="gone"
+                        tools:visibility="visible"
                         app:layout_constraintTop_toTopOf="@+id/imageContainer"
                         app:layout_constraintBottom_toBottomOf="@+id/imageContainer"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" >
 
-                        <TextView
-                            android:id="@+id/userName"
-                            style="@style/Models16SemiBoldText"
-                            android:textSize="@dimen/text_16"
-                            app:autoSizeTextType="uniform"
-                            android:maxLines="1"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            tools:text="Rosemary Edwards" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_horizontal">
 
-                        <TextView
-                            android:id="@+id/userSpeciality"
-                            style="@style/Models13Text"
-                            android:textSize="@dimen/text_13"
-                            android:textColor="@color/grey_dark"
+                            <TextView
+                                android:id="@+id/userName"
+                                style="@style/Models16SemiBoldText"
+                                android:textSize="@dimen/text_16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:layout_marginEnd="@dimen/v_6dp"
+                                android:gravity="center_vertical"
+                                tools:text="Rosemary Edwards" />
+
+                            <ImageView
+                                android:id="@+id/userIcon"
+                                android:layout_width="@dimen/v_16dp"
+                                android:layout_height="@dimen/v_16dp"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                android:src="@drawable/ic_check_circle"
+                                android:tint="@color/nice_blue"
+                                android:layout_gravity="center_vertical"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_marginTop="@dimen/profile_textMarginTop"
-                            app:autoSizeTextType="uniform"
-                            android:maxLines="1"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            tools:text="Fitness Instructor" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/activeIcon"
+                                android:layout_width="@dimen/v_6dp"
+                                android:layout_height="@dimen/v_6dp"
+                                android:src="@drawable/background_rounded_max"
+                                android:tint="@color/status_green"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:id="@+id/activeLabel"
+                                style="@style/Models13Text"
+                                android:textSize="@dimen/text_13"
+                                android:textColor="@color/text_gray"
+                                android:layout_marginStart="@dimen/v_4dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                tools:text="Active user" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <!--      margin start = 64(final resized image size) + 16(image start margin) + 16(label start margin) = 96 dp -->
@@ -181,65 +217,70 @@
                         android:orientation="vertical"
                         android:gravity="center_vertical"
                         android:visibility="gone"
-                        tools:visibility="visible"
+                        tools:visibility="gone"
                         app:layout_constraintTop_toTopOf="@+id/imageContainer"
                         app:layout_constraintBottom_toBottomOf="@+id/imageContainer"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" >
 
-                        <TextView
-                            android:id="@+id/secondaryName"
-                            style="@style/Models16SemiBoldText"
-                            android:textSize="@dimen/text_16"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:autoSizeTextType="uniform"
-                            android:maxLines="1"
-                            android:gravity="center_vertical"
-                            tools:text="Rosemary Edwards" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal" >
 
-                        <TextView
-                            android:id="@+id/secondarySpeciality"
-                            style="@style/Models13Text"
-                            android:textSize="@dimen/text_13"
-                            android:textColor="@color/grey_dark"
+                            <TextView
+                                android:id="@+id/secondaryName"
+                                style="@style/Models16SemiBoldText"
+                                android:textSize="@dimen/text_16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:layout_marginEnd="@dimen/v_6dp"
+                                android:gravity="center_vertical"
+                                tools:text="Rosemary Edwards" />
+
+                            <ImageView
+                                android:id="@+id/secondaryUserIcon"
+                                android:layout_width="@dimen/v_16dp"
+                                android:layout_height="@dimen/v_16dp"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                android:src="@drawable/ic_check_circle"
+                                android:tint="@color/nice_blue"
+                                android:layout_gravity="center_vertical"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_marginTop="@dimen/profile_textMarginTop"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:autoSizeTextType="uniform"
-                            android:maxLines="1"
-                            android:gravity="center_vertical"
-                            tools:text="Fitness Instructor" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/pointsLl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="2dp"
-                        android:paddingEnd="@dimen/profile_pointsPaddingEnd"
-                        android:layout_marginTop="@dimen/profile_pointsMarginTop"
-                        android:gravity="center_vertical"
-                        app:layout_constraintTop_toBottomOf="@+id/imageContainer"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:background="@drawable/background_rounded_max"
-                        android:backgroundTint="@android:color/black"
-                        android:orientation="horizontal" >
-
-                        <ImageView
-                            android:layout_width="@dimen/profile_pointsImageSize"
-                            android:layout_height="@dimen/profile_pointsImageSize"
-                            android:src="@drawable/ic_launcher_icon" />
-
-                        <TextView
-                            android:id="@+id/pointsTv"
-                            style="@style/Models13Text"
-                            android:textSize="@dimen/text_13"
-                            android:textColor="@android:color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="1,253" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/secondaryActiveIcon"
+                                android:layout_width="@dimen/v_6dp"
+                                android:layout_height="@dimen/v_6dp"
+                                android:src="@drawable/background_rounded_max"
+                                android:tint="@color/status_green"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:id="@+id/secondaryActiveLabel"
+                                style="@style/Models13Text"
+                                android:textSize="@dimen/text_13"
+                                android:textColor="@color/text_gray"
+                                android:layout_marginStart="@dimen/v_4dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                tools:text="Active user" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -247,15 +288,15 @@
                             android:id="@+id/tabLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/profile_tabsPadding"
-                            app:layout_constraintTop_toBottomOf="@+id/pointsLl"
+                            android:layout_marginTop="@dimen/v_8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/imageContainer"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:tabIndicator="@drawable/indicator"
                             android:visibility="gone"
                             tools:visibility="visible"
-                            android:layout_marginStart="@dimen/frag_profile_margin"
-                            android:layout_marginEnd="@dimen/frag_profile_margin"
+                            android:layout_marginStart="@dimen/v_24dp"
+                            android:layout_marginEnd="@dimen/v_24dp"
                             app:tabTextAppearance="@style/TabText"
                             app:tabIndicatorColor="@color/placesPrimary"
                             app:tabSelectedTextColor="@android:color/black"
@@ -266,8 +307,8 @@
                         android:id="@+id/separator"
                         android:layout_width="0dp"
                         android:layout_height="1.5dp"
-                        app:layout_goneMarginTop="@dimen/profile_tabsPadding"
-                        android:background="@color/divider_light"
+                        app:layout_goneMarginTop="@dimen/v_8dp"
+                        android:background="@color/gray_light"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />

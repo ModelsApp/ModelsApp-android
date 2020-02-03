@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_profile_clickable_size"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:clipToPadding="false"
-    android:layout_marginStart="-3dp"
-    android:layout_marginEnd="-3dp"
-    android:paddingTop="@dimen/item_profile_btn_margin"
-    android:paddingBottom="@dimen/item_profile_btn_margin">
+    android:clipChildren="false"
+    android:layout_marginStart="@dimen/v_14dp"
+    android:layout_marginEnd="@dimen/v_14dp"
+    android:paddingTop="@dimen/v_8dp"
+    android:paddingBottom="@dimen/v_12dp" >
 
     <Button
         android:id="@+id/itemProfileButton"
         style="@style/Models16Text"
-        android:textSize="@dimen/frag_profile_text_size_small"
+        android:textSize="@dimen/text_16"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
+        android:layout_height="@dimen/v_44dp"
+        android:layout_marginStart="@dimen/v_3dp"
+        android:layout_marginEnd="@dimen/v_3dp"
         android:stateListAnimator="@animator/shadow_button_anim"
-        android:background="@drawable/background_rounded_12dp"
+        android:background="@drawable/background_rounded_8dp"
         android:backgroundTint="@color/gray_divider"
         tools:text="Edit profile"
         android:textAllCaps="false"

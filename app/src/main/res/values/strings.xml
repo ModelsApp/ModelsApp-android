@@ -213,6 +213,8 @@
     <string name="credits">Credits</string>
     <string name="credits_lowercase">credits</string>
 
+    <string name="experience_points">Experience points</string>
+
     <string name="terms_privacy_text">I\'ve read and accept the latest SQUARE\nTerms and Conditions and the Privacy Policy</string>
 
     <string name="im_a">I\'m a</string>
@@ -399,6 +401,8 @@
     <string name="connected">Connected</string>
 
     <string name="social_channels">Social channels</string>
+    <string name="my_profession">My profession</string>
+    <string name="profile_verification">Profile verification</string>
 
     <string name="your_activity">Your activity</string>
 
