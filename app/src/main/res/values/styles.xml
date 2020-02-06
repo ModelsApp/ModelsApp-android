@@ -331,6 +331,11 @@
         <item name="fontPath">@string/font_poppins_medium</item>
     </style>
 
+    <style name="Models24BoldText" parent="ModelsText">
+        <item name="android:textSize">24sp</item>
+        <item name="fontPath">@string/font_poppins_bold</item>
+    </style>
+
     <style name="Models26SemiBoldText" parent="ModelsText">
         <item name="android:textSize">26sp</item>
         <item name="fontPath">@string/font_poppins_medium</item>

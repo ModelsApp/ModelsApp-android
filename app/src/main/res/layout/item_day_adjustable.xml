@@ -7,11 +7,13 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@android:color/white" >
+    android:background="@android:color/transparent" >
 
     <TextView
         android:id="@+id/itemDayAdjustableName"
-        style="@style/Models18Text"
+        style="@style/Models16Text"
+        android:textSize="@dimen/text_16"
+        android:textColor="@color/text_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -23,15 +25,16 @@
     <FrameLayout
         android:id="@+id/itemDayAdjustableValueContainer"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="@dimen/v_40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="@dimen/v_6dp" >
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/itemDayAdjustableValue"
             style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
             android:layout_gravity="center"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/v_40dp"
+            android:layout_height="@dimen/v_40dp"
             android:background="@drawable/item_day_selector"
             android:gravity="center"
             android:checked="true"

@@ -34,7 +34,7 @@ class PlacesPresenter : BasePresenter<PlacesView>() {
 
     var types: MutableList<String> = mutableListOf()
 
-    var days: MutableList<String> = mutableListOf()
+    var days: MutableList<Day> = mutableListOf()
     var actualDates: MutableList<String> = mutableListOf()
 
     var timeframes: MutableList<FilterTimeframe> = mutableListOf()
@@ -359,7 +359,7 @@ class PlacesPresenter : BasePresenter<PlacesView>() {
             val calendar = Calendar.getInstance()
 
             for (x in 0 until 7) {
-                days.add(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).substring(0, 1).toUpperCase())
+                days.add(Day(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).substring(0, 1).toUpperCase(), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) +1))
                 actualDates.add(calendar.get(Calendar.DAY_OF_MONTH).toString()+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.YEAR))
 
                 calendar.add(Calendar.DAY_OF_YEAR, 1)

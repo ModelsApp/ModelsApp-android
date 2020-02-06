@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +23,10 @@ import kotlinx.android.synthetic.main.fragment_places.*
 import androidx.core.content.ContextCompat
 import com.square.android.data.pojo.City
 import com.square.android.R
+import com.square.android.data.pojo.Day
+import com.square.android.ui.activity.place.DaysAdapter
 
-class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, DaysShortAdapter.Handler {
+class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, DaysAdapter.Handler {
 
     @InjectPresenter(type = PresenterType.GLOBAL, tag = "PlacesPresenter")
     lateinit var presenter: PlacesPresenter
@@ -31,13 +34,13 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
     private var filterDays = false
     private var filterTypes = false
 
-    private var mapShown = false
+//    private var mapShown = false
 
     var ignoreText = false
 
     private var filtersAdapter: FiltersAdapter? = null
 
-    private var dayShortAdapter: DaysShortAdapter? = null
+    private var daysAdapter: DaysAdapter? = null
 
     override fun showProgress() {
         placesProgress.visibility = View.VISIBLE
@@ -47,19 +50,22 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         placesProgress.visibility = View.GONE
     }
 
-    override fun showData(data: MutableList<Place>, types: MutableList<String>, activatedItems: MutableList<String>, days: MutableList<String>) {
+    override fun showData(data: MutableList<Place>, types: MutableList<String>, activatedItems: MutableList<String>, days: MutableList<Day>) {
         filtersAdapter = FiltersAdapter(types, this, activatedItems)
         placesFiltersTypesRv.adapter = filtersAdapter
         placesFiltersTypesRv.layoutManager = LinearLayoutManager(placesFiltersTypesRv.context, RecyclerView.HORIZONTAL,false)
         placesFiltersTypesRv.addItemDecoration(MarginItemDecorator(placesFiltersTypesRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), false))
 
-        dayShortAdapter = DaysShortAdapter(days, this)
-        placesFiltersDaysRv.adapter = dayShortAdapter
+        val displayMetrics = DisplayMetrics()
+        activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+                                                                                                         //(item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2 ~ 8dp to cut)
+        daysAdapter = DaysAdapter(days, this, Math.round((displayMetrics.widthPixels.toFloat() - activity!!.resources.getDimension(R.dimen.v_8dp)) / 7))
+        placesFiltersDaysRv.adapter = daysAdapter
         placesFiltersDaysRv.layoutManager = LinearLayoutManager(placesFiltersDaysRv.context, RecyclerView.HORIZONTAL,false)
-        placesFiltersDaysRv.addItemDecoration(MarginItemDecorator(placesFiltersDaysRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), false))
 
         setUpPager(data)
     }
+
     private fun setUpPager(data: MutableList<Place>) {
         placesPager.isPagingEnabled = false
         placesPager.adapter = PlacesFragmentAdapter(childFragmentManager, data)
@@ -117,10 +123,10 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
             changeFiltering(2)
         }
 
-        placesIcMap.setOnClickListener {
-            loadFragment()
-            mapShown = mapShown.not()
-        }
+//        placesIcMap.setOnClickListener {
+//            loadFragment()
+//            mapShown = mapShown.not()
+//        }
 
         placesClear.setOnClickListener { presenter.clearFilters() }
 
@@ -178,16 +184,16 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         placesCity.text = name
     }
 
-    private fun loadFragment(){
-        placesIcMap.imageTintList = if(!mapShown) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
-        else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
-
-        if(!mapShown){
-            placesPager.setCurrentItem(1, false)
-        } else{
-            placesPager.setCurrentItem(0, false)
-        }
-    }
+//    private fun loadFragment(){
+//        placesIcMap.imageTintList = if(!mapShown) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
+//        else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
+//
+//        if(!mapShown){
+//            placesPager.setCurrentItem(1, false)
+//        } else{
+//            placesPager.setCurrentItem(0, false)
+//        }
+//    }
 
                                 // 1 - days, 2 - types
     private fun changeFiltering(whichClicked: Int){
@@ -242,10 +248,10 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
     }
 
     override fun setSelectedDayItem(position: Int) {
-        dayShortAdapter?.setSelectedItem(position)
+        daysAdapter?.setSelectedItem(position)
     }
 
-    override fun dayItemClicked(position: Int){
+    override fun itemClicked(position: Int) {
         presenter.dayClicked(position)
     }
 

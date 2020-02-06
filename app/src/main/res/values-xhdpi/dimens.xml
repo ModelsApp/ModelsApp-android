@@ -151,6 +151,7 @@
     <dimen name="v_50dp">50dp</dimen>
     <dimen name="v_48dp">48dp</dimen>
     <dimen name="v_44dp">44dp</dimen>
+    <dimen name="v_42dp">42dp</dimen>
     <dimen name="v_40dp">40dp</dimen>
     <dimen name="v_32dp">32dp</dimen>
     <dimen name="v_30dp">30dp</dimen>
@@ -190,6 +191,7 @@
     <dimen name="text_18">18sp</dimen>
     <dimen name="text_20">20sp</dimen>
     <dimen name="text_22">22sp</dimen>
+    <dimen name="text_24">24sp</dimen>
     <dimen name="text_26">26sp</dimen>
 
     <dimen name="error_text_size">13sp</dimen>

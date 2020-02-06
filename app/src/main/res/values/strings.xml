@@ -400,6 +400,8 @@
     <string name="connect_format">Connect with %s</string>
     <string name="connected">Connected</string>
 
+    <string name="were_full">We\'re full</string>
+
     <string name="social_channels">Social channels</string>
     <string name="my_profession">My profession</string>
     <string name="profile_verification">Profile verification</string>

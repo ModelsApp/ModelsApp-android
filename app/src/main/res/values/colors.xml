@@ -46,6 +46,8 @@
     <color name="status_red">#E12B2A</color>
 
     <color name="text_gray">#A1A1AD</color>
+    <color name="text_gray_dark_light">#818181</color>
+    <color name="text_gray_dark">#7D7D7D</color>
 
     <color name="nice_blue">#317DE8</color>
 
@@ -80,6 +82,8 @@
 
     <color name="grey_dark">#888888</color>
     <color name="grey_background_field">#F8F8F8</color>
+
+    <color name="grey_trans_80">#CCA5A5A5</color>
 
     <color name="grey_text_field">#2B282E</color>
 

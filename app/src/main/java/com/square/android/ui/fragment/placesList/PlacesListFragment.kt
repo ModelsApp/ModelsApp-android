@@ -47,7 +47,7 @@ class PlacesListFragment(var data: MutableList<Place>): BaseFragment(), PlacesLi
         adapter = PlacesAdapter(data, this)
         placesList.adapter = adapter
         placesList.layoutManager = LinearLayoutManager(placesList.context, RecyclerView.VERTICAL,false)
-        placesList.addItemDecoration(MarginItemDecorator(placesList.context.resources.getDimension(R.dimen.rv_item_decorator_12).toInt(), true))
+        placesList.addItemDecoration(MarginItemDecorator(placesList.context.resources.getDimension(R.dimen.v_12dp).toInt(), true))
     }
 
     override fun updatePlaces(data: List<Place>) {

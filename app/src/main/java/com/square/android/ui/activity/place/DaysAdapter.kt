@@ -11,17 +11,17 @@ private const val TYPE_DAY = R.layout.item_day
 private const val TYPE_DAY_ADJUSTABLE = R.layout.item_day_adjustable
 
 class DaysAdapter(data: List<Day>,
-                   private val handler: Handler?, private val itemSize: Int? = null) : BaseAdapter<Day, DaysAdapter.DayHolder>(data) {
+                   private val handler: Handler?, private val itemWidth: Int? = null) : BaseAdapter<Day, DaysAdapter.DayHolder>(data) {
 
     var selectedItemPosition: Int? = null
     var selectedMonth: Int = 0
 
     override fun getLayoutId(viewType: Int) = viewType
 
-    override fun instantiateHolder(view: View): DayHolder = DayHolder(view, handler, itemSize)
+    override fun instantiateHolder(view: View): DayHolder = DayHolder(view, handler, itemWidth)
 
     override fun getViewType(position: Int): Int {
-        return if(itemSize == null) TYPE_DAY else TYPE_DAY_ADJUSTABLE
+        return if(itemWidth == null) TYPE_DAY else TYPE_DAY_ADJUSTABLE
     }
 
     override fun getItemCount() = data.size
@@ -39,7 +39,7 @@ class DaysAdapter(data: List<Day>,
 
         payloads.filter { it is SelectedPayload }
                 .forEach {
-                    if(itemSize == null){
+                    if(itemWidth == null){
                         holder.bindSelected(data[position], selectedItemPosition, selectedMonth)
                     }
                     else{
@@ -59,13 +59,13 @@ class DaysAdapter(data: List<Day>,
         notifyItemChanged(position)
     }
 
-    class DayHolder(containerView: View, var handler: Handler?,var itemSize: Int? ) : BaseHolder<Day>(containerView) {
+    class DayHolder(containerView: View, var handler: Handler?,var itemWidth: Int? ) : BaseHolder<Day>(containerView) {
 
         override fun bind(item: Day, vararg extras: Any? ) {
             val selectedPosition = if(extras[0] == null) null else extras[0] as Int
             val selectedMonth = extras[1] as Int
 
-            if(itemSize == null){
+            if(itemWidth == null){
                 bindDay(item, selectedPosition, selectedMonth)
             } else{
                 bindDayAdjustable(item, selectedPosition, selectedMonth)
@@ -95,9 +95,8 @@ class DaysAdapter(data: List<Day>,
 
             itemDayAdjustableValueContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
 
-            itemSize?.let { size -> itemDayAdjustableValueContainer.layoutParams.also {
-                it.width = size
-                it.height = size
+            itemWidth?.let { width -> itemDayAdjustableValueContainer.layoutParams.also {
+                it.width = width
             } }
         }
 
