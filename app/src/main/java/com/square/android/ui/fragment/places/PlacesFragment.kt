@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
+import com.square.android.presentation.presenter.places.MainData
 import com.square.android.ui.activity.place.DaysAdapter
 
 class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, DaysAdapter.Handler {
@@ -50,11 +51,13 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         placesProgress.visibility = View.GONE
     }
 
-    override fun showData(data: MutableList<Place>, types: MutableList<String>, activatedItems: MutableList<String>, days: MutableList<Day>) {
-        filtersAdapter = FiltersAdapter(types, this, activatedItems)
-        placesFiltersTypesRv.adapter = filtersAdapter
-        placesFiltersTypesRv.layoutManager = LinearLayoutManager(placesFiltersTypesRv.context, RecyclerView.HORIZONTAL,false)
-        placesFiltersTypesRv.addItemDecoration(MarginItemDecorator(placesFiltersTypesRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), false))
+    override fun showData(data: MainData, days: MutableList<Day>) {
+//        override fun showData(data: MainData, types: MutableList<String>, activatedItems: MutableList<String>, days: MutableList<Day>) {
+//
+//        filtersAdapter = FiltersAdapter(types, this, activatedItems)
+//        placesFiltersTypesRv.adapter = filtersAdapter
+//        placesFiltersTypesRv.layoutManager = LinearLayoutManager(placesFiltersTypesRv.context, RecyclerView.HORIZONTAL,false)
+//        placesFiltersTypesRv.addItemDecoration(MarginItemDecorator(placesFiltersTypesRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), false))
 
         val displayMetrics = DisplayMetrics()
         activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -62,6 +65,7 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         daysAdapter = DaysAdapter(days, this, Math.round((displayMetrics.widthPixels.toFloat() - activity!!.resources.getDimension(R.dimen.v_8dp)) / 7))
         placesFiltersDaysRv.adapter = daysAdapter
         placesFiltersDaysRv.layoutManager = LinearLayoutManager(placesFiltersDaysRv.context, RecyclerView.HORIZONTAL,false)
+        daysAdapter!!.setSelectedItem(0)
 
         setUpPager(data)
     }
@@ -233,14 +237,6 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
                 presenter.changeFiltering(3)
             }
         }
-    }
-
-    override fun hideClear() {
-        placesClear.visibility = View.GONE
-    }
-
-    override fun showClear() {
-        placesClear.visibility = View.VISIBLE
     }
 
     override fun filterClicked(position: Int) {
