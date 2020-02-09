@@ -8,7 +8,13 @@ interface PlacesView : ProgressView {
     fun showData(data: MainData, days: MutableList<Day>)
 //    fun showData(data: MainData, types: MutableList<String>, activatedItems: MutableList<String>, days: MutableList<Day>)
 
-    fun updateFilters(types: MutableList<String>, activated: MutableList<String>, updateAll: Boolean)
+//    fun updateFilters(types: MutableList<String>, activated: MutableList<String>, updateAll: Boolean)
+
     fun setSelectedDayItem(position: Int)
     fun changeCityName(name: String)
+
+    fun showDays()
+    fun hideDays()
+    fun showCities()
+    fun hideCities()
 }

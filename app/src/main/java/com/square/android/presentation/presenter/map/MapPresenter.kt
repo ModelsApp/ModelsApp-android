@@ -15,7 +15,7 @@ import org.koin.standalone.inject
 class CityLocateEvent(val data: LatLng)
 
 @InjectViewState
-class MapPresenter(var data: MutableList<Place>): BasePresenter<MapView>() {
+class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
 
     private var locationPoint: LatLng? = null
 
@@ -42,22 +42,11 @@ class MapPresenter(var data: MutableList<Place>): BasePresenter<MapView>() {
     fun onPlacesUpdatedEvent(event: PlacesUpdatedEvent) {
         data = event.data
 
-        if(event.shouldUpdateDistances){
-            currentInfo?.let {
-                val selectedPlace = (data.firstOrNull{ place -> place.id == it.id})
-
-                selectedPlace?.let {
-                    it.distance = selectedPlace.distance
-                    viewState.updateCurrentInfoDistance(selectedPlace.distance)
-                }
-            }
-        } else{
-            mapClicked()
-            viewState.updatePlaces(data)
-        }
+        mapClicked()
+        viewState.updatePlaces(data)
 
         currentInfo?.let {
-            if(it.id !in data.map {place -> place.id}){
+            if (it.id !in data.map { place -> place.id }) {
                 mapClicked()
             }
         }

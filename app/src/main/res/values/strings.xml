@@ -27,6 +27,8 @@
     <string name="avoid_to">Avoid to:</string>
     <string name="picture_typologies">Picture typologies:</string>
 
+    <string name="events">Events</string>
+
     <string name="event_details">Event Details</string>
     <string name="one_way_from">One way from</string>
     <string name="return_to">Return to</string>
@@ -568,6 +570,8 @@
     <string name="my_jobs">My jobs</string>
     <string name="my_interests">My interests</string>
     <string name="my_portfolio">My portfolio</string>
+
+    <string name="jobs">Jobs</string>
 
     <string name="basic_1">Up to 9 bookings</string>
     <string name="basic_2">Limited perks based\non availability</string>

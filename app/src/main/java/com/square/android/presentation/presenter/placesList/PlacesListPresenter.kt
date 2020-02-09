@@ -10,7 +10,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.koin.standalone.inject
 
-class PlacesUpdatedEvent(val data: MutableList<Place>, val shouldUpdateDistances: Boolean)
+class PlacesUpdatedEvent(val data: MutableList<Place>)
 
 @InjectViewState
 class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesListView>() {
@@ -21,12 +21,7 @@ class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesLi
     fun onPlacesUpdatedEvent(event: PlacesUpdatedEvent) {
         data = event.data
 
-        if(event.shouldUpdateDistances){
-            viewState.updateDistances()
-        } else{
-            viewState.updatePlaces(data.toList())
-//            viewState.updatePlaces(data.filter { it.freeSpots > 0 }.toList())
-        }
+        viewState.updatePlaces(data.toList())
     }
 
     init {

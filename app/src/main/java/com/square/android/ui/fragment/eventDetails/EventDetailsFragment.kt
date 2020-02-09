@@ -213,7 +213,7 @@ class EventDetailsFragment: BaseFragment(), EventDetailsView{
     }
 
     var dayHandler = object : DaysAdapter.Handler{
-        override fun itemClicked(position: Int) {
+        override fun dayItemClicked(position: Int) {
             presenter.dayItemClicked(position)
 
             (activity as EventActivity).disableButton()

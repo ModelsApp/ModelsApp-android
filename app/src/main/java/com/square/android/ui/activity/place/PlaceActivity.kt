@@ -219,7 +219,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
     }
 
     var dayHandler = object : DaysAdapter.Handler{
-        override fun itemClicked(position: Int) {
+        override fun dayItemClicked(position: Int) {
             presenter.dayItemClicked(position)
             placeBookingBtn.isEnabled = false
             offerAdapter?.updateAlpha(null)

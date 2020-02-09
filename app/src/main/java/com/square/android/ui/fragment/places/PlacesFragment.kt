@@ -1,11 +1,7 @@
 package com.square.android.ui.fragment.places
 
-import android.content.res.ColorStateList
 import android.location.Location
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -14,32 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
-import com.square.android.data.pojo.Place
-import com.square.android.presentation.presenter.places.PlacesPresenter
 import com.square.android.presentation.view.places.PlacesView
 import com.square.android.ui.fragment.LocationFragment
-import com.square.android.ui.fragment.map.MarginItemDecorator
-import kotlinx.android.synthetic.main.fragment_places.*
-import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.ViewPager
 import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
-import com.square.android.presentation.presenter.places.MainData
+import com.square.android.presentation.presenter.places.*
 import com.square.android.ui.activity.place.DaysAdapter
+import kotlinx.android.synthetic.main.fragment_places.*
 
-class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, DaysAdapter.Handler {
+class PlacesFragment: LocationFragment(), PlacesView, DaysAdapter.Handler {
 
     @InjectPresenter(type = PresenterType.GLOBAL, tag = "PlacesPresenter")
     lateinit var presenter: PlacesPresenter
-
-    private var filterDays = false
-    private var filterTypes = false
-
-//    private var mapShown = false
-
-    var ignoreText = false
-
-    private var filtersAdapter: FiltersAdapter? = null
 
     private var daysAdapter: DaysAdapter? = null
 
@@ -70,19 +54,21 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         setUpPager(data)
     }
 
-    private fun setUpPager(data: MutableList<Place>) {
-        placesPager.isPagingEnabled = false
+    //TODO FIX: data in placesListFragment is not shown by default
+
+    private fun setUpPager(data: MainData) {
+        placesPager.isPagingEnabled = true
         placesPager.adapter = PlacesFragmentAdapter(childFragmentManager, data)
-        placesPager.offscreenPageLimit = 2
-    }
+        placesPager.offscreenPageLimit = 3
+        placesTabs.setupWithViewPager(placesPager)
 
-    override fun updateFilters(types: MutableList<String>, activated: MutableList<String>, updateAll: Boolean) {
-        if(updateAll){
-            filtersAdapter = FiltersAdapter(types,this, activated)
-            placesFiltersTypesRv.adapter = filtersAdapter
-        }
-
-        filtersAdapter!!.updateData(activated)
+        placesPager.addOnPageChangeListener( object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) { }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
+            override fun onPageSelected(position: Int) {
+                presenter.tabClicked(position)
+            }
+        })
     }
 
     override fun locationGotten(lastLocation: Location?) {
@@ -97,78 +83,23 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        placesSearch.addTextChangedListener(object: TextWatcher{
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(TextUtils.isEmpty(s)){
-                    placesRemoveIcon.visibility = View.GONE
-                    placesSearchIcon.visibility = View.VISIBLE
-                } else{
-                    placesSearchIcon.visibility = View.GONE
-                    placesRemoveIcon.visibility = View.VISIBLE
-                }
-
-                if(!ignoreText){
-                    presenter.searchTextChanged(s)
-                } else{
-                    ignoreText = false
-                }
-            }
-        })
-
-        placesIcDays.setOnClickListener {
-            filterDays = filterDays.not()
-            changeFiltering(1)
-        }
-        placesIcTypes.setOnClickListener {
-            filterTypes = filterTypes.not()
-            changeFiltering(2)
-        }
-
-//        placesIcMap.setOnClickListener {
-//            loadFragment()
-//            mapShown = mapShown.not()
-//        }
-
-        placesClear.setOnClickListener { presenter.clearFilters() }
-
-        placesRemoveIcon.setOnClickListener { placesSearch.setText(null) }
-
         if(presenter.initialized){
-            when(presenter.filteringMode){
-                1 ->{
-                    filterDays = false
-                    filterTypes = false
-                    placesTypes.visibility = View.GONE
-                    placesSearchLl.visibility = View.VISIBLE
-                    placesFiltersDaysRv.visibility = View.GONE
+            setSelectedDayItem(presenter.selectedDayPosition)
 
-                    ignoreText = true
-                    placesSearch.setText(presenter.searchText)
+            when(presenter.actualTabSelected){
+                POSITION_PLACES -> {
+                   showDays()
+                   showCities()
                 }
-                2 -> {
-                    filterDays = true
-                    filterTypes = false
-                    placesTypes.visibility = View.GONE
-                    placesSearchLl.visibility = View.GONE
-                    placesFiltersDaysRv.visibility = View.VISIBLE
+                POSITION_EVENTS -> {
+                    hideDays()
+                    hideCities()
                 }
-                3 -> {
-                    filterDays = false
-                    filterTypes = true
-                    placesTypes.visibility = View.VISIBLE
-                    placesSearchLl.visibility = View.GONE
-                    placesFiltersDaysRv.visibility = View.GONE
+                POSITION_CAMPAIGNS -> {
+                    hideDays()
+                    hideCities()
                 }
             }
-
-            placesIcDays.imageTintList = if(filterDays) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
-            else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
-
-            placesIcTypes.imageTintList = if(filterTypes) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
-            else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
         }
 
         placesCitiesLl.setOnClickListener {
@@ -184,70 +115,31 @@ class PlacesFragment: LocationFragment(), PlacesView, FiltersAdapter.Handler, Da
         }
     }
 
+    override fun showDays() {
+        placesFiltersDaysRv.visibility = View.VISIBLE
+    }
+
+    override fun hideDays() {
+        placesFiltersDaysRv.visibility = View.GONE
+    }
+
+    override fun showCities() {
+        placesCitiesLl.visibility = View.VISIBLE
+    }
+
+    override fun hideCities() {
+        placesCitiesLl.visibility = View.GONE
+    }
+
     override fun changeCityName(name: String) {
         placesCity.text = name
-    }
-
-//    private fun loadFragment(){
-//        placesIcMap.imageTintList = if(!mapShown) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
-//        else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
-//
-//        if(!mapShown){
-//            placesPager.setCurrentItem(1, false)
-//        } else{
-//            placesPager.setCurrentItem(0, false)
-//        }
-//    }
-
-                                // 1 - days, 2 - types
-    private fun changeFiltering(whichClicked: Int){
-        placesIcDays.imageTintList = if (filterDays) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
-        else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
-
-        placesIcTypes.imageTintList = if (filterTypes) ColorStateList.valueOf(ContextCompat.getColor(activity!!, R.color.nice_pink))
-        else ColorStateList.valueOf(ContextCompat.getColor(activity!!, android.R.color.black))
-
-        if (filterDays && filterTypes) {
-            if(whichClicked == 1){
-                placesTypes.visibility = View.GONE
-                placesSearchLl.visibility = View.GONE
-                placesFiltersDaysRv.visibility = View.VISIBLE
-                presenter.changeFiltering(2)
-            } else {
-                placesSearchLl.visibility = View.GONE
-                placesFiltersDaysRv.visibility = View.GONE
-                placesTypes.visibility = View.VISIBLE
-                presenter.changeFiltering(3)
-            }
-        } else if (!filterDays && !filterTypes) {
-            placesTypes.visibility = View.GONE
-            placesFiltersDaysRv.visibility = View.GONE
-            placesSearchLl.visibility = View.VISIBLE
-            presenter.changeFiltering(1)
-
-        } else {
-            placesSearchLl.visibility = View.GONE
-
-            placesTypes.visibility = if (filterTypes) View.VISIBLE else View.GONE
-            placesFiltersDaysRv.visibility = if (filterDays) View.VISIBLE else View.GONE
-
-            if (filterDays) {
-                presenter.changeFiltering(2)
-            } else {
-                presenter.changeFiltering(3)
-            }
-        }
-    }
-
-    override fun filterClicked(position: Int) {
-        presenter.filterClicked(position)
     }
 
     override fun setSelectedDayItem(position: Int) {
         daysAdapter?.setSelectedItem(position)
     }
 
-    override fun itemClicked(position: Int) {
+    override fun dayItemClicked(position: Int) {
         presenter.dayClicked(position)
     }
 

@@ -81,7 +81,7 @@ class DaysAdapter(data: List<Day>,
 
             itemDayValue.checkMarkDrawable = null
 
-            itemDayValueContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
+            itemDayValueContainer.setOnClickListener { handler?.dayItemClicked(adapterPosition) }
         }
 
         private fun bindDayAdjustable(item: Day, selectedPosition: Int?, selectedMonth: Int?) {
@@ -93,7 +93,7 @@ class DaysAdapter(data: List<Day>,
 
             itemDayAdjustableValue.checkMarkDrawable = null
 
-            itemDayAdjustableValueContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
+            itemDayAdjustableValueContainer.setOnClickListener { handler?.dayItemClicked(adapterPosition) }
 
             itemWidth?.let { width -> itemDayAdjustableValueContainer.layoutParams.also {
                 it.width = width
@@ -112,7 +112,7 @@ class DaysAdapter(data: List<Day>,
     }
 
     interface Handler {
-        fun itemClicked(position: Int)
+        fun dayItemClicked(position: Int)
     }
 
     object SelectedPayload

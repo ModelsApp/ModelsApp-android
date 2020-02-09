@@ -132,7 +132,7 @@ class PickUpIntervalFragment: BaseFragment(),PickUpIntervalView , DaysAdapter.Ha
         }
     }
 
-    override fun itemClicked(position: Int) {
+    override fun dayItemClicked(position: Int) {
         if(clickEnabled){
             presenter.daySelected(position)
         }
