@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_marginBottom="@dimen/v_24dp" >
+
+    <ImageView
+        android:id="@+id/eventImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[4]" />
+
+    <TextView
+        android:id="@+id/fullTv"
+        style="@style/Models15SemiBoldText"
+        android:textSize="@dimen/text_15"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:text="@string/were_full"
+        android:background="@drawable/bg_rounded_b_left_t_right"
+        android:paddingStart="@dimen/v_20dp"
+        android:paddingEnd="@dimen/v_20dp"
+        android:paddingTop="@dimen/v_6dp"
+        android:paddingBottom="@dimen/v_6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/eventName"
+        style="@style/Models20SemiBoldText"
+        android:textSize="@dimen/text_20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/v_16dp"
+        android:layout_marginTop="@dimen/v_10dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventImg"
+        tools:text="La Perla d'Oro" />
+
+    <TextView
+        android:id="@+id/eventRating"
+        style="@style/Models14Text"
+        android:textSize="@dimen/text_14"
+        android:textColor="@color/text_gray_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="4.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eventName"
+        app:layout_constraintBottom_toBottomOf="@+id/eventName" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/v_14dp"
+        android:layout_height="@dimen/v_14dp"
+        android:layout_marginEnd="@dimen/v_3dp"
+        android:src="@drawable/star_yellow"
+        android:tint="@color/text_gray_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/eventName"
+        app:layout_constraintEnd_toStartOf="@+id/eventRating"
+        app:layout_constraintTop_toTopOf="@+id/eventName" />
+
+    <ImageView
+        android:id="@+id/eventIcAddress"
+        android:layout_width="@dimen/v_14dp"
+        android:layout_height="@dimen/v_14dp"
+        android:src="@drawable/r_address"
+        android:tint="@color/text_gray_dark_light"
+        android:layout_marginEnd="@dimen/v_3dp"
+        android:layout_marginTop="@dimen/v_8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventName" />
+
+    <TextView
+        android:id="@+id/eventAddress"
+        style="@style/Models14Text"
+        android:textSize="@dimen/text_14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/v_4dp"
+        android:textColor="@color/text_gray_dark_light"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@id/eventIcAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/eventIcAddress"
+        app:layout_constraintTop_toTopOf="@+id/eventIcAddress"
+        tools:text="Via Vigenavo 13" />
+
+    <ImageView
+        android:id="@+id/eventIcDistance"
+        android:layout_width="@dimen/v_14dp"
+        android:layout_height="@dimen/v_14dp"
+        android:src="@drawable/r_sign"
+        android:tint="@color/text_gray_dark_light"
+        android:layout_marginEnd="@dimen/v_3dp"
+        android:layout_marginTop="@dimen/v_12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventIcAddress" />
+
+    <TextView
+        android:id="@+id/eventDistance"
+        style="@style/Models14Text"
+        android:textSize="@dimen/text_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_gray_dark_light"
+        tools:text="14.5 km"
+        android:layout_marginStart="@dimen/v_4dp"
+        app:layout_constraintStart_toEndOf="@id/eventIcDistance"
+        app:layout_constraintBottom_toBottomOf="@id/eventIcDistance"
+        app:layout_constraintTop_toTopOf="@+id/eventIcDistance" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

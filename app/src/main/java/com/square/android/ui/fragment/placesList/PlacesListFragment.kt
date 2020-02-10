@@ -10,8 +10,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
 import com.square.android.data.pojo.Place
-import com.square.android.presentation.presenter.placesList.PlacesListPresenter
-import com.square.android.presentation.view.placesList.PlacesListView
+import com.square.android.presentation.presenter.mainLists.PlacesListPresenter
+import com.square.android.presentation.view.mainLists.PlacesListView
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.map.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_places_list.*
@@ -42,8 +42,6 @@ class PlacesListFragment(var data: MutableList<Place>): BaseFragment(), PlacesLi
     }
 
     override fun showData(data: List<Place>) {
-        placesList.visibility = View.VISIBLE
-
         adapter = PlacesAdapter(data, this)
         placesList.adapter = adapter
         placesList.layoutManager = LinearLayoutManager(placesList.context, RecyclerView.VERTICAL,false)

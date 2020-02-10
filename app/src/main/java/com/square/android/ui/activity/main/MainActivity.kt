@@ -31,7 +31,7 @@ import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.profile.EditProfileFragment
 import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
-import com.square.android.ui.fragment.campaigns.CAMPAIGN_EXTRA_ID
+import com.square.android.ui.fragment.campaignsList.CAMPAIGN_EXTRA_ID
 import com.square.android.ui.activity.noConnection.NoConnectionActivity
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID
 import com.square.android.ui.activity.place.PlaceActivity
@@ -41,8 +41,7 @@ import com.square.android.ui.activity.settings.SettingsActivity
 import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
 import com.square.android.ui.activity.tutorialVideos.TutorialVideosActivity
-import com.square.android.ui.fragment.campaigns.CampaignsFragment
-import com.square.android.ui.fragment.places.PlacesFragment
+import com.square.android.ui.fragment.mainLists.MainListsFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.redemptions.RedemptionsFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
@@ -132,6 +131,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         }
     }
 
+    //TODO change
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val screenKey = when (item.itemId) {
             R.id.action_redemptions -> {
@@ -140,7 +140,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
             }
             R.id.action_profile -> SCREENS.PROFILE
             R.id.action_places -> SCREENS.PLACES
-            R.id.action_campaigns -> SCREENS.CAMPAIGNS
+//            R.id.action_campaigns -> SCREENS.CAMPAIGNS
             else -> SCREENS.PROFILE
         }
 
@@ -232,10 +232,9 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 }
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
-            SCREENS.PLACES -> PlacesFragment()
+            SCREENS.PLACES -> MainListsFragment()
             SCREENS.REDEMPTIONS -> RedemptionsFragment()
             SCREENS.PROFILE -> ProfileFragment()
-            SCREENS.CAMPAIGNS -> CampaignsFragment()
             SCREENS.EDIT_PROFILE -> EditProfileFragment()
             else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
         }

@@ -1,6 +1,6 @@
-package com.square.android.ui.fragment.places.filters
+package com.square.android.ui.fragment.mainLists.filters
 
-class EventsFilter(): BaseFilter() {
+class CampaignsFilter(): BaseFilter() {
     override fun isDefault(): Boolean = true
     override fun clear() { }
     override fun updateValues(filter: BaseFilter) { }

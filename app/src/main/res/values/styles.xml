@@ -360,6 +360,11 @@
         <item name="fontPath">@string/font_poppins_medium</item>
     </style>
 
+    <style name="TabTextBigger" parent="ModelsText">
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="fontPath">@string/font_poppins_medium</item>
+    </style>
+
     <style name="RadioButton" parent="Models13Text">
         <item name="android:button">@null</item>
         <item name="android:drawableLeft">@drawable/circle_checkbox</item>

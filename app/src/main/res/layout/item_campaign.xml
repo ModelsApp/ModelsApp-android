@@ -4,27 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
+    android:id="@+id/containerView"
     app:cardUseCompatPadding="false"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    tools:layout_marginStart="24dp"
-    tools:layout_marginEnd="24dp" >
+    app:layout_constraintStart_toStartOf="parent" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/campaignContainer"
         android:layout_width="match_parent"
         android:clipToPadding="false"
-        android:layout_height="420dp" >
+        android:layout_height="wrap_content" >
 
         <ImageView
             android:id="@+id/campaignImage"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             tools:src="@drawable/auth_background"
@@ -49,8 +46,8 @@
 
             <ImageView
                 android:id="@+id/campaignClosedImv"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
+                android:layout_width="@dimen/v_72dp"
+                android:layout_height="@dimen/v_72dp"
                 android:src="@drawable/ic_lock"
                 app:layout_constraintTop_toTopOf="@+id/campaignImage"
                 app:layout_constraintBottom_toBottomOf="@+id/campaignImage"
@@ -59,9 +56,10 @@
 
             <TextView
                 style="@style/Models24SemiBoldText"
+                android:textSize="@dimen/text_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/v_16dp"
                 android:textColor="@android:color/white"
                 android:textAllCaps="true"
                 android:text="@string/campaign_closed" />
@@ -70,13 +68,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/normalCampaignContainer"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:visibility="gone"
             tools:visibility="visible"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="@dimen/v_16dp"
+            android:layout_marginEnd="@dimen/v_16dp"
+            android:layout_marginTop="@dimen/v_32dp"
+            android:layout_marginBottom="@dimen/v_12dp"
             android:clipToPadding="false"
             android:clipChildren="false"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,11 +85,12 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignNName"
                 style="@style/Models18SemiBoldText"
+                android:textSize="@dimen/text_18"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="@dimen/v_24dp"
                 android:maxLines="1"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toStartOf="@+id/campaignNType"
@@ -102,9 +101,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignNHashtag"
                 style="@style/Models15Text"
+                android:textSize="@dimen/text_15"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="@dimen/v_3dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/gray_back_arrow"
@@ -117,13 +117,14 @@
             <TextView
                 android:id="@+id/campaignNType"
                 style="@style/Models14SemiBoldText"
+                android:textSize="@dimen/text_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/interval_checked"
-                android:paddingStart="12dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="8dp"
+                android:paddingStart="@dimen/v_12dp"
+                android:paddingTop="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_12dp"
+                android:paddingBottom="@dimen/v_8dp"
                 android:textColor="@color/nice_pink"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -133,7 +134,7 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="@dimen/v_12dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/campaignNExtraRv"
@@ -142,6 +143,7 @@
                 <TextView
                     android:id="@+id/campaignNDateLabel"
                     style="@style/Models14Text"
+                    android:textSize="@dimen/text_14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/end_date" />
@@ -149,9 +151,10 @@
                 <TextView
                     android:id="@+id/campaignNDate"
                     style="@style/Models14SemiBoldText"
+                    android:textSize="@dimen/text_14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="@dimen/v_4dp"
                     android:textColor="@color/nice_pink"
                     tools:text="30 Jun 19" />
             </LinearLayout>
@@ -168,7 +171,7 @@
                 tools:background="@color/grey_dark"
                 tools:itemCount="3"
                 tools:orientation="horizontal"
-                tools:layout_height="32dp"
+                tools:layout_height="@dimen/v_32dp"
                 tools:listitem="@layout/item_place_extra"
                 tools:visibility="visible" />
 
@@ -178,17 +181,17 @@
             android:id="@+id/campaignNLogoContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/v_8dp"
+            app:cardElevation="@dimen/v_3dp"
             app:cardUseCompatPadding="false"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="@dimen/v_12dp"
             app:layout_constraintBottom_toTopOf="@id/normalCampaignContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" >
             <ImageView
                 android:id="@+id/campaignNLogo"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="@dimen/v_56dp"
+                android:layout_height="@dimen/v_56dp"
                 tools:tint="@color/nice_pink" />
         </androidx.cardview.widget.CardView>
 
@@ -198,10 +201,10 @@
             android:layout_height="0dp"
             android:visibility="gone"
             tools:visibility="gone"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="@dimen/v_16dp"
+            android:layout_marginEnd="@dimen/v_16dp"
+            android:layout_marginTop="@dimen/v_12dp"
+            android:layout_marginBottom="@dimen/v_12dp"
             android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -210,8 +213,8 @@
 
             <ImageView
                 android:id="@+id/campaignFLogo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/v_48dp"
+                android:layout_height="@dimen/v_48dp"
                 tools:src="@drawable/background_rounded_8dp"
                 tools:tint="@color/nice_pink"
                 app:layout_constraintTop_toTopOf="parent"
@@ -220,9 +223,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignFName"
                 style="@style/Models18SemiBoldText"
+                android:textSize="@dimen/text_18"
                 android:layout_width="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/v_20dp"
+                android:layout_marginEnd="@dimen/v_16dp"
                 android:layout_height="wrap_content"
                 app:autoSizeTextType="uniform"
                 android:includeFontPadding="false"
@@ -236,12 +240,13 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignFHashtag"
                 style="@style/Models15Text"
+                android:textSize="@dimen/text_15"
                 android:textColor="@color/gray_back_arrow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="@dimen/v_1dp"
+                android:layout_marginStart="@dimen/v_20dp"
+                android:layout_marginEnd="@dimen/v_16dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 app:autoSizeTextType="uniform"
@@ -254,14 +259,15 @@
             <TextView
                 android:id="@+id/campaignFType"
                 style="@style/Models14SemiBoldText"
+                android:textSize="@dimen/text_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/v_8dp"
                 android:background="@drawable/interval_checked"
-                android:paddingStart="12dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="8dp"
+                android:paddingStart="@dimen/v_12dp"
+                android:paddingTop="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_12dp"
+                android:paddingBottom="@dimen/v_8dp"
                 android:textColor="@color/nice_pink"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/campaignFLogo"
@@ -272,9 +278,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/campaignFAwardLabel"
                 style="@style/Models14Text"
+                android:textSize="@dimen/text_14"
                 android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="48dp"
+                android:layout_marginStart="@dimen/v_20dp"
+                android:layout_marginEnd="@dimen/v_48dp"
                 app:layout_constraintHorizontal_bias="0.0"
                 android:includeFontPadding="false"
                 android:layout_height="wrap_content"
@@ -290,10 +297,10 @@
 
             <ImageView
                 android:id="@+id/campaignFAwardImg"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/v_24dp"
+                android:layout_height="@dimen/v_24dp"
                 android:src="@drawable/trophy2"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/v_8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/campaignFAwardLabel"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -302,9 +309,9 @@
 
             <View
                 android:id="@+id/divider"
-                android:layout_width="1dp"
+                android:layout_width="@dimen/v_1dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/v_16dp"
                 android:background="@color/gray_divider"
                 app:layout_constraintEnd_toStartOf="@+id/dateContainer"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -326,15 +333,17 @@
                     android:orientation="vertical" >
                     <TextView
                         style="@style/Models14SemiBoldText"
+                        android:textSize="@dimen/text_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/starting" />
                     <TextView
                         android:id="@+id/campaignFStartDate"
                         style="@style/Models12Text"
+                        android:textSize="@dimen/text_12"
                         android:textColor="@color/nice_pink"
-                        android:layout_marginTop="1dp"
-                        android:minWidth="53dp"
+                        android:layout_marginTop="@dimen/v_1dp"
+                        android:minWidth="@dimen/v_52dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="30 Jun 19" />
@@ -343,19 +352,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="53dp"
-                    android:layout_marginTop="10dp"
+                    android:minWidth="@dimen/v_52dp"
+                    android:layout_marginTop="@dimen/v_10dp"
                     android:orientation="vertical" >
                     <TextView
                         style="@style/Models14SemiBoldText"
+                        android:textSize="@dimen/text_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ending" />
                     <TextView
                         android:id="@+id/campaignFEndDate"
                         style="@style/Models12Text"
+                        android:textSize="@dimen/text_12"
                         android:textColor="@color/nice_pink"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="@dimen/v_1dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="30 Jul 19" />

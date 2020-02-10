@@ -1,10 +1,8 @@
-package com.square.android.ui.fragment.places
+package com.square.android.ui.fragment.mainLists
 
 import android.view.View
 import com.square.android.R
 import com.square.android.data.pojo.City
-import com.square.android.extensions.loadImage
-import com.square.android.extensions.loadImageForIcon
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_city.*
 
@@ -54,7 +52,7 @@ class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapt
 
             cityName.text = item.name
 
-            cityImage.loadImage(url = item.image, placeholder = android.R.color.white)
+//            cityImage.loadImage(url = item.image, placeholder = android.R.color.white)
 
             bindSelected(item, selectedPosition)
         }

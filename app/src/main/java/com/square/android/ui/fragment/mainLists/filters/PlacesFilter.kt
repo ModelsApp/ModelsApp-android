@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.places.filters
+package com.square.android.ui.fragment.mainLists.filters
 
 class PlacesFilter(
         private var actualMinHour: Int,

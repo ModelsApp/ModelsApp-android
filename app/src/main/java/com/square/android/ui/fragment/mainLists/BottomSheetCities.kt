@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.places
+package com.square.android.ui.fragment.mainLists
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.os.Bundle
@@ -41,7 +41,7 @@ class BottomSheetCities(var cities: List<City>, var selectedCity: City?, private
         adapter = CitiesAdapter(cities, this)
         citiesRv.adapter = adapter
         citiesRv.layoutManager = LinearLayoutManager(citiesRv.context, RecyclerView.HORIZONTAL,false)
-        citiesRv.addItemDecoration(MarginItemDecorator(citiesRv.context.resources.getDimension(R.dimen.rv_item_decorator_16).toInt(), false))
+        citiesRv.addItemDecoration(MarginItemDecorator(citiesRv.context.resources.getDimension(R.dimen.v_8dp).toInt(), false))
 
         selectedCity?.let {
             val city: City? = cities.firstOrNull{it.name == selectedCity!!.name}

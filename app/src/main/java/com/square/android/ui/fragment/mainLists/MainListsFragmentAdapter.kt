@@ -1,14 +1,16 @@
-package com.square.android.ui.fragment.places
+package com.square.android.ui.fragment.mainLists
 
 import com.square.android.App
 import com.square.android.R
-import com.square.android.presentation.presenter.places.MainData
-import com.square.android.presentation.presenter.places.POSITION_CAMPAIGNS
-import com.square.android.presentation.presenter.places.POSITION_EVENTS
-import com.square.android.presentation.presenter.places.POSITION_PLACES
+import com.square.android.presentation.presenter.mainLists.MainData
+import com.square.android.presentation.presenter.mainLists.POSITION_CAMPAIGNS
+import com.square.android.presentation.presenter.mainLists.POSITION_EVENTS
+import com.square.android.presentation.presenter.mainLists.POSITION_PLACES
+import com.square.android.ui.fragment.campaignsList.CampaignsListFragment
+import com.square.android.ui.fragment.eventsList.EventsListFragment
 import com.square.android.ui.fragment.placesList.PlacesListFragment
 
-private const val ITEM_COUNT = 1
+private const val ITEM_COUNT = 3
 
 private var PAGE_TITLES_RES = listOf(R.string.offers, R.string.events, R.string.jobs)
 
@@ -19,8 +21,8 @@ class PlacesFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentManag
     override fun getItem(position: Int): androidx.fragment.app.Fragment {
         return when (position) {
             POSITION_PLACES -> PlacesListFragment(data.placesData)
-//            POSITION_EVENTS -> EventsListFragment(data.eventsData)
-//            POSITION_CAMPAIGNS -> CampaignsListFragment(data.campaignsData)
+            POSITION_EVENTS -> EventsListFragment(data.eventsData)
+            POSITION_CAMPAIGNS -> CampaignsListFragment(data.campaignsData)
             else -> throw IllegalArgumentException("Unknown position: $position")
         }
     }

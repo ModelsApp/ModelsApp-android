@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.places
+package com.square.android.ui.fragment.mainLists
 
 import android.view.View
 import com.square.android.R

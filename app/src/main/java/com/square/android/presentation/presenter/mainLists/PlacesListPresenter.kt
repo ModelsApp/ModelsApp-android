@@ -1,10 +1,9 @@
-package com.square.android.presentation.presenter.placesList
+package com.square.android.presentation.presenter.mainLists
 
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.presenter.places.PlaceSelectedEvent
-import com.square.android.presentation.view.placesList.PlacesListView
+import com.square.android.presentation.view.mainLists.PlacesListView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -32,7 +31,7 @@ class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesLi
     }
 
     fun itemClicked(place: Place) {
-        eventBus.post(PlaceSelectedEvent(place, false))
+        eventBus.post(PlaceSelectedEvent(place))
     }
 
     override fun onDestroy() {

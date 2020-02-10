@@ -1,9 +1,9 @@
-package com.square.android.presentation.view.campaigns
+package com.square.android.presentation.view.mainLists
 
 import com.square.android.data.pojo.CampaignInfo
 import com.square.android.presentation.view.BaseView
 
-interface CampaignsView : BaseView {
+interface CampaignsListView : BaseView {
     fun showData(data: List<CampaignInfo>)
-    fun updateCampaigns(data: List<CampaignInfo>)
+    fun updateEvents(data: List<CampaignInfo>)
 }

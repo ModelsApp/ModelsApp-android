@@ -34,7 +34,7 @@ import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.PlaceExtra
 import com.square.android.extensions.loadImageForIcon
 import com.square.android.ui.fragment.map.MarginItemDecorator
-import com.square.android.ui.fragment.places.GridItemDecoration
+import com.square.android.ui.fragment.mainLists.GridItemDecoration
 import java.util.*
 import kotlin.math.roundToInt
 

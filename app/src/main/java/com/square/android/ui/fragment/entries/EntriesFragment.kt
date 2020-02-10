@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.square.android.R
 import com.square.android.data.pojo.Campaign
 import com.square.android.presentation.presenter.entries.EntriesPresenter
 import com.square.android.presentation.view.entries.EntriesView
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.ui.fragment.places.GridItemDecoration
-import kotlinx.android.synthetic.main.fragment_page_entries.*
 
 class EntriesFragment(private val campaign: Campaign?): BaseFragment(), EntriesView, SquareImagesAdapter.Handler {
 

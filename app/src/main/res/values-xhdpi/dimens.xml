@@ -146,8 +146,10 @@
     <dimen name="v_96dp">96dp</dimen>
     <dimen name="v_88dp">88dp</dimen>
     <dimen name="v_80dp">80dp</dimen>
+    <dimen name="v_72dp">72dp</dimen>
     <dimen name="v_60dp">60dp</dimen>
     <dimen name="v_56dp">56dp</dimen>
+    <dimen name="v_52dp">52dp</dimen>
     <dimen name="v_50dp">50dp</dimen>
     <dimen name="v_48dp">48dp</dimen>
     <dimen name="v_44dp">44dp</dimen>

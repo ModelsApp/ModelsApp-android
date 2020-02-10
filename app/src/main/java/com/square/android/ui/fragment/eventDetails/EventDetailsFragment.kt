@@ -27,7 +27,7 @@ import com.square.android.ui.activity.place.DaysAdapter
 import com.square.android.ui.activity.place.OfferAdapter
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.map.MarginItemDecorator
-import com.square.android.ui.fragment.places.GridItemDecoration
+import com.square.android.ui.fragment.mainLists.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_event_details.*
 import org.jetbrains.anko.bundleOf
 import java.util.*

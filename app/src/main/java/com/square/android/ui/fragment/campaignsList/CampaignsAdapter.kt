@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.campaigns
+package com.square.android.ui.fragment.campaignsList
 
 import android.view.View
 import com.square.android.R
@@ -16,18 +16,14 @@ class CampaignsAdapter(data: List<CampaignInfo>,
 
     override fun bindHolder(holder: CampaignHolder, position: Int) {
         holder.bind(data[position])
+        holder.containerView.setOnClickListener { handler?.itemClicked(data[position]) }
     }
 
     //TODO BaseAdapter TYPE_EMPTY layout not showing when data is empty
 
-    override fun instantiateHolder(view: View): CampaignHolder = CampaignHolder(view, handler)
+    override fun instantiateHolder(view: View): CampaignHolder = CampaignHolder(view)
 
-    class CampaignHolder(containerView: View,
-                               handler: Handler?) : BaseHolder<CampaignInfo>(containerView) {
-
-        init {
-            containerView.setOnClickListener { handler?.itemClicked(adapterPosition) }
-        }
+    class CampaignHolder(containerView: View) : BaseHolder<CampaignInfo>(containerView) {
 
         override fun bind(item: CampaignInfo, vararg extras: Any?) {
 
@@ -71,7 +67,7 @@ class CampaignsAdapter(data: List<CampaignInfo>,
     }
 
     interface Handler {
-        fun itemClicked(position: Int)
+        fun itemClicked(campaignInfo: CampaignInfo)
     }
 
 }

@@ -17,9 +17,8 @@ import com.square.android.extensions.toBytes
 import com.square.android.presentation.presenter.addPhoto.AddPhotoPresenter
 import com.square.android.presentation.view.addPhoto.AddPhotoView
 import com.square.android.ui.activity.campaignDetails.EXTRA_CAMPAIGN
-import com.square.android.ui.activity.campaignDetails.CAMPAIGN_MAX_PHOTOS_VALUE
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.ui.fragment.places.GridItemDecoration
+import com.square.android.ui.fragment.mainLists.GridItemDecoration
 import com.square.android.utils.FileUtils
 import com.square.android.utils.IMAGE_PICKER_RC
 import com.square.android.utils.PermissionsManager
