@@ -18,8 +18,10 @@ import org.koin.standalone.inject
 import java.lang.Exception
 import java.util.*
 
+class PlaceExtras(val placeId: Long, val daySelectedPosition: Int = -1)
+
 @InjectViewState
-class PlacePresenter(private val placeId: Long) : BasePresenter<PlaceView>() {
+class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : BasePresenter<PlaceView>() {
     var locationPoint: LatLng? = null
 
     var latitude: Double? = null
@@ -35,6 +37,8 @@ class PlacePresenter(private val placeId: Long) : BasePresenter<PlaceView>() {
     private var currentPositionOffers = 0
 
     private var currentPositionIntervals: Int? = null
+
+    private var selectedLoaded = false
 
     private var calendar: Calendar = Calendar.getInstance()
     private var calendar2: Calendar = Calendar.getInstance()
@@ -135,6 +139,13 @@ class PlacePresenter(private val placeId: Long) : BasePresenter<PlaceView>() {
 
             if (locationPoint != null) {
                 updateLocationInfo()
+            }
+
+            if(!selectedLoaded) {
+                selectedLoaded = true
+                if (daySelectedPosition > -1) {
+                    dayItemClicked(daySelectedPosition)
+                }
             }
 
             loadIntervals()

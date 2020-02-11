@@ -184,6 +184,10 @@
     <string name="level_default">0</string>
     <string name="credits_format">%d Credits</string>
 
+    <string name="explore">Explore</string>
+    <string name="agenda">Agenda</string>
+    <string name="chat">Chat</string>
+
     <string name="credits_plus_format">+ %d credits</string>
 
     <string name="select_pick_up_location">Select the pick up location</string>

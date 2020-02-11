@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingStart="@dimen/v_24dp"
+    android:paddingTop="@dimen/v_8dp"
+    android:background="@android:color/white">
+    
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="@dimen/v_24dp"
+        android:layout_height="@dimen/v_24dp"
+        android:src="@drawable/ic_timer"
+        android:tint="@color/text_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/searchIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/v_12dp"
+        android:layout_marginEnd="@dimen/v_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/searchTopText"
+            style="@style/Models16Text"
+            android:textSize="@dimen/text_16"
+            android:textColor="@color/text_gray"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="La Perla d'Oro" />
+
+        <TextView
+            android:id="@+id/searchBottomText"
+            style="@style/Models15Text"
+            android:layout_marginTop="@dimen/v_3dp"
+            android:textSize="@dimen/text_15"
+            android:textColor="@color/text_gray"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Via Vigenavo, 13" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

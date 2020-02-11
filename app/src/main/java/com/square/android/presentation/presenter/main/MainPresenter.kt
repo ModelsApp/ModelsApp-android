@@ -46,10 +46,10 @@ class MainPresenter : BasePresenter<MainView>() {
                 viewState.hideUserPending()
                 if (!repository.isLoggedIn() || !repository.isProfileFilled()) {
                     router.replaceScreen(SCREENS.START)
-                } else if (currentScreenKey != SCREENS.PLACES) {
+                } else if (currentScreenKey != SCREENS.MAIN_LIST) {
 
                     if (!checkedInitial) {
-                        navigationClicked(SCREENS.PLACES)
+                        navigationClicked(SCREENS.MAIN_LIST)
                         viewState.checkInitial()
                         allowAndCheckSubs()
                         checkedInitial = true

@@ -14,7 +14,7 @@ object SCREENS {
     const val SIGN_UP = "SIGN_UP"
 
     const val REDEMPTIONS = "REDEMPTIONS"
-    const val PLACES = "PLACES"
+    const val MAIN_LIST = "MAIN_LIST"
     const val PROFILE = "PROFILE"
 
     const val PLACE= "PLACE"

@@ -42,7 +42,7 @@ class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler 
             presenter.initialized = true
             val displayMetrics = DisplayMetrics()
             activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
-            //(item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2 ~ 8dp to cut)
+                                                                                                             //-8dp because (item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2)
             daysAdapter = DaysAdapter(days, this, Math.round((displayMetrics.widthPixels.toFloat() - activity!!.resources.getDimension(R.dimen.v_8dp)) / 7))
             mainListsFiltersDaysRv.adapter = daysAdapter
             mainListsFiltersDaysRv.layoutManager = LinearLayoutManager(mainListsFiltersDaysRv.context, RecyclerView.HORIZONTAL, false)
@@ -82,7 +82,7 @@ class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler 
         if(presenter.initialized){
             val displayMetrics = DisplayMetrics()
             activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
-                                                                                                                                                                //(item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2 ~ 8dp to cut)
+                                                                                                                       //-8dp because (item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2)
             daysAdapter = DaysAdapter(presenter.days, this, Math.round((displayMetrics.widthPixels.toFloat() - activity!!.resources.getDimension(R.dimen.v_8dp)) / 7))
             mainListsFiltersDaysRv.adapter = daysAdapter
             mainListsFiltersDaysRv.layoutManager = LinearLayoutManager(mainListsFiltersDaysRv.context, RecyclerView.HORIZONTAL,false)

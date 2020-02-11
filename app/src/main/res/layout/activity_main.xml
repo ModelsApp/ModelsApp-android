@@ -19,13 +19,14 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <com.square.android.utils.widget.ExtendedBottomNavigationView
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:itemBackground="@color/white"
             app:itemIconTint="@drawable/navigation_color_set"
-            app:labelVisibilityMode="unlabeled"
+            app:itemTextColor="@drawable/navigation_color_set"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/main_navigation_menu" />
 
     </LinearLayout>

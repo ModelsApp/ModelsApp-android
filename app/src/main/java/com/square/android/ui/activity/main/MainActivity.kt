@@ -24,6 +24,7 @@ import com.square.android.data.network.fcm.NotificationType
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.main.MainPresenter
+import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
@@ -33,6 +34,7 @@ import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
 import com.square.android.ui.fragment.campaignsList.CAMPAIGN_EXTRA_ID
 import com.square.android.ui.activity.noConnection.NoConnectionActivity
+import com.square.android.ui.activity.place.PLACE_EXTRA_DAY_SELECTED
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID
 import com.square.android.ui.activity.place.PlaceActivity
 import com.square.android.ui.activity.profile.*
@@ -106,7 +108,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     }
 
     override fun checkInitial() {
-        bottomNavigation.selectedItemId = R.id.action_places
+        bottomNavigation.selectedItemId = R.id.action_explore
     }
 
     override fun showUserPending() {
@@ -131,16 +133,20 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         }
     }
 
-    //TODO change
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val screenKey = when (item.itemId) {
-            R.id.action_redemptions -> {
+            R.id.action_explore -> SCREENS.MAIN_LIST
+
+            //TODO change agenda from SCREENS.REDEMPTIONS to agenda fragment
+            R.id.action_agenda -> {
                 setActiveRedemptions(0)
                 SCREENS.REDEMPTIONS
             }
+
+            //TODO
+//            R.id.action_chat ->
+
             R.id.action_profile -> SCREENS.PROFILE
-            R.id.action_places -> SCREENS.PLACES
-//            R.id.action_campaigns -> SCREENS.CAMPAIGNS
             else -> SCREENS.PROFILE
         }
 
@@ -191,8 +197,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                                 EXTRA_EVENT_PLACE to extras.place)
                     }
 
-                    SCREENS.PLACE ->
-                        context.intentFor<PlaceActivity>(PLACE_EXTRA_ID to data as Long)
+                    SCREENS.PLACE ->{
+                        val extras = data as PlaceExtras
+                        context.intentFor<PlaceActivity>(PLACE_EXTRA_ID to extras.placeId, PLACE_EXTRA_DAY_SELECTED to extras.daySelectedPosition)
+                    }
 
                     SCREENS.GALLERY ->
                         context.intentFor<GalleryActivity>(USER_EXTRA to data as Profile.User)
@@ -232,7 +240,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 }
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
-            SCREENS.PLACES -> MainListsFragment()
+            SCREENS.MAIN_LIST -> MainListsFragment()
             SCREENS.REDEMPTIONS -> RedemptionsFragment()
             SCREENS.PROFILE -> ProfileFragment()
             SCREENS.EDIT_PROFILE -> EditProfileFragment()

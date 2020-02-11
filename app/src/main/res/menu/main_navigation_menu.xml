@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_places"
-        android:title="@string/action_places"
+        android:id="@+id/action_explore"
+        android:title="@string/explore"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_agenda"
+        android:title="@string/agenda"
+        android:icon="@drawable/r_calendar_clock"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_chat"
+        android:title="@string/chat"
         android:icon="@drawable/ic_message"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_redemptions"
-        android:title="@string/action_redemptions"
-        android:icon="@drawable/ic_alarm"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_campaigns"
-        android:title="@string/campaigns"
-        android:icon="@drawable/ic_campaign"
         app:showAsAction="ifRoom" />
 
     <item

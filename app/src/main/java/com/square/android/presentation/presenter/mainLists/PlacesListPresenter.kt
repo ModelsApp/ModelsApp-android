@@ -27,7 +27,6 @@ class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesLi
         eventBus.register(this)
 
         viewState.showData(data.toList())
-//            viewState.showData(data.filter { it.freeSpots > 0 }.toList())
     }
 
     fun itemClicked(place: Place) {

@@ -7,6 +7,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.BasePresenter
+import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.mainLists.MainListsView
 import com.square.android.ui.activity.event.EventExtras
 import com.square.android.ui.fragment.mainLists.filters.BaseFilter
@@ -126,7 +127,7 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
             AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_USING_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
         }
 
-        router.navigateTo(SCREENS.PLACE, place.id)
+        router.navigateTo(SCREENS.PLACE, PlaceExtras(place.id, selectedDayPosition))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

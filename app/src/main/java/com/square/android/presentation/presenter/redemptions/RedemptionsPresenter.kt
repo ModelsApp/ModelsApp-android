@@ -13,6 +13,7 @@ import com.square.android.extensions.toDate
 import com.square.android.extensions.toDateBooking
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
+import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.redemptions.RedemptionsView
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
@@ -183,7 +184,7 @@ class RedemptionsPresenter : BasePresenter<RedemptionsView>() {
     }
 
     fun redemptionDetailsClicked(placeId: Long){
-        router.navigateTo(SCREENS.PLACE, placeId)
+        router.navigateTo(SCREENS.PLACE, PlaceExtras(placeId))
     }
 
     fun cancelRedemptionClicked(id: Long) {

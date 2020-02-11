@@ -39,6 +39,7 @@ import java.util.*
 import kotlin.math.roundToInt
 
 const val PLACE_EXTRA_ID = "EXTRA_ID"
+const val PLACE_EXTRA_DAY_SELECTED = "PLACE_EXTRA_DAY_SELECTED"
 
 class PlaceActivity : LocationActivity(), PlaceView {
     @InjectPresenter
@@ -73,7 +74,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
     var placeAboutSize = 0
 
     @ProvidePresenter
-    fun providePresenter() = PlacePresenter(getId())
+    fun providePresenter() = PlacePresenter(getId(), getDaySelected())
 
     override fun provideNavigator(): Navigator = object : SimpleNavigator {}
 
@@ -446,4 +447,5 @@ class PlaceActivity : LocationActivity(), PlaceView {
     }
 
     private fun getId() = intent.getLongExtra(PLACE_EXTRA_ID, 0)
+    private fun getDaySelected() = intent.getIntExtra(PLACE_EXTRA_DAY_SELECTED, -1)
 }
