@@ -14,8 +14,8 @@
         android:layout_height="@dimen/v_24dp"
         android:src="@drawable/ic_timer"
         android:tint="@color/text_gray"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ll"
+        app:layout_constraintBottom_toBottomOf="@+id/ll"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
@@ -23,11 +23,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/searchIcon"
+        android:layout_marginBottom="@dimen/v_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="@dimen/v_12dp"
+        android:layout_marginStart="@dimen/v_8dp"
         android:layout_marginEnd="@dimen/v_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_goneMarginStart="0dp"
+        app:layout_constraintBottom_toTopOf="@id/divider"
         android:orientation="vertical" >
 
         <TextView
@@ -62,6 +64,6 @@
         android:background="@color/gray_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

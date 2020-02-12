@@ -9,7 +9,6 @@ import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.mainLists.MainListsView
-import com.square.android.ui.activity.event.EventExtras
 import com.square.android.ui.fragment.mainLists.filters.BaseFilter
 import com.square.android.ui.fragment.mainLists.filters.CampaignsFilter
 import com.square.android.ui.fragment.mainLists.filters.EventsFilter
@@ -30,6 +29,8 @@ const val POSITION_PLACES = 0
 const val POSITION_EVENTS = 1
 const val POSITION_CAMPAIGNS = 2
 
+const val LIST_ITEMS_SIZE = 3
+
 class PlaceSelectedEvent(val place: Place, val fromMap: Boolean = false)
 class EventSelectedEvent(val place: Place)
 class CampaignSelectedEvent(val campaignInfo: CampaignInfo)
@@ -43,7 +44,7 @@ class MainData(
 @InjectViewState
 class MainListsPresenter: BasePresenter<MainListsView>() {
 
-    var actualDataLoaded: SparseArray<Boolean> = SparseArray(3)
+    var actualDataLoaded: SparseArray<Boolean> = SparseArray(LIST_ITEMS_SIZE)
 
     var selectedDayPosition: Int = 0
 
@@ -56,13 +57,13 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
 
     var allCategoryFilters: MutableList<String> = mutableListOf()
 
-    var filters: SparseArray<BaseFilter> = SparseArray(3)
+    var filters: SparseArray<BaseFilter> = SparseArray(LIST_ITEMS_SIZE)
 
     private var locationPoint: LatLng? = null
 
     var data: MainData = MainData()
 
-    var actualTabSelected = POSITION_PLACES
+    var actualTabSelected: Int = POSITION_PLACES
 
     var initialized = false
 
@@ -141,7 +142,7 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
             AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.EVENT_OPENED_USING_FILTERS.apply { venueName = e.place.name }, hashMapOf("eventId" to eventId)), repository)
         }
 
-        router.navigateTo(SCREENS.EVENT, EventExtras(event!!, e.place))
+        router.navigateTo(SCREENS.EVENT, event!!.id)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -167,6 +168,10 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
             viewState.hideDays()
             viewState.hideCities()
         }
+    }
+
+    fun navigateToSearch(){
+        router.navigateTo(SCREENS.SEARCH, actualTabSelected)
     }
 
     //TODO fire when "Apply" button clicked in filters sheet
@@ -259,11 +264,6 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
 
             if (whichTabsToLoad.contains(POSITION_EVENTS)) {
                 //TODO filter by new filters too
-                data.campaignsData = repository.getCampaigns().await().toMutableList()
-            }
-
-            if (whichTabsToLoad.contains(POSITION_CAMPAIGNS)) {
-                //TODO filter by new filters too
                 val events = repository.getEvents().await().toMutableList()
 
                 val eventsPlace: MutableList<Place> = mutableListOf()
@@ -276,6 +276,11 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
                 }
 
                 data.eventsData = eventsPlace
+            }
+
+            if (whichTabsToLoad.contains(POSITION_CAMPAIGNS)) {
+                //TODO filter by new filters too
+                data.campaignsData = repository.getCampaigns().await().toMutableList()
             }
 
             if (sendDataAfter) {

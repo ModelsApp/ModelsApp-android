@@ -9,6 +9,7 @@ import com.square.android.GOOGLEBILLING.SUBSCRIPTION_PER_MONTH_PREMIUM_NAME
 import com.square.android.GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_NAME
 import com.square.android.GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_PREMIUM_NAME
 import com.square.android.data.pojo.UserInfo
+import com.square.android.presentation.presenter.mainLists.LIST_ITEMS_SIZE
 import com.square.android.ui.base.tutorial.TutorialService
 
 private const val KEY_DISPLAY_INTRO = "KEY_DISPLAY_INTRO"
@@ -33,6 +34,8 @@ private const val KEY_ENTITLEMENT = "KEY_ENTITLEMENT"
 
 private const val KEY_PROFILE_INFO = "KEY_PROFILE_INFO"
 private const val KEY_FRAGMENT_NUMBER = "KEY_FRAGMENT_NUMBER"
+
+private const val KEY_LATEST_SEARCHES = "KEY_LATEST_SEARCHES"
 
 private const val KEY_ALLOW_GEOLOCATION = "KEY_ALLOW_GEOLOCATION"
 
@@ -185,6 +188,23 @@ class LocalDataManager(context: Context) {
 
         preferences.edit()
                 .putInt(KEY_FRAGMENT_NUMBER, fragmentNumber)
+                .apply()
+    }
+
+    fun getLatestSearchesJson(): List<String?> {
+        val latestSearches: MutableList<String?> = mutableListOf()
+
+        for(x in 0 until LIST_ITEMS_SIZE){
+            val latestSearch = preferences.getString(KEY_LATEST_SEARCHES+x, null)
+            latestSearches.add(latestSearch)
+        }
+
+        return latestSearches
+    }
+
+    fun setLatestSearchAtIndex(latestSearchesJson: String, index: Int) {
+        preferences.edit()
+                .putString(KEY_LATEST_SEARCHES+index, latestSearchesJson)
                 .apply()
     }
 

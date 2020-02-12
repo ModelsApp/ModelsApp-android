@@ -34,7 +34,6 @@ import java.util.*
 import java.text.SimpleDateFormat
 import kotlin.math.roundToInt
 
-
 class EventDetailsFragment: BaseFragment(), EventDetailsView{
 
     companion object {

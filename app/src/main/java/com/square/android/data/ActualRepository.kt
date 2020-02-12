@@ -1,6 +1,8 @@
 package com.square.android.data
 
 import android.util.Log
+import android.util.SparseArray
+import com.google.gson.Gson
 import com.square.android.SOCIAL
 import com.square.android.data.local.LocalDataManager
 import com.square.android.data.network.ApiService
@@ -9,6 +11,8 @@ import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.ERRORS
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.pojo.*
+import com.square.android.presentation.presenter.mainLists.LIST_ITEMS_SIZE
+import com.square.android.presentation.presenter.mainLists.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
@@ -251,6 +255,39 @@ class ActualRepository(private val api: ApiService,
 
     override fun saveProfileInfo(profileInfo: String, fragmentNumber: Int) {
         localManager.setProfileInfo(profileInfo, fragmentNumber)
+    }
+
+    override fun getLatestSearches(): SparseArray<LatestSearch> {
+        val latestSearches: SparseArray<LatestSearch> = SparseArray(LIST_ITEMS_SIZE)
+
+        val gson = Gson()
+
+        val latestSearchesJson: List<String?> = localManager.getLatestSearchesJson()
+
+        var index = 0
+        for (latestSearchJson in latestSearchesJson) {
+            if (latestSearchJson == null) {
+                latestSearches.append(index, LatestSearch(type = index))
+            } else {
+                try {
+                    latestSearches.append(index, gson.fromJson(latestSearchJson, LatestSearch::class.java).apply { type = index })
+                } catch (e: Exception) {
+                    latestSearches.append(index, LatestSearch(type = index))
+                }
+            }
+
+            index++
+        }
+
+        return latestSearches
+    }
+
+    override fun saveLatestSearches(latestSearches: SparseArray<LatestSearch>) {
+        val gson = Gson()
+
+        for(x in 0 until latestSearches.size()){
+            localManager.setLatestSearchAtIndex(gson.toJson(latestSearches[x]), x)
+        }
     }
 
     override fun getFragmentNumber(): Int {

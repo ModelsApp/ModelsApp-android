@@ -38,6 +38,8 @@ object SCREENS {
     const val CAMPAIGN_DETAILS = "CAMPAIGN_DETAILS"
     const val CAMPAIGN_FINISHED = "CAMPAIGN_FINISHED"
 
+    const val SEARCH = "SEARCH"
+
     const val NOT_APPROVED = "NOT_APPROVED"
     const val WINNER = "WINNER"
     const val UPLOAD_PICS = "UPLOAD_PICS"

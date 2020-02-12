@@ -36,8 +36,9 @@ import kotlinx.android.synthetic.main.activity_event.*
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 
-const val EXTRA_EVENT = "EXTRA_EVENT"
+const val EXTRA_EVENT_ID = "EXTRA_EVENT_ID"
 
+const val EXTRA_EVENT = "EXTRA_EVENT"
 const val EXTRA_EVENT_PLACE = "EXTRA_EVENT_PLACE"
 
 class EventExtras(val event: Event, val place: Place)
@@ -64,7 +65,7 @@ class EventActivity: LocationActivity(), EventView {
     var placeFragment = false
 
     @ProvidePresenter
-    fun providePresenter() = EventPresenter(intent.getParcelableExtra(EXTRA_EVENT), intent.getParcelableExtra(EXTRA_EVENT_PLACE))
+    fun providePresenter() = EventPresenter(intent.getStringExtra(EXTRA_EVENT_ID))
 
     override fun provideNavigator(): Navigator = EventNavigator(this)
 
@@ -269,11 +270,11 @@ class EventActivity: LocationActivity(), EventView {
 
     //TODO fire when user navigates back to eventDetailsFragment(by himself or by clicking Select button)
     fun backToEvent(){
-        presenter.updateLocationAndAddress(presenter.place.location.latLng(), presenter.place.address )
+        presenter.updateLocationAndAddress(presenter.place?.location?.latLng(), presenter.place?.address )
 
-        eventMainImage.loadImage(presenter.place.mainImage ?: (presenter.place.photos?.firstOrNull() ?: ""))
+        eventMainImage.loadImage(presenter.place?.mainImage ?: (presenter.place?.photos?.firstOrNull() ?: ""))
 
-        eventName.text = presenter.place.name
+        eventName.text = presenter.place?.name
 
         eventName.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {

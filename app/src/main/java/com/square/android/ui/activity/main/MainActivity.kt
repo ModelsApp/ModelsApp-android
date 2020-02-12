@@ -44,6 +44,7 @@ import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
 import com.square.android.ui.activity.tutorialVideos.TutorialVideosActivity
 import com.square.android.ui.fragment.mainLists.MainListsFragment
+import com.square.android.ui.fragment.mainLists.SearchFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.redemptions.RedemptionsFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
@@ -187,20 +188,21 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                     SCREENS.START ->
                         context.intentFor<StartActivity>()
 
-                    SCREENS.SELECT_OFFER ->
-                        context.intentFor<SelectOfferActivity>(EXTRA_REDEMPTION to data as RedemptionInfo)
-
                     SCREENS.EVENT ->{
-                        val extras = data as EventExtras
-                        context.intentFor<EventActivity>(
-                                EXTRA_EVENT to extras.event,
-                                EXTRA_EVENT_PLACE to extras.place)
+                        context.intentFor<EventActivity>(EXTRA_EVENT_ID to data as String)
                     }
 
                     SCREENS.PLACE ->{
                         val extras = data as PlaceExtras
                         context.intentFor<PlaceActivity>(PLACE_EXTRA_ID to extras.placeId, PLACE_EXTRA_DAY_SELECTED to extras.daySelectedPosition)
                     }
+
+                    SCREENS.CAMPAIGN_DETAILS ->
+                        context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
+
+
+                    SCREENS.SELECT_OFFER ->
+                        context.intentFor<SelectOfferActivity>(EXTRA_REDEMPTION to data as RedemptionInfo)
 
                     SCREENS.GALLERY ->
                         context.intentFor<GalleryActivity>(USER_EXTRA to data as Profile.User)
@@ -224,8 +226,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<ActivePlanActivity>(CAN_BACK_EXTRA to extras.canGoBack, BILLING_TOKEN_EXTRA to extras.billingTokenInfo)
                     }
 
-                    SCREENS.CAMPAIGN_DETAILS ->
-                        context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
 
                     SCREENS.EARN_MORE_CREDITS ->
                         context.intentFor<EarnMoreCreditsActivity>()
@@ -244,6 +244,8 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
             SCREENS.REDEMPTIONS -> RedemptionsFragment()
             SCREENS.PROFILE -> ProfileFragment()
             SCREENS.EDIT_PROFILE -> EditProfileFragment()
+
+            SCREENS.SEARCH -> SearchFragment(data as Int)
             else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
         }
 

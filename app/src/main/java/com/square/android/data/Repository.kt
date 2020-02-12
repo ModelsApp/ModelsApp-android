@@ -1,9 +1,11 @@
 package com.square.android.data
 
+import android.util.SparseArray
 import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.pojo.*
+import com.square.android.presentation.presenter.mainLists.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
@@ -127,6 +129,9 @@ interface Repository {
     fun getProfileInfo(): String
 
     fun getFragmentNumber(): Int
+
+    fun getLatestSearches(): SparseArray<LatestSearch>
+    fun saveLatestSearches(latestSearches: SparseArray<LatestSearch>)
 
     fun sendFcmToken(uuid: String, newFcmToken: String?, oldToken: String?): Deferred<MessageResponse>
     fun getOffersForBooking(placeId: Long, bookingId: Long): Deferred<List<OfferInfo>>

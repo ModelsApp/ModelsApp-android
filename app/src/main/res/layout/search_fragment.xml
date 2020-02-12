@@ -5,9 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingTop="@dimen/v_40dp"
+    android:animateLayoutChanges="true"
     android:background="@android:color/white" >
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/searchLl"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -21,27 +22,49 @@
     android:orientation="horizontal" >
 
     <com.square.android.utils.widget.ErrorEditText
-        style="@style/RedesignedInputField"
         android:id="@+id/search_et"
-        android:layout_weight="1"
+        style="@style/RedesignedInputField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:hint="@string/search"
+        android:layout_marginEnd="@dimen/v_16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelTv" />
 
     <TextView
-        android:id="@+id/nextTv"
+        android:id="@+id/cancelTv"
         style="@style/Models16SemiBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/v_8dp"
         android:layout_marginStart="@dimen/v_16dp"
         android:text="@string/cancel"
-        android:textColor="@android:color/black"
+        android:enabled="false"
+        android:textColor="@color/enabled_black_gray"
         android:textSize="@dimen/text_16"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/searchProgress"
+        android:layout_width="@dimen/v_32dp"
+        android:layout_height="@dimen/v_32dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/placesPrimary"
+        tools:visibility="visible"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/cancelTv"
+        app:layout_constraintBottom_toBottomOf="@id/cancelTv"
+        app:layout_constraintStart_toStartOf="@id/cancelTv"
+        app:layout_constraintEnd_toEndOf="@id/cancelTv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/search_nested"
@@ -58,11 +81,11 @@
         app:layout_constraintTop_toBottomOf="@+id/searchLl"
         app:layout_constraintBottom_toBottomOf="parent" >
 
-<!--  TODO: add manually in adapter 2x - search_title + subitems(search_item) -->
         <LinearLayout
             android:id="@+id/searchContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/v_16dp"
             android:orientation="vertical" />
 
     </androidx.core.widget.NestedScrollView>

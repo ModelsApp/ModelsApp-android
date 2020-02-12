@@ -77,49 +77,51 @@ class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler 
     }
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+            super.onViewCreated(view, savedInstanceState)
 
-        if(presenter.initialized){
-            val displayMetrics = DisplayMetrics()
-            activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
-                                                                                                                       //-8dp because (item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2)
-            daysAdapter = DaysAdapter(presenter.days, this, Math.round((displayMetrics.widthPixels.toFloat() - activity!!.resources.getDimension(R.dimen.v_8dp)) / 7))
-            mainListsFiltersDaysRv.adapter = daysAdapter
-            mainListsFiltersDaysRv.layoutManager = LinearLayoutManager(mainListsFiltersDaysRv.context, RecyclerView.HORIZONTAL,false)
-            daysAdapter!!.setSelectedItem(presenter.selectedDayPosition)
+            if (presenter.initialized) {
+                val displayMetrics = DisplayMetrics()
+                activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+                //-8dp because (item_day_adjustable width = 40dp, without padding ~ 24dp, so padding ~ 16dp, ~16 /2)
+                daysAdapter = DaysAdapter(presenter.days, this, Math.round((displayMetrics.widthPixels.toFloat() - activity!!.resources.getDimension(R.dimen.v_8dp)) / 7))
+                mainListsFiltersDaysRv.adapter = daysAdapter
+                mainListsFiltersDaysRv.layoutManager = LinearLayoutManager(mainListsFiltersDaysRv.context, RecyclerView.HORIZONTAL, false)
+                daysAdapter!!.setSelectedItem(presenter.selectedDayPosition)
 
-            setUpPager(presenter.data)
+                setUpPager(presenter.data)
 
-            mainListsPager.setCurrentItem(presenter.actualTabSelected, false)
+                mainListsPager.setCurrentItem(presenter.actualTabSelected, false)
 
-            when(presenter.actualTabSelected){
-                POSITION_PLACES, POSITION_EVENTS -> {
-                   showDays()
-                   showCities()
-                }
-                POSITION_CAMPAIGNS -> {
-                    hideDays()
-                    hideCities()
-                }
-            }
-
-            //TODO add filters etc later too
-
-        } else{
-            presenter.loadData()
-        }
-
-        mainListsCitiesLl.setOnClickListener {
-            presenter.cities?.let {
-                val bottomSheetCities = BottomSheetCities(it, presenter.selectedCity, object : BottomSheetCities.Handler {
-                    override fun cityClicked(selectedCity: City) {
-                        presenter.citySelected(selectedCity)
+                when (presenter.actualTabSelected) {
+                    POSITION_PLACES, POSITION_EVENTS -> {
+                        showDays()
+                        showCities()
                     }
-                })
+                    POSITION_CAMPAIGNS -> {
+                        hideDays()
+                        hideCities()
+                    }
+                }
 
-                bottomSheetCities.show(fragmentManager, BottomSheetCities.TAG)
+                //TODO add filters etc later too
+
+            } else {
+                presenter.loadData()
             }
-        }
+
+            mainListsCitiesLl.setOnClickListener {
+                presenter.cities?.let {
+                    val bottomSheetCities = BottomSheetCities(it, presenter.selectedCity, object : BottomSheetCities.Handler {
+                        override fun cityClicked(selectedCity: City) {
+                            presenter.citySelected(selectedCity)
+                        }
+                    })
+
+                    bottomSheetCities.show(fragmentManager, BottomSheetCities.TAG)
+                }
+            }
+
+            icSearch.setOnClickListener { presenter.navigateToSearch()}
     }
 
     override fun showDays() {

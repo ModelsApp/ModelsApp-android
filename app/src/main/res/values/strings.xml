@@ -837,6 +837,10 @@
 
     <string name="level_format">Level %d</string>
 
+
+    <string name="latest_search">Latest search</string>
+    <string name="result_format">Results (%d)</string>
+
     <string name="price_subscription_week_format">%s / week</string>
 
     <string name="member">Member</string>

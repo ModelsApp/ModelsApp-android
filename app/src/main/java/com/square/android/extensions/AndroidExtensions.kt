@@ -5,16 +5,12 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
+import android.graphics.*
 import android.location.Location
 import android.net.Uri
 import android.os.Build
-import android.text.Editable
-import android.text.Html
-import android.text.TextWatcher
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
@@ -43,6 +39,35 @@ fun ImageView.loadImageForIcon(url: String) {
         Picasso.get()
                 .load(url)
                 .into(this)
+    }
+}
+
+fun TextView.setHighLightedText(textToHighlight: String, ignoreCase: Boolean = true, @ColorRes textColorRes: Int = android.R.color.black) {
+
+    val tvt = if(ignoreCase){
+        this.text.toString().toLowerCase()
+    } else{
+        this.text.toString()
+    }
+
+    var ofe = tvt.indexOf(textToHighlight, 0)
+    val wordToSpan = SpannableString(this.text)
+    var ofs = 0
+    while (ofs < tvt.length && ofe != -1) {
+        if(ignoreCase){
+            ofe = tvt.toLowerCase().indexOf(textToHighlight.toLowerCase(), ofs)
+        } else{
+            ofe = tvt.indexOf(textToHighlight, ofs)
+        }
+
+        if (ofe == -1){
+            break
+        }
+        else {
+            wordToSpan.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, textColorRes)), ofe, ofe + textToHighlight.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            this.setText(wordToSpan, TextView.BufferType.SPANNABLE)
+        }
+        ofs = ofe + 1
     }
 }
 
