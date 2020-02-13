@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.campaignsList
+package com.square.android.ui.fragment.mainLists.campaignsList
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,9 +6,9 @@ import com.square.android.presentation.presenter.mainLists.MainData
 import com.square.android.presentation.presenter.mainLists.POSITION_CAMPAIGNS
 import com.square.android.presentation.presenter.mainLists.POSITION_EVENTS
 import com.square.android.presentation.presenter.mainLists.POSITION_PLACES
-import com.square.android.ui.fragment.campaignsList.CampaignsListFragment
-import com.square.android.ui.fragment.eventsList.EventsListFragment
-import com.square.android.ui.fragment.placesList.PlacesListFragment
+import com.square.android.ui.fragment.mainLists.campaignsList.CampaignsListFragment
+import com.square.android.ui.fragment.mainLists.eventsList.EventsListFragment
+import com.square.android.ui.fragment.mainLists.placesList.PlacesListFragment
 import androidx.fragment.app.FragmentManager
 
 private const val ITEM_COUNT = 3

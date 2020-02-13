@@ -27,16 +27,6 @@ class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler 
 
     private var daysAdapter: DaysAdapter? = null
 
-    override fun showProgress() {
-        mainListsPager.visibility = View.INVISIBLE
-        mainListsProgress.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        mainListsProgress.visibility = View.GONE
-        mainListsPager.visibility = View.VISIBLE
-    }
-
     override fun showData(data: MainData, days: MutableList<Day>) {
         if(!presenter.initialized) {
             presenter.initialized = true
@@ -150,6 +140,16 @@ class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler 
 
     override fun dayItemClicked(position: Int) {
         presenter.dayClicked(position)
+    }
+
+    override fun showProgress() {
+        mainListsPager.visibility = View.INVISIBLE
+        mainListsProgress.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        mainListsProgress.visibility = View.GONE
+        mainListsPager.visibility = View.VISIBLE
     }
 
 }

@@ -29,6 +29,9 @@
 
     <string name="events">Events</string>
 
+    <string name="calendar">Calendar</string>
+    <string name="schedule">Schedule</string>
+
     <string name="event_details">Event Details</string>
     <string name="one_way_from">One way from</string>
     <string name="return_to">Return to</string>

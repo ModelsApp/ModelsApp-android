@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.campaignsList
+package com.square.android.ui.fragment.mainLists.campaignsList
 
 import android.view.View
 import com.square.android.R

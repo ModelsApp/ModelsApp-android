@@ -32,7 +32,7 @@ import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.profile.EditProfileFragment
 import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
-import com.square.android.ui.fragment.campaignsList.CAMPAIGN_EXTRA_ID
+import com.square.android.ui.fragment.mainLists.campaignsList.CAMPAIGN_EXTRA_ID
 import com.square.android.ui.activity.noConnection.NoConnectionActivity
 import com.square.android.ui.activity.place.PLACE_EXTRA_DAY_SELECTED
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID

@@ -1,4 +1,4 @@
-package com.square.android.ui.fragment.eventsList
+package com.square.android.ui.fragment.mainLists.eventsList
 
 import android.os.Bundle
 import android.view.LayoutInflater

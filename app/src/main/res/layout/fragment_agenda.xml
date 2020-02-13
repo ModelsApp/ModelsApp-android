@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:animateLayoutChanges="true" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/agendaDate"
+            style="@style/Models24SemiBoldText"
+            android:textSize="@dimen/text_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/v_24dp"
+            android:layout_marginTop="@dimen/v_44dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="Dec 25, 2019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icInfo"
+            android:layout_width="@dimen/v_30dp"
+            android:layout_height="@dimen/v_30dp"
+            android:layout_marginEnd="@dimen/v_24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_info"
+            app:layout_constraintBottom_toBottomOf="@+id/agendaDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/agendaDate" />
+
+        <ImageView
+            android:id="@+id/icCalendar"
+            android:layout_width="@dimen/v_30dp"
+            android:layout_height="@dimen/v_30dp"
+            android:layout_marginEnd="@dimen/v_16dp"
+            android:src="@drawable/b_calendar"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="@+id/icInfo"
+            app:layout_constraintEnd_toStartOf="@+id/icInfo"
+            app:layout_constraintTop_toTopOf="@+id/icInfo" />
+
+        <ImageView
+            android:id="@+id/icSearch"
+            android:layout_width="@dimen/v_30dp"
+            android:layout_height="@dimen/v_30dp"
+            android:layout_marginEnd="@dimen/v_16dp"
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="@+id/icInfo"
+            app:layout_constraintEnd_toStartOf="@+id/icCalendar"
+            app:layout_constraintTop_toTopOf="@+id/icInfo" />
+
+        <com.square.android.utils.widget.PoppinsTabLayout
+            android:id="@+id/agendaTabs"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/v_42dp"
+            android:layout_marginStart="@dimen/v_24dp"
+            android:layout_marginEnd="@dimen/v_24dp"
+            android:layout_marginTop="@dimen/v_20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/agendaDate"
+            app:tabBackground="@android:color/transparent"
+            app:tabSelectedTextColor="@android:color/black"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabTextAppearance="@style/TabTextBigger"
+            app:tabIndicator="@drawable/tab_indicator_1dp"
+            app:tabIndicatorColor="@android:color/black"
+            app:tabMode="fixed"
+            app:tabMinWidth="0dp"
+            app:tabTextColor="@color/gray_disabled" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+    <ProgressBar
+        android:id="@+id/agendaProgress"
+        android:layout_width="@dimen/v_48dp"
+        android:layout_height="@dimen/v_48dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/placesPrimary"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <com.square.android.utils.widget.PagingViewPager
+        android:id="@+id/agendaPager"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,7 @@ import com.square.android.extensions.loadImage
 import com.square.android.presentation.presenter.map.MapPresenter
 import com.square.android.presentation.view.map.MapView
 import com.square.android.ui.fragment.BaseMapFragment
-import com.square.android.ui.fragment.placesList.PlaceExtrasAdapter
+import com.square.android.ui.fragment.mainLists.placesList.PlaceExtrasAdapter
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.place_map.view.*
 import com.square.android.R
