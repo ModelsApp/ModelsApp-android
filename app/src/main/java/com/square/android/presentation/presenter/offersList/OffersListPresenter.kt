@@ -8,8 +8,8 @@ import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.RedemptionFull
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.presentation.presenter.BasePresenter
+import com.square.android.presentation.presenter.agenda.RedemptionsUpdatedEvent
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
-import com.square.android.presentation.presenter.redemptions.RedemptionsUpdatedEvent
 import com.square.android.presentation.view.LoadingView
 import com.square.android.presentation.view.ProgressView
 import com.square.android.presentation.view.offersList.OffersListView

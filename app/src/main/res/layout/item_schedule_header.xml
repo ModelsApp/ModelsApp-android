@@ -11,11 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/v_1dp"
         android:layout_marginBottom="@dimen/v_12dp"
+        android:visibility="gone"
+        tools:visibility="visible"
         android:background="@color/gray_divider" />
 
     <TextView
         android:id="@+id/scheduleHeader"
-        style="@style/Models16Text"
+        style="@style/Models16SemiBoldText"
         android:textSize="@dimen/text_16"
         android:textColor="@color/text_gray"
         android:layout_width="match_parent"
@@ -24,8 +26,8 @@
         android:textAllCaps="true"
         android:paddingStart="@dimen/v_24dp"
         android:paddingEnd="@dimen/v_24dp"
-        android:paddingTop="@dimen/v_12dp"
-        android:paddingBottom="@dimen/v_12dp" />
+        android:paddingTop="@dimen/v_8dp"
+        android:paddingBottom="@dimen/v_20dp" />
 
 </LinearLayout>
 

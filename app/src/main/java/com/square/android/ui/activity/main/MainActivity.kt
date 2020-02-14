@@ -43,10 +43,10 @@ import com.square.android.ui.activity.settings.SettingsActivity
 import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
 import com.square.android.ui.activity.tutorialVideos.TutorialVideosActivity
+import com.square.android.ui.fragment.agenda.AgendaFragment
 import com.square.android.ui.fragment.mainLists.MainListsFragment
 import com.square.android.ui.fragment.mainLists.SearchFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
-import com.square.android.ui.fragment.redemptions.RedemptionsFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import com.square.android.utils.ActivityUtils
 import com.square.android.utils.DialogDepository
@@ -137,11 +137,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val screenKey = when (item.itemId) {
             R.id.action_explore -> SCREENS.MAIN_LIST
-
-            //TODO change agenda from SCREENS.REDEMPTIONS to agenda fragment
+            
             R.id.action_agenda -> {
                 setActiveRedemptions(0)
-                SCREENS.REDEMPTIONS
+                SCREENS.AGENDA
             }
 
             //TODO
@@ -241,10 +240,9 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
             SCREENS.MAIN_LIST -> MainListsFragment()
-            SCREENS.REDEMPTIONS -> RedemptionsFragment()
             SCREENS.PROFILE -> ProfileFragment()
             SCREENS.EDIT_PROFILE -> EditProfileFragment()
-
+            SCREENS.AGENDA -> AgendaFragment()
             SCREENS.SEARCH -> SearchFragment(data as Int)
             else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
         }

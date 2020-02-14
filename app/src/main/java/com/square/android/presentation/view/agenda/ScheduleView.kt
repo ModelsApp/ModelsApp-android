@@ -1,7 +1,7 @@
 package com.square.android.presentation.view.agenda
 
-import com.square.android.presentation.view.BaseView
+import com.square.android.presentation.view.ProgressView
 
-interface ScheduleView: BaseView{
-
+interface ScheduleView: ProgressView{
+    fun showData(ordered: List<Any>)
 }

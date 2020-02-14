@@ -9,11 +9,11 @@ import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.aboutPlace.AboutLoadedEvent
 import com.square.android.presentation.presenter.aboutPlace.DistanceUpdatedEvent
+import com.square.android.presentation.presenter.agenda.RedemptionsUpdatedEvent
 import com.square.android.presentation.presenter.booking.PlaceLoadedEvent
 import com.square.android.presentation.presenter.booking.SpotsUpdatedEvent
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
 import com.square.android.presentation.presenter.offer.OffersLoadedEvent
-import com.square.android.presentation.presenter.redemptions.RedemptionsUpdatedEvent
 import com.square.android.presentation.view.placeDetail.PlaceDetailView
 import com.square.android.utils.AnalyticsEvent
 import com.square.android.utils.AnalyticsEvents

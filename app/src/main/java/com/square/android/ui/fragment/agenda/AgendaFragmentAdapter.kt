@@ -5,6 +5,8 @@ import com.square.android.R
 import androidx.fragment.app.FragmentManager
 import com.square.android.presentation.presenter.agenda.POSITION_CALENDAR
 import com.square.android.presentation.presenter.agenda.POSITION_SCHEDULE
+import com.square.android.ui.fragment.agenda.calendar.CalendarFragment
+import com.square.android.ui.fragment.agenda.schedule.ScheduleFragment
 
 //TODO will be 4
 private const val ITEM_COUNT = 2
@@ -19,6 +21,7 @@ class AgendaFragmentAdapter(fragmentManager: FragmentManager) : androidx.fragmen
         return when (position) {
             POSITION_CALENDAR -> CalendarFragment()
             POSITION_SCHEDULE -> ScheduleFragment()
+            //TODO To do + Archive
             else -> throw IllegalArgumentException("Unknown position: $position")
         }
     }

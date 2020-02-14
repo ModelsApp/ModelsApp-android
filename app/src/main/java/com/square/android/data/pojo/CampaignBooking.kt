@@ -1,6 +1,6 @@
 package com.square.android.data.pojo
 
-import android.os.Parcelable
+import com.square.android.presentation.presenter.agenda.ScheduleDivider
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
@@ -15,4 +15,4 @@ class CampaignBooking(
 
         //Used only in app
         var time: String? = null
-): Parcelable
+): ScheduleDivider()

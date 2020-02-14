@@ -1,8 +1,13 @@
 package com.square.android.extensions
 
+import android.content.res.ColorStateList
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.square.android.App
 import com.square.android.R
 import java.text.SimpleDateFormat
@@ -26,6 +31,20 @@ fun EditText.isValid(): Boolean {
     return !TextUtils.isEmpty(this.text.toString().trim())
 }
 
+
+
+fun ImageView.drawableFromRes(@DrawableRes drawableRes: Int, @ColorRes tintColorRes: Int? = null){
+    setImageDrawable(context.getDrawable(drawableRes))
+
+    tintColorRes?.let {
+        imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintColorRes!!))
+    }
+}
+
+fun ImageView.tintFromRes(@ColorRes tintColorRes: Int){
+    imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintColorRes!!))
+}
+
 fun Int.toOrdinalString() =
         this.toString() + when (this % 10) {
             in 11..13 -> "th"
@@ -35,7 +54,7 @@ fun Int.toOrdinalString() =
             else -> "th"
         }
 
-//TODO check date formatting in RedemptionInfo.date and CampaignBooking.pickUpDate and use one of the below methods to format it(RedemptionsPresenter, RedemptionsAdapter)
+//TODO check date formatting in RedemptionInfo.date and CampaignBooking.pickUpDate and use one of the below methods to format it(RedemptionsPresenter, ScheduleAdapter)
 fun String.toDate(): Date {
     val format = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
@@ -52,6 +71,7 @@ fun String.toDateYMD(): Date {
     return format.parse(this)
 }
 
+//TODO
 fun Calendar.relativeTimeString(now: Calendar) : String {
     if (now.isToday(this)) return App.getString(R.string.today)
 

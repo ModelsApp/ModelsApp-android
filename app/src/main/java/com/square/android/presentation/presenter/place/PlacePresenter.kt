@@ -7,8 +7,8 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.pojo.*
 import com.square.android.extensions.getStringDate
 import com.square.android.presentation.presenter.BasePresenter
+import com.square.android.presentation.presenter.agenda.RedemptionsUpdatedEvent
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
-import com.square.android.presentation.presenter.redemptions.RedemptionsUpdatedEvent
 import com.square.android.presentation.view.place.PlaceView
 import com.square.android.utils.AnalyticsEvent
 import com.square.android.utils.AnalyticsEvents

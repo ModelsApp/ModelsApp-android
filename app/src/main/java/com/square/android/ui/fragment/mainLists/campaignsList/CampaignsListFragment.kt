@@ -32,6 +32,13 @@ class CampaignsListFragment(var data: MutableList<CampaignInfo>): BaseFragment()
         return inflater.inflate(R.layout.fragment_campaigns_list, container, false)
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        campaignsList.setHasFixedSize(true)
+    }
+
     override fun showData(data: List<CampaignInfo>) {
         adapter = CampaignsAdapter(data, this)
         campaignsList.adapter = adapter

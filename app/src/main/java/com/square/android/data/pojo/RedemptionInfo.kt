@@ -1,6 +1,6 @@
 package com.square.android.data.pojo
 
-import android.os.Parcelable
+import com.square.android.presentation.presenter.agenda.ScheduleDivider
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -18,4 +18,4 @@ class RedemptionInfo(
         var claimed: Boolean = false,
         var startTime: String = "",
         var user: Int = 0
-) : Parcelable
+): ScheduleDivider()
