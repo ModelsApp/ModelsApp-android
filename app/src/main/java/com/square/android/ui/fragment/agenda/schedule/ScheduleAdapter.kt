@@ -4,11 +4,9 @@ import android.view.View
 import com.square.android.R
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.ui.base.BaseAdapter
-import android.webkit.URLUtil
 import com.square.android.App
 import com.square.android.data.pojo.CampaignBooking
 import com.square.android.extensions.*
-import com.square.android.presentation.presenter.agenda.ScheduleDivider
 import com.square.android.presentation.presenter.agenda.ScheduleHeader
 import kotlinx.android.synthetic.main.item_schedule.*
 import kotlinx.android.synthetic.main.item_schedule_header.*
@@ -158,6 +156,8 @@ class ScheduleAdapter(data: List<Any>, private val handler: Handler)
             //TODO scheduleStatusCircle color, what value defines it?
             scheduleStatusCircle.tintFromRes(R.color.status_green)
 
+            scheduleImg.removeFilters()
+
             scheduleMoreIcon.setOnClickListener {
                 //TODO what it should do?
             }
@@ -180,13 +180,9 @@ class ScheduleAdapter(data: List<Any>, private val handler: Handler)
             try{
                 calendar.timeInMillis = header.title.toDateYMD().time
 
-                val day = calendar.get(Calendar.DAY_OF_MONTH).toOrdinalString()
-                val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
-
-                scheduleHeader.text = App.INSTANCE.getString(R.string.date_format, day, month)
+                scheduleHeader.text = "${calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())}, ${calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())} ${calendar.get(Calendar.DAY_OF_MONTH)}"
 
                 scheduleHeader.setTextColorRes(R.color.text_gray)
-
             } catch (e: Exception){
                 scheduleHeader.text = header.title
                 scheduleHeader.setTextColorRes(android.R.color.black)

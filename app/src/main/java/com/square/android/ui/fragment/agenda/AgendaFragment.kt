@@ -10,6 +10,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
 import com.square.android.presentation.presenter.agenda.AgendaPresenter
 import com.square.android.presentation.view.agenda.AgendaView
+import com.square.android.ui.dialogs.AgendaInfoDialog
 import com.square.android.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_agenda.*
 import java.util.*
@@ -21,6 +22,8 @@ class AgendaFragment: BaseFragment(), AgendaView {
 
     @ProvidePresenter
     fun providePresenter() = AgendaPresenter()
+
+    private var dialog: AgendaInfoDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,6 +37,12 @@ class AgendaFragment: BaseFragment(), AgendaView {
         agendaDate.text = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()).capitalize() + " " + calendar.get(Calendar.DAY_OF_MONTH) + ", " + calendar.get(Calendar.YEAR)
 
         setUpPager()
+
+        dialog = AgendaInfoDialog(activity!!)
+
+        icInfo.setOnClickListener {
+            dialog!!.show {  }
+        }
     }
 
     private fun setUpPager() {

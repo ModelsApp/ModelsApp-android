@@ -83,7 +83,7 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
                 }
             }
 
-            campaignRedemptions!!.sortedBy { it.pickUpDate?.toDate() }
+//            campaignRedemptions!!.sortedBy { it.pickUpDate?.toDate() }
 
             val d: List<Any> = redemptions + campaignRedemptions
 
@@ -119,7 +119,7 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
         val activeTitle = App.getString(R.string.active_campaigns)
         val completedTitle = App.getString(R.string.completed_campaigns)
 
-        //TODO just for testing
+        //TODO just for testing, comment later
         val imgPlaceBooking = "https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg"
         val imgCampaignBooking = "https://www.w3schools.com/w3css/img_lights.jpg"
         val data2: List<Any> = listOf(
@@ -141,7 +141,7 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
                 CampaignBooking().apply { mainImage = imgCampaignBooking; pickUpDate = "2020-02-19"; time = "14.00 - 15.00"; title = "Test Campaign booking" }
         )
 
-        //TODO was: groups = data.groupByTo(mutableMapOf()) {
+        //TODO change to: groups = data.groupByTo(mutableMapOf()) {
         groups = data2.groupByTo(mutableMapOf()) {
             if(it is RedemptionInfo) {
                 if (it.closed) {
@@ -157,7 +157,7 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
             }
 
             if(it is CampaignBooking){
-                //TODO (no info for now)
+                //TODO (no info for now in model)
 //                if (it.active) {
 //                    return@groupByTo activeTitle
 //                }
@@ -250,62 +250,61 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
 
     //  from old RedemptionsPresenter
 //
-//    fun claimClicked(id: Long) {
-//        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
-//
+    fun claimClicked(id: Long) {
+        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
+
 //        if (lastLocation == null) {
 //            viewState.showMessage(R.string.cannot_obtain_location)
 //            return
 //        }
+        //TODO IMPORTANT - no place.location in RedemptionInfo
+//        val distance = lastLocation!!.distanceTo(item.place.location)
 //
-//        //TODO IMPORTANT - no place.location in RedemptionInfo
-////        val distance = lastLocation!!.distanceTo(item.place.location)
-////
-////        if (distance > MAXIMAL_DISTANCE) {
-////            viewState.showMessage(R.string.too_far_from_book)
-////            return
-////        }
-//
-//        try {
-//            val s = item.date.split("-")
-//
-//            val sStart = item.startTime.split(".")
-//            val sEnd = item.endTime.split(".")
-//
-//            // 10 minutes in milliseconds
-//            val claimTime = 10*60000
-//
-//            val actualCal = Calendar.getInstance()
-//
-//            val redemptionCalBeginning = Calendar.getInstance()
-//            redemptionCalBeginning.set(Calendar.YEAR, s[2].toInt())
-//            redemptionCalBeginning.set(Calendar.MONTH, s[1].toInt() -1)
-//            redemptionCalBeginning.set(Calendar.DAY_OF_MONTH, s[0].toInt())
-//            redemptionCalBeginning.set(Calendar.HOUR_OF_DAY, sStart[0].toInt())
-//            redemptionCalBeginning.set(Calendar.MINUTE, sStart[1].toInt())
-//
-//            val redemptionCalEnding = Calendar.getInstance()
-//            redemptionCalEnding.set(Calendar.YEAR, s[2].toInt())
-//            redemptionCalEnding.set(Calendar.MONTH, s[1].toInt() -1)
-//            redemptionCalEnding.set(Calendar.DAY_OF_MONTH, s[0].toInt())
-//            redemptionCalEnding.set(Calendar.HOUR_OF_DAY, sEnd[0].toInt())
-//            redemptionCalEnding.set(Calendar.MINUTE, sEnd[1].toInt())
-//
-//            if(((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > 0) && ((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > claimTime) ){
-//                viewState.showMessage(R.string.claim_too_early)
-//            } else if(((redemptionCalEnding.timeInMillis - actualCal.timeInMillis) < 0) && ((actualCal.timeInMillis - redemptionCalEnding.timeInMillis) > claimTime)){
-//                viewState.showMessage(R.string.claim_too_late)
-//            } else{
-//                router.navigateTo(SCREENS.SELECT_OFFER, item)
-//            }
-//
-//        } catch (e: Exception){
-//            viewState.showMessage(R.string.error_occurred)
+//        if (distance > MAXIMAL_DISTANCE) {
+//            viewState.showMessage(R.string.too_far_from_book)
+//            return
 //        }
-//
-////        AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.OFFER_SELECT.apply { venueName = item.place.name },
-////                hashMapOf("id" to item.id.toString())), repository)
-//    }
+
+        try {
+            val s = item.date.split("-")
+
+            val sStart = item.startTime.split(".")
+            val sEnd = item.endTime.split(".")
+
+            // 10 minutes in milliseconds
+            val claimTime = 10*60000
+
+            val actualCal = Calendar.getInstance()
+
+            val redemptionCalBeginning = Calendar.getInstance()
+            redemptionCalBeginning.set(Calendar.YEAR, s[2].toInt())
+            redemptionCalBeginning.set(Calendar.MONTH, s[1].toInt() -1)
+            redemptionCalBeginning.set(Calendar.DAY_OF_MONTH, s[0].toInt())
+            redemptionCalBeginning.set(Calendar.HOUR_OF_DAY, sStart[0].toInt())
+            redemptionCalBeginning.set(Calendar.MINUTE, sStart[1].toInt())
+
+            val redemptionCalEnding = Calendar.getInstance()
+            redemptionCalEnding.set(Calendar.YEAR, s[2].toInt())
+            redemptionCalEnding.set(Calendar.MONTH, s[1].toInt() -1)
+            redemptionCalEnding.set(Calendar.DAY_OF_MONTH, s[0].toInt())
+            redemptionCalEnding.set(Calendar.HOUR_OF_DAY, sEnd[0].toInt())
+            redemptionCalEnding.set(Calendar.MINUTE, sEnd[1].toInt())
+
+            if(((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > 0) && ((redemptionCalBeginning.timeInMillis - actualCal.timeInMillis) > claimTime) ){
+                viewState.showMessage(R.string.claim_too_early)
+            } else if(((redemptionCalEnding.timeInMillis - actualCal.timeInMillis) < 0) && ((actualCal.timeInMillis - redemptionCalEnding.timeInMillis) > claimTime)){
+                viewState.showMessage(R.string.claim_too_late)
+            } else{
+                router.navigateTo(SCREENS.SELECT_OFFER, item)
+            }
+
+        } catch (e: Exception){
+            viewState.showMessage(R.string.error_occurred)
+        }
+
+//        AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.OFFER_SELECT.apply { venueName = item.place.name },
+//                hashMapOf("id" to item.id.toString())), repository)
+    }
 //
 //    fun cancelRedemptionClicked(id: Long) {
 //        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return

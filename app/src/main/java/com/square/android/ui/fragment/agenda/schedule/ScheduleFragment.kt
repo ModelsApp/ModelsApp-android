@@ -41,7 +41,6 @@ class ScheduleFragment: BaseFragment(), ScheduleView, ScheduleAdapter.Handler {
         scheduleList.layoutManager = LinearLayoutManager(scheduleList.context, RecyclerView.VERTICAL,false)
     }
 
-
     override fun showProgress() {
         scheduleList.visibility = View.INVISIBLE
         scheduleProgress.visibility = View.VISIBLE
@@ -68,19 +67,19 @@ class ScheduleFragment: BaseFragment(), ScheduleView, ScheduleAdapter.Handler {
     }
 
     override fun campaignItemClicked(id: Long) {
-//        presenter.campaignClicked(id)
+        presenter.campaignClicked(id)
     }
 
     override fun claimClicked(id: Long) {
-//        presenter.claimClicked(id)
+        presenter.claimClicked(id)
     }
 
     override fun claimedItemClicked(id: Long) {
-//        presenter.claimedInfoClicked(id)
+        presenter.claimedInfoClicked(id)
     }
 
     override fun redemptionDetailsClicked(placeId: Long) {
-//        presenter.redemptionDetailsClicked(placeId)
+        presenter.redemptionDetailsClicked(placeId)
     }
 
 //    override fun removeItem(position: Int) {

@@ -54,25 +54,29 @@ fun Int.toOrdinalString() =
             else -> "th"
         }
 
-//TODO check date formatting in RedemptionInfo.date and CampaignBooking.pickUpDate and use one of the below methods to format it(RedemptionsPresenter, ScheduleAdapter)
+//TODO was dd-MM-yyyy
 fun String.toDate(): Date {
-    val format = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     return format.parse(this)
 }
+
+//TODO was dd-MM-yyyy
 fun String.toDateBooking(): Date {
-    val format = SimpleDateFormat("dd-MM-yyyy HH.mm", Locale.getDefault())
+    val format = SimpleDateFormat("yyyy-MM-dd HH.mm", Locale.getDefault())
 
     return format.parse(this)
 }
+
+//TODO was dd-MM-yyyy
 fun String.toDateYMD(): Date {
     val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     return format.parse(this)
 }
 
-//TODO
 fun Calendar.relativeTimeString(now: Calendar) : String {
+
     if (now.isToday(this)) return App.getString(R.string.today)
 
     val difference = timeInMillis - now.timeInMillis

@@ -437,6 +437,8 @@
 
     <string name="buy_extra_credits">Buy extra credits</string>
 
+    <string name="what_mean_these_colors">What mean these colors?</string>
+
     <string name="join_our_team">Join our team</string>
 
     <string name="review_description_format">Open %s and make a review of this venue!</string>
@@ -600,6 +602,11 @@
 
     <string name="heres_why">Here\'s why</string>
     <string name="i_got_it">I got it</string>
+
+    <string name="got_it">Got it</string>
+
+    <string name="green">Green</string>
+    <string name="violet">Violet</string>
 
     <string name="name_error">Enter your name</string>
     <string name="last_name_error">Enter your last name</string>
