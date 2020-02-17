@@ -18,9 +18,13 @@ import com.square.android.R
 import com.square.android.data.pojo.Day
 import com.square.android.presentation.presenter.mainLists.*
 import com.square.android.ui.activity.place.DaysAdapter
+import com.square.android.ui.fragment.mainLists.filters.BaseBottomSheetFilters
+import com.square.android.ui.fragment.mainLists.filters.BaseFilter
+import com.square.android.ui.fragment.mainLists.filters.PlacesFilter
+import com.square.android.ui.fragment.mainLists.placesList.BottomSheetOffersFilters
 import kotlinx.android.synthetic.main.fragment_main_lists.*
 
-class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler {
+class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler, BaseBottomSheetFilters.Handler {
 
     @InjectPresenter(type = PresenterType.GLOBAL, tag = "PlacesPresenter")
     lateinit var presenter: MainListsPresenter
@@ -112,6 +116,32 @@ class MainListsFragment: LocationFragment(), MainListsView, DaysAdapter.Handler 
             }
 
             icSearch.setOnClickListener { presenter.navigateToSearch()}
+
+            icFilters.setOnClickListener {
+                when(presenter.actualTabSelected){
+                    POSITION_PLACES -> {
+                        val bottomSheetOffersFilters = BottomSheetOffersFilters(presenter.getFilter() as PlacesFilter,this)
+
+                        bottomSheetOffersFilters.show(fragmentManager, BottomSheetCities.TAG)
+                    }
+
+                    POSITION_EVENTS -> {
+
+                    }
+
+                    POSITION_CAMPAIGNS ->{
+
+                    }
+                }
+            }
+    }
+
+    override fun filtersApplyClicked(filter: BaseFilter) {
+        presenter.applyFilters(filter)
+    }
+
+    override fun filtersClearClicked() {
+        presenter.clearFilters()
     }
 
     override fun showDays() {

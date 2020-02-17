@@ -34,6 +34,16 @@ private const val PREFIX_METER = "m"
 private const val PREFIX_KILOMETER = "km"
 
 
+fun Int.toHourStr(): String{
+    return if(this < 10){
+        "0$this"
+    } else{ this.toString() }.toString().plus(":00")
+}
+
+fun String.toHourInt(): Int{
+    return this.replace(":00", "").toInt()
+}
+
 fun ImageView.loadImageForIcon(url: String) {
     if (URLUtil.isValidUrl(url)) {
         Picasso.get()

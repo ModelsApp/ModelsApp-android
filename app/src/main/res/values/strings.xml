@@ -605,6 +605,37 @@
 
     <string name="got_it">Got it</string>
 
+    <string name="category">Category</string>
+    <string name="availability">Availability</string>
+    <string name="show_me_places">Show me places</string>
+    <string name="offers_typology">Offers typology</string>
+    <string name="offers_level">Offers level</string>
+    <string name="booking_type">Booking type</string>
+    <string name="takeaway_option">Takeaway option</string>
+    <string name="reservation_timeslot">Reservation timeslot</string>
+
+    <string name="category_1">Fitness &amp; Health</string>
+    <string name="category_2">Hair &amp; Beauty</string>
+    <string name="category_3">Category 3</string>
+    <string name="category_4">Category 4</string>
+    <string name="category_5">Category 5</string>
+
+    <string name="girls_only">Girls only</string>
+    <string name="guys_only">Guys only</string>
+
+    <string name="not_full">Not full</string>
+
+    <string name="offer_typology_1">Complimentary</string>
+    <string name="offer_typology_2">Discounted</string>
+
+    <string name="offer_level_1">Welcome</string>
+    <string name="offer_level_2">Basic</string>
+    <string name="booking_type_1">Reservation needed</string>
+    <string name="booking_type_2">Walk-in</string>
+    <string name="takeaway_option_1">Accepted</string>
+    <string name="takeaway_option_2">Unavailable</string>
+
+
     <string name="green">Green</string>
     <string name="violet">Violet</string>
 

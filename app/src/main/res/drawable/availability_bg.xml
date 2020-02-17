@@ -5,7 +5,7 @@
     <item android:state_checked="true">
         <shape android:shape="rectangle">
 
-            <corners android:radius="255dp"/>
+            <corners android:radius="@dimen/v_16dp"/>
 
             <stroke android:color="@android:color/black" android:width="@dimen/v_1dp"/>
 
@@ -16,7 +16,7 @@
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
 
-            <corners android:radius="255dp"/>
+            <corners android:radius="@dimen/v_16dp"/>
 
             <stroke android:color="@color/gray_disabled" android:width="@dimen/v_1dp"/>
 

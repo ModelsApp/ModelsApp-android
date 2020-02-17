@@ -4,7 +4,7 @@ class PlacesFilter(
         private var actualMinHour: Int,
 
         // multiple selection in rv
-        var selectedCategories: MutableList<String> = mutableListOf(),
+        var selectedCategories: MutableList<Int> = mutableListOf(),
         // 0 - all, 1 - girls only, 2 - guys only
         var availability: Int = 0,
         // 0 - all, 1 - not full
@@ -32,7 +32,7 @@ class PlacesFilter(
         setTimeSlotEndHour((filter as  PlacesFilter).timeSlot.end)
     }
 
-    override fun isDefault(): Boolean = selectedCategories.isNullOrEmpty() && availability == 0 && showPlacesType == 0  &&
+    override fun isDefault(): Boolean = selectedCategories.isEmpty() && availability == 0 && showPlacesType == 0  &&
             offersTypology == 0 && selectedOffersLevel == 0 && bookingType == 0 && takeawayOption == 0 && timeSlot.isDefault(actualMinHour)
 
     override fun clear() {

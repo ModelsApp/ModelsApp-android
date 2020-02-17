@@ -4,13 +4,13 @@ import android.view.View
 import com.square.android.R
 import com.square.android.data.pojo.City
 import com.square.android.ui.base.BaseAdapter
-import kotlinx.android.synthetic.main.item_city.*
+import kotlinx.android.synthetic.main.item_rounded_checkable.*
 
 class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapter<City, CitiesAdapter.ViewHolder>(data) {
 
     var selectedItemPosition: Int? = null
 
-    override fun getLayoutId(viewType: Int) = R.layout.item_city
+    override fun getLayoutId(viewType: Int) = R.layout.item_rounded_checkable
 
     override fun getItemCount() = data.size
 
@@ -50,7 +50,7 @@ class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapt
 
             cityContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
 
-            cityName.text = item.name
+            roundedCheckableName.text = item.name
 
 //            cityImage.loadImage(url = item.image, placeholder = android.R.color.white)
 
@@ -59,7 +59,7 @@ class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapt
 
         fun bindSelected(item: City,selectedPosition: Int?) {
             cityContainer.isChecked = (selectedPosition == adapterPosition)
-            cityName.isChecked = (selectedPosition == adapterPosition)
+            roundedCheckableName.isChecked = (selectedPosition == adapterPosition)
         }
     }
 

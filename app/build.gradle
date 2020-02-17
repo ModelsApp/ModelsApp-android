@@ -179,6 +179,9 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:16.0.1'
 
+    // Range seek bar
+    implementation 'com.github.Jay-Goo:RangeSeekBar:3.0.0'
+
     //CALLIGRAPHY
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 

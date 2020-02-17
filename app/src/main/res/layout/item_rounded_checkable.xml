@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.square.android.utils.widget.CheckableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cityContainer"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/v_10dp"
+    android:paddingBottom="@dimen/v_10dp"
+    android:paddingStart="@dimen/v_16dp"
+    android:paddingEnd="@dimen/v_16dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/filter_round_bg" >
+
+    <CheckedTextView
+        android:id="@+id/roundedCheckableName"
+        style="@style/Models15SemiBoldText"
+        android:textSize="@dimen/text_15"
+        android:textColor="@color/checked_black_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Milan" />
+
+    <ImageView
+        android:id="@+id/roundedCheckableIc"
+        android:layout_width="@dimen/v_12dp"
+        android:layout_height="@dimen/v_12dp"
+        android:layout_marginStart="@dimen/v_12dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:src="@drawable/r_shop" />
+
+    <CheckedTextView
+        android:id="@+id/roundedCheckableSecondaryName"
+        style="@style/Models13Text"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:textSize="@dimen/text_13"
+        android:layout_marginStart="@dimen/v_3dp"
+        android:textColor="@color/checked_black_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="25" />
+
+</com.square.android.utils.widget.CheckableLinearLayout>

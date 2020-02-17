@@ -57,7 +57,7 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
 
     var allCategoryFilters: MutableList<String> = mutableListOf()
 
-    var filters: SparseArray<BaseFilter> = SparseArray(LIST_ITEMS_SIZE)
+    private var filters: SparseArray<BaseFilter> = SparseArray(LIST_ITEMS_SIZE)
 
     private var locationPoint: LatLng? = null
 
@@ -76,6 +76,8 @@ class MainListsPresenter: BasePresenter<MainListsView>() {
     init {
         eventBus.register(this)
     }
+
+    fun getFilter(): BaseFilter = filters[actualTabSelected]
 
     fun loadData() = launch {
         if(!dataLoaded){
