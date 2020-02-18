@@ -1,48 +1,86 @@
 package com.square.android.ui.fragment.mainLists.placesList
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.os.Bundle
-import android.view.ViewGroup
-import android.view.LayoutInflater
 import android.view.View
-import androidx.annotation.Nullable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.square.android.data.pojo.City
-import com.square.android.ui.fragment.map.MarginItemDecorator
 import kotlinx.android.synthetic.main.bottom_sheet_filters_offers.*
-import android.app.Dialog
-import android.os.Build
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.util.DisplayMetrics
-import androidx.annotation.RequiresApi
-import android.graphics.Color
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar
 import com.square.android.R
-import com.square.android.extensions.toHourInt
 import com.square.android.extensions.toHourStr
+import com.square.android.ui.fragment.mainLists.*
 import com.square.android.ui.fragment.mainLists.filters.BaseBottomSheetFilters
-import com.square.android.ui.fragment.mainLists.filters.BaseFilter
 import com.square.android.ui.fragment.mainLists.filters.PlacesFilter
-import java.util.*
+import com.square.android.ui.fragment.map.MarginItemDecorator
 
-class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handler: Handler, var mCancelable: Boolean = true ): BaseBottomSheetFilters(mCancelable)
-//        , CitiesAdapter.Handler
-{
-
-//    private var adapter: CitiesAdapter? = null
+class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handler: Handler, var mCancelable: Boolean = true ): BaseBottomSheetFilters(mCancelable) {
 
     override var layoutRes: Int = R.layout.bottom_sheet_filters_offers
+
+    private var categoryDialog: CategoryDialog? = null
+
+    var mFilter: PlacesFilter? = null
+
+    lateinit var categoriesList: List<String>
+
+    lateinit var availabilityList: List<AvailabilityItem>
+
+    lateinit var showMePlacesList: List<String>
+
+    lateinit var offersTypologyList: List<String>
+
+    //TODO change to strings from res
+    lateinit var offersLevelList: List<IconItem>
+
+    lateinit var bookingTypeList: List<String>
+
+    lateinit var takeawayList: List<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reservationStart.text = placeFilter.timeSlot.start.toHourStr()
-        reservationEnd.text = placeFilter.timeSlot.end.toHourStr()
-        reservationTimeslotSeekBar.setProgress(placeFilter.timeSlot.start.toFloat(), placeFilter.timeSlot.end.toFloat())
+        //TODO change to strings from res
+        categoriesList = listOf("Fitness & Health", "Hair & Beauty", "Category 3", "Category 4", "Category 5")
+
+        availabilityList = listOf(AvailabilityItem(getString(R.string.all), R.drawable.r_address), AvailabilityItem(getString(R.string.girls_only), R.drawable.r_address), AvailabilityItem(getString(R.string.guys_only), R.drawable.r_address))
+
+        showMePlacesList = listOf(getString(R.string.all), getString(R.string.not_full))
+
+        offersTypologyList = listOf(getString(R.string.complimentary), getString(R.string.discounted))
+
+        //TODO change to strings from res
+        offersLevelList = listOf(IconItem(getString(R.string.all), null), IconItem("Welcome", "25"), IconItem("Basic", "100"), IconItem("Premium", "250"))
+
+        bookingTypeList = listOf(getString(R.string.all), getString(R.string.reservation_needed), getString(R.string.walk_in))
+
+        takeawayList = listOf(getString(R.string.all), getString(R.string.accepted), getString(R.string.unavailable))
+
+        mFilter = PlacesFilter(placeFilter.actualMinHour).apply {updateValues(placeFilter)}
+
+        setClearVisibility(!mFilter!!.isDefault())
+
+        categoryDialog = CategoryDialog(context!!)
+
+        reservationStart.text = mFilter!!.timeSlot.start.toHourStr()
+        reservationEnd.text = mFilter!!.timeSlot.end.toHourStr()
+        reservationTimeslotSeekBar.setProgress(mFilter!!.timeSlot.start.toFloat(), mFilter!!.timeSlot.end.toFloat())
+
+        var selectedCategoriesString = if(placeFilter.selectedCategories.isEmpty()) getString(R.string.all) else ""
+        var isFirst = true
+
+        for (categoryInt in placeFilter.selectedCategories) {
+            mFilter!!.selectedCategories.add(categoryInt)
+
+            if (isFirst) {
+                isFirst = false
+                selectedCategoriesString += categoriesList[categoryInt]
+            } else {
+                selectedCategoriesString += ", " + categoriesList[categoryInt]
+            }
+        }
+
+        categoryTv.text = selectedCategoriesString
 
         reservationTimeslotSeekBar.setOnRangeChangedListener(object: OnRangeChangedListener{
             override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) { }
@@ -50,17 +88,99 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
             override fun onRangeChanged(view: RangeSeekBar?, leftValue: Float, rightValue: Float, isFromUser: Boolean) {
                 reservationStart.text = leftValue.toInt().toHourStr()
                 reservationEnd.text = rightValue.toInt().toHourStr()
+
+                mFilter!!.timeSlot.start = leftValue.toInt()
+                mFilter!!.timeSlot.end = rightValue.toInt()
+
+                checkIfDefault()
             }
 
             override fun onStopTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) { }
         })
 
-        btnApply.setOnClickListener {
-            handler.filtersApplyClicked(placeFilter.apply {
-                timeSlot.start = reservationStart.text.toString().toHourInt()
-                timeSlot.end = reservationEnd.text.toString().toHourInt()
-            })
+        categoryIc.setOnClickListener {
+            categoryDialog?.show(categoriesList, mFilter!!.selectedCategories) {
 
+                checkIfDefault()
+
+                selectedCategoriesString = if(mFilter!!.selectedCategories.isEmpty()) getString(R.string.all) else ""
+
+                isFirst = true
+                for(categoryInt in mFilter!!.selectedCategories){
+                    if(isFirst){
+                        isFirst = false
+                        selectedCategoriesString += categoriesList[categoryInt]
+                    } else{
+                        selectedCategoriesString += ", "+categoriesList[categoryInt]
+                    }
+                }
+
+                categoryTv.text = selectedCategoriesString
+            }
+        }
+
+        availabilityRv.adapter = AvailabilityAdapter(availabilityList, mFilter!!.availability, object:AvailabilityAdapter.Handler{
+            override fun itemClicked(position: Int) {
+                (availabilityRv.adapter as AvailabilityAdapter).setSelectedItem(position)
+                mFilter!!.availability = position
+                checkIfDefault()
+            }
+        } )
+        availabilityRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        availabilityRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
+
+        showMePlacesRv.adapter = SimpleCheckableAdapter(showMePlacesList, mFilter!!.showPlacesType, object:SimpleCheckableAdapter.Handler{
+            override fun itemClicked(position: Int) {
+                (showMePlacesRv.adapter as SimpleCheckableAdapter).setSelectedItem(position)
+                mFilter!!.showPlacesType = position
+                checkIfDefault()
+            }
+        } )
+        showMePlacesRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        showMePlacesRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
+
+        offersTypologyRv.adapter = SimpleCheckableAdapter(offersTypologyList, mFilter!!.offersTypology, object:SimpleCheckableAdapter.Handler{
+            override fun itemClicked(position: Int) {
+                (offersTypologyRv.adapter as SimpleCheckableAdapter).setSelectedItem(position)
+                mFilter!!.offersTypology = position
+                checkIfDefault()
+            }
+        } )
+        offersTypologyRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        offersTypologyRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
+
+        offersLevelRv.adapter = IconCheckableAdapter(offersLevelList, mFilter!!.selectedOffersLevel, object:IconCheckableAdapter.Handler{
+            override fun itemClicked(position: Int) {
+                (offersLevelRv.adapter as IconCheckableAdapter).setSelectedItem(position)
+                mFilter!!.selectedOffersLevel = position
+                checkIfDefault()
+            }
+        } )
+        offersLevelRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        offersLevelRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
+
+        bookingTypeRv.adapter = SimpleCheckableAdapter(bookingTypeList, mFilter!!.bookingType, object:SimpleCheckableAdapter.Handler{
+            override fun itemClicked(position: Int) {
+                (bookingTypeRv.adapter as SimpleCheckableAdapter).setSelectedItem(position)
+                mFilter!!.bookingType = position
+                checkIfDefault()
+            }
+        } )
+        bookingTypeRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        bookingTypeRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
+
+        takeawayOptionRv.adapter = SimpleCheckableAdapter(takeawayList, mFilter!!.takeawayOption, object:SimpleCheckableAdapter.Handler{
+            override fun itemClicked(position: Int) {
+                (takeawayOptionRv.adapter as SimpleCheckableAdapter).setSelectedItem(position)
+                mFilter!!.takeawayOption = position
+                checkIfDefault()
+            }
+        } )
+        takeawayOptionRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        takeawayOptionRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
+
+        btnApply.setOnClickListener {
+            handler.filtersApplyClicked(mFilter!!)
             dialog.dismiss()
         }
 
@@ -68,33 +188,19 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
             handler.filtersClearClicked()
             dialog.dismiss()
         }
-
-//        adapter = CitiesAdapter(cities, this)
-//        citiesRv.adapter = adapter
-//        citiesRv.layoutManager = LinearLayoutManager(citiesRv.context, RecyclerView.HORIZONTAL,false)
-//        citiesRv.addItemDecoration(MarginItemDecorator(citiesRv.context.resources.getDimension(R.dimen.v_8dp).toInt(), false))
-//
-//        selectedCity?.let {
-//            val city: City? = cities.firstOrNull{it.name == selectedCity!!.name}
-//            city?.let {
-//                selectedCityIndex = cities.indexOf(it)
-//                adapter?.setSelectedItem(selectedCityIndex)
-//            }
-//        }
     }
 
-//    override fun itemClicked(position: Int) {
-//        selectedCityIndex = position
-//        adapter?.setSelectedItem(selectedCityIndex)
-//
-//        handler?.cityClicked(cities[selectedCityIndex])
-//
-//        dialog.dismiss()
-//    }
+    private fun checkIfDefault(){
+        clearLl.visibility = if(!mFilter!!.isDefault()) View.VISIBLE else View.INVISIBLE
 
+        btnApply.isEnabled = (!mFilter!!.isEqualTo(placeFilter))
+    }
+
+    private fun setClearVisibility(visible: Boolean){
+        clearLl.visibility = if(visible) View.VISIBLE else View.INVISIBLE
+    }
 
     companion object {
         const val TAG = "BottomSheetOffersFilters"
     }
-
 }

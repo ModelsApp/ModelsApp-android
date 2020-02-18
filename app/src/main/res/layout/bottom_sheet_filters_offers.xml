@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:id="@+id/container"
     android:background="@drawable/bg_rounded_top_16dp" >
 
     <View
@@ -41,7 +42,6 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                tools:visibility="gone"
                 android:id="@+id/categoryLabel"
                 style="@style/Models15SemiBoldText"
                 android:textSize="@dimen/text_15"
@@ -54,10 +54,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                tools:visibility="gone"
+                android:id="@+id/categoryTv"
                 style="@style/Models15Text"
                 android:textSize="@dimen/text_15"
-                android:textColor="@color/text_gray_dark"
+                android:textColor="@color/gray_back_arrow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/v_20dp"
@@ -71,7 +71,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/categoryIc" />
 
             <ImageView
-                tools:visibility="gone"
                 android:id="@+id/categoryIc"
                 android:layout_width="@dimen/v_24dp"
                 android:layout_height="@dimen/v_24dp"
@@ -85,7 +84,6 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <View
-                tools:visibility="gone"
                 android:id="@+id/divider"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/v_1dp"
@@ -97,7 +95,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/categoryLabel" />
 
             <TextView
-                tools:visibility="gone"
                 android:id="@+id/availabilityLabel"
                 style="@style/Models15SemiBoldText"
                 android:textSize="@dimen/text_15"
@@ -110,13 +107,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:visibility="gone"
                 android:id="@+id/availabilityRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
                 android:paddingStart="@dimen/v_20dp"
                 android:paddingEnd="@dimen/v_20dp"
                 android:layout_marginTop="@dimen/v_12dp"
@@ -128,7 +125,6 @@
                 tools:itemCount="1" />
 
             <View
-                tools:visibility="gone"
                 android:id="@+id/divider2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/v_1dp"
@@ -140,7 +136,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/availabilityRv" />
 
             <TextView
-                tools:visibility="gone"
                 android:id="@+id/showMePlacesLabel"
                 style="@style/Models15SemiBoldText"
                 android:textSize="@dimen/text_15"
@@ -153,7 +148,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:visibility="gone"
                 android:id="@+id/showMePlacesRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -162,6 +156,7 @@
                 android:overScrollMode="never"
                 android:paddingStart="@dimen/v_20dp"
                 android:paddingEnd="@dimen/v_20dp"
+                android:nestedScrollingEnabled="false"
                 android:layout_marginTop="@dimen/v_12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +166,6 @@
                 tools:itemCount="1" />
 
             <View
-                tools:visibility="gone"
                 android:id="@+id/divider3"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/v_1dp"
@@ -183,7 +177,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/showMePlacesRv" />
 
             <TextView
-                tools:visibility="gone"
                 android:id="@+id/offersTypologyLabel"
                 style="@style/Models15SemiBoldText"
                 android:textSize="@dimen/text_15"
@@ -196,13 +189,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:visibility="gone"
                 android:id="@+id/offersTypologyRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
                 android:paddingStart="@dimen/v_20dp"
                 android:paddingEnd="@dimen/v_20dp"
                 android:layout_marginTop="@dimen/v_12dp"
@@ -214,7 +207,6 @@
                 tools:itemCount="1" />
 
             <View
-                tools:visibility="gone"
                 android:id="@+id/divider4"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/v_1dp"
@@ -226,7 +218,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/offersTypologyRv" />
 
             <TextView
-                tools:visibility="gone"
                 android:id="@+id/offersLevelLabel"
                 style="@style/Models15SemiBoldText"
                 android:textSize="@dimen/text_15"
@@ -239,13 +230,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:visibility="gone"
                 android:id="@+id/offersLevelRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
                 android:paddingStart="@dimen/v_20dp"
                 android:paddingEnd="@dimen/v_20dp"
                 android:layout_marginTop="@dimen/v_12dp"
@@ -253,11 +244,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/offersLevelLabel"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_rounded_checkable"
+                tools:listitem="@layout/item_rounded_checkable_value"
                 tools:itemCount="1" />
 
             <View
-                tools:visibility="gone"
                 android:id="@+id/divider5"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/v_1dp"
@@ -269,7 +259,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/offersLevelRv" />
 
             <TextView
-                tools:visibility="gone"
                 android:id="@+id/bookingTypeLabel"
                 style="@style/Models15SemiBoldText"
                 android:textSize="@dimen/text_15"
@@ -282,13 +271,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:visibility="gone"
                 android:id="@+id/bookingTypeRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
                 android:paddingStart="@dimen/v_20dp"
                 android:paddingEnd="@dimen/v_20dp"
                 android:layout_marginTop="@dimen/v_12dp"
@@ -329,6 +318,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
                 android:paddingStart="@dimen/v_20dp"
                 android:paddingEnd="@dimen/v_20dp"
                 android:layout_marginTop="@dimen/v_12dp"
@@ -440,6 +430,7 @@
         android:elevation="0dp"
         android:stateListAnimator="@null"
         android:text="@string/apply"
+        android:enabled="false"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_16"
@@ -454,6 +445,7 @@
         android:layout_marginBottom="@dimen/v_12dp"
         android:gravity="center"
         android:orientation="horizontal"
+        android:visibility="invisible"
         android:paddingStart="@dimen/v_8dp"
         android:paddingTop="@dimen/v_8dp"
         android:paddingEnd="@dimen/v_8dp"

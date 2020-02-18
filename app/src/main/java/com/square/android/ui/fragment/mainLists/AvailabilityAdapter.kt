@@ -1,16 +1,18 @@
 package com.square.android.ui.fragment.mainLists
 
 import android.view.View
+import androidx.annotation.DrawableRes
 import com.square.android.R
-import com.square.android.data.pojo.City
+import com.square.android.extensions.drawableFromRes
+import com.square.android.extensions.tintFromRes
 import com.square.android.ui.base.BaseAdapter
-import kotlinx.android.synthetic.main.item_rounded_checkable.*
+import kotlinx.android.synthetic.main.item_availability.*
 
-class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapter<City, CitiesAdapter.ViewHolder>(data) {
+class AvailabilityItem(var title:String, @DrawableRes var iconRes: Int)
 
-    var selectedItemPosition: Int? = null
+class AvailabilityAdapter(data: List<AvailabilityItem>, var selectedItemPosition: Int? = null, private val handler: Handler?) : BaseAdapter<AvailabilityItem, AvailabilityAdapter.ViewHolder>(data) {
 
-    override fun getLayoutId(viewType: Int) = R.layout.item_rounded_checkable
+    override fun getLayoutId(viewType: Int) = R.layout.item_availability
 
     override fun getItemCount() = data.size
 
@@ -43,23 +45,25 @@ class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapt
     override fun instantiateHolder(view: View): ViewHolder = ViewHolder(view, handler)
 
     class ViewHolder(containerView: View,
-                     var handler: Handler?) : BaseHolder<City>(containerView) {
+                     var handler: Handler?) : BaseHolder<AvailabilityItem>(containerView) {
 
-        override fun bind(item: City, vararg extras: Any? ) {
+        override fun bind(item: AvailabilityItem, vararg extras: Any? ) {
             val selectedPosition = if(extras[0] == null) null else extras[0] as Int
 
-            roundedCheckableContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
+            availabilityContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
 
-            roundedCheckableName.text = item.name
+            availabilityName.text = item.title
 
-//            cityImage.loadImage(url = item.image, placeholder = android.R.color.white)
+            availabilityIc.drawableFromRes(item.iconRes)
 
             bindSelected(item, selectedPosition)
         }
 
-        fun bindSelected(item: City,selectedPosition: Int?) {
-            roundedCheckableContainer.isChecked = (selectedPosition == adapterPosition)
-            roundedCheckableName.isChecked = (selectedPosition == adapterPosition)
+        fun bindSelected(item: AvailabilityItem,selectedPosition: Int?) {
+            availabilityContainer.isChecked = (selectedPosition == adapterPosition)
+            availabilityName.isChecked = (selectedPosition == adapterPosition)
+
+            availabilityIc.tintFromRes(if (selectedPosition == adapterPosition) android.R.color.black else R.color.gray_disabled)
         }
     }
 

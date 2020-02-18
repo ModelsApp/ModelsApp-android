@@ -7,8 +7,9 @@
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/v_16dp"
     android:paddingBottom="@dimen/v_16dp"
-    android:paddingStart="@dimen/v_32dp"
-    android:paddingEnd="@dimen/v_32dp"
+    android:paddingStart="@dimen/v_12dp"
+    android:paddingEnd="@dimen/v_12dp"
+    android:minWidth="@dimen/v_96dp"
     android:gravity="center_horizontal"
     android:background="@drawable/availability_bg" >
 
@@ -27,6 +28,6 @@
         android:textColor="@color/checked_black_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="All" />
+        tools:text="Guys only" />
 
 </com.square.android.utils.widget.CheckableLinearLayout>

@@ -623,6 +623,16 @@
     <string name="girls_only">Girls only</string>
     <string name="guys_only">Guys only</string>
 
+    <string name="complimentary">Complimentary</string>
+    <string name="discounted">Discounted</string>
+
+    <string name="reservation_needed">Reservation needed</string>
+    <string name="walk_in">Walk-in</string>
+
+    <string name="unavailable">Unavailable</string>
+
+    <string name="select_categories">Select categories</string>
+
     <string name="not_full">Not full</string>
 
     <string name="offer_typology_1">Complimentary</string>
@@ -748,6 +758,8 @@
     <string name="filters">Filters</string>
     <string name="clear">Clear</string>
     <string name="clear_all">Clear all</string>
+
+    <string name="all">All</string>
 
     <string name="you_have_x_followers">You have 4000\-5000 followers!</string>
     <string name="slash_week">/ week</string>

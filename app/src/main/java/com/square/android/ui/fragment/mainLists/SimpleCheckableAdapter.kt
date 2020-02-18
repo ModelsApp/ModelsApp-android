@@ -2,13 +2,10 @@ package com.square.android.ui.fragment.mainLists
 
 import android.view.View
 import com.square.android.R
-import com.square.android.data.pojo.City
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_rounded_checkable.*
 
-class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapter<City, CitiesAdapter.ViewHolder>(data) {
-
-    var selectedItemPosition: Int? = null
+class SimpleCheckableAdapter(data: List<String>, var selectedItemPosition: Int? = null, private val handler: Handler?) : BaseAdapter<String, SimpleCheckableAdapter.ViewHolder>(data) {
 
     override fun getLayoutId(viewType: Int) = R.layout.item_rounded_checkable
 
@@ -43,21 +40,19 @@ class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapt
     override fun instantiateHolder(view: View): ViewHolder = ViewHolder(view, handler)
 
     class ViewHolder(containerView: View,
-                     var handler: Handler?) : BaseHolder<City>(containerView) {
+                     var handler: Handler?) : BaseHolder<String>(containerView) {
 
-        override fun bind(item: City, vararg extras: Any? ) {
+        override fun bind(item: String, vararg extras: Any? ) {
             val selectedPosition = if(extras[0] == null) null else extras[0] as Int
 
             roundedCheckableContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
 
-            roundedCheckableName.text = item.name
-
-//            cityImage.loadImage(url = item.image, placeholder = android.R.color.white)
+            roundedCheckableName.text = item
 
             bindSelected(item, selectedPosition)
         }
 
-        fun bindSelected(item: City,selectedPosition: Int?) {
+        fun bindSelected(item: String, selectedPosition: Int?) {
             roundedCheckableContainer.isChecked = (selectedPosition == adapterPosition)
             roundedCheckableName.isChecked = (selectedPosition == adapterPosition)
         }

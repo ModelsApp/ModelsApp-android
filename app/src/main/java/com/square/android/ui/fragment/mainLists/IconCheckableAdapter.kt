@@ -2,15 +2,15 @@ package com.square.android.ui.fragment.mainLists
 
 import android.view.View
 import com.square.android.R
-import com.square.android.data.pojo.City
+import com.square.android.extensions.tintFromRes
 import com.square.android.ui.base.BaseAdapter
-import kotlinx.android.synthetic.main.item_rounded_checkable.*
+import kotlinx.android.synthetic.main.item_rounded_checkable_value.*
 
-class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapter<City, CitiesAdapter.ViewHolder>(data) {
+class IconItem(var title:String, var value: String?)
 
-    var selectedItemPosition: Int? = null
+class IconCheckableAdapter(data: List<IconItem>, var selectedItemPosition: Int? = null, private val handler: Handler?) : BaseAdapter<IconItem, IconCheckableAdapter.ViewHolder>(data) {
 
-    override fun getLayoutId(viewType: Int) = R.layout.item_rounded_checkable
+    override fun getLayoutId(viewType: Int) = R.layout.item_rounded_checkable_value
 
     override fun getItemCount() = data.size
 
@@ -43,23 +43,29 @@ class CitiesAdapter(data: List<City>, private val handler: Handler?) : BaseAdapt
     override fun instantiateHolder(view: View): ViewHolder = ViewHolder(view, handler)
 
     class ViewHolder(containerView: View,
-                     var handler: Handler?) : BaseHolder<City>(containerView) {
+                     var handler: Handler?) : BaseHolder<IconItem>(containerView) {
 
-        override fun bind(item: City, vararg extras: Any? ) {
+        override fun bind(item: IconItem, vararg extras: Any? ) {
             val selectedPosition = if(extras[0] == null) null else extras[0] as Int
 
             roundedCheckableContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
 
-            roundedCheckableName.text = item.name
+            roundedCheckableName.text = item.title
 
-//            cityImage.loadImage(url = item.image, placeholder = android.R.color.white)
+            roundedCheckableIc.visibility = if(item.value != null) View.VISIBLE else View.GONE
+            roundedCheckableSecondaryName.visibility = if(item.value != null) View.VISIBLE else View.GONE
+
+            roundedCheckableSecondaryName.text = item.value
 
             bindSelected(item, selectedPosition)
         }
 
-        fun bindSelected(item: City,selectedPosition: Int?) {
+        fun bindSelected(item: IconItem,selectedPosition: Int?) {
             roundedCheckableContainer.isChecked = (selectedPosition == adapterPosition)
             roundedCheckableName.isChecked = (selectedPosition == adapterPosition)
+            roundedCheckableSecondaryName.isChecked = (selectedPosition == adapterPosition)
+
+            roundedCheckableIc.tintFromRes(if (selectedPosition == adapterPosition) android.R.color.black else R.color.gray_disabled)
         }
     }
 

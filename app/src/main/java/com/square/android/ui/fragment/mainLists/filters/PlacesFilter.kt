@@ -1,7 +1,7 @@
 package com.square.android.ui.fragment.mainLists.filters
 
 class PlacesFilter(
-        private var actualMinHour: Int,
+        var actualMinHour: Int,
 
         // multiple selection in rv
         var selectedCategories: MutableList<Int> = mutableListOf(),
@@ -20,16 +20,37 @@ class PlacesFilter(
         var timeSlot: TimeSlot = TimeSlot(start = actualMinHour)
 ): BaseFilter() {
 
+    override fun isEqualTo(filter: BaseFilter): Boolean {
+        return if(filter is PlacesFilter){
+            (selectedCategories == filter.selectedCategories &&
+                    availability == filter.availability &&
+                    showPlacesType == filter.showPlacesType &&
+                    offersTypology == filter.offersTypology &&
+                    selectedOffersLevel == filter.selectedOffersLevel &&
+                    bookingType == filter.bookingType &&
+                    takeawayOption == filter.takeawayOption &&
+                    timeSlot.start == filter.timeSlot.start &&
+                    timeSlot.end == filter.timeSlot.end
+                    )
+        } else{
+            false
+        }
+    }
+
     override fun updateValues(filter: BaseFilter) {
-        selectedCategories = (filter as  PlacesFilter).selectedCategories
-        availability = (filter as  PlacesFilter).availability
-        showPlacesType = (filter as  PlacesFilter).showPlacesType
-        offersTypology = (filter as  PlacesFilter).offersTypology
-        selectedOffersLevel = (filter as  PlacesFilter).selectedOffersLevel
-        bookingType = (filter as  PlacesFilter).bookingType
-        takeawayOption = (filter as  PlacesFilter).takeawayOption
-        setTimeSlotStartHour((filter as  PlacesFilter).timeSlot.start)
-        setTimeSlotEndHour((filter as  PlacesFilter).timeSlot.end)
+        if(filter is PlacesFilter){
+            selectedCategories = filter.selectedCategories
+            availability = filter.availability
+            showPlacesType = filter.showPlacesType
+            offersTypology = filter.offersTypology
+            selectedOffersLevel = filter.selectedOffersLevel
+            bookingType = filter.bookingType
+            takeawayOption = filter.takeawayOption
+            setTimeSlotStartHour(filter.timeSlot.start)
+            setTimeSlotEndHour(filter.timeSlot.end)
+        } else{
+            throw IllegalArgumentException("Filter must be instance of PlacesFilter")
+        }
     }
 
     override fun isDefault(): Boolean = selectedCategories.isEmpty() && availability == 0 && showPlacesType == 0  &&
