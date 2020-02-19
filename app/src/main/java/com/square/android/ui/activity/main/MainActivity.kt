@@ -32,7 +32,7 @@ import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.profile.EditProfileFragment
 import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
-import com.square.android.ui.fragment.mainLists.campaignsList.CAMPAIGN_EXTRA_ID
+import com.square.android.ui.fragment.explore.campaignsList.CAMPAIGN_EXTRA_ID
 import com.square.android.ui.activity.noConnection.NoConnectionActivity
 import com.square.android.ui.activity.place.PLACE_EXTRA_DAY_SELECTED
 import com.square.android.ui.activity.place.PLACE_EXTRA_ID
@@ -44,8 +44,8 @@ import com.square.android.ui.activity.start.StartActivity
 import com.square.android.ui.activity.subscriptionError.SubscriptionErrorActivity
 import com.square.android.ui.activity.tutorialVideos.TutorialVideosActivity
 import com.square.android.ui.fragment.agenda.AgendaFragment
-import com.square.android.ui.fragment.mainLists.MainListsFragment
-import com.square.android.ui.fragment.mainLists.SearchFragment
+import com.square.android.ui.fragment.explore.ExploreFragment
+import com.square.android.ui.fragment.explore.SearchFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import com.square.android.utils.ActivityUtils
@@ -239,7 +239,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 }
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
-            SCREENS.MAIN_LIST -> MainListsFragment()
+            SCREENS.MAIN_LIST -> ExploreFragment()
             SCREENS.PROFILE -> ProfileFragment()
             SCREENS.EDIT_PROFILE -> EditProfileFragment()
             SCREENS.AGENDA -> AgendaFragment()

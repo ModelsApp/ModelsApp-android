@@ -11,8 +11,8 @@ import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.ERRORS
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.pojo.*
-import com.square.android.presentation.presenter.mainLists.LIST_ITEMS_SIZE
-import com.square.android.presentation.presenter.mainLists.LatestSearch
+import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
+import com.square.android.presentation.presenter.explore.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope

@@ -635,8 +635,20 @@
 
     <string name="not_full">Not full</string>
 
+    <string name="date_period">Date period</string>
+    <string name="show_me_events">Show me events</string>
+    <string name="typology">Typology</string>
+    <string name="minimum_stay">Minimum stay</string>
+
+    <string name="period_1">Select dates</string>
+    <string name="period_2">This week</string>
+    <string name="period_3">Next week</string>
+
+
     <string name="offer_typology_1">Complimentary</string>
     <string name="offer_typology_2">Discounted</string>
+
+    <string name="paid">Paid</string>
 
     <string name="offer_level_1">Welcome</string>
     <string name="offer_level_2">Basic</string>
@@ -949,6 +961,11 @@
     <string name="reservation_details">Reservation details</string>
 
     <string name="upload_screenshot">Upload screenshot</string>
+
+    <string name="type">Type</string>
+
+    <string name="influence">Influence</string>
+    <string name="asset">Asset</string>
 
     <string name="ok_lowercase">Ok</string>
     <string name="type_tripavisor">Tripadvisor</string>

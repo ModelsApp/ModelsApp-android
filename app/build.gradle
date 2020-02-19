@@ -211,6 +211,8 @@ dependencies {
     implementation 'com.google.android.libraries.places:places:2.0.0'
 
 
+    // calendar with date range
+    implementation 'com.archit.calendar:awesome-calendar:1.1.6'
 
 
     // ----- Tests -----

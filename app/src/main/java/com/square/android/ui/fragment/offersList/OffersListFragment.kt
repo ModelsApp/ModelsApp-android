@@ -16,7 +16,7 @@ import com.square.android.presentation.presenter.offersList.OffersListPresenter
 import com.square.android.presentation.view.offersList.OffersListView
 import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.ui.fragment.mainLists.GridItemDecoration
+import com.square.android.ui.fragment.explore.GridItemDecoration
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import kotlinx.android.synthetic.main.fragment_offers_list.*
 import org.jetbrains.anko.bundleOf

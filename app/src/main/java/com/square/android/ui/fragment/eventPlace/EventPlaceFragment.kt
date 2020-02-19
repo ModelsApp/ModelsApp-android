@@ -17,7 +17,7 @@ import com.square.android.ui.activity.event.EventActivity
 import com.square.android.ui.activity.place.IntervalMatchParentAdapter
 import com.square.android.ui.activity.place.OfferDialog
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.ui.fragment.mainLists.GridItemDecoration
+import com.square.android.ui.fragment.explore.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_event_place.*
 import org.jetbrains.anko.bundleOf
 

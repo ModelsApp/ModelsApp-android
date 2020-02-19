@@ -9,7 +9,7 @@ import com.square.android.GOOGLEBILLING.SUBSCRIPTION_PER_MONTH_PREMIUM_NAME
 import com.square.android.GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_NAME
 import com.square.android.GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_PREMIUM_NAME
 import com.square.android.data.pojo.UserInfo
-import com.square.android.presentation.presenter.mainLists.LIST_ITEMS_SIZE
+import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
 import com.square.android.ui.base.tutorial.TutorialService
 
 private const val KEY_DISPLAY_INTRO = "KEY_DISPLAY_INTRO"

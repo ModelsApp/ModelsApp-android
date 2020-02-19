@@ -16,7 +16,7 @@ import com.square.android.presentation.view.approval.ApprovalView
 import com.square.android.ui.activity.campaignDetails.EXTRA_CAMPAIGN
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.entries.SquareImagesAdapter
-import com.square.android.ui.fragment.mainLists.GridItemDecoration
+import com.square.android.ui.fragment.explore.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_approval.*
 import org.jetbrains.anko.bundleOf
 

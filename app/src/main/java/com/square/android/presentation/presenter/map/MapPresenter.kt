@@ -4,8 +4,8 @@ import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.presenter.mainLists.PlaceSelectedEvent
-import com.square.android.presentation.presenter.mainLists.PlacesUpdatedEvent
+import com.square.android.presentation.presenter.explore.PlaceSelectedEvent
+import com.square.android.presentation.presenter.explore.PlacesUpdatedEvent
 import com.square.android.presentation.view.map.MapView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

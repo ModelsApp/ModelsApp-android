@@ -13,7 +13,7 @@ import com.square.android.presentation.presenter.uploadPics.UploadPicsPresenter
 import com.square.android.presentation.view.uploadPics.UploadPicsView
 import com.square.android.ui.activity.campaignDetails.*
 import com.square.android.ui.fragment.BaseFragment
-import com.square.android.ui.fragment.mainLists.GridItemDecoration
+import com.square.android.ui.fragment.explore.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_upload_pics.*
 import org.jetbrains.anko.bundleOf
 
