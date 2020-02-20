@@ -49,6 +49,17 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/icmMp"
+            android:layout_width="@dimen/v_24dp"
+            android:layout_height="@dimen/v_24dp"
+            android:layout_marginEnd="@dimen/v_16dp"
+            android:src="@drawable/r_address"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="@+id/icFilters"
+            app:layout_constraintEnd_toStartOf="@+id/icSearch"
+            app:layout_constraintTop_toTopOf="@+id/icFilters" />
+
+        <ImageView
             android:id="@+id/icSearch"
             android:layout_width="@dimen/v_24dp"
             android:layout_height="@dimen/v_24dp"
@@ -78,7 +89,7 @@
             app:layout_goneMarginTop="@dimen/v_40dp"
             android:layout_marginTop="@dimen/v_8dp"
             app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toStartOf="@+id/icSearch"
+            app:layout_constraintEnd_toStartOf="@+id/icMap"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainListsCitiesLl"
             app:tabBackground="@android:color/transparent"

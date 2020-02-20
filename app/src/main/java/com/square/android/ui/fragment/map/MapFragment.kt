@@ -1,5 +1,4 @@
 @file:Suppress("DEPRECATION")
-//TODO not used anymore
 
 package com.square.android.ui.fragment.map
 
@@ -27,8 +26,9 @@ import com.square.android.presentation.view.map.MapView
 import com.square.android.ui.fragment.BaseMapFragment
 import com.square.android.ui.fragment.explore.placesList.PlaceExtrasAdapter
 import kotlinx.android.synthetic.main.fragment_map.*
-import kotlinx.android.synthetic.main.place_map.view.*
+import kotlinx.android.synthetic.main.bottom_view_map.view.*
 import com.square.android.R
+
 class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, PermissionsListener, LocationEngineCallback<LocationEngineResult> {
 
     @InjectPresenter

@@ -15,6 +15,10 @@ import com.square.android.presentation.view.campaigns.CampaignsView
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.map.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_campaigns_list.*
+import kotlin.reflect.jvm.internal.impl.descriptors.runtime.structure.ReflectJavaModifierListOwner.DefaultImpls.getVisibility
+import android.R
+
+
 
 const val CAMPAIGN_EXTRA_ID = "CAMPAIGN_EXTRA_ID"
 class CampaignsListFragment(var data: MutableList<CampaignInfo>): BaseFragment(), CampaignsView, CampaignsAdapter.Handler {
@@ -37,6 +41,20 @@ class CampaignsListFragment(var data: MutableList<CampaignInfo>): BaseFragment()
         super.onViewCreated(view, savedInstanceState)
 
         campaignsList.setHasFixedSize(true)
+
+
+
+//        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (dy > 0 && mFloatingActionButton.getVisibility() === View.VISIBLE) {
+//                    mFloatingActionButton.hide()
+//                } else if (dy < 0 && mFloatingActionButton.getVisibility() !== View.VISIBLE) {
+//                    mFloatingActionButton.show()
+//                }
+//            }
+//        })
+
     }
 
     override fun showData(data: List<CampaignInfo>) {

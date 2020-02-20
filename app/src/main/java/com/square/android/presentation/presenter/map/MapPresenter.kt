@@ -14,6 +14,8 @@ import org.koin.standalone.inject
 
 class CityLocateEvent(val data: LatLng)
 
+class MapUpdateEvent(val type: Int, val data: Any)
+
 @InjectViewState
 class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
 
@@ -39,7 +41,12 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onPlacesUpdatedEvent(event: PlacesUpdatedEvent) {
+    fun onMapUpdateEvent(event: MapUpdateEvent) {
+
+
+
+
+
         data = event.data
 
         mapClicked()
