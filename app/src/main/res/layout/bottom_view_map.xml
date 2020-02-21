@@ -88,7 +88,7 @@
 
             </LinearLayout>
 
-<!--     TODO: add padding top 12 if icText is visible ELSE remove padding top       -->
+
             <LinearLayout
                 android:id="@+id/iconLl"
                 android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                         android:layout_marginStart="@dimen/v_8dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        tools:text="The Conga Room"
+                        tools:text="Via Vigenavo 13, milan"
                         android:layout_weight="1" />
                 </LinearLayout>
 

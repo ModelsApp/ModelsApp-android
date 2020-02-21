@@ -13,7 +13,7 @@ object SCREENS {
     const val RESET_PASSWORD = "RESET_PASSWORD"
     const val SIGN_UP = "SIGN_UP"
 
-    const val MAIN_LIST = "MAIN_LIST"
+    const val EXPLORE = "EXPLORE"
     const val PROFILE = "PROFILE"
 
     const val PLACE= "PLACE"
@@ -27,6 +27,7 @@ object SCREENS {
     const val REVIEW = "REVIEW"
     const val OFFERS_LIST = "OFFERS_LIST"
 
+    const val MAP = "MAP"
 
     const val CLAIMED_REDEMPTION = "CLAIMED_REDEMPTION"
 

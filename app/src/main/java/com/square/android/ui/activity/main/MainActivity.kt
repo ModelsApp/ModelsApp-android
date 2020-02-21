@@ -6,9 +6,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
@@ -21,8 +23,11 @@ import com.square.android.R
 import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
 import com.square.android.data.network.fcm.NotificationType
+import com.square.android.data.pojo.Place
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
+import com.square.android.extensions.drawableFromRes
+import com.square.android.extensions.loadImage
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.main.MainView
@@ -46,13 +51,18 @@ import com.square.android.ui.activity.tutorialVideos.TutorialVideosActivity
 import com.square.android.ui.fragment.agenda.AgendaFragment
 import com.square.android.ui.fragment.explore.ExploreFragment
 import com.square.android.ui.fragment.explore.SearchFragment
+import com.square.android.ui.fragment.map.MapFragment
 import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import com.square.android.utils.ActivityUtils
 import com.square.android.utils.DialogDepository
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.bottom_view_map.view.*
 import kotlinx.android.synthetic.main.notifications_badge.*
 import kotlinx.android.synthetic.main.pending_congratulations.view.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
@@ -60,12 +70,25 @@ import ru.terrakok.cicerone.commands.Command
 
 private const val REDEMPTIONS_POSITION = 1
 
+const val BOTTOM_CARD_TYPE_PLACE = 0
+const val BOTTOM_CARD_TYPE_EVENT = 1
+
+class MainFabClickedEvent()
+
+class NavFabClickedEvent()
+
+@Parcelize
+class BottomMapViewInfo(val type: Int, val images: List<String>, val title: String, val rating: String, val eventPlaceName: String,
+                        val address: String, val distance: String, val date: String, val iconText: String): Parcelable
+
 class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
     val dialogDepository: DialogDepository by inject()
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
+
+    private val eventBus: EventBus by inject()
 
     override fun provideNavigator(): Navigator = MainNavigator(this)
 
@@ -95,6 +118,14 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
         setUpNavigation()
         setUpNotifications()
+
+        mainFab.setOnClickListener {
+            eventBus.post(MainFabClickedEvent())
+        }
+
+        navFab.setOnClickListener {
+            eventBus.post(NavFabClickedEvent())
+        }
     }
 
     private fun setUpNotifications() {
@@ -106,6 +137,65 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 dialogDepository.showDialogFromNotification(notifType, this)
             }
         }
+    }
+
+    fun hideMapBottomView(){
+        bottomViewMapLl.visibility = View.GONE
+    }
+
+    fun setMapBottomBarContent(info: BottomMapViewInfo){
+        val view = bottomViewMapLl.mapInfo
+
+        //TODO change to rv with adapter(images)
+        view.mapPlaceInfoImage.loadImage(info.images[0])
+        view.title.text = info.title
+
+        when(info.type){
+            BOTTOM_CARD_TYPE_PLACE -> {
+                view.placeRatingLl.placeRatingTv.text = info.rating
+                view.placeRatingLl.visibility = View.VISIBLE
+
+                //TODO change ic drawable
+                view.iconLl.setPadding(0, 0, 0, 0)
+                view.icText.visibility = View.GONE
+
+                view.eventPlaceNameLl.visibility = View.GONE
+
+                view.addressTv.text = info.address
+                view.addressLl.visibility = View.VISIBLE
+
+                view.distanceTv.text = info.distance
+                view.distanceLl.visibility = View.VISIBLE
+
+                view.dateLl.visibility = View.GONE
+            }
+
+            BOTTOM_CARD_TYPE_EVENT ->{
+                view.placeRatingLl.visibility = View.GONE
+
+                //TODO change ic drawable
+                view.iconLl.setPadding(0, Math.round(resources.getDimension(R.dimen.v_12dp)), 0, 0)
+                view.icText.text = info.iconText
+                view.icText.visibility = View.VISIBLE
+
+                view.eventPlaceNameTv.text = info.eventPlaceName
+                view.eventPlaceNameLl.visibility = View.VISIBLE
+
+                view.addressTv.text = info.address
+                view.addressLl.visibility = View.VISIBLE
+
+                view.distanceLl.visibility = View.GONE
+
+                view.dateTv.text = info.date
+                view.dateLl.visibility = View.VISIBLE
+            }
+        }
+
+        bottomViewMapLl.visibility = View.VISIBLE
+    }
+
+    fun setUpMainFabImage(@DrawableRes icon: Int){
+        mainFab.drawableFromRes(icon)
     }
 
     override fun checkInitial() {
@@ -136,7 +226,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val screenKey = when (item.itemId) {
-            R.id.action_explore -> SCREENS.MAIN_LIST
+            R.id.action_explore -> SCREENS.EXPLORE
             
             R.id.action_agenda -> {
                 setActiveRedemptions(0)
@@ -181,9 +271,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         inflater.inflate(R.layout.notifications_badge, itemView, true)
     }
 
-    private class MainNavigator(activity: FragmentActivity) : AppNavigator(activity, R.id.main_container) {
+    private class MainNavigator(var activity: FragmentActivity) : AppNavigator(activity, R.id.main_container) {
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?) =
                 when (screenKey) {
+
                     SCREENS.START ->
                         context.intentFor<StartActivity>()
 
@@ -198,7 +289,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.CAMPAIGN_DETAILS ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)
-
 
                     SCREENS.SELECT_OFFER ->
                         context.intentFor<SelectOfferActivity>(EXTRA_REDEMPTION to data as RedemptionInfo)
@@ -225,7 +315,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<ActivePlanActivity>(CAN_BACK_EXTRA to extras.canGoBack, BILLING_TOKEN_EXTRA to extras.billingTokenInfo)
                     }
 
-
                     SCREENS.EARN_MORE_CREDITS ->
                         context.intentFor<EarnMoreCreditsActivity>()
 
@@ -239,11 +328,51 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 }
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
-            SCREENS.MAIN_LIST -> ExploreFragment()
-            SCREENS.PROFILE -> ProfileFragment()
-            SCREENS.EDIT_PROFILE -> EditProfileFragment()
-            SCREENS.AGENDA -> AgendaFragment()
-            SCREENS.SEARCH -> SearchFragment(data as Int)
+            SCREENS.EXPLORE -> {
+                (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+                (activity as MainActivity).mainFab.show()
+
+                //TODO should it stay?
+                (activity as MainActivity).hideMapBottomView()
+
+                ExploreFragment()
+            }
+
+            SCREENS.AGENDA -> {
+                (activity as MainActivity).mainFab.hide()
+                (activity as MainActivity).navFab.hide()
+                (activity as MainActivity).hideMapBottomView()
+                AgendaFragment()
+            }
+
+            SCREENS.PROFILE -> {
+                (activity as MainActivity).mainFab.hide()
+                (activity as MainActivity).navFab.hide()
+                (activity as MainActivity).hideMapBottomView()
+                ProfileFragment()
+            }
+
+            SCREENS.EDIT_PROFILE -> {
+                (activity as MainActivity).mainFab.hide()
+                (activity as MainActivity).navFab.hide()
+                (activity as MainActivity).hideMapBottomView()
+                EditProfileFragment()
+            }
+
+            SCREENS.SEARCH -> {
+                (activity as MainActivity).mainFab.hide()
+                (activity as MainActivity).navFab.hide()
+                (activity as MainActivity).hideMapBottomView()
+                SearchFragment(data as Int)
+            }
+
+            SCREENS.MAP -> {
+                (activity as MainActivity).mainFab.show()
+                (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
+                (activity as MainActivity).navFab.show()
+                MapFragment(data as MutableList<Place>)
+            }
+
             else -> throw IllegalArgumentException("Unknown screen key: $screenKey")
         }
 

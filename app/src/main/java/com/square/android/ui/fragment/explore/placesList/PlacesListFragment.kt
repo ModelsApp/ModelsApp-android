@@ -35,6 +35,17 @@ class PlacesListFragment(var data: MutableList<Place>): BaseFragment(), PlacesLi
         super.onViewCreated(view, savedInstanceState)
 
         placesList.setHasFixedSize(true)
+
+        //        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (dy > 0 && mFloatingActionButton.getVisibility() === View.VISIBLE) {
+//                    mFloatingActionButton.hide()
+//                } else if (dy < 0 && mFloatingActionButton.getVisibility() !== View.VISIBLE) {
+//                    mFloatingActionButton.show()
+//                }
+//            }
+//        })
     }
 
     override fun updateDistances() {

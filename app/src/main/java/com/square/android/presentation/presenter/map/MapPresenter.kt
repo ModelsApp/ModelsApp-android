@@ -46,17 +46,17 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
 
 
 
-
-        data = event.data
-
-        mapClicked()
-        viewState.updatePlaces(data)
-
-        currentInfo?.let {
-            if (it.id !in data.map { place -> place.id }) {
-                mapClicked()
-            }
-        }
+//
+//        data = event.data
+//
+//        mapClicked()
+//        viewState.updatePlaces(data)
+//
+//        currentInfo?.let {
+//            if (it.id !in data.map { place -> place.id }) {
+//                mapClicked()
+//            }
+//        }
     }
 
     fun loadData() {

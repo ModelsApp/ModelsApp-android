@@ -35,6 +35,16 @@ class EventsListFragment(var data: MutableList<Place>): BaseFragment(), EventsLi
         super.onViewCreated(view, savedInstanceState)
 
         eventsList.setHasFixedSize(true)
+        //        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (dy > 0 && mFloatingActionButton.getVisibility() === View.VISIBLE) {
+//                    mFloatingActionButton.hide()
+//                } else if (dy < 0 && mFloatingActionButton.getVisibility() !== View.VISIBLE) {
+//                    mFloatingActionButton.show()
+//                }
+//            }
+//        })
     }
 
     override fun showData(data: List<Place>) {

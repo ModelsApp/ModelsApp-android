@@ -17,12 +17,20 @@ import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
 import com.square.android.presentation.presenter.explore.*
+import com.square.android.ui.activity.main.MainActivity
+import com.square.android.ui.activity.main.MainFabClickedEvent
+import com.square.android.ui.activity.main.NavFabClickedEvent
 import com.square.android.ui.activity.place.DaysAdapter
 import com.square.android.ui.fragment.explore.campaignsList.BottomSheetCampaignsFilters
 import com.square.android.ui.fragment.explore.eventsList.BottomSheetEventsFilters
 import com.square.android.ui.fragment.explore.filters.*
 import com.square.android.ui.fragment.explore.placesList.BottomSheetOffersFilters
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_explore.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.android.ext.android.inject
 
 class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, BaseBottomSheetFilters.Handler {
 
@@ -30,6 +38,40 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
     lateinit var presenter: ExplorePresenter
 
     private var daysAdapter: DaysAdapter? = null
+
+    private val eventBus: EventBus by inject()
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onBackFromSearchEvent(event: BackFromSearchEvent) {
+        initWithMap()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMainFabClickedEvent(event: MainFabClickedEvent) {
+        if(!presenter.isMapShown){
+            (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
+            (activity as MainActivity).navFab.show()
+
+            //TODO open map fragment
+            presenter.navigateToMap()
+
+        } else{
+            (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+            (activity as MainActivity).navFab.hide()
+
+            (activity as MainActivity).hideMapBottomView()
+
+            //TODO back to this fragment
+            presenter.backToExplore()
+        }
+
+        presenter.isMapShown.not()
+    }
+
+    //TODO move to map fragment
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onBackNavFabClickedEvent(event: NavFabClickedEvent) {
+    }
 
     override fun showData(data: MainData, days: MutableList<Day>) {
         if(!presenter.initialized) {
@@ -57,6 +99,8 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
             override fun onPageSelected(position: Int) {
                 presenter.tabClicked(position)
+
+                initWithMap()
             }
         })
     }
@@ -72,6 +116,10 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
+
+            if(!eventBus.isRegistered(this)){
+                eventBus.register(this)
+            }
 
             if (presenter.initialized) {
                 val displayMetrics = DisplayMetrics()
@@ -100,6 +148,9 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
                         hideCities()
                     }
                 }
+
+                // should it stay??
+               initWithMap()
 
                 //TODO add filters etc later too
 
@@ -139,6 +190,32 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
                     }
                 }
             }
+    }
+
+    fun initWithMap(){
+        (activity as MainActivity).hideMapBottomView()
+
+        if(presenter.actualTabSelected != POSITION_CAMPAIGNS){
+            if(presenter.isMapShown){
+                (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
+                (activity as MainActivity).navFab.show()
+
+                //TODO open map fragment
+                presenter.navigateToMap()
+
+            } else{
+                (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+                (activity as MainActivity).navFab.hide()
+
+                //TODO back to this fragment
+                presenter.backToExplore()
+            }
+
+            (activity as MainActivity).mainFab.show()
+        } else{
+            (activity as MainActivity).navFab.hide()
+            (activity as MainActivity).mainFab.hide()
+        }
     }
 
     override fun filtersApplyClicked(filter: BaseFilter) {
@@ -187,4 +264,9 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
         mainListsPager.visibility = View.VISIBLE
     }
 
+    override fun onDestroy() {
+        eventBus.unregister(this)
+        super.onDestroy()
+    }
+    
 }
