@@ -32,7 +32,6 @@ fun EditText.isValid(): Boolean {
 }
 
 
-
 fun ImageView.drawableFromRes(@DrawableRes drawableRes: Int, @ColorRes tintColorRes: Int? = null){
     setImageDrawable(context.getDrawable(drawableRes))
 

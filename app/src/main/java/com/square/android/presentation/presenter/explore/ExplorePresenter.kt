@@ -48,10 +48,6 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
 
     var selectedDayPosition: Int = 0
 
-    var isMapShown: Boolean = false
-
-    var isMapBottomViewShown: Boolean = false
-
     var days: MutableList<Day> = mutableListOf()
     var actualDates: MutableList<String> = mutableListOf()
 
@@ -184,11 +180,7 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
     }
 
     fun navigateToMap(){
-        router.navigateTo(SCREENS.MAP, if(selectedDayPosition == POSITION_PLACES) data.placesData else data.eventsData)
-    }
-
-    fun backToExplore(){
-        router.exit()
+        router.navigateTo(SCREENS.MAP, if(actualTabSelected == POSITION_PLACES) data.placesData else data.eventsData)
     }
 
     //TODO fire when "Apply" button clicked in filters sheet

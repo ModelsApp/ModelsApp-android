@@ -40,7 +40,6 @@
 
         </LinearLayout>
 
-<!--   TODO check if bottom margin gone is working     -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/navFab"
             android:layout_width="@dimen/v_40dp"

@@ -239,7 +239,7 @@ class BottomSheetEventsFilters(var eventFilter: EventsFilter, private val handle
 
         btnApply.setOnClickListener {
             handler.filtersApplyClicked(mFilter!!)
-            dialog.dismiss()
+            dialog!!.dismiss()
         }
 
         clearLl.setOnClickListener {
@@ -247,7 +247,7 @@ class BottomSheetEventsFilters(var eventFilter: EventsFilter, private val handle
                 handler.filtersClearClicked()
             }
 
-            dialog.dismiss()
+            dialog!!.dismiss()
         }
     }
 

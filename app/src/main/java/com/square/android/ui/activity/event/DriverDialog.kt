@@ -91,10 +91,10 @@ class DriverDialog(var driverExtras: DriverExtras, private val handler: Handler?
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        dialog.setCancelable(mCancelable)
-        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog!!.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+        dialog!!.setCancelable(mCancelable)
+        dialog!!.window!!.setGravity(Gravity.CENTER)
 
         return inflater.inflate(R.layout.driver_dialog, null, false)
     }
@@ -105,7 +105,7 @@ class DriverDialog(var driverExtras: DriverExtras, private val handler: Handler?
 
         acDriverBack.setOnClickListener {
             when (currentPagerPosition) {
-                0 -> dialog.cancel()
+                0 -> dialog!!.cancel()
                 1 -> acDriverPager.setCurrentItem(0,true)
             }
         }
@@ -123,7 +123,7 @@ class DriverDialog(var driverExtras: DriverExtras, private val handler: Handler?
 
     private fun confirmClicked(){
         handler?.confirmClicked(needDriver, departureLatLng, departureIntervalId, needReturn, returnLatLng, returnIntervalId)
-        dialog.cancel()
+        dialog!!.cancel()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -203,7 +203,7 @@ class DriverDialog(var driverExtras: DriverExtras, private val handler: Handler?
         val screenWidth = (metrics.widthPixels * 0.9).toInt()
         val screenHeight = (metrics.heightPixels * 0.9).toInt()
 
-        dialog.window?.setLayout(screenWidth, screenHeight)
+        dialog!!.window?.setLayout(screenWidth, screenHeight)
     }
 
     private fun setUpPager() {

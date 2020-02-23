@@ -58,7 +58,7 @@ class BottomSheetCities(var cities: List<City>, var selectedCity: City?, private
 
         handler?.cityClicked(cities[selectedCityIndex])
 
-        dialog.dismiss()
+        dialog!!.dismiss()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -28,6 +28,13 @@ import com.square.android.ui.fragment.explore.placesList.PlaceExtrasAdapter
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.bottom_view_map.view.*
 import com.square.android.R
+import com.square.android.ui.activity.main.MainActivity
+import com.square.android.ui.activity.main.MainFabClickedEvent
+import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.android.ext.android.inject
 
 class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, PermissionsListener, LocationEngineCallback<LocationEngineResult> {
 
@@ -37,12 +44,24 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
     @ProvidePresenter
     fun providePresenter() = MapPresenter(data)
 
+    private val eventBus: EventBus by inject()
+
     var alreadyLocated = false
 
     private var previousMarker : Marker? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initialized = presenter.initialized
+        super.onViewCreated(view, savedInstanceState)
+        presenter.initialized = true
+
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
@@ -54,6 +73,27 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 
     override fun locateCity(location: LatLng) {
         centerOnCity(location)
+    }
+
+    //TODO ERROR SHOWING RANDOMLY WHEN SWITCHING to and from map fragment on fab click(mapBox related):
+    // 2020-02-23 16:26:09.914 10533-10716/com.squaremm.android E/AndroidRuntime: FATAL EXCEPTION: Thread-6744
+    //    Process: com.squaremm.android, PID: 10533
+    //    java.lang.UnsupportedOperationException: eglCreateWindowSurface() can only be called with an instance of Surface, SurfaceView, SurfaceHolder or SurfaceTexture at the moment.
+    //        at com.google.android.gles_jni.EGLImpl.eglCreateWindowSurface(EGLImpl.java:97)
+    //        at com.mapbox.mapboxsdk.maps.renderer.textureview.TextureViewRenderThread$EGLHolder.createSurface(TextureViewRenderThread.java:391)
+    //        at com.mapbox.mapboxsdk.maps.renderer.textureview.TextureViewRenderThread.run(TextureViewRenderThread.java:253)
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMainFabClickedEvent(event: MainFabClickedEvent) {
+        (activity as MainActivity).mainFab.hide()
+        (activity as MainActivity).mainFab.show()
+
+        (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+        (activity as MainActivity).navFab.hide()
+
+        (activity as MainActivity).hideMapBottomView()
+
+        presenter.backToExplore()
     }
 
     override fun mapReady() {
@@ -160,5 +200,10 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 
     private fun loadMapData() {
         presenter.loadData()
+    }
+
+    override fun onDestroy() {
+        eventBus.unregister(this)
+        super.onDestroy()
     }
 }

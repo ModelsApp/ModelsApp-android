@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager
 import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
+import com.square.android.extensions.drawableFromRes
 import com.square.android.presentation.presenter.explore.*
 import com.square.android.ui.activity.main.MainActivity
 import com.square.android.ui.activity.main.MainFabClickedEvent
@@ -48,29 +49,21 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMainFabClickedEvent(event: MainFabClickedEvent) {
-        if(!presenter.isMapShown){
-            (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
-            (activity as MainActivity).navFab.show()
+        (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
 
-            //TODO open map fragment
-            presenter.navigateToMap()
+        (activity as MainActivity).mainFab.hide()
+        (activity as MainActivity).mainFab.show()
 
-        } else{
-            (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
-            (activity as MainActivity).navFab.hide()
+        (activity as MainActivity).navFab.show()
 
-            (activity as MainActivity).hideMapBottomView()
-
-            //TODO back to this fragment
-            presenter.backToExplore()
-        }
-
-        presenter.isMapShown.not()
+        //TODO open map fragment
+        presenter.navigateToMap()
     }
 
     //TODO move to map fragment
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onBackNavFabClickedEvent(event: NavFabClickedEvent) {
+        println("GDFDFFDFFDF onBackNavFabClickedEvent")
     }
 
     override fun showData(data: MainData, days: MutableList<Day>) {
@@ -118,6 +111,7 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
             super.onViewCreated(view, savedInstanceState)
 
             if(!eventBus.isRegistered(this)){
+                println("GDFDFFDFFDF evetbus register")
                 eventBus.register(this)
             }
 
@@ -149,7 +143,7 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
                     }
                 }
 
-                // should it stay??
+
                initWithMap()
 
                 //TODO add filters etc later too
@@ -166,7 +160,7 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
                         }
                     })
 
-                    bottomSheetCities.show(fragmentManager, BottomSheetCities.TAG)
+                    bottomSheetCities.show(fragmentManager!!, BottomSheetCities.TAG)
                 }
             }
 
@@ -176,46 +170,63 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
                 when(presenter.actualTabSelected){
                     POSITION_PLACES -> {
                         val bottomSheetOffersFilters = BottomSheetOffersFilters(presenter.getFilter() as PlacesFilter,this)
-                        bottomSheetOffersFilters.show(fragmentManager, BottomSheetOffersFilters.TAG)
+                        bottomSheetOffersFilters.show(fragmentManager!!, BottomSheetOffersFilters.TAG)
                     }
 
                     POSITION_EVENTS -> {
                         val bottomSheetEventsFilters = BottomSheetEventsFilters(presenter.getFilter() as EventsFilter,this)
-                        bottomSheetEventsFilters.show(fragmentManager, BottomSheetEventsFilters.TAG)
+                        bottomSheetEventsFilters.show(fragmentManager!!, BottomSheetEventsFilters.TAG)
                     }
 
                     POSITION_CAMPAIGNS ->{
                         val bottomSheetCampaignsFilters = BottomSheetCampaignsFilters(presenter.getFilter() as CampaignsFilter,this)
-                        bottomSheetCampaignsFilters.show(fragmentManager, BottomSheetCampaignsFilters.TAG)
+                        bottomSheetCampaignsFilters.show(fragmentManager!!, BottomSheetCampaignsFilters.TAG)
                     }
                 }
             }
     }
 
     fun initWithMap(){
+
         (activity as MainActivity).hideMapBottomView()
 
         if(presenter.actualTabSelected != POSITION_CAMPAIGNS){
-            if(presenter.isMapShown){
-                (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
-                (activity as MainActivity).navFab.show()
 
-                //TODO open map fragment
-                presenter.navigateToMap()
-
-            } else{
-                (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
-                (activity as MainActivity).navFab.hide()
-
-                //TODO back to this fragment
-                presenter.backToExplore()
+            if(!(activity as MainActivity).mainFab.isShown){
+                (activity as MainActivity).mainFab.show()
             }
 
-            (activity as MainActivity).mainFab.show()
+//            (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+
+            (activity as MainActivity).navFab.hide()
         } else{
             (activity as MainActivity).navFab.hide()
             (activity as MainActivity).mainFab.hide()
         }
+
+//        (activity as MainActivity).hideMapBottomView()
+//
+//        if(presenter.actualTabSelected != POSITION_CAMPAIGNS){
+//            if(presenter.isMapShown){
+//                (activity as MainActivity).setUpMainFabImage(R.drawable.ic_list)
+//                (activity as MainActivity).navFab.show()
+//
+//                //TODO open map fragment
+//                presenter.navigateToMap()
+//
+//            } else{
+//                (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+//                (activity as MainActivity).navFab.hide()
+//
+//                //TODO back to this fragment
+//                presenter.backToExplore()
+//            }
+//
+//            (activity as MainActivity).mainFab.show()
+//        } else{
+//            (activity as MainActivity).navFab.hide()
+//            (activity as MainActivity).mainFab.hide()
+//        }
     }
 
     override fun filtersApplyClicked(filter: BaseFilter) {
@@ -265,8 +276,9 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
     }
 
     override fun onDestroy() {
+        println("GDFDFFDFFDF eventbus unregister")
         eventBus.unregister(this)
         super.onDestroy()
     }
-    
+
 }

@@ -32,10 +32,10 @@ class ExtendedBottomNavigationView(context: Context, attrs: AttributeSet) : Bott
         try {
             //if you want to disable shiftingMode:
             //shiftingMode is a private member variable so you have to get access to it like this:
-            shiftingMode = bottomMenu.javaClass.getDeclaredField("mShiftingMode")
-            shiftingMode.setAccessible(true)
-            shiftingMode.setBoolean(bottomMenu, false)
-            shiftingMode.setAccessible(false)
+//            shiftingMode = bottomMenu.javaClass.getDeclaredField("mShiftingMode")
+//            shiftingMode.isAccessible = true
+//            shiftingMode.setBoolean(bottomMenu, false)
+//            shiftingMode.isAccessible = false
         } catch (e: NoSuchFieldException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {

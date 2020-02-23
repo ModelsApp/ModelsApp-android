@@ -187,7 +187,7 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
 
         btnApply.setOnClickListener {
             handler.filtersApplyClicked(mFilter!!)
-            dialog.dismiss()
+            dialog!!.dismiss()
         }
 
         clearLl.setOnClickListener {
@@ -195,7 +195,7 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
                 handler.filtersClearClicked()
             }
 
-            dialog.dismiss()
+            dialog!!.dismiss()
         }
     }
 

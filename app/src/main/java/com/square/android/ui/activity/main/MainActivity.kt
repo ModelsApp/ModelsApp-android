@@ -28,6 +28,7 @@ import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.extensions.drawableFromRes
 import com.square.android.extensions.loadImage
+import com.square.android.extensions.tintFromRes
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.main.MainView
@@ -67,6 +68,7 @@ import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
+import java.util.*
 
 private const val REDEMPTIONS_POSITION = 1
 
@@ -87,6 +89,8 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
+
+    var canMainFabClick = true
 
     private val eventBus: EventBus by inject()
 
@@ -120,7 +124,20 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         setUpNotifications()
 
         mainFab.setOnClickListener {
-            eventBus.post(MainFabClickedEvent())
+            if(canMainFabClick){
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        canMainFabClick = true
+
+                        mainFab.tintFromRes(R.color.gray_back_arrow)
+                    }
+                }, 1700)
+                canMainFabClick = false
+
+                mainFab.tintFromRes(R.color.gray_btn_disabled)
+
+                eventBus.post(MainFabClickedEvent())
+            }
         }
 
         navFab.setOnClickListener {
@@ -194,8 +211,8 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         bottomViewMapLl.visibility = View.VISIBLE
     }
 
-    fun setUpMainFabImage(@DrawableRes icon: Int){
-        mainFab.drawableFromRes(icon)
+    fun setUpMainFabImage(@DrawableRes iconRes: Int){
+        mainFab.drawableFromRes(iconRes)
     }
 
     override fun checkInitial() {

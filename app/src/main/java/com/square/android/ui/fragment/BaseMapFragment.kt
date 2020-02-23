@@ -50,22 +50,32 @@ abstract class BaseMapFragment : LocationFragment() {
 
     abstract fun provideMapView(): MapView
 
+    var initialized = false
+
     abstract fun mapReady()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mapView = provideMapView()
-        mapView.onCreate(savedInstanceState)
+        if(!initialized){
+            println("FDDFJDFJDF BaseMapFragment NOT INITIALIZED")
 
-        mapView.getMapAsync { map ->
-            mapboxMap = map
+            initialized = true
 
-            map.setStyle(Style.LIGHT) {
-                style = it
+            mapView = provideMapView()
+            mapView.onCreate(savedInstanceState)
 
-                initMap()
+            mapView.getMapAsync { map ->
+                mapboxMap = map
+
+                map.setStyle(Style.LIGHT) {
+                    style = it
+
+                    initMap()
+                }
             }
+        } else{
+            println("FDDFJDFJDF BaseMapFragment INITIALIZED")
         }
     }
 

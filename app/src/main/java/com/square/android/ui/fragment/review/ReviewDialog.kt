@@ -49,10 +49,10 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        dialog.setCancelable(mCancelable)
-        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog!!.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+        dialog!!.setCancelable(mCancelable)
+        dialog!!.window!!.setGravity(Gravity.CENTER)
 
         return inflater.inflate(R.layout.review_dialog, null, false)
     }
@@ -66,14 +66,14 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
         //TODO was 0.9
         val screenHeight = (metrics.heightPixels * 0.8).toInt()
 
-        dialog.window?.setLayout(screenWidth, screenHeight)
+        dialog!!.window?.setLayout(screenWidth, screenHeight)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpPager()
         setUpPage(currentPagerPosition)
 
-        reviewDialogClose.setOnClickListener { dialog.cancel() }
+        reviewDialogClose.setOnClickListener { dialog!!.cancel() }
         reviewDialogBack.setOnClickListener { reviewPager.setCurrentItem(0,true) }
 
         reviewBtnAction.setOnClickListener {
@@ -82,11 +82,11 @@ class ReviewDialog(val index: Int, val action: Offer.Action, private val subActi
                 1 -> {
                     if (withoutPhoto) {
                         handler.sendClicked(index, null, action.type)
-                        dialog.cancel()
+                        dialog!!.cancel()
                     } else {
                         photo?.let {
                             handler.sendClicked(index, it, action.type)
-                            dialog.cancel()
+                            dialog!!.cancel()
                         }
                     }
                 }

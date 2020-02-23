@@ -115,7 +115,7 @@ class ReviewFragment : BaseFragment(), ReviewView, ReviewAdapter.Handler, Review
 
     override fun showDialog(index: Int, action: Offer.Action, subActions: List<Offer.Action>, instaName: String, fbName: String) {
         val dialog = ReviewDialog(index, action, subActions, instaName, fbName, this, false, false)
-        dialog.show(fragmentManager, "")
+        dialog.show(fragmentManager!!, "")
     }
 
     override fun showDeleteDialog(index: Int) {

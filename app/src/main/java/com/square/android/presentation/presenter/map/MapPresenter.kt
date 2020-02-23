@@ -2,6 +2,7 @@ package com.square.android.presentation.presenter.map
 
 import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.square.android.SCREENS
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.explore.PlaceSelectedEvent
@@ -25,6 +26,9 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
 
     private val eventBus: EventBus by inject()
 
+
+    var initialized = false
+
     fun locationGotten(lastLocation: android.location.Location?) {
         lastLocation?.let {
             locationPoint = LatLng(it.latitude, it.longitude)
@@ -39,6 +43,14 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
     fun onCityLocateEvent(event: CityLocateEvent) {
         viewState.locateCity(event.data)
     }
+
+
+    fun backToExplore(){
+        println("GDFDFFDFFDF backToExplore")
+
+        router.backTo(SCREENS.EXPLORE)
+    }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMapUpdateEvent(event: MapUpdateEvent) {

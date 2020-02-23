@@ -93,7 +93,7 @@ class OffersListFragment: BaseFragment(), OffersListView, OffersListAdapter.Hand
 
         dialog = SelectOfferDialog(offer, this)
 
-        dialog!!.show(fragmentManager, "")
+        dialog!!.show(fragmentManager!!, "")
     }
 
     override fun confirmClicked(id: Long) {

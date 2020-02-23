@@ -34,7 +34,7 @@ class SelectOfferDialog(var offerInfo: OfferInfo, private val handler: Handler?,
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onDinnerInfoCloseEvent(event: DinnerInfoCloseEvent) {
-        dialog.cancel()
+        dialog!!.cancel()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -43,10 +43,10 @@ class SelectOfferDialog(var offerInfo: OfferInfo, private val handler: Handler?,
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setCancelable(mCancelable)
-        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog!!.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog!!.setCancelable(mCancelable)
+        dialog!!.window!!.setGravity(Gravity.CENTER)
 
         return inflater.inflate(R.layout.dialog_select_offer, null, false)
     }
@@ -60,7 +60,7 @@ class SelectOfferDialog(var offerInfo: OfferInfo, private val handler: Handler?,
 
     private fun confirmClicked(){
         handler?.confirmClicked(offerInfo.id)
-        dialog.cancel()
+        dialog!!.cancel()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -69,7 +69,7 @@ class SelectOfferDialog(var offerInfo: OfferInfo, private val handler: Handler?,
         val metrics = resources.displayMetrics
         val screenWidth = (metrics.widthPixels * 0.9).toInt()
 
-        dialog.window?.setLayout(screenWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog!!.window?.setLayout(screenWidth, WindowManager.LayoutParams.WRAP_CONTENT)
     }
 
     private fun setUpPager() {

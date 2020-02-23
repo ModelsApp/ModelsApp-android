@@ -120,7 +120,7 @@ class BottomSheetCampaignsFilters(var campaignFilter: CampaignsFilter, private v
 
         btnApply.setOnClickListener {
             handler.filtersApplyClicked(mFilter!!)
-            dialog.dismiss()
+            dialog!!.dismiss()
         }
 
         clearLl.setOnClickListener {
@@ -128,7 +128,7 @@ class BottomSheetCampaignsFilters(var campaignFilter: CampaignsFilter, private v
                 handler.filtersClearClicked()
             }
 
-            dialog.dismiss()
+            dialog!!.dismiss()
         }
     }
 
