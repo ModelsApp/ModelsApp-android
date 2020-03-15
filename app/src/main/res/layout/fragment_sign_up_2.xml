@@ -13,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        tools:visibility="gone" >
 
         <TextView
             android:id="@+id/professionError"
@@ -53,7 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/v_24dp" >
+        android:layout_marginTop="@dimen/v_24dp"
+        tools:visibility="gone">
 
         <TextView
             android:id="@+id/specialityError"
@@ -212,7 +214,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/v_16dp"
+        android:layout_marginTop="@dimen/v_24dp"
         android:layout_marginStart="@dimen/v_minus_24dp"
         android:layout_marginEnd="@dimen/v_minus_24dp"
         android:layout_height="1dp"
@@ -222,7 +224,7 @@
         app:layout_constraintTop_toBottomOf="@+id/topContainer" />
 
     <Switch
-        style="@style/Models16Text"
+        style="@style/Models16SemiBoldText"
         android:textSize="@dimen/text_16"
         android:id="@+id/switchRepresentation"
         android:layout_width="match_parent"
@@ -240,7 +242,7 @@
         app:layout_constraintTop_toBottomOf="@+id/topContainer" />
 
     <Switch
-        style="@style/Models16Text"
+        style="@style/Models16SemiBoldText"
         android:textSize="@dimen/text_16"
         android:id="@+id/switchVat"
         android:layout_width="match_parent"
@@ -251,11 +253,13 @@
         android:track="@drawable/switch_track" />
 
     <RelativeLayout
+        android:id="@+id/vatNumberRl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_rl_height"
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_marginTop="@dimen/v_24dp" >
+        android:layout_marginTop="@dimen/v_8dp"
+        android:layout_marginBottom="@dimen/v_16dp" >
         <com.square.android.utils.widget.ErrorEditText
             style="@style/RedesignedInputField"
             android:id="@+id/et_vat_number"
@@ -270,7 +274,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/v_16dp"
         android:layout_marginStart="@dimen/v_minus_24dp"
         android:layout_marginEnd="@dimen/v_minus_24dp"
         android:layout_height="1dp"

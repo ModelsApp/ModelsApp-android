@@ -2,20 +2,19 @@ package com.square.android.ui.fragment.signUp
 
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.square.android.data.pojo.ProfileInfo
 import com.square.android.utils.widget.WrapContentPagingViewPager
 import android.util.SparseArray
+import com.square.android.data.pojo.SignUpData
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.MvpFragment
 
-//TODO:F wil be 3
-private const val ITEM_COUNT = 2
+private const val ITEM_COUNT = 3
 
 const val POSITION_ONE = 0
 const val POSITION_TWO = 1
-//const val POSITION_THREE = 2
+const val POSITION_THREE = 2
 
-class SignUpFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentManager, var profileInfo: ProfileInfo) : androidx.fragment.app.FragmentStatePagerAdapter(fragmentManager) {
+class SignUpFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentManager, var signUpData: SignUpData): androidx.fragment.app.FragmentStatePagerAdapter(fragmentManager) {
 
     private var mCurrentPosition = -1
 
@@ -24,26 +23,20 @@ class SignUpFragmentAdapter(fragmentManager: androidx.fragment.app.FragmentManag
     override fun getItem(position: Int): Fragment{
         return when (position) {
             POSITION_ONE -> {
-                val fragment: BaseFragment = SignUpOneFragment.newInstance(profileInfo)
+                val fragment: BaseFragment = SignUpOneFragment.newInstance(signUpData)
                 registeredFragments.put(position, fragment)
                 fragment
             }
 
-//            POSITION_TWO -> {
-//                //TODO:F  change rename to SignUpTwoFragment
-//                val fragment: BaseFragment = FillProfileSecondFragment.newInstance(profileInfo)
-//
-//                registeredFragments.put(position, fragment)
-//
-//                fragment
-//            }
-
-            //TODO:F will be POSITION_THREE
             POSITION_TWO -> {
-                val fragment: BaseFragment = SignUpThreeFragment.newInstance(profileInfo)
-
+                val fragment: BaseFragment = SignUpTwoFragment.newInstance(signUpData)
                 registeredFragments.put(position, fragment)
+                fragment
+            }
 
+            POSITION_THREE -> {
+                val fragment: BaseFragment = SignUpThreeFragment.newInstance(signUpData)
+                registeredFragments.put(position, fragment)
                 fragment
             }
 

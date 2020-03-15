@@ -86,7 +86,7 @@ interface ApiService {
                            @Query("city") city: String): Call<List<Place>>
 
     @POST("auth/user/signin")
-    fun registerUser(@Body authData: AuthData): Call<AuthResponse>
+    fun registerUser(@Body signUpData: SignUpData): Call<AuthResponse>
 
     @POST("auth/user/login")
     fun loginUser(@Body authData: AuthData): Call<AuthResponse>

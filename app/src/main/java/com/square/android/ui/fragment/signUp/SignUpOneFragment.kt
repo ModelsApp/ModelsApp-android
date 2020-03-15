@@ -15,9 +15,8 @@ import com.mukesh.countrypicker.Country
 import com.mukesh.countrypicker.CountryPicker
 import com.mukesh.countrypicker.listeners.OnCountryPickerListener
 import com.square.android.R
-import com.square.android.data.pojo.ProfileInfo
+import com.square.android.data.pojo.SignUpData
 import com.square.android.extensions.content
-import com.square.android.extensions.toOrdinalString
 import com.square.android.presentation.presenter.signUp.SignUpOnePresenter
 import com.square.android.presentation.view.signUp.SignUpOneView
 import com.square.android.ui.dialogs.DatePickDialog
@@ -238,13 +237,13 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
                 }
     }
 
-    private fun getModel(): ProfileInfo {
-        return arguments?.getParcelable(EXTRA_MODEL) as ProfileInfo
+    private fun getModel(): SignUpData {
+        return arguments?.getParcelable(EXTRA_MODEL) as SignUpData
     }
 
     companion object {
         @Suppress("DEPRECATION")
-        fun newInstance(info: ProfileInfo): SignUpOneFragment {
+        fun newInstance(info: SignUpData): SignUpOneFragment {
             val fragment = SignUpOneFragment()
 
             val args = bundleOf(EXTRA_MODEL to info)
@@ -255,7 +254,7 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
     }
 
         // Old code for restoring/saving data
-    override fun showData(profileInfo: ProfileInfo) {
+    override fun showData(signUpData: SignUpData) {
 //        form.formDialPhoneNumber.setText(profileInfo.phoneN)
 //
 //        if(!TextUtils.isEmpty(profileInfo.phoneC)){

@@ -370,9 +370,9 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
-    override fun registerUser(authData: AuthData): Deferred<AuthResponse> = GlobalScope.async {
+    override fun registerUser(signUpData: SignUpData): Deferred<AuthResponse> = GlobalScope.async {
         val data = performRequest {
-            api.registerUser(authData)
+            api.registerUser(signUpData)
         }
 
         if (data.token.isNullOrEmpty()) {

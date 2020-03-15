@@ -55,7 +55,7 @@ interface Repository {
     fun isProfileFilled(): Boolean
     fun setProfileFilled(isFilled: Boolean)
 
-    fun registerUser(authData: AuthData): Deferred<AuthResponse>
+    fun registerUser(signUpData: SignUpData): Deferred<AuthResponse>
     fun loginUser(authData: AuthData): Deferred<AuthResponse>
 
     fun resetPassword(authData: AuthData): Deferred<MessageResponse>

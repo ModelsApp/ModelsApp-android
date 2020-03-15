@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.square.android.data.pojo.ProfileInfo
 import com.square.android.presentation.presenter.signUp.SignUpThreePresenter
 import com.square.android.presentation.view.signUp.SignUpThreeView
 import com.square.android.ui.fragment.BaseFragment
@@ -27,6 +26,7 @@ import android.os.Looper
 import com.squareup.picasso.Target
 import java.lang.Exception
 import com.square.android.R
+import com.square.android.data.pojo.SignUpData
 import com.square.android.extensions.convertToByteArray
 
 private const val EXTRA_MODEL_THIRD = "EXTRA_MODEL"
@@ -132,11 +132,11 @@ class SignUpThreeFragment: BaseFragment(), SignUpThreeView {
         } }
     }
 
-    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_THIRD) as ProfileInfo
+    private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_THIRD) as SignUpData
 
     companion object {
         @Suppress("DEPRECATION")
-        fun newInstance(info: ProfileInfo): SignUpThreeFragment {
+        fun newInstance(info: SignUpData): SignUpThreeFragment {
             val fragment = SignUpThreeFragment()
 
             val args = bundleOf(EXTRA_MODEL_THIRD to info)
