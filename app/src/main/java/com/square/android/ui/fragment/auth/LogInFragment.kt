@@ -13,6 +13,7 @@ import com.square.android.data.pojo.AuthData
 import com.square.android.extensions.content
 import com.square.android.extensions.hideKeyboard
 import com.square.android.presentation.presenter.auth.LogInPresenter
+import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.view.auth.LogInView
 import com.square.android.ui.activity.start.FacebookLogInEvent
 import com.square.android.ui.activity.start.StartActivity
@@ -68,8 +69,8 @@ class LogInFragment: BaseFragment(), LogInView {
 
         btnLogin.setOnClickListener {
             activity?.hideKeyboard()
-            val authData = AuthData(et_email.content, et_password.content, "")
-            presenter.loginClicked(authData)
+            val loginData = LoginData(et_email.content, et_password.content)
+            presenter.loginClicked(loginData)
         }
 
         forgotTv.setOnClickListener {

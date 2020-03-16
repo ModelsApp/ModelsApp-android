@@ -46,6 +46,27 @@
 
     <string name="accept">Accept</string>
 
+    <string name="profession_1">Video creator</string>
+    <string name="profession_2">Music creator</string>
+    <string name="profession_3">Other</string>
+
+    <string name="speciality_1">Beauty</string>
+    <string name="speciality_2">Diy</string>
+    <string name="speciality_3">Entertainment</string>
+    <string name="speciality_4">Family</string>
+    <string name="speciality_5">Fashion</string>
+    <string name="speciality_6">Fitness</string>
+
+    <string name="capability_1">Capability 1</string>
+    <string name="capability_2">Capability 2</string>
+    <string name="capability_3">Capability 3</string>
+
+    <string name="preferences_1">Preferences 1</string>
+    <string name="preferences_2">Preferences 2</string>
+    <string name="preferences_3">Preferences 3</string>
+
+    <string name="selected_format">%d selected</string>
+
     <string name="add_cover_image">Add cover image</string>
     <string name="edit_cover_image">Edit cover image</string>
 
@@ -61,6 +82,9 @@
     <string name="email_error">Enter your email</string>
     <string name="password_error">Enter your password</string>
     <string name="referral_error">Enter valid or delete referral code</string>
+
+    <string name="representation_error">Enter valid or uncheck representation</string>
+    <string name="vat_number_error">Enter valid or uncheck vat number</string>
 
     <string name="app_not_installed">This application is not installed on your device</string>
 
@@ -235,6 +259,7 @@
     <string name="connect_social_media">Connect your social media channels</string>
     <string name="follow_us_instagram">Follow us on Instagram</string>
     <string name="we_will_review">We will review your application\nand notify you if accepted</string>
+    <string name="representation">Representation</string>
 
     <string name="location_permissions">Location permissions</string>
     <string name="permission_dialog_text">We need location permissions to show places near to you. Do you want to allow Square to access your device\'s location?</string>

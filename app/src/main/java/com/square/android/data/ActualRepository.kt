@@ -11,6 +11,7 @@ import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.ERRORS
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.pojo.*
+import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
 import com.square.android.presentation.presenter.explore.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
@@ -382,9 +383,9 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
-    override fun loginUser(authData: AuthData): Deferred<AuthResponse> = GlobalScope.async {
+    override fun loginUser(loginData: LoginData): Deferred<AuthResponse> = GlobalScope.async {
         val data = performRequest {
-            api.loginUser(authData)
+            api.loginUser(loginData)
         }
 
         if (data.token.isNullOrEmpty()) {

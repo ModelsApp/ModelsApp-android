@@ -6,5 +6,6 @@ import com.squareup.moshi.JsonClass
 data class AuthData(
         val email: String,
         val password: String,
-        val confirmPassword: String
+
+        var confirmPassword: String = ""
 )
