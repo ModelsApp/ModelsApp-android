@@ -144,6 +144,8 @@ class StartActivity : BaseActivity(), StartView {
                 when (screenKey) {
                     SCREENS.MAIN -> context.intentFor<MainActivity>()
 
+                    SCREENS.SIGN_UP_REQUIREMENTS -> context.intentFor<SignUpRequirementsActivity>()
+
                     else -> null
                 }
 
@@ -154,6 +156,8 @@ class StartActivity : BaseActivity(), StartView {
                     SCREENS.AUTH -> AuthFragment()
                     SCREENS.LOGIN -> LogInFragment()
                     SCREENS.RESET_PASSWORD -> ResetPasswordFragment()
+                    SCREENS.SIGN_UP -> SignUpMainFragment()
+
                     SCREENS.SIGN_UP -> SignUpMainFragment()
 
                     else -> throw IllegalArgumentException("Unknown screen key: $screenKey")

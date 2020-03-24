@@ -46,7 +46,10 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
 
         loadingDialog = LoadingDialog(activity!!)
 
-        eventBus.register(this)
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
+
 
         setupFragmentAdapter()
 

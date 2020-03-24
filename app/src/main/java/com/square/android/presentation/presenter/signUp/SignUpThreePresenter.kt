@@ -1,9 +1,7 @@
 package com.square.android.presentation.presenter.signUp
 
-import android.net.Uri
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.SCREENS
-import com.square.android.data.pojo.ProfileInfo
 import com.square.android.data.pojo.SignUpData
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.signUp.SignUpThreeView
@@ -17,4 +15,8 @@ class SignUpThreePresenter(val info: SignUpData) : BasePresenter<SignUpThreeView
 //        info.images = photos
 //        router.navigateTo(SCREENS.FILL_PROFILE_REFERRAL, info)
 //    }
+
+    fun navigateToRequirements(){
+        router.navigateTo(SCREENS.SIGN_UP_REQUIREMENTS)
+    }
 }

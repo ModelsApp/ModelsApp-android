@@ -117,7 +117,9 @@ class SignUpThreeFragment: BaseFragment(), SignUpThreeView {
 
         loadingDialog = LoadingDialog(activity!!)
 
-        eventBus.register(this)
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
 
         fbContainer.setOnClickListener { if(!fbAdded) (activity as StartActivity).logInRegister()}
 
@@ -130,6 +132,8 @@ class SignUpThreeFragment: BaseFragment(), SignUpThreeView {
             instagramAdded = true
             checkAndEnableBtn()
         } }
+
+        requirementsTv.setOnClickListener { presenter.navigateToRequirements() }
     }
 
     private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_THIRD) as SignUpData

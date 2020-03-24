@@ -12,6 +12,7 @@ object SCREENS {
     const val LOGIN = "LOGIN"
     const val RESET_PASSWORD = "RESET_PASSWORD"
     const val SIGN_UP = "SIGN_UP"
+    const val SIGN_UP_REQUIREMENTS = "SIGN_UP_REQUIREMENTS"
 
     const val EXPLORE = "EXPLORE"
     const val PROFILE = "PROFILE"
