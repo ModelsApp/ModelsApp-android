@@ -53,7 +53,7 @@ class SignUpThreeFragment: BaseFragment(), SignUpThreeView {
 
     private val eventBus: EventBus by inject()
 
-    private var instagramDialog: AddInstagramDialog? = null
+    private var socialDialog: AddSocialDialog? = null
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onRegisterFacebookEvent(event: RegisterFacebookEvent) {
@@ -123,17 +123,92 @@ class SignUpThreeFragment: BaseFragment(), SignUpThreeView {
 
         fbContainer.setOnClickListener { if(!fbAdded) (activity as StartActivity).logInRegister()}
 
-        instagramDialog = AddInstagramDialog(activity!!)
+        socialDialog = AddSocialDialog(activity!!)
 
-        instagramContainer.setOnClickListener { instagramDialog?.show(instagramTv.text.toString()) {
-            instagramTv.text = "@$it"
-            instagramTv.visibility = View.VISIBLE
-            instagramIc.setImageDrawable(fbIc.context.getDrawable(R.drawable.checkmark))
-            instagramAdded = true
-            checkAndEnableBtn()
-        } }
+        setupClicks()
 
         requirementsTv.setOnClickListener { presenter.navigateToRequirements() }
+    }
+
+    private fun setupClicks(){
+        instagramContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Instagram, instagramTv.text.toString()) {
+                instagramTv.text = "@$it"
+                instagramTv.visibility = View.VISIBLE
+                instagramIc.setImageDrawable(instagramIc.context.getDrawable(R.drawable.checkmark))
+                instagramAdded = true
+                checkAndEnableBtn()
+            } }
+
+        googleContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Google, googleTv.text.toString()) {
+                googleTv.text = "@$it"
+                googleTv.visibility = View.VISIBLE
+                googleIc.setImageDrawable(googleIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        vkContainer.setOnClickListener {
+            socialDialog?.show(SocialType.VK, vkTv.text.toString()) {
+                vkTv.text = "@$it"
+                vkTv.visibility = View.VISIBLE
+                vkIc.setImageDrawable(vkIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        tiktokContainer.setOnClickListener {
+            socialDialog?.show(SocialType.TikTok, tiktokTv.text.toString()) {
+                tiktokTv.text = "@$it"
+                tiktokTv.visibility = View.VISIBLE
+                tiktokIc.setImageDrawable(tiktokIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        pinterestContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Pinterest, pinterestTv.text.toString()) {
+                pinterestTv.text = "@$it"
+                pinterestTv.visibility = View.VISIBLE
+                pinterestIc.setImageDrawable(pinterestIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        yelpContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Yelp, yelpTv.text.toString()) {
+                yelpTv.text = "@$it"
+                yelpTv.visibility = View.VISIBLE
+                yelpIc.setImageDrawable(yelpIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        youtubeContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Youtube, youtubeTv.text.toString()) {
+                youtubeTv.text = "@$it"
+                youtubeTv.visibility = View.VISIBLE
+                youtubeIc.setImageDrawable(youtubeIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        snapchatContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Snapchat, snapchatTv.text.toString()) {
+                snapchatTv.text = "@$it"
+                snapchatTv.visibility = View.VISIBLE
+                snapchatIc.setImageDrawable(snapchatIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        bloggerContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Blogger, bloggerTv.text.toString()) {
+                bloggerTv.text = "@$it"
+                bloggerTv.visibility = View.VISIBLE
+                bloggerIc.setImageDrawable(bloggerIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        tripAdvisorContainer.setOnClickListener {
+            socialDialog?.show(SocialType.TripAdvisor, tripAdvisorTv.text.toString()) {
+                tripAdvisorTv.text = "@$it"
+                tripAdvisorTv.visibility = View.VISIBLE
+                tripAdvisorIc.setImageDrawable(tripAdvisorIc.context.getDrawable(R.drawable.checkmark))
+            } }
+
+        modelscomContainer.setOnClickListener {
+            socialDialog?.show(SocialType.Modelscom, modelscomTv.text.toString()) {
+                modelscomTv.text = "@$it"
+                modelscomTv.visibility = View.VISIBLE
+                modelscomIc.setImageDrawable(modelscomIc.context.getDrawable(R.drawable.checkmark))
+            } }
     }
 
     private fun getModel() = arguments?.getParcelable(EXTRA_MODEL_THIRD) as SignUpData

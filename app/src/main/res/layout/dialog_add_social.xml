@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="false"
-    android:background="@android:color/white" >
+    android:background="@android:color/white">
 
     <LinearLayout
         android:orientation="vertical"
@@ -28,19 +28,21 @@
             android:tint="@color/text_gray" />
 
         <ImageView
+            android:id="@+id/icon"
             android:layout_width="@dimen/v_40dp"
             android:layout_height="@dimen/v_40dp"
-            android:src="@drawable/instagram_logo"
+            tools:src="@drawable/instagram_logo"
             android:layout_gravity="center_horizontal" />
 
         <TextView
+            android:id="@+id/label"
             style="@style/Models16SemiBoldText"
             android:textSize="@dimen/text_16"
             android:layout_marginTop="@dimen/v_16dp"
             android:layout_marginEnd="@dimen/v_4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_your_instagram_account"
+            tools:text="Add your Instagram account"
             android:gravity="center_horizontal" />
 
         <RelativeLayout

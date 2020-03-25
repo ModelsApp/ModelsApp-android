@@ -216,7 +216,7 @@
     <string name="mandatory_fields">These fields are mandatory</string>
 
     <string name="enter_account_name">Enter your account name</string>
-    <string name="add_your_instagram_account">Add your Instagram account</string>
+    <string name="add_social_format">Add your %s account</string>
 
     <string name="birthday_format">%s of %s</string>
     <string name="birthday_display_format">%s.%s.%s</string>
@@ -274,7 +274,7 @@
     <string name="i_have_a_representation">I have a representation</string>
     <string name="vat_number">Vat number</string>
     <string name="enter_vat_number">Enter vat number</string>
-    <string name="connect_social_media">Connect your social media channels</string>
+    <string name="connect_social_media">Connect 2 or more social media channels</string>
     <string name="follow_us_instagram">Follow us on Instagram</string>
     <string name="we_will_review">We will review your application\nand notify you if accepted</string>
     <string name="representation">Representation</string>
