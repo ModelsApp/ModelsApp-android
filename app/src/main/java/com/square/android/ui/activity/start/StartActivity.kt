@@ -143,8 +143,8 @@ class StartActivity : BaseActivity(), StartView {
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?) =
                 when (screenKey) {
                     SCREENS.MAIN -> context.intentFor<MainActivity>()
-
                     SCREENS.SIGN_UP_REQUIREMENTS -> context.intentFor<SignUpRequirementsActivity>()
+                    SCREENS.SIGN_UP_VERIFY_PHONE -> context.intentFor<SignUpVerifyPhoneActivity>(EXTRA_PHONE_NUMBER to data as String)
 
                     else -> null
                 }
@@ -156,8 +156,6 @@ class StartActivity : BaseActivity(), StartView {
                     SCREENS.AUTH -> AuthFragment()
                     SCREENS.LOGIN -> LogInFragment()
                     SCREENS.RESET_PASSWORD -> ResetPasswordFragment()
-                    SCREENS.SIGN_UP -> SignUpMainFragment()
-
                     SCREENS.SIGN_UP -> SignUpMainFragment()
 
                     else -> throw IllegalArgumentException("Unknown screen key: $screenKey")

@@ -2,7 +2,6 @@ package com.square.android.ui.fragment.signUp
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
@@ -17,6 +16,7 @@ import com.mukesh.countrypicker.listeners.OnCountryPickerListener
 import com.square.android.R
 import com.square.android.data.pojo.SignUpData
 import com.square.android.extensions.content
+import com.square.android.extensions.onTextChanged
 import com.square.android.presentation.presenter.signUp.SignUpOnePresenter
 import com.square.android.presentation.view.signUp.SignUpOneView
 import com.square.android.ui.dialogs.DatePickDialog
@@ -26,10 +26,16 @@ import org.jetbrains.anko.bundleOf
 import java.util.*
 import com.square.android.ui.DROPDOWN_ITEM_TYPE_CHECKMARK
 import com.square.android.ui.SimpleSpinnerAdapter
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.android.ext.android.inject
 
 private const val EXTRA_MODEL = "EXTRA_MODEL"
 private const val COUNTRY_DEFAULT_ISO = "US"
 private const val REFERRAL_CODE_LENGTH = 4
+
+class PhoneVerifiedEvent()
 
 class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener  {
 
@@ -47,9 +53,18 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
 
     private var fromDial: Boolean = false
 
+    private var mobileVerified: Boolean = false
+
+    private val eventBus: EventBus by inject()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sign_up_1, container, false)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onPhoneVerifiedEvent(event: PhoneVerifiedEvent) {
+        changeMobileVerified(true)
     }
 
     override fun validate(): Boolean {
@@ -77,6 +92,13 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
             allOk = false
         } else{
             genderError.visibility = View.GONE
+        }
+
+        if(!mobileVerified){
+            etMobileNumber.setText("")
+            etMobileNumber.showCustomError(getString(R.string.phone_error_verify))
+
+            allOk = false
         }
 
         if(!isValid(etMobileNumber.content)){
@@ -148,6 +170,10 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
 
         showDefaultDialInfo()
 
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
+
         nationalityLl.setOnClickListener { spinnerNationality.callOnClick() }
         spinnerNationality.adapter = SimpleSpinnerAdapter(activity!!, DROPDOWN_ITEM_TYPE_CHECKMARK, resources.getStringArray(R.array.nationalities_array).toList())
 
@@ -156,9 +182,9 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
         genderLl.setOnClickListener { spinnerGender.callOnClick() }
         spinnerGender.adapter = SimpleSpinnerAdapter(activity!!, DROPDOWN_ITEM_TYPE_CHECKMARK, resources.getStringArray(R.array.genders).toList(), halfSize = true)
 
-        dialCodeLl.setOnClickListener {showCountryDialDialog()}
+        dialCodeLl.setOnClickListener { showCountryDialDialog() }
 
-        etMobileNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        etMobileNumber.onTextChanged { changeMobileVerified(false) }
 
         passwordIcon.setOnClickListener {
             if(passwordVisible){
@@ -181,6 +207,15 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
         termsCb.setOnCheckedChangeListener { buttonView, isChecked ->
             termsChecked = isChecked
         }
+    }
+
+    private fun changeMobileVerified(isVerified: Boolean){
+        mobileVerified = isVerified
+
+        verifyDivider.visibility = if(mobileVerified) View.GONE else View.VISIBLE
+        mobileVerifyText.visibility = if(mobileVerified) View.GONE else View.VISIBLE
+
+        verifiedIcon.visibility = if(mobileVerified) View.VISIBLE else View.GONE
     }
 
     override fun showDialInfo(country: Country) {
@@ -211,6 +246,8 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
 //            presenter.countrySelected(country)
         } else{
             presenter.countryDialSelected(country)
+
+            changeMobileVerified(false)
         }
     }
 
@@ -295,6 +332,11 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
 //        profileInfo.phoneC = dialCode.content
 //        presenter.saveState(profileInfo, 1)
         super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        eventBus.unregister(this)
     }
 
 }

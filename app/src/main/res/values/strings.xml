@@ -303,6 +303,7 @@
     <string name="claimed">Claimed</string>
     <string name="price">Price</string>
 
+    <string name="verify">Verify</string>
 
     <string name="active_campaigns">Active campaigns</string>
     <string name="completed_campaigns">Completed campaigns</string>
@@ -709,6 +710,7 @@
 
     <string name="username_error">Enter a valid username</string>
     <string name="phone_error">Enter a valid phone number</string>
+    <string name="phone_error_verify">Verify your phone number</string>
     <string name="mother_agency_error">Enter your mother agency name</string>
     <string name="current_agency_error">Enter your current agency name</string>
     <string name="agency_error">Enter agency name</string>
