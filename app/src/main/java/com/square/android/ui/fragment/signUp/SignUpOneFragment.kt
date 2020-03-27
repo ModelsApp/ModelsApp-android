@@ -202,6 +202,12 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
             }
         }
 
+        mobileVerifyText.setOnClickListener {
+            if(!TextUtils.isEmpty(etMobileNumber.text)){
+                presenter.navigateVerify(dialCode.text.toString() + " " + etMobileNumber.content)
+            }
+        }
+
         termsCbLl.setOnClickListener { termsCb.isChecked = !termsChecked }
 
         termsCb.setOnCheckedChangeListener { buttonView, isChecked ->

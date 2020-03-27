@@ -104,6 +104,8 @@
     <string name="representation_error">Enter valid or uncheck representation</string>
     <string name="vat_number_error">Enter valid or uncheck vat number</string>
 
+    <string name="invalid_security_code">Invalid security code</string>
+
     <string name="app_not_installed">This application is not installed on your device</string>
 
     <string name="upload_action_prntscr">Upload the print screen\nof the action you just done.</string>
@@ -704,6 +706,10 @@
 
     <string name="green">Green</string>
     <string name="violet">Violet</string>
+
+    <string name="enter_security_code">Enter security code</string>
+    <string name="we_sent_security_code">We sent the security code at</string>
+    <string name="send_again">Send again</string>
 
     <string name="name_error">Enter your name</string>
     <string name="last_name_error">Enter your last name</string>

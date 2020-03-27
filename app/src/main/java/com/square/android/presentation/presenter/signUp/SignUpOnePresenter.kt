@@ -2,6 +2,7 @@ package com.square.android.presentation.presenter.signUp
 
 import com.arellomobile.mvp.InjectViewState
 import com.mukesh.countrypicker.Country
+import com.square.android.SCREENS
 import com.square.android.data.pojo.SignUpData
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.signUp.SignUpOneView
@@ -39,5 +40,9 @@ class SignUpOnePresenter(val info: SignUpData) : BasePresenter<SignUpOneView>() 
 //        info.flagCode = country.flag
 
         viewState.showDialInfo(country)
+    }
+
+    fun navigateVerify(phoneNumber: String){
+        router.navigateTo(SCREENS.SIGN_UP_VERIFY_PHONE, phoneNumber)
     }
 }

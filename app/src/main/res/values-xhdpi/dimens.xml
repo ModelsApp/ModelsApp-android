@@ -181,6 +181,7 @@
     <dimen name="v_2dp">2dp</dimen>
     <dimen name="v_1_5dp">1.5dp</dimen>
     <dimen name="v_1dp">1dp</dimen>
+    <dimen name="v_05dp">0.5dp</dimen>
     <dimen name="v_minus_4dp">-4dp</dimen>
     <dimen name="v_minus_8dp">-8dp</dimen>
     <dimen name="v_minus_24dp">-24dp</dimen>

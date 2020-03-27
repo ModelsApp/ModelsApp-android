@@ -4,4 +4,8 @@ import com.square.android.presentation.view.BaseView
 import com.square.android.presentation.view.LoadingView
 
 interface SignUpVerifyPhoneView: LoadingView {
+
+    fun goBack()
+
+    fun showPinError()
 }

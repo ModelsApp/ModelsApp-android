@@ -10,11 +10,13 @@ import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.ERRORS
 import com.square.android.data.network.response.MessageResponse
+import com.square.android.data.network.response.PhoneCodeResponse
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
 import com.square.android.presentation.presenter.explore.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
+import com.square.android.ui.fragment.signUp.ConfirmPhoneCodeData
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -42,6 +44,11 @@ class ActualRepository(private val api: ApiService,
 
     override fun saveFcmToken(fcmToken: String?) = localManager.saveFcmToken(fcmToken)
     override fun getFcmToken() = localManager.getFcmToken()
+
+    override fun verifyPhoneCode(code: String, phone: String): Deferred<PhoneCodeResponse> = GlobalScope.async {
+        val data = performRequest {api.verifyPhoneCode(ConfirmPhoneCodeData(code, phone))}
+        data
+    }
 
     override fun sendFcmToken(uuid: String, newFcmToken: String?, oldToken: String?): Deferred<MessageResponse> =  GlobalScope.async {
         val data = performRequest {api.sendFcmToken(localManager.getUserInfo().id,

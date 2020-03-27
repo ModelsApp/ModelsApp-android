@@ -117,6 +117,13 @@ dependencies {
         exclude module: 'okhttp'
     }
 
+    // PinView
+    implementation ('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
+        // Exclude is only needed if you already have
+        // androidx.appcompat as a dependency in your app.
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
+
     // Facebook SDK
     implementation 'com.facebook.android:facebook-login:[5,6)'
 
