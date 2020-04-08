@@ -13,9 +13,13 @@ class Place(
         var id: Long = 0,
         var mainImage: String? = null,
         var address: String = "",
-        var type: List<String> = listOf(),
+        //TODO:A
+//        var type: List<String> = listOf(),
+        var type: String = "",
         var name: String = "",
-        var location: Location = Location(),
+        //TODO:A
+//        var location: Location = Location(),
+        var location: List<Double> = listOf(),
         var access: String = "",
         var icons: Icons? = null,
         var freeSpots: Int = 0,

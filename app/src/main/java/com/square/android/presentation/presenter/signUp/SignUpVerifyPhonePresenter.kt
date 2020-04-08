@@ -1,5 +1,6 @@
 package com.square.android.presentation.presenter.signUp
 
+import android.text.TextUtils
 import com.arellomobile.mvp.InjectViewState
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.signUp.SignUpVerifyPhoneView
@@ -12,23 +13,23 @@ class SignUpVerifyPhonePresenter(val phoneNumber: String): BasePresenter<SignUpV
 
     private val eventBus: EventBus by inject()
 
+    private var confirmCode: String? = null
+
     fun sendCodeSms() = launch {
-        //TODO API request to send code via sms
+        confirmCode = null
+
+        val response = repository.sendPhoneCode(phoneNumber).await()
+
+        confirmCode = response.confirmCode
     }
 
-    fun sendCodeToVerify(code: String) = launch {
-        viewState.showLoadingDialog()
-
-        val response = repository.verifyPhoneCode(code, phoneNumber).await()
-
-        if(response.accepted!!){
+    fun verifyCode(code: String) = launch {
+        if(!TextUtils.isEmpty(confirmCode) && code == confirmCode){
             eventBus.post(PhoneVerifiedEvent())
             viewState.goBack()
         } else{
             viewState.showPinError()
         }
-
-        viewState.hideLoadingDialog()
     }
 
 }

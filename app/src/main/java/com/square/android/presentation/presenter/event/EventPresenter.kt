@@ -6,6 +6,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.Event
 import com.square.android.data.pojo.Place
+import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.event.EventView
 import com.square.android.ui.activity.event.EventExtras
@@ -67,7 +68,9 @@ class EventPresenter(val eventId: String) : BasePresenter<EventView>() {
         viewState.showData(place!!)
 
         address = place!!.address
-        latLng = place!!.location.latLng()
+        //TODO:A
+//        latLng = place!!.location.latLng()
+        latLng = place!!.location.toLatLng()
 
         router.replaceScreen(SCREENS.EVENT_DETAILS, EventExtras(event!!, place!!))
 

@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.pojo.BookInfo
 import com.square.android.data.pojo.Place
+import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.aboutPlace.AboutLoadedEvent
 import com.square.android.presentation.presenter.aboutPlace.DistanceUpdatedEvent
@@ -105,7 +106,9 @@ class PlaceDetailPresenter(private val placeId: Long) : BasePresenter<PlaceDetai
     }
 
     private fun updateLocationInfo() {
-        val placePoint = data!!.location.latLng()
+        //TODO:A
+//        val placePoint = data!!.location.latLng()
+        val placePoint = data!!.location.toLatLng()
 
         val distance = placePoint.distanceTo(locationPoint!!).toInt()
 

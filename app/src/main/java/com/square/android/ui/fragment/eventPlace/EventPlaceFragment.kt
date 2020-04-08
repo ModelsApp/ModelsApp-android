@@ -10,6 +10,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
 import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.Place
+import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.eventPlace.EventPlacePresenter
 import com.square.android.presentation.view.eventPlace.EventPlaceView
 import com.square.android.ui.activity.event.EXTRA_EVENT_PLACE
@@ -67,7 +68,10 @@ class EventPlaceFragment: BaseFragment(), EventPlaceView {
     }
 
     override fun showData(place: Place, offers: List<OfferInfo>) {
-        (activity as EventActivity).showPlaceData(place.name, place.mainImage ?: (place.photos?.firstOrNull() ?: ""),place.address, place.location.latLng())
+        //TODO:A
+//        (activity as EventActivity).showPlaceData(place.name, place.mainImage ?: (place.photos?.firstOrNull() ?: ""),place.address, place.location.latLng())
+        (activity as EventActivity).showPlaceData(place.name, place.mainImage ?: (place.photos?.firstOrNull() ?: ""),place.address, place.location.toLatLng())
+
         (activity as EventActivity).setIsPlaceFragment(true)
 
         if(!offers.isNullOrEmpty()){

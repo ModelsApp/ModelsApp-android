@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.pojo.*
 import com.square.android.extensions.getStringDate
+import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.agenda.RedemptionsUpdatedEvent
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
@@ -166,7 +167,9 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
     }
 
     private fun updateLocationInfo() {
-        val placePoint = data!!.location.latLng()
+        //TODO:A
+//        val placePoint = data!!.location.latLng()
+        val placePoint = data!!.location.toLatLng()
 
         val distance = placePoint.distanceTo(locationPoint!!).toInt()
 

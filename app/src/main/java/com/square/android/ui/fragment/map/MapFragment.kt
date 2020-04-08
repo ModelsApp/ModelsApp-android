@@ -28,6 +28,7 @@ import com.square.android.ui.fragment.explore.placesList.PlaceExtrasAdapter
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.bottom_view_map.view.*
 import com.square.android.R
+import com.square.android.extensions.toLatLng
 import com.square.android.ui.activity.main.MainActivity
 import com.square.android.ui.activity.main.MainFabClickedEvent
 import kotlinx.android.synthetic.main.activity_main.*
@@ -49,7 +50,6 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
     var alreadyLocated = false
 
     private var previousMarker : Marker? = null
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initialized = presenter.initialized
@@ -82,18 +82,22 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
     //        at com.google.android.gles_jni.EGLImpl.eglCreateWindowSurface(EGLImpl.java:97)
     //        at com.mapbox.mapboxsdk.maps.renderer.textureview.TextureViewRenderThread$EGLHolder.createSurface(TextureViewRenderThread.java:391)
     //        at com.mapbox.mapboxsdk.maps.renderer.textureview.TextureViewRenderThread.run(TextureViewRenderThread.java:253)
+    //
+    // Solved in mapbox version 9.1.0
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMainFabClickedEvent(event: MainFabClickedEvent) {
-        (activity as MainActivity).mainFab.hide()
-        (activity as MainActivity).mainFab.show()
+        activity?.let {
+            (activity as MainActivity).mainFab.hide()
+            (activity as MainActivity).mainFab.show()
 
-        (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
-        (activity as MainActivity).navFab.hide()
+            (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
+            (activity as MainActivity).navFab.hide()
 
-        (activity as MainActivity).hideMapBottomView()
+            (activity as MainActivity).hideMapBottomView()
 
-        presenter.backToExplore()
+            presenter.backToExplore()
+        }
     }
 
     override fun mapReady() {
@@ -130,7 +134,9 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 
     override fun showPlaces(data: List<Place>) {
         val markerOptions = data.map { place ->
-            val latLng = place.location.latLng()
+            //TODO:A
+//            val latLng = place.location.latLng()
+            val latLng = place.location.toLatLng()
 
             val key = place.id.toString()
 
@@ -148,7 +154,9 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
         mapboxMap?.clear()
 
         val markerOptions = data.map { place ->
-            val latLng = place.location.latLng()
+            //TODO:A
+//            val latLng = place.location.latLng()
+            val latLng = place.location.toLatLng()
 
             val key = place.id.toString()
 

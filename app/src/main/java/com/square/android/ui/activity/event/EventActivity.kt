@@ -28,6 +28,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.androidx.navigator.AppNavigator
 import com.square.android.data.pojo.Event
+import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.event.EventPresenter
 import com.square.android.presentation.view.event.EventView
 import com.square.android.ui.fragment.eventDetails.EventDetailsFragment
@@ -270,7 +271,9 @@ class EventActivity: LocationActivity(), EventView {
 
     //TODO fire when user navigates back to eventDetailsFragment(by himself or by clicking Select button)
     fun backToEvent(){
-        presenter.updateLocationAndAddress(presenter.place?.location?.latLng(), presenter.place?.address )
+        //TODO:A
+//        presenter.updateLocationAndAddress(presenter.place?.location?.latLng(), presenter.place?.address )
+        presenter.updateLocationAndAddress(presenter.place?.location?.toLatLng(), presenter.place?.address )
 
         eventMainImage.loadImage(presenter.place?.mainImage ?: (presenter.place?.photos?.firstOrNull() ?: ""))
 

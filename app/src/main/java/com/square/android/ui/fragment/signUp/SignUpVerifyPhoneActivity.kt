@@ -17,15 +17,8 @@ import ru.terrakok.cicerone.Navigator
 import android.os.CountDownTimer
 import com.square.android.R
 import com.square.android.extensions.clearText
-import com.squareup.moshi.JsonClass
 
 const val EXTRA_PHONE_NUMBER = "EXTRA_PHONE_NUMBER"
-
-@JsonClass(generateAdapter = true)
-data class ConfirmPhoneCodeData(
-        val confirmCode: String,
-        val phone: String
-)
 
 class SignUpVerifyPhoneActivity: BaseActivity(), SignUpVerifyPhoneView{
 
@@ -33,8 +26,6 @@ class SignUpVerifyPhoneActivity: BaseActivity(), SignUpVerifyPhoneView{
 
     @InjectPresenter
     lateinit var presenter: SignUpVerifyPhonePresenter
-
-    private var loadingDialog: LoadingDialog? = null
 
     var time: Int = 25
 
@@ -48,16 +39,13 @@ class SignUpVerifyPhoneActivity: BaseActivity(), SignUpVerifyPhoneView{
 
         setContentView(R.layout.activity_sign_up_verify_phone)
 
-        loadingDialog = LoadingDialog(this)
-
         presenter.sendCodeSms()
 
         phoneNumberTv.text = presenter.phoneNumber
 
         txt_pin_entry.setOnPinEnteredListener {
             hideKeyboard()
-
-            presenter.sendCodeToVerify(it.toString())
+            presenter.verifyCode(it.toString())
         }
 
         txt_pin_entry.onTextChanged {
@@ -93,21 +81,9 @@ class SignUpVerifyPhoneActivity: BaseActivity(), SignUpVerifyPhoneView{
         }.start()
     }
 
-    override fun showLoadingDialog() {
-        loadingDialog?.show()
-    }
-
-    override fun hideLoadingDialog() {
-        loadingDialog?.dismiss()
-    }
-
     override fun goBack() { onBackPressed() }
 
     override fun showPinError() {
         codeError.visibility = View.VISIBLE
     }
-
-    override fun showProgress() { }
-
-    override fun hideProgress() { }
 }

@@ -3,13 +3,12 @@ package com.square.android.data
 import android.util.SparseArray
 import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.AuthResponse
+import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
-import com.square.android.data.network.response.PhoneCodeResponse
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
-import com.square.android.ui.fragment.signUp.ConfirmPhoneCodeData
 import kotlinx.coroutines.Deferred
 
 interface Repository {
@@ -30,7 +29,7 @@ interface Repository {
 
 //    fun bookEvent(bookEventData: BookEventData): Deferred<MessageResponse>
 
-    fun verifyPhoneCode(code: String, phone: String): Deferred<PhoneCodeResponse>
+    fun sendPhoneCode(phone: String): Deferred<SendPhoneCodeRespose>
 
     fun getUserEventBookings(eventBookingId: String?): Deferred<List<BookEventData.EventBooking>>
 

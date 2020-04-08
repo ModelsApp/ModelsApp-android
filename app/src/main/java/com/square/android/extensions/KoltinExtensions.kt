@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.App
 import com.square.android.R
 import java.text.SimpleDateFormat
@@ -106,3 +107,10 @@ fun Calendar.getStringDate(): String {
     return FORMAT.format(time)
 }
 
+fun List<Double>.toLatLng(): LatLng{
+    return if(this.size == 2){
+        LatLng(this[0], this[1])
+    } else{
+        LatLng(0.0, 0.0)
+    }
+}

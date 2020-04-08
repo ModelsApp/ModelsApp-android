@@ -61,7 +61,9 @@ class EventDetailsPresenter(var event: Event, var place: Place) : BasePresenter<
 
             val placeTypes: List<PlaceType> = repository.getPlaceTypes().await()
 
-            val typeImage: String? = placeTypes.firstOrNull{it.type == place.type[0]}?.image
+            //TODO:A
+//            val typeImage: String? = placeTypes.firstOrNull{it.type == place.type[0]}?.image
+            val typeImage: String? = placeTypes.firstOrNull{it.type == place.type}?.image
 
             viewState.showData(event, place, calendar, typeImage, places)
         }
