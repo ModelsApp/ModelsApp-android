@@ -1,41 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:clipChildren="false"
+    android:background="@color/greyish_app_bg"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/calendarLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/v_16dp"
+        android:layout_marginStart="@dimen/v_8dp"
+        android:layout_marginEnd="@dimen/v_8dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/daysLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/itemCalendarValue"
+            app:layout_constraintBottom_toBottomOf="parent" >
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="M" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="T" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="W" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="T" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="F" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="S" />
+
+            <TextView
+                style="@style/Models16Text"
+                android:paddingStart="@dimen/v_8dp"
+                android:paddingEnd="@dimen/v_8dp"
+                android:textSize="@dimen/text_15"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_day_selector"
+                android:textColor="@color/text_gray"
+                android:gravity="center_horizontal"
+                android:text="S" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_calendar"
+            tools:listitem="@layout/item_calendar"
+            android:layout_marginTop="@dimen/v_8dp"
+            android:layout_marginBottom="@dimen/v_12dp"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:spanCount="7"
+            tools:itemCount="35"
+            android:requiresFadingEdge="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/divider"
+            android:layout_marginStart="@dimen/v_minus_8dp"
+            android:layout_marginEnd="@dimen/v_minus_8dp"
+            android:layout_height="@dimen/v_1dp"/>
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarList"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="@dimen/v_12dp"
-        android:paddingStart="@dimen/v_24dp"
-        android:paddingEnd="@dimen/v_24dp"
-        android:paddingBottom="@dimen/v_16dp"
+        android:layout_weight="1"
+        android:padding="@dimen/v_24dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
         android:visibility="invisible"
         tools:visibility="visible"
+        android:background="@android:color/white"
         tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendarLl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/card_place" />
 
-    <ProgressBar
-        android:id="@+id/calendarProgress"
-        android:layout_width="@dimen/v_48dp"
-        android:layout_height="@dimen/v_48dp"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/placesPrimary"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

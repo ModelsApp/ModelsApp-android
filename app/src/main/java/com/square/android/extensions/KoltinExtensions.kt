@@ -107,6 +107,17 @@ fun Calendar.getStringDate(): String {
     return FORMAT.format(time)
 }
 
+fun Calendar.toDate(): Date{
+    return Date(this.timeInMillis)
+}
+
+fun Date.getDayString(): String{
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this.time
+
+    return calendar.get(Calendar.DAY_OF_MONTH).toString()
+}
+
 fun List<Double>.toLatLng(): LatLng{
     return if(this.size == 2){
         LatLng(this[0], this[1])

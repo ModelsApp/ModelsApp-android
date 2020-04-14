@@ -185,6 +185,7 @@
     <dimen name="v_minus_4dp">-4dp</dimen>
     <dimen name="v_minus_8dp">-8dp</dimen>
     <dimen name="v_minus_24dp">-24dp</dimen>
+    <dimen name="v_minus_48dp">-48dp</dimen>
 
     <dimen name="rb_scale_24dp">1.15</dimen>
     <dimen name="rb_scale_padding_20dp">20dp</dimen>

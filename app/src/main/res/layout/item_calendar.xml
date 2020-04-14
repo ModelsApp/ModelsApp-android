@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemCalendarContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/itemCalendarValue"
+        style="@style/Models15Text"
+        android:textSize="@dimen/text_15"
+        android:layout_gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/v_8dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/item_calendar_selector"
+        android:gravity="center"
+        android:checked="false"
+        android:includeFontPadding="false"
+        android:textAlignment="gravity"
+        android:textColor="@color/calendar_item_text_color"
+        tools:text="52"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/itemCalendarIconsLl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_8dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/itemCalendarValue"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
