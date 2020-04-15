@@ -52,10 +52,10 @@ class ScheduleFragment: BaseFragment(), ScheduleView, ScheduleAdapter.Handler {
     }
 
 
-    //TODO header are wrong - all items are grouped as PAST
-    //TODO in KotlinExtensions -> Calendar.relativeTimeString
+    //TODO: headers are wrong - all items are grouped as PAST
+    //TODO: in KotlinExtensions -> Calendar.relativeTimeString
 
-    //TODO item clicks from adapter
+    //TODO: item clicks from adapter
 
 
     override fun cancelCampaignClicked(id: Long) {

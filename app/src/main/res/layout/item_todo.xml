@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/todoContainer"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <LinearLayout
+        android:id="@+id/todoLl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/v_24dp"
+        android:layout_marginEnd="@dimen/v_8dp"
+        android:layout_marginBottom="@dimen/v_16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/todoMoreIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/todoBottomDivider" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/todoStatusCircle"
+                android:layout_width="@dimen/v_8dp"
+                android:layout_height="@dimen/v_8dp"
+                android:src="@drawable/circle_white"
+                tools:tint="@color/status_green" />
+            <TextView
+                android:id="@+id/todoTitle"
+                style="@style/Models16SemiBoldText"
+                android:textSize="@dimen/text_16"
+                tools:text="La Perla d'Oro"
+                android:layout_marginStart="@dimen/v_8dp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/v_6dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/Models14Text"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_gray"
+                android:text="@string/tasks_in_progress_"
+                android:layout_marginStart="@dimen/v_16dp"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/inProgressValue"
+                style="@style/Models14Text"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_gray"
+                tools:text="6"
+                android:layout_marginStart="@dimen/v_4dp"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/v_6dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/Models14Text"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_gray"
+                android:text="@string/deadline_"
+                android:layout_marginStart="@dimen/v_16dp"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/deadlineValue"
+                style="@style/Models14Text"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_gray"
+                tools:text="Dec 20th"
+                android:layout_marginStart="@dimen/v_4dp"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+<!--  TODO progress bar with %  -->
+    <ImageView
+        android:id="@+id/todoMoreIcon"
+        android:layout_width="@dimen/v_30dp"
+        android:layout_height="@dimen/v_30dp"
+        android:src="@drawable/more_vertical"
+        android:layout_marginEnd="@dimen/v_4dp"
+        android:tint="@color/text_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/todoLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/todoLl" />
+
+    <View
+        android:id="@+id/todoBottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:layout_marginBottom="@dimen/v_16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/todoLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/gray_divider" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

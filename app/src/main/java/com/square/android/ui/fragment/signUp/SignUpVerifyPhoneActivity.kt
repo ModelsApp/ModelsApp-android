@@ -10,7 +10,6 @@ import com.square.android.presentation.presenter.signUp.SignUpVerifyPhonePresent
 import com.square.android.presentation.view.signUp.SignUpVerifyPhoneView
 import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.base.SimpleNavigator
-import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.utils.ActivityUtils
 import kotlinx.android.synthetic.main.activity_sign_up_verify_phone.*
 import ru.terrakok.cicerone.Navigator

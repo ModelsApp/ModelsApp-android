@@ -162,6 +162,11 @@
     <string name="fb_story_avoid_1">Don\'t remove the story before it expires</string>
     <string name="fb_story_avoid_2">Don\'t repost a story of a friend, covering the tags with other content</string>
 
+    <string name="tasks_in_progress_">Tasks in progress:</string>
+    <string name="deadline_">Deadline:</string>
+
+    <string name="to_do">To do</string>
+
     <string name="photo_remember_1">Be creative</string>
     <string name="photo_remember_2">Create a high quality content</string>
 
