@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:clipChildren="false"
-    android:background="@color/greyish_app_bg"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
@@ -12,15 +12,16 @@
         android:id="@+id/calendarLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/v_16dp"
-        android:layout_marginStart="@dimen/v_8dp"
-        android:layout_marginEnd="@dimen/v_8dp"
+        android:paddingTop="@dimen/v_16dp"
+        android:background="@color/greyish_app_bg"
         android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/daysLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/v_6dp"
+            android:layout_marginEnd="@dimen/v_6dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal"
             app:layout_constraintTop_toBottomOf="@+id/itemCalendarValue"
@@ -36,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="M" />
 
@@ -50,7 +51,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="T" />
 
@@ -64,7 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="W" />
 
@@ -78,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="T" />
 
@@ -92,7 +93,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="F" />
 
@@ -106,7 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="S" />
 
@@ -120,7 +121,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_day_selector"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_gray_dark"
                 android:gravity="center_horizontal"
                 android:text="S" />
 
@@ -129,15 +130,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_calendar"
             tools:listitem="@layout/item_calendar"
-            android:layout_marginTop="@dimen/v_8dp"
-            android:layout_marginBottom="@dimen/v_12dp"
+            android:layout_marginTop="@dimen/v_6dp"
+            android:layout_marginBottom="@dimen/v_14dp"
+            android:layout_marginStart="@dimen/v_6dp"
+            android:layout_marginEnd="@dimen/v_6dp"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:spanCount="7"
             tools:itemCount="35"
             android:requiresFadingEdge="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
         <View
             android:layout_width="match_parent"
@@ -148,17 +150,30 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/calendarProgress"
+        android:layout_width="@dimen/v_32dp"
+        android:layout_height="@dimen/v_32dp"
+        android:layout_marginTop="32dp"
+        android:indeterminateTint="@color/nice_red"
+        android:visibility="visible"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickupSv" />
 
+<!--  TODO: waiting fr api  -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="@dimen/v_24dp"
+        android:paddingTop="@dimen/v_24dp"
+        android:paddingBottom="@dimen/v_24dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:visibility="invisible"
+        android:visibility="gone"
         tools:visibility="visible"
         android:background="@android:color/white"
         tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -166,6 +181,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/card_place" />
+        tools:listitem="@layout/item_schedule" />
 
 </LinearLayout>

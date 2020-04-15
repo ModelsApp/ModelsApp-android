@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemCalendarContainer"
@@ -10,31 +9,42 @@
     <androidx.appcompat.widget.AppCompatCheckedTextView
         android:id="@+id/itemCalendarValue"
         style="@style/Models15Text"
-        android:textSize="@dimen/text_15"
-        android:layout_gravity="center"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/v_8dp"
-        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/item_calendar_selector"
-        android:gravity="center"
         android:checked="false"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:textAlignment="gravity"
         android:textColor="@color/calendar_item_text_color"
-        tools:text="52"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/text_15"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="52" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
     <LinearLayout
         android:id="@+id/itemCalendarIconsLl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/v_8dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_14dp"
+        android:layout_marginStart="@dimen/v_8dp"
+        android:layout_marginEnd="@dimen/v_8dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/itemCalendarValue"
-        app:layout_constraintBottom_toBottomOf="parent" >
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
     </LinearLayout>
 

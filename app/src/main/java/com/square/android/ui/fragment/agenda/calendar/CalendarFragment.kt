@@ -14,7 +14,6 @@ import com.square.android.presentation.view.agenda.CalendarView
 import com.square.android.ui.fragment.BaseFragment
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import java.util.*
 
 enum class EventType{
     TYPE_OFFER,
@@ -23,8 +22,6 @@ enum class EventType{
     TYPE_CASTING
 }
 
-
-//TODO make day text bold on actual day oh the month
 @Parcelize
 data class CalendarItem(
         var day: String,
@@ -65,7 +62,7 @@ class CalendarFragment: BaseFragment(), CalendarView {
         calendarList.setHasFixedSize(true)
     }
 
-    override fun showData(items: List<CalendarItem>) {
+    override fun showData(items: List<CalendarItem>, actualDayIndex: Int) {
         calendarAdapter = CalendarAdapter(items, object: CalendarAdapter.Handler{
             override fun calendarItemClicked(position: Int) {
                 calendarAdapter.setSelectedItem(position)
@@ -76,15 +73,22 @@ class CalendarFragment: BaseFragment(), CalendarView {
 
         rv_calendar.layoutManager = GridLayoutManager(activity, 7)
         rv_calendar.adapter = calendarAdapter
+
+        calendarAdapter.setSelectedItem(actualDayIndex)
+        presenter.calendarItemClicked(actualDayIndex)
     }
 
+    override fun reloadEvents(items: List<CalendarEvent>) {
+        //TODO show events in calendarList
+    }
 
     override fun showProgress() {
-        //TODO
+        calendarList.visibility = View.GONE
+        calendarProgress.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        //TODO
+        calendarProgress.visibility = View.GONE
+        calendarList.visibility = View.VISIBLE
     }
-
 }

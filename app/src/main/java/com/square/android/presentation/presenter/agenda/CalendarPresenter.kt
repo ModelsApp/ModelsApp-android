@@ -1,10 +1,11 @@
 package com.square.android.presentation.presenter.agenda
 
 import com.arellomobile.mvp.InjectViewState
-import com.square.android.extensions.toDate
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.agenda.CalendarView
+import com.square.android.ui.fragment.agenda.calendar.CalendarEvent
 import com.square.android.ui.fragment.agenda.calendar.CalendarItem
+import com.square.android.ui.fragment.agenda.calendar.EventType
 import java.util.*
 
 @InjectViewState
@@ -19,12 +20,15 @@ class CalendarPresenter(): BasePresenter<CalendarView>() {
     }
 
     fun calendarItemClicked(index: Int){
+        viewState.showProgress()
+
         currentItemSelected = index
+
+        viewState.reloadEvents(data[index].events)
+        viewState.hideProgress()
     }
 
     fun loadData() = launch {
-        viewState.showProgress()
-
         val calendar = Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 1) }
         val previousMonthCalendar = Calendar.getInstance().apply {
             add(Calendar.MONTH , -1)
@@ -68,14 +72,39 @@ class CalendarPresenter(): BasePresenter<CalendarView>() {
 
         val actualDays: MutableList<CalendarItem> = mutableListOf()
         for(x in 0 until calendar.getActualMaximum(Calendar.DAY_OF_MONTH)){
-            actualDays.add(CalendarItem((calendar.get(Calendar.DAY_OF_MONTH) + x).toString(), true))
+
+            //TODO just for tests
+            val events: MutableList<CalendarEvent> = mutableListOf()
+            if(x in listOf(0, 2, 5, 7, 8)){
+                events.add(CalendarEvent(EventType.TYPE_JOB,"La Perla dOro","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "2464 Valley View, Milano","",0, "" ))
+                events.add(CalendarEvent(EventType.TYPE_OFFER,"2 Concert Tickets","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "","The Conga Room",0, "" ))
+                events.add(CalendarEvent(EventType.TYPE_EVENT,"La Perla dOro","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "2464 Valley View, Milano","",0, "" ))
+                events.add(CalendarEvent(EventType.TYPE_CASTING,"2 Concert Tickets","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "","The Conga Room",0, "" ))
+            }
+            if(x in listOf(12, 28)){
+                events.add(CalendarEvent(EventType.TYPE_CASTING,"2 Concert Tickets","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "","The Conga Room",0, "" ))
+                events.add(CalendarEvent(EventType.TYPE_JOB,"La Perla dOro","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "2464 Valley View, Milano","",0, "" ))
+            }
+            if(x == 14){
+                events.add(CalendarEvent(EventType.TYPE_OFFER,"2 Concert Tickets","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "","The Conga Room",0, "" ))
+            }
+            if(x == 17){
+                events.add(CalendarEvent(EventType.TYPE_OFFER,"2 Concert Tickets","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "","The Conga Room",0, "" ))
+                events.add(CalendarEvent(EventType.TYPE_EVENT,"La Perla dOro","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "2464 Valley View, Milano","",0, "" ))
+                events.add(CalendarEvent(EventType.TYPE_JOB,"La Perla dOro","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "2464 Valley View, Milano","",0, "" ))
+            }
+            if(x == 18){
+                events.add(CalendarEvent(EventType.TYPE_CASTING,"2 Concert Tickets","https://cdn.eso.org/images/large/eso1436a.jpg","14:00 - 18:00", "","The Conga Room",0, "" ))
+            }
+
+            actualDays.add(CalendarItem((calendar.get(Calendar.DAY_OF_MONTH) + x).toString(), true, events.toList()))
         }
 
         data = startDays + actualDays + endDays
 
-        viewState.showData(data)
+        val index = data.indexOf(data.first{it.isCurrentMonth && it.day == Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()})
 
-        viewState.hideProgress()
+        viewState.showData(data, index)
     }
 
 }

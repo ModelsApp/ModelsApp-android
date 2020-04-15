@@ -1,10 +1,14 @@
 package com.square.android.ui.fragment.agenda.calendar
 
+import android.content.res.ColorStateList
+import android.graphics.Typeface
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.square.android.R
-import com.square.android.extensions.getDayString
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_calendar.*
+import java.util.*
 
 class CalendarAdapter(data: List<CalendarItem>,
                   private val handler: Handler?) : BaseAdapter<CalendarItem, CalendarAdapter.CalendarItemHolder>(data) {
@@ -50,6 +54,12 @@ class CalendarAdapter(data: List<CalendarItem>,
 
             itemCalendarValue.text = item.day
 
+            if(item.day.toInt() == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && item.isCurrentMonth){
+                itemCalendarValue.typeface = Typeface.createFromAsset(itemCalendarValue.context.assets, itemCalendarValue.context.getString(R.string.font_poppins_semi_bold))
+            } else{
+                itemCalendarValue.typeface = Typeface.createFromAsset(itemCalendarValue.context.assets, itemCalendarValue.context.getString(R.string.font_poppins_regular))
+            }
+
             itemCalendarValue.isEnabled = item.isCurrentMonth
 
             itemCalendarValue.setOnClickListener { handler?.calendarItemClicked(adapterPosition) }
@@ -58,11 +68,18 @@ class CalendarAdapter(data: List<CalendarItem>,
 
             val events = item.events.distinctBy { it.type }
 
+            var isFirst = true
+
             for(event in events){
-                val view = View(itemCalendarIconsLl.context).apply { layoutParams.apply {
-                    height = itemCalendarIconsLl.context.resources.getDimension(R.dimen.v_8dp).toInt()
-                    width = itemCalendarIconsLl.context.resources.getDimension(R.dimen.v_8dp).toInt()
-                } }
+                val view = View(itemCalendarIconsLl.context)
+
+                view.layoutParams = ViewGroup.MarginLayoutParams(itemCalendarIconsLl.context.resources.getDimension(R.dimen.v_5dp).toInt(),itemCalendarIconsLl.context.resources.getDimension(R.dimen.v_5dp).toInt())
+
+                if(!isFirst){
+                    (view.layoutParams as ViewGroup.MarginLayoutParams).marginStart = itemCalendarIconsLl.context.resources.getDimension(R.dimen.v_3dp).toInt()
+                }
+
+                isFirst = false
 
                 val color: Int = when(event.type){
                     EventType.TYPE_OFFER -> R.color.nice_violet
@@ -73,6 +90,11 @@ class CalendarAdapter(data: List<CalendarItem>,
 
                 view.setBackgroundColor(color)
 
+                val drawable = ContextCompat.getDrawable(itemCalendarIconsLl.context, R.drawable.round_background)
+                drawable?.setTintList(ColorStateList.valueOf(ContextCompat.getColor(itemCalendarIconsLl.context, color)))
+
+                view.background = drawable
+
                 itemCalendarIconsLl.addView(view)
             }
 
@@ -81,6 +103,7 @@ class CalendarAdapter(data: List<CalendarItem>,
 
         fun bindSelected(item: CalendarItem, selectedPosition: Int?) {
             itemCalendarValue.isChecked = (selectedPosition == adapterPosition)
+            itemCalendarIconsLl.visibility = if(selectedPosition == adapterPosition) View.INVISIBLE else View.VISIBLE
         }
     }
 

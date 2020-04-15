@@ -483,7 +483,12 @@
 
     <string name="buy_extra_credits">Buy extra credits</string>
 
-    <string name="what_mean_these_colors">What mean these colors?</string>
+    <string name="what_these_colour_mean">What these colours mean?</string>
+    <string name="colours_bottom_text">We introduced them to help you to identify the different items</string>
+    <string name="colour_desc_1">Offers from local partners</string>
+    <string name="colour_desc_2">Events and nightlife</string>
+    <string name="colour_desc_3">Job opportunities</string>
+    <string name="colour_desc_4">Castings</string>
 
     <string name="join_our_team">Join our team</string>
 
