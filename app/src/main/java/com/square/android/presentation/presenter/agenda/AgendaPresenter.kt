@@ -7,6 +7,7 @@ import com.square.android.presentation.view.agenda.AgendaView
 const val POSITION_CALENDAR = 0
 const val POSITION_SCHEDULE = 1
 const val POSITION_TODO = 2
+const val POSITION_ARCHIVE = 3
 
 @InjectViewState
 class AgendaPresenter(): BasePresenter<AgendaView>() {

@@ -365,6 +365,11 @@
         <item name="fontPath">@string/font_poppins_medium</item>
     </style>
 
+    <style name="TabTextSmaller" parent="ModelsText">
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="fontPath">@string/font_poppins_medium</item>
+    </style>
+
     <style name="TabTextBigger" parent="ModelsText">
         <item name="android:textSize">@dimen/text_16</item>
         <item name="fontPath">@string/font_poppins_medium</item>

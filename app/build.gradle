@@ -117,6 +117,8 @@ dependencies {
         exclude module: 'okhttp'
     }
 
+    implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+
     // PinView
     implementation ('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
         // Exclude is only needed if you already have

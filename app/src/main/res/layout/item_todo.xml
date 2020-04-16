@@ -14,7 +14,7 @@
         android:layout_marginEnd="@dimen/v_8dp"
         android:layout_marginBottom="@dimen/v_16dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/todoMoreIcon"
+        app:layout_constraintEnd_toStartOf="@+id/todoProgress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/todoBottomDivider" >
@@ -106,26 +106,29 @@
 
     </LinearLayout>
 
-
-<!--  TODO progress bar with %  -->
-    <ImageView
-        android:id="@+id/todoMoreIcon"
-        android:layout_width="@dimen/v_30dp"
-        android:layout_height="@dimen/v_30dp"
-        android:src="@drawable/more_vertical"
-        android:layout_marginEnd="@dimen/v_4dp"
-        android:tint="@color/text_gray"
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/todoProgress"
+        android:layout_width="@dimen/v_60dp"
+        android:layout_height="@dimen/v_60dp"
         app:layout_constraintBottom_toBottomOf="@+id/todoLl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/todoLl" />
+        app:layout_constraintTop_toTopOf="@+id/todoLl"
+        android:layout_marginEnd="@dimen/v_24dp"
+        app:donut_max="100"
+        app:donut_progress="40"
+        app:donut_unfinished_color="@color/gray_divider"
+        app:donut_finished_color="@android:color/black"
+        app:donut_finished_stroke_width="@dimen/v_3dp"
+        app:donut_unfinished_stroke_width="@dimen/v_3dp"
+        app:donut_text_size="@dimen/text_14"
+        app:donut_text_color="@android:color/black" />
 
     <View
         android:id="@+id/todoBottomDivider"
         android:layout_width="0dp"
         android:layout_height="@dimen/v_1dp"
+        android:layout_marginStart="@dimen/v_16dp"
         android:layout_marginBottom="@dimen/v_16dp"
-        android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/todoLl"
         app:layout_constraintEnd_toEndOf="parent"

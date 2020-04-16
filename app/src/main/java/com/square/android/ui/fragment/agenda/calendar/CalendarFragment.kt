@@ -38,7 +38,8 @@ data class CalendarEvent(
         var address: String = "",
         var name: String = "",
         var idLong: Long = 0,
-        var idString: String = ""
+        var idString: String = "",
+        var completed: Boolean = false
 ): Parcelable
 
 class CalendarFragment: BaseFragment(), CalendarView {

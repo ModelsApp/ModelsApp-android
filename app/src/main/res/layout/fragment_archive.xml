@@ -7,7 +7,7 @@
     android:layout_height="match_parent" >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scheduleList"
+        android:id="@+id/archiveList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingTop="@dimen/v_24dp"
@@ -20,12 +20,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_schedule"
+        tools:listitem="@layout/item_archive"
         android:visibility="invisible"
         tools:visibility="visible" />
 
     <ProgressBar
-        android:id="@+id/scheduleProgress"
+        android:id="@+id/archiveProgress"
         android:layout_width="@dimen/v_48dp"
         android:layout_height="@dimen/v_48dp"
         android:indeterminate="true"

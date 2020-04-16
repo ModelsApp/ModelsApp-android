@@ -204,9 +204,20 @@ fun TextView.clearText() {
 }
 
 fun ImageView.makeBlackWhite() {
+    this.removeFilters()
+
     val matrix = ColorMatrix()
     matrix.setSaturation(0f)
 
+    val filter = ColorMatrixColorFilter(matrix)
+    colorFilter = filter
+}
+
+fun ImageView.makeReddish() {
+    this.removeFilters()
+
+    val matrix = ColorMatrix()
+    matrix.setRotate(0, 180f)
     val filter = ColorMatrixColorFilter(matrix)
     colorFilter = filter
 }
