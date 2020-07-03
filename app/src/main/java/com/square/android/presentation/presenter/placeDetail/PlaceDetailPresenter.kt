@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.pojo.BookInfo
 import com.square.android.data.pojo.Place
+import com.square.android.data.pojo.latLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.aboutPlace.AboutLoadedEvent
 import com.square.android.presentation.presenter.aboutPlace.DistanceUpdatedEvent

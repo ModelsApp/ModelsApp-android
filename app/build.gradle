@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: "io.fabric"
-
 apply plugin: 'kotlin-kapt'
 
 
@@ -19,7 +17,7 @@ static def getDate() {
 
 def versionMajor = 1
 def versionMinor = 3
-def versionPatch = 4
+def versionPatch = 8
 
 def versionNameVal = "${versionMajor}.${versionMinor}.${versionPatch}"
 
@@ -30,7 +28,7 @@ android {
         applicationId "com.squaremm.android"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 45
+        versionCode 50
         versionName versionNameVal
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -72,8 +70,8 @@ android {
 
                 Crashlytics docs: https://docs.fabric.io/android/beta/gradle.html#distribution-with-gradle
             */
-            ext.betaDistributionGroupAliases = "square"
-            ext.betaDistributionReleaseNotesFilePath = project.getProjectDir().getParentFile().getAbsolutePath() + "/beta_changelog.txt"
+//            ext.betaDistributionGroupAliases = "square"
+//            ext.betaDistributionReleaseNotesFilePath = project.getProjectDir().getParentFile().getAbsolutePath() + "/beta_changelog.txt"
         }
     }
 

@@ -1,6 +1,7 @@
 package com.square.android.data.pojo
 
 import android.os.Parcelable
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.network.IgnoreObjectIfIncorrect
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Json
@@ -13,9 +14,9 @@ class Place(
         var id: Long = 0,
         var mainImage: String? = null,
         var address: String = "",
-        var type: List<String> = listOf(),
+        var type: String = "",
         var name: String = "",
-        var location: Location = Location(),
+        var location: List<Double> = mutableListOf(),
         var access: String = "",
         var icons: Icons? = null,
         var freeSpots: Int = 0,
@@ -94,6 +95,7 @@ class Place(
             var startTime: String = "",
             var user: Int = 0
     )
+
 }
 
 

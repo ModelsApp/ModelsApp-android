@@ -14,7 +14,7 @@ import androidx.appcompat.widget.AppCompatImageView;
  * android.widget.ImageView.ScaleType} to MATRIX and defaults to center-crop.
  */
 public class CropImageView extends AppCompatImageView {
-    private static final float DEFAULT_HORIZONTAL_OFFSET = 0.36f;
+    private static final float DEFAULT_HORIZONTAL_OFFSET = 0.5f;
     private static final float DEFAULT_VERTICAL_OFFSET = 0.5f;
 
     private float mHorizontalOffsetPercent = DEFAULT_HORIZONTAL_OFFSET;

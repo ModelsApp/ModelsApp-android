@@ -73,7 +73,7 @@ object SCREENS {
 }
 
 object Network {
-    const val BASE_API_URL = "https://square-app-staging-api.herokuapp.com/api/"
+    const val BASE_API_URL = "https://square-app-new-api.herokuapp.com/api/"
     const val MIXPANEL_TOKEN = "2529780c1354ad1945e06330161ac446"
 
 

@@ -68,7 +68,7 @@ class LogInFragment: BaseFragment(), LogInView {
 
         btnLogin.setOnClickListener {
             activity?.hideKeyboard()
-            val authData = AuthData(et_email.content, et_password.content, "")
+            val authData = AuthData(et_email.content, et_password.content)
             presenter.loginClicked(authData)
         }
 

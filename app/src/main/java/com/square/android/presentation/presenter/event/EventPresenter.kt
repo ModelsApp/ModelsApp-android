@@ -6,6 +6,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.Event
 import com.square.android.data.pojo.Place
+import com.square.android.data.pojo.latLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.event.EventView
 import com.square.android.ui.activity.event.EventExtras

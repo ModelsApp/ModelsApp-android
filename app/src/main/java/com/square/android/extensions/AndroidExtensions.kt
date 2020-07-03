@@ -22,6 +22,7 @@ import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.App
 import com.square.android.R
 import com.square.android.R.color.placeholder
@@ -310,10 +311,8 @@ fun Int?.asDistance(): String {
     }
 }
 
-fun Location.distanceTo(location: com.square.android.data.pojo.Location): Float {
+fun Location.distanceTo(latLng: LatLng): Float {
     val temp = Location("Temp")
-
-    val latLng = location.latLng()
 
     temp.latitude = latLng.latitude
     temp.longitude = latLng.longitude
