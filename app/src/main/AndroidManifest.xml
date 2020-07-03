@@ -43,6 +43,17 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".ui.fragment.signUp.SignUpVerifyPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranscActivityFull" />
+
+        <activity
+            android:name=".ui.fragment.signUp.SignUpRequirementsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranscActivityFull" />
+
         <activity
             android:name=".ui.activity.settings.SettingsActivity"
             android:screenOrientation="portrait"

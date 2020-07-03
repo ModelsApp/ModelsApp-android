@@ -11,7 +11,10 @@ object SCREENS {
     const val AUTH = "AUTH"
     const val LOGIN = "LOGIN"
     const val RESET_PASSWORD = "RESET_PASSWORD"
+
     const val SIGN_UP = "SIGN_UP"
+    const val SIGN_UP_REQUIREMENTS = "SIGN_UP_REQUIREMENTS"
+    const val SIGN_UP_VERIFY_PHONE = "SIGN_UP_VERIFY_PHONE"
 
     const val EXPLORE = "EXPLORE"
     const val PROFILE = "PROFILE"
@@ -73,6 +76,8 @@ object SCREENS {
 }
 
 object Network {
+    // old for testing - https://square-app-staging-api.herokuapp.com/api/
+    // new for testing - https://square-app-new-api.herokuapp.com/api/
     const val BASE_API_URL = "https://square-app-new-api.herokuapp.com/api/"
     const val MIXPANEL_TOKEN = "2529780c1354ad1945e06330161ac446"
 

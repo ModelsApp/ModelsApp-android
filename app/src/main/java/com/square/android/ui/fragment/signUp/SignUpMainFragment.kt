@@ -46,7 +46,10 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
 
         loadingDialog = LoadingDialog(activity!!)
 
-        eventBus.register(this)
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
+
 
         setupFragmentAdapter()
 
@@ -56,8 +59,7 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
 
         btnNext.setOnClickListener {
             if(((viewPager.adapter as SignUpFragmentAdapter).getRegisteredFragment(currentPagerPosition) as BaseFragment).validate()){
-                //TODO will be (position < 2)
-                if(currentPagerPosition < 1){
+                if(currentPagerPosition < 2){
                     viewPager.setCurrentItem(currentPagerPosition + 1)
 
                 } else{
@@ -71,7 +73,7 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
 
     private fun setupFragmentAdapter() {
         viewPager.isPagingEnabled = false
-        viewPager.adapter = SignUpFragmentAdapter(childFragmentManager, presenter.profileInfo!!)
+        viewPager.adapter = SignUpFragmentAdapter(childFragmentManager, presenter.signUpData!!)
 
         viewPager.offscreenPageLimit = 3
 
@@ -88,23 +90,17 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
     }
 
     fun setUpPage(position: Int){
-        //TODO will be (position < 2)
-        btnNext.isEnabled = position < 1
+        btnNext.isEnabled = position < 2
 
-        //TODO will be (position < 2)
-        nextTv.isEnabled = position < 1
+        nextTv.isEnabled = position < 2
 
-        //TODO will be (position 3)
-        signUpNumber.text = (position + 1).toString() +"/"+"2"
+        signUpNumber.text = (position + 1).toString() +"/"+"3"
 
-        //TODO will be (position < 2)
-        btnNext.text = if(position < 1) getString(R.string.next) else getString(R.string.send_request)
+        btnNext.text = if(position < 2) getString(R.string.next) else getString(R.string.send_request)
 
-        //TODO will be (position < 2)
-        nextTv.text = if(position < 1) getString(R.string.next) else getString(R.string.send_request)
+        nextTv.text = if(position < 2) getString(R.string.next) else getString(R.string.send_request)
 
-        //TODO will be (position == 2)
-        if(position == 1){
+        if(position == 2){
             ((viewPager.adapter as SignUpFragmentAdapter).getRegisteredFragment(currentPagerPosition) as SignUpThreeFragment).checkAndEnableBtn()
         }
     }

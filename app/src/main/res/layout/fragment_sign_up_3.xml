@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:paddingBottom="@dimen/v_16dp"
     android:paddingStart="@dimen/v_24dp"
     android:paddingEnd="@dimen/v_24dp"
-    android:orientation="vertical"
-    tools:background="@android:color/white" >
+    android:paddingBottom="@dimen/v_16dp"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/requirementsTv"
@@ -43,290 +43,932 @@
         android:layout_height="wrap_content"
         android:text="@string/connect_social_media" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fbContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/v_8dp"
-        android:paddingBottom="@dimen/v_8dp"
-        android:layout_marginEnd="@dimen/v_minus_24dp"
-        android:layout_marginTop="@dimen/v_20dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:layout_marginTop="@dimen/v_12dp"
+            android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/fbImg"
-            android:layout_width="@dimen/v_24dp"
-            android:layout_height="@dimen/v_24dp"
-            android:src="@drawable/facebook_logo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/instagramContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:paddingTop="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_4dp" >
 
-        <TextView
-            android:id="@+id/fbLabel"
-            style="@style/Models16Text"
-            android:textSize="@dimen/text_16"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Facebook"
-            android:layout_marginStart="@dimen/v_24dp"
-            app:layout_constraintTop_toTopOf="@id/fbImg"
-            app:layout_constraintBottom_toBottomOf="@id/fbImg"
-            app:layout_constraintStart_toEndOf="@id/fbImg" />
+                <ImageView
+                    android:id="@+id/instagramImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:src="@drawable/instagram_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/fbTv"
-            style="@style/Models15Text"
-            android:layout_width="wrap_content"
-            app:layout_constrainedWidth="true"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/v_8dp"
-            app:layout_goneMarginStart="@dimen/v_8dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_15"
-            android:maxLines="1"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="@id/fbImg"
-            app:layout_constraintEnd_toStartOf="@+id/fbIc"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/fbLabel"
-            app:layout_constraintTop_toTopOf="@id/fbImg"
-            tools:text="\@accountname"
-            android:visibility="gone" />
+                <TextView
+                    android:id="@+id/instagramLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instagram"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/instagramImg"
+                    app:layout_constraintBottom_toBottomOf="@id/instagramImg"
+                    app:layout_constraintStart_toEndOf="@id/instagramImg" />
 
-        <ImageView
-            android:id="@+id/fbIc"
-            android:layout_width="@dimen/v_24dp"
-            android:layout_height="@dimen/v_24dp"
-            android:src="@drawable/add"
-            android:layout_marginEnd="@dimen/v_24dp"
-            app:layout_constraintTop_toTopOf="@id/fbImg"
-            app:layout_constraintBottom_toBottomOf="@id/fbImg"
-            app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/instagramRequiredLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/status_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/v_3dp"
+                    android:text="*"
+                    app:layout_constraintTop_toTopOf="@id/instagramImg"
+                    app:layout_constraintBottom_toBottomOf="@id/instagramImg"
+                    app:layout_constraintStart_toEndOf="@id/instagramLabel" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/instagramTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:layout_marginStart="@dimen/v_16dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/instagramImg"
+                    app:layout_constraintEnd_toStartOf="@+id/instagramIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/instagramLabel"
+                    app:layout_constraintTop_toTopOf="@id/instagramImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/instagramContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/v_8dp"
-        android:layout_marginEnd="@dimen/v_minus_24dp"
-        android:layout_marginTop="@dimen/v_8dp" >
+                <ImageView
+                    android:id="@+id/instagramIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/instagramImg"
+                    app:layout_constraintBottom_toBottomOf="@id/instagramImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <View
-            android:id="@+id/instagramDivider"
-            android:layout_width="0dp"
-            android:layout_marginStart="@dimen/v_minus_24dp"
-            android:layout_marginEnd="@dimen/v_minus_24dp"
-            android:layout_height="1dp"
-            android:background="@color/gray_divider"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/instagramLabel"
-            app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/instagramImg"
-            android:layout_width="@dimen/v_24dp"
-            android:layout_height="@dimen/v_24dp"
-            android:layout_marginTop="@dimen/v_16dp"
-            android:src="@drawable/instagram_logo"
-            app:layout_constraintTop_toBottomOf="@+id/instagramDivider"
-            app:layout_constraintStart_toStartOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fbContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
 
-        <TextView
-            android:id="@+id/instagramLabel"
-            style="@style/Models16Text"
-            android:textSize="@dimen/text_16"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Instagram"
-            android:layout_marginStart="@dimen/v_24dp"
-            app:layout_constraintTop_toTopOf="@id/instagramImg"
-            app:layout_constraintBottom_toBottomOf="@id/instagramImg"
-            app:layout_constraintStart_toEndOf="@id/instagramImg" />
+                <View
+                    android:id="@+id/fbDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/fbLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/instagramTv"
-            style="@style/Models15Text"
-            android:layout_width="wrap_content"
-            app:layout_constrainedWidth="true"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/v_8dp"
-            app:layout_goneMarginStart="@dimen/v_8dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_15"
-            android:maxLines="1"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="@id/instagramImg"
-            app:layout_constraintEnd_toStartOf="@+id/instagramIc"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/instagramLabel"
-            app:layout_constraintTop_toTopOf="@id/instagramImg"
-            tools:text="\@accountname"
-            android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/fbImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    app:layout_constraintTop_toBottomOf="@id/fbDivider"
+                    android:src="@drawable/facebook_logo"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/instagramIc"
-            android:layout_width="@dimen/v_24dp"
-            android:layout_height="@dimen/v_24dp"
-            android:layout_marginEnd="@dimen/v_24dp"
-            android:src="@drawable/add"
-            app:layout_constraintTop_toTopOf="@id/instagramImg"
-            app:layout_constraintBottom_toBottomOf="@id/instagramImg"
-            app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/fbLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/fbImg"
+                    app:layout_constraintBottom_toBottomOf="@id/fbImg"
+                    app:layout_constraintStart_toEndOf="@id/fbImg" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/fbRequiredLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/status_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/v_3dp"
+                    android:text="*"
+                    app:layout_constraintTop_toTopOf="@id/fbImg"
+                    app:layout_constraintBottom_toBottomOf="@id/fbImg"
+                    app:layout_constraintStart_toEndOf="@id/fbLabel" />
 
-<!--    TODO:F will be added later-->
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/googleContainer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingBottom="@dimen/v_8dp"-->
-<!--        android:layout_marginEnd="@dimen/v_minus_24dp"-->
-<!--        android:layout_marginTop="@dimen/v_8dp" >-->
+                <TextView
+                    android:id="@+id/fbTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:layout_marginStart="@dimen/v_16dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/fbImg"
+                    app:layout_constraintEnd_toStartOf="@+id/fbIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/fbLabel"
+                    app:layout_constraintTop_toTopOf="@id/fbImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
 
-<!--        <View-->
-<!--            android:id="@+id/googleDivider"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_marginStart="@dimen/v_minus_24dp"-->
-<!--            android:layout_marginEnd="@dimen/v_minus_24dp"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="@color/gray_divider"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/googleLabel"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+                <ImageView
+                    android:id="@+id/fbIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/fbImg"
+                    app:layout_constraintBottom_toBottomOf="@id/fbImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/googleImg"-->
-<!--            android:layout_width="@dimen/v_24dp"-->
-<!--            android:layout_height="@dimen/v_24dp"-->
-<!--            android:layout_marginTop="@dimen/v_16dp"-->
-<!--            android:src="@drawable/facebook_logo"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/googleDivider"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/googleLabel"-->
-<!--            style="@style/Models16Text"-->
-<!--            android:textSize="@dimen/text_16"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            tools:text="Google"-->
-<!--            android:layout_marginStart="@dimen/v_24dp"-->
-<!--            app:layout_constraintTop_toTopOf="@id/googleImg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/googleImg"-->
-<!--            app:layout_constraintStart_toEndOf="@id/googleImg" />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/googleContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
 
-<!--        <TextView-->
-<!--            android:id="@+id/googleTv"-->
-<!--            style="@style/Models15Text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            app:layout_constrainedWidth="true"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="@dimen/v_8dp"-->
-<!--            app:layout_goneMarginStart="@dimen/v_8dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:textColor="@color/text_gray"-->
-<!--            android:textSize="@dimen/text_15"-->
-<!--            android:maxLines="1"-->
-<!--            app:autoSizeTextType="uniform"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/googleImg"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/googleIc"-->
-<!--            app:layout_constraintHorizontal_bias="1.0"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/googleLabel"-->
-<!--            app:layout_constraintTop_toTopOf="@id/googleImg"-->
-<!--            tools:text="\@accountname"-->
-<!--            android:visibility="gone" />-->
+                <View
+                    android:id="@+id/googleDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/googleLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/googleIc"-->
-<!--            android:layout_width="@dimen/v_24dp"-->
-<!--            android:layout_height="@dimen/v_24dp"-->
-<!--            android:layout_marginEnd="@dimen/v_24dp"-->
-<!--            android:src="@drawable/add"-->
-<!--            app:layout_constraintTop_toTopOf="@id/googleImg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/googleImg"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+                <ImageView
+                    android:id="@+id/googleImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/googleDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <TextView
+                    android:id="@+id/googleLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/googleImg"
+                    app:layout_constraintBottom_toBottomOf="@id/googleImg"
+                    app:layout_constraintStart_toEndOf="@id/googleImg" />
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/tiktokContainer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingBottom="@dimen/v_8dp"-->
-<!--        android:layout_marginEnd="@dimen/v_minus_24dp"-->
-<!--        android:layout_marginTop="@dimen/v_8dp" >-->
+                <TextView
+                    android:id="@+id/googleTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/googleImg"
+                    app:layout_constraintEnd_toStartOf="@+id/googleIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/googleLabel"
+                    app:layout_constraintTop_toTopOf="@id/googleImg"
+                    tools:text="\@accountnameiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+                    android:visibility="gone" />
 
-<!--        <View-->
-<!--            android:id="@+id/tiktokDivider"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_marginStart="@dimen/v_minus_24dp"-->
-<!--            android:layout_marginEnd="@dimen/v_minus_24dp"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="@color/gray_divider"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/tiktokLabel"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+                <ImageView
+                    android:id="@+id/googleIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/googleImg"
+                    app:layout_constraintBottom_toBottomOf="@id/googleImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/tiktokImg"-->
-<!--            android:layout_width="@dimen/v_24dp"-->
-<!--            android:layout_height="@dimen/v_24dp"-->
-<!--            android:layout_marginTop="@dimen/v_16dp"-->
-<!--            android:src="@drawable/facebook_logo"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/tiktokDivider"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/tiktokLabel"-->
-<!--            style="@style/Models16Text"-->
-<!--            android:textSize="@dimen/text_16"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            tools:text="Tik Tok"-->
-<!--            android:layout_marginStart="@dimen/v_24dp"-->
-<!--            app:layout_constraintTop_toTopOf="@id/tiktokImg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/tiktokImg"-->
-<!--            app:layout_constraintStart_toEndOf="@id/tiktokImg" />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vkContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
 
-<!--        <TextView-->
-<!--            android:id="@+id/tiktokTv"-->
-<!--            style="@style/Models15Text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            app:layout_constrainedWidth="true"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="@dimen/v_8dp"-->
-<!--            app:layout_goneMarginStart="@dimen/v_8dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:textColor="@color/text_gray"-->
-<!--            android:textSize="@dimen/text_15"-->
-<!--            android:maxLines="1"-->
-<!--            app:autoSizeTextType="uniform"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/tiktokImg"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/tiktokIc"-->
-<!--            app:layout_constraintHorizontal_bias="1.0"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/tiktokLabel"-->
-<!--            app:layout_constraintTop_toTopOf="@id/tiktokImg"-->
-<!--            tools:text="\@accountname"-->
-<!--            android:visibility="gone" />-->
+                <View
+                    android:id="@+id/vkDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/vkLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/tiktokIc"-->
-<!--            android:layout_width="@dimen/v_24dp"-->
-<!--            android:layout_height="@dimen/v_24dp"-->
-<!--            android:layout_marginEnd="@dimen/v_24dp"-->
-<!--            android:src="@drawable/add"-->
-<!--            app:layout_constraintTop_toTopOf="@id/tiktokImg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/tiktokImg"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+                <ImageView
+                    android:id="@+id/vkImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/vkDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <TextView
+                    android:id="@+id/vkLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VK"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/vkImg"
+                    app:layout_constraintBottom_toBottomOf="@id/vkImg"
+                    app:layout_constraintStart_toEndOf="@id/vkImg" />
+
+                <TextView
+                    android:id="@+id/vkTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/vkImg"
+                    app:layout_constraintEnd_toStartOf="@+id/vkIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/vkLabel"
+                    app:layout_constraintTop_toTopOf="@id/vkImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/vkIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/vkImg"
+                    app:layout_constraintBottom_toBottomOf="@id/vkImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tiktokContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/tiktokDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tiktokLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/tiktokImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/tiktokDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tiktokLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TikTok"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/tiktokImg"
+                    app:layout_constraintBottom_toBottomOf="@id/tiktokImg"
+                    app:layout_constraintStart_toEndOf="@id/tiktokImg" />
+
+                <TextView
+                    android:id="@+id/tiktokTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/tiktokImg"
+                    app:layout_constraintEnd_toStartOf="@+id/tiktokIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tiktokLabel"
+                    app:layout_constraintTop_toTopOf="@id/tiktokImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/tiktokIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/tiktokImg"
+                    app:layout_constraintBottom_toBottomOf="@id/tiktokImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pinterestContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/pinterestDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/pinterestLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/pinterestImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/pinterestDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/pinterestLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pinterest"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/pinterestImg"
+                    app:layout_constraintBottom_toBottomOf="@id/pinterestImg"
+                    app:layout_constraintStart_toEndOf="@id/pinterestImg" />
+
+                <TextView
+                    android:id="@+id/pinterestTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/pinterestImg"
+                    app:layout_constraintEnd_toStartOf="@+id/pinterestIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/pinterestLabel"
+                    app:layout_constraintTop_toTopOf="@id/pinterestImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/pinterestIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/pinterestImg"
+                    app:layout_constraintBottom_toBottomOf="@id/pinterestImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/yelpContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/yelpDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/yelpLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/yelpImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/yelpDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/yelpLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yelp"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/yelpImg"
+                    app:layout_constraintBottom_toBottomOf="@id/yelpImg"
+                    app:layout_constraintStart_toEndOf="@id/yelpImg" />
+
+                <TextView
+                    android:id="@+id/yelpTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/yelpImg"
+                    app:layout_constraintEnd_toStartOf="@+id/yelpIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/yelpLabel"
+                    app:layout_constraintTop_toTopOf="@id/yelpImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/yelpIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/yelpImg"
+                    app:layout_constraintBottom_toBottomOf="@id/yelpImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/youtubeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/youtubeDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/youtubeLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/youtubeImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/youtubeDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/youtubeLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Youtube"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/youtubeImg"
+                    app:layout_constraintBottom_toBottomOf="@id/youtubeImg"
+                    app:layout_constraintStart_toEndOf="@id/youtubeImg" />
+
+                <TextView
+                    android:id="@+id/youtubeTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/youtubeImg"
+                    app:layout_constraintEnd_toStartOf="@+id/youtubeIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/youtubeLabel"
+                    app:layout_constraintTop_toTopOf="@id/youtubeImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/youtubeIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/youtubeImg"
+                    app:layout_constraintBottom_toBottomOf="@id/youtubeImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/snapchatContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/snapchatDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/snapchatLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/snapchatImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/snapchatDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/snapchatLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Snapchat"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/snapchatImg"
+                    app:layout_constraintBottom_toBottomOf="@id/snapchatImg"
+                    app:layout_constraintStart_toEndOf="@id/snapchatImg" />
+
+                <TextView
+                    android:id="@+id/snapchatTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/snapchatImg"
+                    app:layout_constraintEnd_toStartOf="@+id/snapchatIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/snapchatLabel"
+                    app:layout_constraintTop_toTopOf="@id/snapchatImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/snapchatIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/snapchatImg"
+                    app:layout_constraintBottom_toBottomOf="@id/snapchatImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloggerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/bloggerDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/bloggerLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/bloggerImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/bloggerDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/bloggerLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blogger"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/bloggerImg"
+                    app:layout_constraintBottom_toBottomOf="@id/bloggerImg"
+                    app:layout_constraintStart_toEndOf="@id/bloggerImg" />
+
+                <TextView
+                    android:id="@+id/bloggerTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/bloggerImg"
+                    app:layout_constraintEnd_toStartOf="@+id/bloggerIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/bloggerLabel"
+                    app:layout_constraintTop_toTopOf="@id/bloggerImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/bloggerIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/bloggerImg"
+                    app:layout_constraintBottom_toBottomOf="@id/bloggerImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tripAdvisorContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/tripAdvisorDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tripAdvisorLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/tripAdvisorImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/tripAdvisorDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tripAdvisorLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TripAdvisor"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/tripAdvisorImg"
+                    app:layout_constraintBottom_toBottomOf="@id/tripAdvisorImg"
+                    app:layout_constraintStart_toEndOf="@id/tripAdvisorImg" />
+
+                <TextView
+                    android:id="@+id/tripAdvisorTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/tripAdvisorImg"
+                    app:layout_constraintEnd_toStartOf="@+id/tripAdvisorIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tripAdvisorLabel"
+                    app:layout_constraintTop_toTopOf="@id/tripAdvisorImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/tripAdvisorIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/tripAdvisorImg"
+                    app:layout_constraintBottom_toBottomOf="@id/tripAdvisorImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/modelscomContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/v_8dp"
+                android:layout_marginEnd="@dimen/v_minus_24dp"
+                android:layout_marginTop="@dimen/v_8dp" >
+
+                <View
+                    android:id="@+id/modelscomDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/v_minus_24dp"
+                    android:layout_marginEnd="@dimen/v_minus_24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/modelscomLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/modelscomImg"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginTop="@dimen/v_16dp"
+                    android:src="@drawable/r_address"
+                    app:layout_constraintTop_toBottomOf="@+id/modelscomDivider"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/modelscomLabel"
+                    style="@style/Models16Text"
+                    android:textSize="@dimen/text_16"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Models.com"
+                    android:layout_marginStart="@dimen/v_24dp"
+                    app:layout_constraintTop_toTopOf="@id/modelscomImg"
+                    app:layout_constraintBottom_toBottomOf="@id/modelscomImg"
+                    app:layout_constraintStart_toEndOf="@id/modelscomImg" />
+
+                <TextView
+                    android:id="@+id/modelscomTv"
+                    style="@style/Models15Text"
+                    android:layout_width="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/v_8dp"
+                    app:layout_goneMarginStart="@dimen/v_8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_15"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/v_8dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@id/modelscomImg"
+                    app:layout_constraintEnd_toStartOf="@+id/modelscomIc"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/modelscomLabel"
+                    app:layout_constraintTop_toTopOf="@id/modelscomImg"
+                    tools:text="\@accountname"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/modelscomIc"
+                    android:layout_width="@dimen/v_24dp"
+                    android:layout_height="@dimen/v_24dp"
+                    android:layout_marginEnd="@dimen/v_24dp"
+                    android:src="@drawable/add"
+                    app:layout_constraintTop_toTopOf="@id/modelscomImg"
+                    app:layout_constraintBottom_toBottomOf="@id/modelscomImg"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
 </LinearLayout>

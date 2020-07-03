@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/archiveContainer"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <ImageView
+        android:id="@+id/archiveImg"
+        android:layout_width="@dimen/v_80dp"
+        android:layout_height="@dimen/v_80dp"
+        android:layout_marginStart="@dimen/v_24dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/archiveBottomDivider"
+        android:layout_marginBottom="@dimen/v_16dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[6]" />
+
+    <ImageView
+        android:id="@+id/archiveIcon"
+        android:layout_width="@dimen/v_24dp"
+        android:layout_height="@dimen/v_24dp"
+        android:src="@drawable/close_x"
+        android:tint="@android:color/white"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/archiveImg"
+        app:layout_constraintBottom_toBottomOf="@+id/archiveImg"
+        app:layout_constraintStart_toStartOf="@+id/archiveImg"
+        app:layout_constraintEnd_toEndOf="@+id/archiveImg" />
+
+    <LinearLayout
+        android:id="@+id/archiveLl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/v_16dp"
+        android:layout_marginEnd="@dimen/v_8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/archiveImg"
+        app:layout_constraintEnd_toStartOf="@+id/archiveMoreIcon"
+        app:layout_constraintStart_toEndOf="@+id/archiveImg"
+        app:layout_constraintTop_toTopOf="@+id/archiveImg" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/archiveStatusCircle"
+                android:layout_width="@dimen/v_8dp"
+                android:layout_height="@dimen/v_8dp"
+                android:src="@drawable/circle_white"
+                tools:tint="@color/status_green" />
+            <TextView
+                android:id="@+id/archiveTitle"
+                style="@style/Models16SemiBoldText"
+                android:textSize="@dimen/text_16"
+                tools:text="La Perla d'Oro"
+                android:layout_marginStart="@dimen/v_8dp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/v_6dp"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/archiveTopIc"
+                android:layout_width="@dimen/v_16dp"
+                android:layout_height="@dimen/v_16dp"
+                android:src="@drawable/r_address"
+                android:tint="@color/text_gray" />
+            <TextView
+                android:id="@+id/archiveTopText"
+                style="@style/Models14SemiBoldText"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_gray"
+                tools:text="La Perla d'Oro"
+                android:layout_marginStart="@dimen/v_6dp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/v_6dp"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/archiveBottomIc"
+                android:layout_width="@dimen/v_16dp"
+                android:layout_height="@dimen/v_16dp"
+                android:src="@drawable/r_calendar_clock"
+                android:tint="@color/text_gray" />
+            <TextView
+                android:id="@+id/archiveBottomText"
+                style="@style/Models14SemiBoldText"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_gray"
+                tools:text="14:00 - 18:00"
+                android:layout_marginStart="@dimen/v_6dp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/archiveMoreIcon"
+        android:layout_width="@dimen/v_30dp"
+        android:layout_height="@dimen/v_30dp"
+        android:src="@drawable/more_vertical"
+        android:layout_marginEnd="@dimen/v_4dp"
+        android:tint="@color/text_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/archiveImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/archiveImg" />
+
+    <View
+        android:id="@+id/archiveBottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:layout_marginBottom="@dimen/v_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/archiveLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/gray_divider" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,14 +8,22 @@ import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.pojo.AuthData
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.auth.LogInView
+import com.squareup.moshi.JsonClass
+
+
+@JsonClass(generateAdapter = true)
+data class LoginData(
+        val email: String,
+        val password: String
+)
 
 @InjectViewState
 class LogInPresenter : BasePresenter<LogInView>() {
 
-    fun loginClicked(authData: AuthData) {
+    fun loginClicked(loginData: LoginData) {
         viewState.showProgress()
         launch({
-            val response = repository.loginUser(authData).await()
+            val response = repository.loginUser(loginData).await()
             authDone(response)
         }, { error ->
             viewState.hideProgress()

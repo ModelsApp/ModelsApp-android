@@ -349,7 +349,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
                 (activity as MainActivity).mainFab.show()
 
-                //TODO should it stay?
                 (activity as MainActivity).hideMapBottomView()
 
                 ExploreFragment()

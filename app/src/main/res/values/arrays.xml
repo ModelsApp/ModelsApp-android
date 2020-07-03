@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="profession_array">
+        <item>@string/profession_1</item>
+        <item>@string/profession_2</item>
+        <item>@string/profession_3</item>
+    </string-array>
+
+    <string-array name="speciality_array">
+        <item>@string/speciality_1</item>
+        <item>@string/speciality_2</item>
+        <item>@string/speciality_3</item>
+        <item>@string/speciality_4</item>
+        <item>@string/speciality_5</item>
+        <item>@string/speciality_6</item>
+    </string-array>
+
+    <string-array name="capabilities_array">
+        <item>@string/capability_1</item>
+        <item>@string/capability_2</item>
+        <item>@string/capability_3</item>
+    </string-array>
+
+    <string-array name="preferences_array">
+        <item>@string/preferences_1</item>
+        <item>@string/preferences_2</item>
+        <item>@string/preferences_3</item>
+    </string-array>
+
     <string-array name="genders">
         <item>@string/gender_female</item>
         <item>@string/gender_male</item>

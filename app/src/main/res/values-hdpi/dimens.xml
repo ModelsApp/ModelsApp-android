@@ -181,9 +181,11 @@
     <dimen name="v_2dp">1.5dp</dimen>
     <dimen name="v_1_5dp">1.125dp</dimen>
     <dimen name="v_1dp">0.75dp</dimen>
+    <dimen name="v_05dp">0.375dp</dimen>
     <dimen name="v_minus_4dp">-3dp</dimen>
     <dimen name="v_minus_8dp">-6dp</dimen>
     <dimen name="v_minus_24dp">-18dp</dimen>
+    <dimen name="v_minus_48dp">-36dp</dimen>
 
     <dimen name="rb_scale_24dp">0.8625</dimen>
     <dimen name="rb_scale_padding_20dp">12dp</dimen>

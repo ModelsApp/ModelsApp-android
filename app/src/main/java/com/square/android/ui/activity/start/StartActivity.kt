@@ -143,6 +143,8 @@ class StartActivity : BaseActivity(), StartView {
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?) =
                 when (screenKey) {
                     SCREENS.MAIN -> context.intentFor<MainActivity>()
+                    SCREENS.SIGN_UP_REQUIREMENTS -> context.intentFor<SignUpRequirementsActivity>()
+                    SCREENS.SIGN_UP_VERIFY_PHONE -> context.intentFor<SignUpVerifyPhoneActivity>(EXTRA_PHONE_NUMBER to data as String)
 
                     else -> null
                 }

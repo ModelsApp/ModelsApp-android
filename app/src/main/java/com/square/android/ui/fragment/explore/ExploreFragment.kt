@@ -16,7 +16,6 @@ import androidx.viewpager.widget.ViewPager
 import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
-import com.square.android.extensions.drawableFromRes
 import com.square.android.presentation.presenter.explore.*
 import com.square.android.ui.activity.main.MainActivity
 import com.square.android.ui.activity.main.MainFabClickedEvent
@@ -142,7 +141,6 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
                         hideCities()
                     }
                 }
-
 
                initWithMap()
 

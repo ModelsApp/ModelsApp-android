@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.*
+import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.explore.ExploreView
@@ -303,7 +304,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         locationPoint?.let {
             if (whichTabsToFillDistances.contains(POSITION_PLACES)) {
                 data.placesData.forEach { place ->
-                    val placePoint = place.location.latLng()
+                    //TODO:A
+//                    val placePoint = place.location.latLng()
+                    val placePoint = place.location.toLatLng()
 
                     val distance = placePoint.distanceTo(locationPoint!!).toInt()
 
@@ -314,7 +317,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
 
             if (whichTabsToFillDistances.contains(POSITION_EVENTS)) {
                 data.eventsData.forEach { eventPlace ->
-                    val placePoint = eventPlace.location.latLng()
+                    //TODO:A
+//                    val placePoint = eventPlace.location.latLng()
+                    val placePoint = eventPlace.location.toLatLng()
 
                     val distance = placePoint.distanceTo(locationPoint!!).toInt()
 

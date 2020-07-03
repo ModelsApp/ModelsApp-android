@@ -23,8 +23,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_rl_height" >
-        <!--   TODO: this view onClick -> call spinner onClick  -->
         <LinearLayout
+            android:id="@+id/professionLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -34,7 +34,7 @@
             android:layout_alignParentBottom="true" >
             <androidx.appcompat.widget.AppCompatSpinner
                 style="@style/RedesignedSpinner"
-                android:id="@+id/spinnerImA"
+                android:id="@+id/spinnerProfession"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -64,8 +64,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_rl_height" >
-        <!--   TODO: this view onClick -> call spinner onClick  -->
         <LinearLayout
+            android:id="@+id/mainSpecialityLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -104,8 +104,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_rl_height" >
-        <!--   TODO: this view onClick -> call spinner onClick  -->
         <LinearLayout
+            android:id="@+id/additionalSpecialitiesLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -113,14 +113,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" >
-            <androidx.appcompat.widget.AppCompatSpinner
-                style="@style/RedesignedSpinner"
-                android:id="@+id/spinnerAdditionalSpecialities"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
 
+            <TextView
+                style="@style/RedesignedInputField"
+                android:id="@+id/tvAdditionalSpecialities"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null" />
             <ImageView style="@style/RedesignedSpinnerArrow" />
 
         </LinearLayout>
@@ -146,6 +146,7 @@
         android:layout_height="@dimen/et_rl_height" >
         <!--   TODO: this view onClick -> call spinner onClick  -->
         <LinearLayout
+            android:id="@+id/capabilitiesLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -153,14 +154,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" >
-            <androidx.appcompat.widget.AppCompatSpinner
-                style="@style/RedesignedSpinner"
-                android:id="@+id/spinnerCapabilities"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
 
+            <TextView
+                style="@style/RedesignedInputField"
+                android:id="@+id/tvCapabilities"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null" />
             <ImageView style="@style/RedesignedSpinnerArrow" />
 
         </LinearLayout>
@@ -186,6 +187,7 @@
         android:layout_height="@dimen/et_rl_height" >
         <!--   TODO: this view onClick -> call spinner onClick  -->
         <LinearLayout
+            android:id="@+id/preferencesLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -193,14 +195,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" >
-            <androidx.appcompat.widget.AppCompatSpinner
-                style="@style/RedesignedSpinner"
-                android:id="@+id/spinnerPreferences"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
 
+            <TextView
+                style="@style/RedesignedInputField"
+                android:id="@+id/tvPreferences"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null" />
             <ImageView style="@style/RedesignedSpinnerArrow" />
 
         </LinearLayout>
@@ -212,7 +214,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/v_16dp"
+        android:layout_marginTop="@dimen/v_24dp"
         android:layout_marginStart="@dimen/v_minus_24dp"
         android:layout_marginEnd="@dimen/v_minus_24dp"
         android:layout_height="1dp"
@@ -222,14 +224,35 @@
         app:layout_constraintTop_toBottomOf="@+id/topContainer" />
 
     <Switch
-        style="@style/Models16Text"
+        style="@style/Models16SemiBoldText"
         android:textSize="@dimen/text_16"
         android:id="@+id/switchRepresentation"
         android:layout_width="match_parent"
         android:layout_height="@dimen/v_48dp"
+        tools:checked="true"
         android:text="@string/i_have_a_representation"
         android:thumb="@drawable/switch_thumb"
         android:track="@drawable/switch_track" />
+
+    <RelativeLayout
+        android:id="@+id/representationRl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/et_rl_height"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginTop="@dimen/v_8dp"
+        android:layout_marginBottom="@dimen/v_16dp" >
+        <com.square.android.utils.widget.ErrorEditText
+            style="@style/RedesignedInputField"
+            android:id="@+id/et_representation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"/>
+
+        <TextView
+            style="@style/RedesignedFieldHeader"
+            android:text="@string/representation" />
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -240,7 +263,7 @@
         app:layout_constraintTop_toBottomOf="@+id/topContainer" />
 
     <Switch
-        style="@style/Models16Text"
+        style="@style/Models16SemiBoldText"
         android:textSize="@dimen/text_16"
         android:id="@+id/switchVat"
         android:layout_width="match_parent"
@@ -251,17 +274,20 @@
         android:track="@drawable/switch_track" />
 
     <RelativeLayout
+        android:id="@+id/vatNumberRl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_rl_height"
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_marginTop="@dimen/v_24dp" >
+        android:layout_marginTop="@dimen/v_8dp"
+        android:layout_marginBottom="@dimen/v_16dp" >
         <com.square.android.utils.widget.ErrorEditText
             style="@style/RedesignedInputField"
             android:id="@+id/et_vat_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapCharacters" />
+            android:inputType="textCapCharacters"
+            android:imeOptions="actionDone"/>
 
         <TextView
             style="@style/RedesignedFieldHeader"
@@ -270,7 +296,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/v_16dp"
         android:layout_marginStart="@dimen/v_minus_24dp"
         android:layout_marginEnd="@dimen/v_minus_24dp"
         android:layout_height="1dp"

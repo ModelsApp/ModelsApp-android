@@ -3,8 +3,10 @@ package com.square.android.data
 import android.util.SparseArray
 import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.AuthResponse
+import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.pojo.*
+import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
 import kotlinx.coroutines.Deferred
@@ -26,6 +28,8 @@ interface Repository {
     fun getRideTimeframesForPlace(placeId: Long): Deferred<List<DriverRide>>
 
 //    fun bookEvent(bookEventData: BookEventData): Deferred<MessageResponse>
+
+    fun sendPhoneCode(phone: String): Deferred<SendPhoneCodeRespose>
 
     fun getUserEventBookings(eventBookingId: String?): Deferred<List<BookEventData.EventBooking>>
 
@@ -55,8 +59,8 @@ interface Repository {
     fun isProfileFilled(): Boolean
     fun setProfileFilled(isFilled: Boolean)
 
-    fun registerUser(authData: AuthData): Deferred<AuthResponse>
-    fun loginUser(authData: AuthData): Deferred<AuthResponse>
+    fun registerUser(signUpData: SignUpData): Deferred<AuthResponse>
+    fun loginUser(loginData: LoginData): Deferred<AuthResponse>
 
     fun resetPassword(authData: AuthData): Deferred<MessageResponse>
 

@@ -25,10 +25,6 @@ class AgendaInfoDialog(private val context: Context) {
 
         dialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        //TODO
-        dialog!!.textGreen.text = "Text green test"
-        dialog!!.textViolet.text = "Text violet test"
-
         dialog!!.icClose.setOnClickListener {
             dialog?.dismiss()
         }

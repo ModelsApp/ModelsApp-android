@@ -64,7 +64,7 @@
                 android:layout_width="@dimen/v_16dp"
                 android:layout_height="@dimen/v_16dp"
                 android:src="@drawable/r_address"
-                tools:tint="@color/text_gray" />
+                android:tint="@color/text_gray" />
             <TextView
                 android:id="@+id/scheduleTopText"
                 style="@style/Models14SemiBoldText"
@@ -89,7 +89,7 @@
                 android:layout_width="@dimen/v_16dp"
                 android:layout_height="@dimen/v_16dp"
                 android:src="@drawable/ic_timer"
-                tools:tint="@color/text_gray" />
+                android:tint="@color/text_gray" />
             <TextView
                 android:id="@+id/scheduleBottomText"
                 style="@style/Models14SemiBoldText"

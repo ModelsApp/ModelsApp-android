@@ -46,8 +46,47 @@
 
     <string name="accept">Accept</string>
 
+    <string name="profession_1">Video creator</string>
+    <string name="profession_2">Music creator</string>
+    <string name="profession_3">Other</string>
+
+    <string name="speciality_1">Beauty</string>
+    <string name="speciality_2">Diy</string>
+    <string name="speciality_3">Entertainment</string>
+    <string name="speciality_4">Family</string>
+    <string name="speciality_5">Fashion</string>
+    <string name="speciality_6">Fitness</string>
+
+    <string name="capability_1">Capability 1</string>
+    <string name="capability_2">Capability 2</string>
+    <string name="capability_3">Capability 3</string>
+
+    <string name="preferences_1">Preferences 1</string>
+    <string name="preferences_2">Preferences 2</string>
+    <string name="preferences_3">Preferences 3</string>
+
+    <string name="organic_followers">Organic followers</string>
+    <string name="published_posts">Published post</string>
+    <string name="posts_per_week">Posts per week</string>
+    <string name="posts_owned_by_you">Posts owned by you</string>
+    <string name="account_availability">Account availability</string>
+    <string name="account_type">Account type</string>
+    <string name="subscribers">Subscribers</string>
+    <string name="views_after_30_days">Views after 30 days</string>
+    <string name="account_activity">Account activity</string>
+    <string name="s_public">Public</string>
+    <string name="ac_type_text">Business / Creator</string>
+    <string name="active_and_growing">Active and growing</string>
+    <string name="optional">(optional)</string>
+
+    <string name="selected_format">%d selected</string>
+
     <string name="add_cover_image">Add cover image</string>
     <string name="edit_cover_image">Edit cover image</string>
+
+    <string name="requirements_text">Please find here the minimum requisites to be eligible to join square community</string>
+    <string name="instagram_requirements">Instagram requirements</string>
+    <string name="youtube_requirements">Youtube requirements</string>
 
     <string name="select_nationality">Select nationality</string>
     <string name="select_date_of_birth">Select date of birth</string>
@@ -61,6 +100,11 @@
     <string name="email_error">Enter your email</string>
     <string name="password_error">Enter your password</string>
     <string name="referral_error">Enter valid or delete referral code</string>
+
+    <string name="representation_error">Enter valid or uncheck representation</string>
+    <string name="vat_number_error">Enter valid or uncheck vat number</string>
+
+    <string name="invalid_security_code">Invalid security code</string>
 
     <string name="app_not_installed">This application is not installed on your device</string>
 
@@ -118,6 +162,13 @@
     <string name="fb_story_avoid_1">Don\'t remove the story before it expires</string>
     <string name="fb_story_avoid_2">Don\'t repost a story of a friend, covering the tags with other content</string>
 
+    <string name="tasks_in_progress_">Tasks in progress:</string>
+    <string name="deadline_">Deadline:</string>
+
+    <string name="to_do">To do</string>
+
+    <string name="archive">Archive</string>
+
     <string name="photo_remember_1">Be creative</string>
     <string name="photo_remember_2">Create a high quality content</string>
 
@@ -174,7 +225,7 @@
     <string name="mandatory_fields">These fields are mandatory</string>
 
     <string name="enter_account_name">Enter your account name</string>
-    <string name="add_your_instagram_account">Add your Instagram account</string>
+    <string name="add_social_format">Add your %s account</string>
 
     <string name="birthday_format">%s of %s</string>
     <string name="birthday_display_format">%s.%s.%s</string>
@@ -232,9 +283,10 @@
     <string name="i_have_a_representation">I have a representation</string>
     <string name="vat_number">Vat number</string>
     <string name="enter_vat_number">Enter vat number</string>
-    <string name="connect_social_media">Connect your social media channels</string>
+    <string name="connect_social_media">Connect 2 or more social media channels</string>
     <string name="follow_us_instagram">Follow us on Instagram</string>
     <string name="we_will_review">We will review your application\nand notify you if accepted</string>
+    <string name="representation">Representation</string>
 
     <string name="location_permissions">Location permissions</string>
     <string name="permission_dialog_text">We need location permissions to show places near to you. Do you want to allow Square to access your device\'s location?</string>
@@ -260,6 +312,7 @@
     <string name="claimed">Claimed</string>
     <string name="price">Price</string>
 
+    <string name="verify">Verify</string>
 
     <string name="active_campaigns">Active campaigns</string>
     <string name="completed_campaigns">Completed campaigns</string>
@@ -437,7 +490,12 @@
 
     <string name="buy_extra_credits">Buy extra credits</string>
 
-    <string name="what_mean_these_colors">What mean these colors?</string>
+    <string name="what_these_colour_mean">What these colours mean?</string>
+    <string name="colours_bottom_text">We introduced them to help you to identify the different items</string>
+    <string name="colour_desc_1">Offers from local partners</string>
+    <string name="colour_desc_2">Events and nightlife</string>
+    <string name="colour_desc_3">Job opportunities</string>
+    <string name="colour_desc_4">Castings</string>
 
     <string name="join_our_team">Join our team</string>
 
@@ -661,11 +719,16 @@
     <string name="green">Green</string>
     <string name="violet">Violet</string>
 
+    <string name="enter_security_code">Enter security code</string>
+    <string name="we_sent_security_code">We sent the security code at</string>
+    <string name="send_again">Send again</string>
+
     <string name="name_error">Enter your name</string>
     <string name="last_name_error">Enter your last name</string>
 
     <string name="username_error">Enter a valid username</string>
     <string name="phone_error">Enter a valid phone number</string>
+    <string name="phone_error_verify">Verify your phone number</string>
     <string name="mother_agency_error">Enter your mother agency name</string>
     <string name="current_agency_error">Enter your current agency name</string>
     <string name="agency_error">Enter agency name</string>

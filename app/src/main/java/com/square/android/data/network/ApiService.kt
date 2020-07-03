@@ -1,8 +1,10 @@
 package com.square.android.data.network
 
 import com.square.android.data.network.response.AuthResponse
+import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.pojo.*
+import com.square.android.presentation.presenter.auth.LoginData
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -86,10 +88,13 @@ interface ApiService {
                            @Query("city") city: String): Call<List<Place>>
 
     @POST("auth/user/signin")
-    fun registerUser(@Body authData: AuthData): Call<AuthResponse>
+    fun registerUser(@Body signUpData: SignUpData): Call<AuthResponse>
 
     @POST("auth/user/login")
-    fun loginUser(@Body authData: AuthData): Call<AuthResponse>
+    fun loginUser(@Body loginData: LoginData): Call<AuthResponse>
+
+    @POST("auth/user/confirm-phone")
+    fun sendPhoneCode(@Body sendPhoneCodeData: SendPhoneCodeData): Call<SendPhoneCodeRespose>
 
     @POST("user/forgotPassword")
     fun resetPassword(@Body authData: AuthData): Call<MessageResponse>
