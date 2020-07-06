@@ -126,9 +126,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         val id = place.id
 
         if (actualDataLoaded[actualTabSelected]) {
-            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_WITHOUT_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
+//            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_WITHOUT_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
         } else {
-            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_USING_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
+//            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_USING_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
         }
 
         router.navigateTo(SCREENS.PLACE, PlaceExtras(place.id, selectedDayPosition))
@@ -140,9 +140,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         val eventId = e.place.event!!.id
 
         if (actualDataLoaded[actualTabSelected]) {
-            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.EVENT_OPENED_WITHOUT_FILTERS.apply { venueName = e.place.name }, hashMapOf("eventId" to eventId)), repository)
+//            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.EVENT_OPENED_WITHOUT_FILTERS.apply { venueName = e.place.name }, hashMapOf("eventId" to eventId)), repository)
         } else {
-            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.EVENT_OPENED_USING_FILTERS.apply { venueName = e.place.name }, hashMapOf("eventId" to eventId)), repository)
+//            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.EVENT_OPENED_USING_FILTERS.apply { venueName = e.place.name }, hashMapOf("eventId" to eventId)), repository)
         }
 
         router.navigateTo(SCREENS.EVENT, event!!.id)
@@ -153,9 +153,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         val id = event.campaignInfo.id
 
         if (actualDataLoaded[actualTabSelected]) {
-            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.CAMPAIGN_OPENED_WITHOUT_FILTERS.apply { venueName = event.campaignInfo.title }, hashMapOf("campaignId" to id.toString())), repository)
+//            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.CAMPAIGN_OPENED_WITHOUT_FILTERS.apply { venueName = event.campaignInfo.title }, hashMapOf("campaignId" to id.toString())), repository)
         } else {
-            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.CAMPAIGN_OPENED_USING_FILTERS.apply { venueName = event.campaignInfo.title }, hashMapOf("campaignId" to id.toString())), repository)
+//            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.CAMPAIGN_OPENED_USING_FILTERS.apply { venueName = event.campaignInfo.title }, hashMapOf("campaignId" to id.toString())), repository)
         }
 
         router.navigateTo(SCREENS.CAMPAIGN_DETAILS, id)

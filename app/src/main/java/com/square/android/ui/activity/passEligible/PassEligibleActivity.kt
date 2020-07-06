@@ -16,7 +16,7 @@ import com.square.android.ui.base.SimpleNavigator
 import kotlinx.android.synthetic.main.activity_pass_eligible.*
 import ru.terrakok.cicerone.Navigator
 import com.android.billingclient.api.BillingClient.FeatureType
-import com.crashlytics.android.Crashlytics
+//import com.crashlytics.android.Crashlytics
 import com.square.android.ui.activity.BaseBillingActivity
 import com.square.android.ui.dialogs.LoadingDialog
 
@@ -60,7 +60,7 @@ class PassEligibleActivity: BaseBillingActivity(), PassEligibleView{
                     }
                 }
             } else{
-                Crashlytics.log("BILLING -> PassEligibleActivity: subscriptions not supported")
+//                Crashlytics.log("BILLING -> PassEligibleActivity: subscriptions not supported")
 
                 Log.d("BILLING","subscriptions not supported")
 
@@ -116,7 +116,7 @@ class PassEligibleActivity: BaseBillingActivity(), PassEligibleView{
                 hideMainProgress()
 
             } else {
-                Crashlytics.log("BILLING -> PassEligibleActivity: querySkuDetailsAsync() | responseCode != OK  or skuDetailsList == null\"")
+//                Crashlytics.log("BILLING -> PassEligibleActivity: querySkuDetailsAsync() | responseCode != OK  or skuDetailsList == null\"")
 
                 Log.d("BILLING","| PassEligibleActivity: querySkuDetailsAsync() | responseCode != OK  or skuDetailsList == null")
             }

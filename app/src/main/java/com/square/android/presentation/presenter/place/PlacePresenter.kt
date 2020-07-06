@@ -66,7 +66,7 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
                 eventBus.post(redemptionsEvent)
                 eventBus.post(badgeEvent)
 
-                AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.BOOKING_MADE.apply { venueName = data?.name }), repository)
+//                AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.BOOKING_MADE.apply { venueName = data?.name }), repository)
 
                 if(!TextUtils.isEmpty(result.message)){
                     viewState.showMessage(result.message)

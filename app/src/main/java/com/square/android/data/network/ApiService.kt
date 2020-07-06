@@ -11,6 +11,109 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    @POST("users/{userId}/aboutMe")
+    fun saveUserAboutMe(@Header("Authorization") authorization: String,
+                    @Path("userId") userId: Long,
+                    @Body userAboutMeData: UserAboutMeData): Call<MessageResponse>
+
+    @POST("users/{userId}/skills")
+    fun saveUserSkills(@Header("Authorization") authorization: String,
+                       @Path("userId") userId: Long,
+                       @Body userSkillsData: UserSkillsData): Call<MessageResponse>
+
+    // Get user skills ??and list of all skills??
+    @GET("users/{userId}/skills")
+    fun getUserSkills(@Header("Authorization") authorization: String,
+                      @Path("userId") userId: Long): Call<List<UserSkill>>
+
+    @POST("users/{userId}/features")
+    fun saveUserFeatures(@Header("Authorization") authorization: String,
+                         @Path("userId") userId: Long,
+                         @Body userFeaturesData: UserFeaturesData): Call<MessageResponse>
+
+    // Get user features ??and the list of all features??
+    @GET("users/{userId}/features")
+    fun getUserFeatures(@Header("Authorization") authorization: String,
+                        @Path("userId") userId: Long): Call<UserFeatures>
+
+    @POST("users/{userId}/network")
+    fun saveUserNetwork(@Header("Authorization") authorization: String,
+                        @Path("userId") userId: Long,
+                        @Body userNetworkData: UserNetworkData): Call<MessageResponse>
+
+    @GET("users/{userId}/network")
+    fun getUserNetwork(@Header("Authorization") authorization: String,
+                       @Path("userId") userId: Long): Call<UserNetwork>
+
+    @DELETE("users/{userId}/deleteAgency/{agencyId}")
+    fun deleteUserAgency(@Header("Authorization") authorization: String,
+                         @Path("userId") userId: Long,
+                         @Path("agencyId") agencyId: String): Call<MessageResponse>
+
+    @POST("users/{userId}/invoiceDetails")
+    fun saveUserInvoiceDetails(@Header("Authorization") authorization: String,
+                               @Path("userId") userId: Long,
+                               @Body userInvoiceData: UserInvoiceData): Call<MessageResponse>
+
+    @GET("users/{userId}/invoiceDetails")
+    fun getUserInvoiceDetails(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long): Call<UserInvoice>
+
+    @POST("users/{userId}/deliveryPoints")
+    fun addUserDeliveryPoints(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long,
+                              @Body userDeliveryPointsData: UserDeliveryPointsData): Call<MessageResponse>
+
+    @GET("users/{userId}/deliveryPoints")
+    fun getUserDeliveryPoints(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long): Call<List<UserDeliveryPoint>>
+
+    @DELETE("users/{userId}/removeDelPoint/{deliveryPointId}")
+    fun deleteUserDeliveryPoint(@Header("Authorization") authorization: String,
+                                @Path("userId") userId: Long,
+                                @Path("deliveryPointId") deliveryPointId: String): Call<MessageResponse>
+
+    @POST("users/{userId}/updateRates")
+    fun updateUserRates(@Header("Authorization") authorization: String,
+                        @Path("userId") userId: Long,
+                        @Body userRatesData: UserRatesData): Call<MessageResponse>
+
+    @GET("users/{userId}/userRates")
+    fun getUserRates(@Header("Authorization") authorization: String,
+                     @Path("userId") userId: Long): Call<List<UserRate>>
+
+    @POST("users/{userId}/chanels")
+    fun addUserSocialChannel(@Header("Authorization") authorization: String,
+                             @Path("userId") userId: Long,
+                             @Body userSocialChannelData: UserSocialChannelData): Call<MessageResponse>
+
+    @GET("users/{userId}/socialChanels")
+    fun getUserSocialChannels(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long): Call<List<UserSocialChannel>>
+
+    @DELETE("users/{userId}/removeUserChanel/{socialChannelId}")
+    fun deleteUserSocialChannel(@Header("Authorization") authorization: String,
+                                @Path("userId") userId: Long,
+                                @Path("socialChannelId") socialChannelId: String): Call<MessageResponse>
+
+    @POST("users/{userId}/specialities")
+    fun addUserSpecialities(@Header("Authorization") authorization: String,
+                            @Path("userId") userId: Long,
+                            @Body userSpecialitiesData: UserSpecialitiesData): Call<MessageResponse>
+
+    @GET("users/{userId}/specialities")
+    fun getUserSpecialities(@Header("Authorization") authorization: String,
+                            @Path("userId") userId: Long): Call<List<UserSpeciality>>
+
+    @POST("users/{userId}/plan")
+    fun postUserPlan(@Header("Authorization") authorization: String,
+                     @Path("userId") userId: Long,
+                     @Body userPlanData: UserPlanData): Call<MessageResponse>
+
+    @GET("users/{userId}/profilePlans")
+    fun getUserPlans(@Header("Authorization") authorization: String,
+                     @Path("userId") userId: Long): Call<List<UserPlanData>>
+
     //TODO doesn't work, API returns: "\"driverRideId\" is required" even when driverRideId is defined
     //TODO or maybe all id's are checked and they must match
     @POST("ride")

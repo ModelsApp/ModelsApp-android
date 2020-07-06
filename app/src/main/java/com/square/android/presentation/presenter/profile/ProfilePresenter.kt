@@ -2,7 +2,7 @@ package com.square.android.presentation.presenter.profile
 
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
-import com.crashlytics.android.Crashlytics
+//import com.crashlytics.android.Crashlytics
 import com.square.android.GOOGLEBILLING
 import com.square.android.R
 import com.square.android.SCREENS
@@ -54,14 +54,14 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
     private fun loadSubscriptions(user: Profile.User) = launch ({
         Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions()")
 
-        Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions()")
+//        Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions()")
 
         actualTokenInfo = null
 
         val isPaymentRequired = repository.getUserInfo().isPaymentRequired
 
         if(isPaymentRequired){
-            Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> PAYMENT REQUIRED")
+//            Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> PAYMENT REQUIRED")
             Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> PAYMENT REQUIRED")
 
             val subscriptions: MutableList<BillingSubscription> = mutableListOf()
@@ -77,7 +77,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
                     subscriptions.add(it) }
             }
 
-            Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> subscriptionsList: ${subscriptions.toString()}")
+//            Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> subscriptionsList: ${subscriptions.toString()}")
             Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> subscriptionsList: ${subscriptions.toString()}")
 
             //TODO change to actual time from API
@@ -85,7 +85,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
 
             val perWeekValidSub = subscriptions.filter { it.subscriptionId == GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_NAME}.sortedByDescending {it.expiryTimeMillis}.firstOrNull()
             perWeekValidSub?.let {
-                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekValidSub NOT NULL")
+//                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekValidSub NOT NULL")
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perWeekValidSub NOT NULL")
 
                 val validExpiry = (it.expiryTimeMillis - actualTimeInMillis) > 1000
@@ -97,13 +97,13 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
                 }
 
             } ?: run {
-                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekValidSub IS NULL")
+//                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekValidSub IS NULL")
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perWeekValidSub IS NULL")
             }
 
             val perMonthValidSub = subscriptions.filter { it.subscriptionId == GOOGLEBILLING.SUBSCRIPTION_PER_MONTH_NAME}.sortedByDescending {it.expiryTimeMillis}.firstOrNull()
             perMonthValidSub?.let {
-                Crashlytics.logException(Throwable("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthValidSub NOT NULL"))
+//                Crashlytics.logException(Throwable("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthValidSub NOT NULL"))
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perMonthValidSub NOT NULL")
 
                 val validExpiry = (it.expiryTimeMillis - actualTimeInMillis) > 1000
@@ -115,13 +115,13 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
                 }
 
             } ?: run {
-                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthValidSub IS NULL")
+//                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthValidSub IS NULL")
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perMonthValidSub IS NULL")
             }
 
             val perWeekPremiumValidSub = subscriptions.filter { it.subscriptionId == GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_PREMIUM_NAME}.sortedByDescending {it.expiryTimeMillis}.firstOrNull()
             perWeekPremiumValidSub?.let {
-                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekPremiumValidSub NOT NULL")
+//                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekPremiumValidSub NOT NULL")
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perWeekPremiumValidSub NOT NULL")
 
                 val validExpiry = (it.expiryTimeMillis - actualTimeInMillis) > 1000
@@ -133,13 +133,13 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
                 }
 
             } ?: run {
-                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekPremiumValidSub IS NULL")
+//                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perWeekPremiumValidSub IS NULL")
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perWeekPremiumValidSub IS NULL")
             }
 
             val perMonthPremiumValidSub = subscriptions.filter { it.subscriptionId == GOOGLEBILLING.SUBSCRIPTION_PER_MONTH_PREMIUM_NAME}.sortedByDescending {it.expiryTimeMillis}.firstOrNull()
             perMonthPremiumValidSub?.let {
-                Crashlytics.logException(Throwable("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthPremiumValidSub NOT NULL"))
+//                Crashlytics.logException(Throwable("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthPremiumValidSub NOT NULL"))
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perMonthPremiumValidSub NOT NULL")
 
                 val validExpiry = (it.expiryTimeMillis - actualTimeInMillis) > 1000
@@ -151,7 +151,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
                 }
 
             } ?: run {
-                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthPremiumValidSub IS NULL")
+//                Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> perMonthPremiumValidSub IS NULL")
                 Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> perMonthPremiumValidSub IS NULL")
             }
 
@@ -160,7 +160,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
             actualTokenInfo!!.subscriptionType = SUBSCRIPTION_NORMAL
             actualTokenInfo!!.planType = SUBSCRIPTION_TYPE_NO_LIMIT
 
-            Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> PAYMENT NOT REQUIRED")
+//            Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> PAYMENT NOT REQUIRED")
             Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> PAYMENT NOT REQUIRED")
         }
 
@@ -177,7 +177,7 @@ class ProfilePresenter: BasePresenter<ProfileView>(){
         viewState.showMessage(R.string.error_occurred)
         viewState.hideProgress()
 
-        Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> error: ${error.toString()}")
+//        Crashlytics.log("SUBSCRIPTIONS -> ProfilePresenter: loadSubscriptions() -> error: ${error.toString()}")
         Log.d("SUBSCRIPTIONS","ProfilePresenter: loadSubscriptions() -> error: ${error.toString()}")
     })
 

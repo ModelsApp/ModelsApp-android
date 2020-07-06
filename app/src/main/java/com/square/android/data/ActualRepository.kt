@@ -53,6 +53,116 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
+    override fun saveUserAboutMe(userAboutMeData: UserAboutMeData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.saveUserAboutMe(localManager.getAuthToken(), getUserId(), userAboutMeData)}
+        data
+    }
+
+    override fun saveUserSkills(userSkillsData: UserSkillsData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.saveUserSkills(localManager.getAuthToken(), getUserId(), userSkillsData)}
+        data
+    }
+
+    override fun getUserSkills(): Deferred<List<UserSkill>> = GlobalScope.async {
+        val data = performRequest {api.getUserSkills(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun saveUserFeatures(userFeaturesData: UserFeaturesData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.saveUserFeatures(localManager.getAuthToken(), getUserId(), userFeaturesData)}
+        data
+    }
+
+    override fun getUserFeatures(): Deferred<UserFeatures> = GlobalScope.async {
+        val data = performRequest {api.getUserFeatures(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun saveUserNetwork(userNetworkData: UserNetworkData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.saveUserNetwork(localManager.getAuthToken(), getUserId(), userNetworkData)}
+        data
+    }
+
+    override fun getUserNetwork(): Deferred<UserNetwork> = GlobalScope.async {
+        val data = performRequest {api.getUserNetwork(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun deleteUserAgency(agencyId: String): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.deleteUserAgency(localManager.getAuthToken(), getUserId(), agencyId)}
+        data
+    }
+
+    override fun saveUserInvoiceDetails(userInvoiceData: UserInvoiceData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.saveUserInvoiceDetails(localManager.getAuthToken(), getUserId(), userInvoiceData)}
+        data
+    }
+
+    override fun getUserInvoiceDetails(): Deferred<UserInvoice> = GlobalScope.async {
+        val data = performRequest {api.getUserInvoiceDetails(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun addUserDeliveryPoints(userDeliveryPointsData: UserDeliveryPointsData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.addUserDeliveryPoints(localManager.getAuthToken(), getUserId(), userDeliveryPointsData)}
+        data
+    }
+
+    override fun getUserDeliveryPoints(): Deferred<List<UserDeliveryPoint>> = GlobalScope.async {
+        val data = performRequest {api.getUserDeliveryPoints(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun deleteUserDeliveryPoint(deliveryPointId: String): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.deleteUserDeliveryPoint(localManager.getAuthToken(), getUserId(), deliveryPointId)}
+        data
+    }
+
+    override fun updateUserRates(userRatesData: UserRatesData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.updateUserRates(localManager.getAuthToken(), getUserId(), userRatesData)}
+        data
+    }
+
+    override fun getUserRates(): Deferred<List<UserRate>> = GlobalScope.async {
+        val data = performRequest {api.getUserRates(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun addUserSocialChannel(userSocialChannelData: UserSocialChannelData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.addUserSocialChannel(localManager.getAuthToken(), getUserId(), userSocialChannelData)}
+        data
+    }
+
+    override fun getUserSocialChannels(): Deferred<List<UserSocialChannel>> = GlobalScope.async {
+        val data = performRequest {api.getUserSocialChannels(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun deleteUserSocialChannel(socialChannelId: String): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.deleteUserSocialChannel(localManager.getAuthToken(), getUserId(), socialChannelId)}
+        data
+    }
+
+    override fun addUserSpecialities(userSpecialitiesData: UserSpecialitiesData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.addUserSpecialities(localManager.getAuthToken(), getUserId(), userSpecialitiesData)}
+        data
+    }
+
+    override fun getUserSpecialities(): Deferred<List<UserSpeciality>> = GlobalScope.async {
+        val data = performRequest {api.getUserSpecialities(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+    override fun postUserPlan(userPlanData: UserPlanData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.postUserPlan(localManager.getAuthToken(), getUserId(), userPlanData)}
+        data
+    }
+
+    override fun getUserPlans(): Deferred<List<UserPlanData>> = GlobalScope.async {
+        val data = performRequest {api.getUserPlans(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
     override fun getIntervalSlots(placeId: Long, date: String): Deferred<List<Place.Interval>> = GlobalScope.async {
         val data = performRequest {api.getIntervalSlots(placeId, date)}
         data

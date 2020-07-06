@@ -9,7 +9,7 @@ import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.crashlytics.android.Crashlytics
+//import com.crashlytics.android.Crashlytics
 import com.square.android.GOOGLEBILLING
 import com.square.android.R
 import com.square.android.data.pojo.BillingTokenInfo
@@ -65,7 +65,7 @@ class ActivePlanActivity: BaseBillingActivity(), ActivePlanView{
                         }
                     }
                 } else {
-                    Crashlytics.log("BILLING -> PassEligibleActivity: subscriptions not supported")
+//                    Crashlytics.log("BILLING -> PassEligibleActivity: subscriptions not supported")
 
                     Log.d("BILLING", "subscriptions not supported")
 
@@ -125,7 +125,7 @@ class ActivePlanActivity: BaseBillingActivity(), ActivePlanView{
 
                 premiumPrice.text = getString(R.string.price_subscription_week_format, skuDetailsList.firstOrNull { it.sku == GOOGLEBILLING.SUBSCRIPTION_PER_WEEK_NAME }?.price )
             } else {
-                Crashlytics.log("BILLING -> ActivePlanActivity: querySkuDetailsAsync() | responseCode != OK  or skuDetailsList == null\"")
+//                Crashlytics.log("BILLING -> ActivePlanActivity: querySkuDetailsAsync() | responseCode != OK  or skuDetailsList == null\"")
 
                 Log.d("BILLING","| ActivePlanActivity: querySkuDetailsAsync() | responseCode != OK  or skuDetailsList == null")
             }

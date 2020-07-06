@@ -13,6 +13,50 @@ import kotlinx.coroutines.Deferred
 
 interface Repository {
 
+    fun saveUserAboutMe(userAboutMeData: UserAboutMeData): Deferred<MessageResponse>
+
+    fun saveUserSkills(userSkillsData: UserSkillsData): Deferred<MessageResponse>
+
+    fun getUserSkills(): Deferred<List<UserSkill>>
+
+    fun saveUserFeatures(userFeaturesData: UserFeaturesData): Deferred<MessageResponse>
+
+    fun getUserFeatures(): Deferred<UserFeatures>
+
+    fun saveUserNetwork(userNetworkData: UserNetworkData): Deferred<MessageResponse>
+
+    fun getUserNetwork(): Deferred<UserNetwork>
+
+    fun deleteUserAgency(agencyId: String): Deferred<MessageResponse>
+
+    fun saveUserInvoiceDetails(userInvoiceData: UserInvoiceData): Deferred<MessageResponse>
+
+    fun getUserInvoiceDetails(): Deferred<UserInvoice>
+
+    fun addUserDeliveryPoints(userDeliveryPointsData: UserDeliveryPointsData): Deferred<MessageResponse>
+
+    fun getUserDeliveryPoints(): Deferred<List<UserDeliveryPoint>>
+
+    fun deleteUserDeliveryPoint(deliveryPointId: String): Deferred<MessageResponse>
+
+    fun updateUserRates(userRatesData: UserRatesData): Deferred<MessageResponse>
+
+    fun getUserRates(): Deferred<List<UserRate>>
+
+    fun addUserSocialChannel(userSocialChannelData: UserSocialChannelData): Deferred<MessageResponse>
+
+    fun getUserSocialChannels(): Deferred<List<UserSocialChannel>>
+
+    fun deleteUserSocialChannel(socialChannelId: String): Deferred<MessageResponse>
+
+    fun addUserSpecialities(userSpecialitiesData: UserSpecialitiesData): Deferred<MessageResponse>
+
+    fun getUserSpecialities(): Deferred<List<UserSpeciality>>
+
+    fun postUserPlan(userPlanData: UserPlanData): Deferred<MessageResponse>
+
+    fun getUserPlans(): Deferred<List<UserPlanData>>
+
     fun createRide(rideData: RideData): Deferred<MessageResponse>
 
     fun editRide(ride: Ride): Deferred<MessageResponse>
