@@ -77,6 +77,7 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
             daysAdapter!!.setSelectedItem(presenter.selectedDayPosition)
 
             setUpPager(data)
+            presenter.dayClicked(0)
         }
     }
 

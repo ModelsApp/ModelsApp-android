@@ -317,8 +317,8 @@ fun Int?.asDistance(): String {
     val truncated = toInt()
 
     return when (truncated) {
-        in 1..999 -> truncated.toString() + PREFIX_METER
-        else -> (truncated / 1000).toString() + PREFIX_KILOMETER
+        in 1..999 -> truncated.toString() + " $PREFIX_METER"
+        else -> (truncated / 1000).toString() + " $PREFIX_KILOMETER"
     }
 }
 

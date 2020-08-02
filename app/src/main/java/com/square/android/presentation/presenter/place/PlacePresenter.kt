@@ -169,9 +169,9 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
     private fun updateLocationInfo() {
         //TODO:A
 //        val placePoint = data!!.location.latLng()
-        val placePoint = data!!.location.toLatLng()
+        val placePoint = data!!.location()
 
-        val distance = placePoint.distanceTo(locationPoint!!).toInt()
+        val distance = placePoint?.distanceTo(locationPoint!!)?.toInt()
 
         data!!.distance = distance
 

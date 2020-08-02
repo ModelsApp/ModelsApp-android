@@ -10,6 +10,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.square.android.Network.BASE_API_URL
 import com.square.android.Network.GOOGLE_BILLING_API_URL
 import com.square.android.data.network.*
+import com.square.android.utils.SingleToArrayAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -64,6 +65,7 @@ private fun createMoshi() = Moshi.Builder()
         .add(IgnoreStringForArrays())
         .add(IgnoreObjectIfIncorrect())
         .add(KotlinJsonAdapterFactory())
+        .add(SingleToArrayAdapter.INSTANCE)
         .build()
 
 private fun createRetrofit(okHttp: OkHttpClient, baseUrl: String) = Retrofit.Builder()

@@ -26,6 +26,7 @@ import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.text.TextUtils
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,8 @@ import com.square.android.data.pojo.PlaceExtra
 import com.square.android.extensions.loadImageForIcon
 import com.square.android.ui.fragment.map.MarginItemDecorator
 import com.square.android.ui.fragment.explore.GridItemDecoration
+import kotlinx.android.synthetic.main.activity_place.roundedView
+import kotlinx.android.synthetic.main.fragment_profile.*
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -94,8 +97,8 @@ class PlaceActivity : LocationActivity(), PlaceView {
                     updateViews(Math.abs(i / appBarLayout.totalScrollRange.toFloat()))
         })
 
-        placeReadMore.setOnClickListener {
-            placeReadMore.visibility = View.GONE
+        aboutMore.setOnClickListener {
+            aboutMore.visibility = View.GONE
             placeAbout.maxLines = Integer.MAX_VALUE
 
             checkAndShowAboutRv()
@@ -138,14 +141,39 @@ class PlaceActivity : LocationActivity(), PlaceView {
             }
         }
 
-        placeName.apply {
+        roundedView.apply {
             when {
                 offset > titleMovePoint -> {
                     val titleAnimationOffset = (offset - titleMovePoint) * titleAnimationWeight
 
+                    val roundedMeasuredHeight = Math.round(resources.getDimension(R.dimen.v_44dp) - Math.round(resources.getDimension(R.dimen.v_44dp) * (titleAnimationOffset * 2)))
+
+                    if(roundedMeasuredHeight >= 0){
+                        this.layoutParams.also {
+                            it.height = roundedMeasuredHeight
+                        }
+                    }
+                }
+
+                else -> {
+                    this.layoutParams.also {
+                        it.height = Math.round(resources.getDimension(R.dimen.v_44dp))
+                    }
+                }
+            }
+        }
+
+        placeName.apply {
+            when {
+                offset > titleMovePoint -> {
+
+                    ratingLl.visibility = View.GONE
+
+                    val titleAnimationOffset = (offset - titleMovePoint) * titleAnimationWeight
+
                     val measuredMargin = Math.round(resources.getDimension(R.dimen.ac_place_default_margin) + ((resources.getDimension(R.dimen.backArrowSize) + resources.getDimension(R.dimen.backArrowMarginStart)) * titleAnimationOffset))
                     this.layoutParams.also {
-                        (it as CollapsingToolbarLayout.LayoutParams).setMargins(Math.round(resources.getDimension(R.dimen.ac_place_default_margin)),0,measuredMargin,0)
+                        (it as LinearLayout.LayoutParams).setMargins(Math.round(resources.getDimension(R.dimen.ac_place_default_margin)),0,measuredMargin,0)
                         this.requestLayout()
                     }
                     this.translationX = (resources.getDimension(R.dimen.backArrowSize) + resources.getDimension(R.dimen.backArrowMarginStart)) * titleAnimationOffset
@@ -153,9 +181,11 @@ class PlaceActivity : LocationActivity(), PlaceView {
                     this.height = Math.round(titleMinHeight + (resources.getDimension(R.dimen.toolbar_extra_space)* titleAnimationOffset))
                 }
                 else ->{
+                    ratingLl.visibility = View.VISIBLE
+
                     this.layoutParams.also {
                         translationX = 0f
-                        (it as CollapsingToolbarLayout.LayoutParams).setMargins(Math.round(resources.getDimension(R.dimen.ac_place_default_margin)),0,Math.round(resources.getDimension(R.dimen.ac_place_default_margin)),0)
+                        (it as LinearLayout.LayoutParams).setMargins(Math.round(resources.getDimension(R.dimen.ac_place_default_margin)),0,Math.round(resources.getDimension(R.dimen.ac_place_default_margin)),0)
                     }
                 }
             }
@@ -209,7 +239,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
         placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
-        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).capitalize()
+        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
         val m = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
 
         placeBookingDate.text = d + ", " + m + " " + dayToString(calendar.get(Calendar.DAY_OF_MONTH))
@@ -250,28 +280,28 @@ class PlaceActivity : LocationActivity(), PlaceView {
     override fun showData(place: Place, offers: List<OfferInfo>, calendar: Calendar, typeImage: String?, extras: List<PlaceExtra>) {
         this.place = place
 
-        typeImage?.let { placeAboutImage.loadImageForIcon(it) }
+//        typeImage?.let { placeAboutImage.loadImageForIcon(it) }
 
         placeMainImage.loadImage(place.mainImage ?: (place.photos?.firstOrNull() ?: ""))
 
         placeAbout.text = place.description
 
         //TODO change later - waiting for API
-        val aboutItems = listOf("www", "insta")
-        placeAboutSize = aboutItems.size
-        adapter = AboutAdapter(aboutItems)
-        placeAboutRv.adapter = adapter
-        placeAboutRv.layoutManager = LinearLayoutManager(placeAboutRv.context, RecyclerView.HORIZONTAL, false)
-        placeAboutRv.addItemDecoration(MarginItemDecorator(placeAboutRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), vertical = false))
-
-        if(!extras.isEmpty()){
-            placeRequirementsCl.visibility = View.VISIBLE
-
-            requirementsAdapter = RequirementsAdapter(extras, null)
-            placeRequirementsRv.layoutManager = GridLayoutManager(this, 2)
-            placeRequirementsRv.adapter = requirementsAdapter
-            placeRequirementsRv.addItemDecoration(GridItemDecoration(2,placeRequirementsRv.context.resources.getDimension(R.dimen.rv_item_decorator_8).toInt(), false))
-        }
+//        val aboutItems = listOf("www", "insta")
+//        placeAboutSize = aboutItems.size
+//        adapter = AboutAdapter(aboutItems)
+//        placeAboutRv.adapter = adapter
+//        placeAboutRv.layoutManager = LinearLayoutManager(placeAboutRv.context, RecyclerView.HORIZONTAL, false)
+//        placeAboutRv.addItemDecoration(MarginItemDecorator(placeAboutRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), vertical = false))
+//
+//        if(!extras.isEmpty()){
+//            placeRequirementsCl.visibility = View.VISIBLE
+//
+//            requirementsAdapter = RequirementsAdapter(extras, null)
+//            placeRequirementsRv.layoutManager = GridLayoutManager(this, 2)
+//            placeRequirementsRv.adapter = requirementsAdapter
+//            placeRequirementsRv.addItemDecoration(GridItemDecoration(2,placeRequirementsRv.context.resources.getDimension(R.dimen.rv_item_decorator_8).toInt(), false))
+//        }
 
         if(!offers.isNullOrEmpty()){
             placeOffersCl.visibility = View.VISIBLE
@@ -319,7 +349,13 @@ class PlaceActivity : LocationActivity(), PlaceView {
         daysAdapter!!.selectedItemPosition = 0
         daysAdapter!!.notifyItemChanged(0, DaysAdapter.SelectedPayload)
 
+        //TODO get from api
+        rating.text = "4.5"
 
+        //TODO DELETE
+//        placeName.text = "Cjdjdas Ckdfkdsa Ckfksdfk Ckdkdfsdk Ckfskfk fsdfs"
+
+        //TODO uncomment
         placeName.text = place.name
 
         placeName.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
@@ -332,7 +368,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
                         it.height = Math.round(titleMinHeight + resources.getDimension(R.dimen.toolbar_extra_space))
 
                         placeCollapsing.layoutParams.apply {
-                            this.height = Math.round(titleMinHeight + resources.getDimension(R.dimen.toolbar_image_height) + resources.getDimension(R.dimen.ac_place_default_margin))
+                            this.height = Math.round(resources.getDimension(R.dimen.toolbar_image_height))
                         }
                     }
                 }
@@ -398,7 +434,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
 
                 if(shouldShowReadMore){
                     placeAbout.maxLines = lineToEnd
-                    placeReadMore.visibility = View.VISIBLE
+                    aboutMore.visibility = View.VISIBLE
                 } else{
                     checkAndShowAboutRv()
                 }
@@ -407,9 +443,9 @@ class PlaceActivity : LocationActivity(), PlaceView {
     }
 
     private fun checkAndShowAboutRv(){
-        if(placeAboutSize > 0){
-            placeAboutRv.visibility = View.VISIBLE
-        }
+//        if(placeAboutSize > 0){
+//            placeAboutRv.visibility = View.VISIBLE
+//        }
     }
 
     override fun onStart() {

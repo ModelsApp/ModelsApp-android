@@ -3,9 +3,11 @@ package com.square.android.data.pojo
 import android.os.Parcelable
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.network.IgnoreObjectIfIncorrect
-import com.squareup.moshi.JsonClass
+import com.square.android.utils.SingleToArray
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Parcelize
 @JsonClass(generateAdapter = true)
@@ -16,7 +18,12 @@ class Place(
         var address: String = "",
         var type: String = "",
         var name: String = "",
-        var location: List<Double> = mutableListOf(),
+
+        @Json(name = "location")
+        @SingleToArray
+        var rawStringLocation: @RawValue List<Any?> = listOf(),
+        @Transient
+        private var locationLatLng: LatLng? = null,
         var access: String = "",
         var icons: Icons? = null,
         var freeSpots: Int = 0,
@@ -50,6 +57,43 @@ class Place(
         var availableOfferDay: String? = null
 
 ) : Parcelable {
+
+    init {
+        location()
+    }
+
+    fun location(): LatLng {
+
+        if(locationLatLng == null){
+
+            var loc = LatLng(0.0,0.0)
+
+            runCatching{
+                if(rawStringLocation.size > 1 && (rawStringLocation[0] != null && rawStringLocation[1] != null)){
+
+                    loc = LatLng((rawStringLocation[0] as Double), (rawStringLocation[1] as Double))
+                } else {
+                    val str = rawStringLocation.toString()
+                    val coordinates = str.replace("[{type=Point, coordinates=[", "")
+                            .replace("]}]", "")
+                            .replace(", ", ",")
+                            .split(",")
+                    loc = LatLng(coordinates[0].toDouble(), coordinates[1].toDouble())
+                }
+            }
+
+            locationLatLng = loc
+
+            return loc
+        } else return locationLatLng!!
+    }
+
+    @Parcelize
+    @JsonClass(generateAdapter = true)
+    class PlaceLocation(
+            var type: String = "",
+            var coordinates: List<Double> = listOf()
+    ) : Parcelable
 
     @Parcelize
     @JsonClass(generateAdapter = true)

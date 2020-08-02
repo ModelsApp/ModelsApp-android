@@ -300,15 +300,22 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         }
     }
 
+    // dla https://square-app-new-api.herokuapp.com/api/v2/place?tf=&typology=&date=29-7-2020&city=Milan
+    // :[-8.663777,115.146573]
+    //
+    // dla
+
+
+
     private fun fillDistances(whichTabsToFillDistances: List<Int> = listOf(POSITION_PLACES, POSITION_EVENTS)): Deferred<Unit?> = GlobalScope.async {
         locationPoint?.let {
             if (whichTabsToFillDistances.contains(POSITION_PLACES)) {
                 data.placesData.forEach { place ->
                     //TODO:A
 //                    val placePoint = place.location.latLng()
-                    val placePoint = place.location.toLatLng()
+                    val placePoint = place.location()
 
-                    val distance = placePoint.distanceTo(locationPoint!!).toInt()
+                    val distance = placePoint?.distanceTo(locationPoint!!)?.toInt()
 
                     place.distance = distance
                 }
@@ -319,9 +326,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
                 data.eventsData.forEach { eventPlace ->
                     //TODO:A
 //                    val placePoint = eventPlace.location.latLng()
-                    val placePoint = eventPlace.location.toLatLng()
+                    val placePoint = eventPlace.location()
 
-                    val distance = placePoint.distanceTo(locationPoint!!).toInt()
+                    val distance = placePoint?.distanceTo(locationPoint!!)?.toInt()
 
                     eventPlace.distance = distance
                 }

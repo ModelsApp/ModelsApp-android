@@ -271,7 +271,7 @@ class EventActivity: LocationActivity(), EventView {
 
     //TODO fire when user navigates back to eventDetailsFragment(by himself or by clicking Select button)
     fun backToEvent(){
-        presenter.updateLocationAndAddress(presenter.place?.location?.latLng(), presenter.place?.address )
+        presenter.updateLocationAndAddress(presenter.place?.location(), presenter.place?.address )
 
         eventMainImage.loadImage(presenter.place?.mainImage ?: (presenter.place?.photos?.firstOrNull() ?: ""))
 

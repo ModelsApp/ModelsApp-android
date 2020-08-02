@@ -68,7 +68,7 @@ class EventPresenter(val eventId: String) : BasePresenter<EventView>() {
         viewState.showData(place!!)
 
         address = place!!.address
-        latLng = place!!.location.latLng()
+        latLng = place!!.location()
 
         router.replaceScreen(SCREENS.EVENT_DETAILS, EventExtras(event!!, place!!))
 

@@ -124,7 +124,7 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 
     override fun showPlaces(data: List<Place>) {
         val markerOptions = data.map { place ->
-            val latLng = place.location.latLng()
+            val latLng = place.location()
 
             val key = place.id.toString()
 
@@ -142,7 +142,7 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
         mapboxMap?.clear()
 
         val markerOptions = data.map { place ->
-            val latLng = place.location.latLng()
+            val latLng = place.location()
 
             val key = place.id.toString()
 

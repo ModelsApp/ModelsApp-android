@@ -19,18 +19,14 @@
 
     <dimen name="ac_place_default_margin">20dp</dimen>
 
-<!--  was 220dp  -->
     <dimen name="toolbar_image_height">265dp</dimen>
 
-<!--  was 40dp  -->
     <dimen name="toolbar_extra_space">28dp</dimen>
 
-<!--  was 56dp  -->
     <dimen name="toolbarHeight">42dp</dimen>
 
     <dimen name="statusMargin">32dp</dimen>
 
-<!--  was 28  -->
     <dimen name="backArrowSize">24dp</dimen>
 
     <dimen name="backArrowMarginStart">20dp</dimen>

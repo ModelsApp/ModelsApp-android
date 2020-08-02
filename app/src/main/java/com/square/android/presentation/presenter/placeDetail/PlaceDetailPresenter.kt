@@ -106,9 +106,9 @@ class PlaceDetailPresenter(private val placeId: Long) : BasePresenter<PlaceDetai
     }
 
     private fun updateLocationInfo() {
-        val placePoint = data!!.location.latLng()
+        val placePoint = data!!.location()
 
-        val distance = placePoint.distanceTo(locationPoint!!).toInt()
+        val distance = placePoint?.distanceTo(locationPoint!!)?.toInt()
 
         data!!.distance = distance
 
