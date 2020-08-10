@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="false"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/v_24dp"
+        android:layout_marginEnd="@dimen/v_20dp"
+        android:layout_marginTop="@dimen/v_20dp"
+        android:background="@android:color/white" >
+
+        <ImageView
+            android:id="@+id/icClose"
+            android:layout_width="@dimen/v_32dp"
+            android:layout_height="@dimen/v_32dp"
+            android:padding="@dimen/v_4dp"
+            android:src="@drawable/close_x"
+            android:layout_gravity="end"
+            android:tint="@color/text_gray" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/v_40dp"
+            android:layout_height="@dimen/v_40dp"
+            tools:src="@drawable/instagram_logo"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/label"
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/text_16"
+            android:layout_marginTop="@dimen/v_16dp"
+            android:layout_marginEnd="@dimen/v_4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Add your Instagram account"
+            android:gravity="center_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_rl_height"
+            android:layout_marginTop="@dimen/v_48dp"
+            android:layout_marginEnd="@dimen/v_4dp" >
+            <com.square.android.utils.widget.ErrorEditText
+                style="@style/RedesignedInputField"
+                android:id="@+id/et_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+
+            <TextView
+                style="@style/RedesignedFieldHeader"
+                android:text="@string/enter_account_name" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btnDone"
+            style="@style/Models16Text"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/v_24dp"
+            android:layout_marginBottom="@dimen/v_24dp"
+            android:layout_height="@dimen/auth_btn_height"
+            android:layout_marginEnd="@dimen/v_4dp"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
+            android:enabled="true"
+            android:background="@drawable/button_black_alpha"
+            android:text="@string/done"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_16" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

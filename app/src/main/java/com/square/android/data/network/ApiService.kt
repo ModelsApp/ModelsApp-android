@@ -89,7 +89,7 @@ interface ApiService {
 
     @GET("users/{userId}/socialChanels")
     fun getUserSocialChannels(@Header("Authorization") authorization: String,
-                              @Path("userId") userId: Long): Call<List<UserSocialChannel>>
+                              @Path("userId") userId: Long): Call<UserSocialChannelResult>
 
     @DELETE("users/{userId}/removeUserChanel/{socialChannelId}")
     fun deleteUserSocialChannel(@Header("Authorization") authorization: String,

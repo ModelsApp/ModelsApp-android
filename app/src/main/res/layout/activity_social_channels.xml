@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="false"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navContainer"
+        android:layout_width="0dp"
+        android:paddingTop="@dimen/v_40dp"
+        android:paddingBottom="@dimen/v_4dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/arrowBack"
+            android:layout_width="@dimen/v_40dp"
+            android:layout_height="@dimen/v_40dp"
+            android:src="@drawable/chevron_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Models16SemiBoldText"
+            android:textSize="@dimen/text_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/social_channels"
+            android:textColor="@android:color/black"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@+id/arrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navContainer" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topContainer"
+        android:layout_width="0dp"
+        android:padding="@dimen/v_20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <RelativeLayout
+            android:id="@+id/icMoney"
+            android:layout_width="@dimen/v_44dp"
+            android:layout_height="@dimen/v_44dp"
+            android:background="@drawable/bg_round_stroke"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/v_20dp"
+                android:layout_height="@dimen/v_20dp"
+                android:src="@drawable/i_money" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/earnMoreTv"
+            style="@style/Models15Text"
+            android:layout_marginTop="@dimen/v_12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connect_social_account"
+            android:textSize="@dimen/text_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icMoney" />
+
+        <TextView
+            style="@style/Models15Text"
+            android:layout_marginTop="@dimen/v_6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/v_4dp"
+            android:text="@string/social_channels_text"
+            android:textSize="@dimen/text_15"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/earnMoreTv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/v_1dp"
+        android:background="@color/gray_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/placesPrimary"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSocialChannels"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/v_20dp"
+            android:paddingEnd="@dimen/v_20dp"
+            tools:listitem="@layout/item_social_channel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,13 +52,15 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView {
             else -> ""
         }
 
+        //TODO load data from API
+
         val editProfile = ProfileItem(TYPE_BUTTON, getString(R.string.edit_profile), onClick = { presenter.openEditProfile() })
 
         val activePlan = ProfileItem(title = getString(R.string.active_plan), iconRes = R.drawable.r_shop, subText = subTextSubscription, subTextColor = R.color.status_yellow, onClick = { presenter.navigateToActivePlan() })
         val credits = ProfileItem(title = getString(R.string.credits), iconRes = R.drawable.r_shop, subText = "1.534", subTextColor = android.R.color.black)
         val experiencePoints = ProfileItem(title = getString(R.string.experience_points),iconRes =  R.drawable.r_shop, subText = "435", subTextColor = android.R.color.black, dividerVisible = true)
 
-        val socialChannels = ProfileItem(title = getString(R.string.social_channels), iconRes = R.drawable.r_shop, subText = "Instagram, +1 more")
+        val socialChannels = ProfileItem(title = getString(R.string.social_channels), iconRes = R.drawable.r_shop, subText = "Instagram, +1 more", onClick = { presenter.navigateToSocialChannels() })
         val myProfession = ProfileItem(title = getString(R.string.my_profession), iconRes = R.drawable.r_shop, subText = "Content creator")
         val specialities = ProfileItem(title = getString(R.string.specialities), iconRes = R.drawable.r_shop, subText = "Fashion, +3 more")
         val capabilities = ProfileItem(title = getString(R.string.capabilities), iconRes = R.drawable.r_shop, subText = "Writing, +2 more", dividerVisible = true)

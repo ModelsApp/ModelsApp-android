@@ -1,8 +1,10 @@
 package com.square.android.extensions
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.ColorRes
@@ -124,4 +126,12 @@ fun List<Double>.toLatLng(): LatLng{
     } else{
         LatLng(0.0, 0.0)
     }
+}
+
+fun String?.textIsEmpty() = TextUtils.isEmpty(this)
+
+fun Context.getColorFromRes(@ColorRes colorRes: Int) = ContextCompat.getColor(this, colorRes)
+
+fun View.setVisible(isVisible: Boolean) {
+    this.visibility = if(isVisible) View.VISIBLE else View.GONE
 }

@@ -751,6 +751,11 @@
     <string name="earn_more_credits">Earn more credits</string>
     <string name="earn_credits">Earn credits</string>
 
+    <string name="connect_social_account">Connect your social accounts</string>
+
+
+    <string name="social_channels_text">Link your social pages in order to activate more actions to accomplish during events and jobs</string>
+
     <string name="support_square_text">Support SQUARE growth by spreading the project throughout your personal network</string>
     <string name="share_with_friends">Share with friends</string>
     <string name="refer_local_business">Refer a local business</string>

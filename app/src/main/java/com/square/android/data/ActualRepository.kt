@@ -135,7 +135,7 @@ class ActualRepository(private val api: ApiService,
 
     override fun getUserSocialChannels(): Deferred<List<UserSocialChannel>> = GlobalScope.async {
         val data = performRequest {api.getUserSocialChannels(localManager.getAuthToken(), getUserId())}
-        data
+        data.list
     }
 
     override fun deleteUserSocialChannel(socialChannelId: String): Deferred<MessageResponse> = GlobalScope.async {

@@ -98,7 +98,6 @@ class SearchPresenter(private var searchType: Int): BasePresenter<SearchView>(){
     fun loadData(){
         latestSearches = repository.getLatestSearches()
 
-        //TODO for safety, if SEARCH_LIST_COUNT was changed
         if(latestSearches[searchType].searches.size > SEARCH_LIST_COUNT){
             for(x in SEARCH_LIST_COUNT until latestSearches[searchType].searches.size){
                 latestSearches[searchType].searches.removeAt(x)

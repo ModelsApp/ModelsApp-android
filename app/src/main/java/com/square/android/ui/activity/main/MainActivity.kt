@@ -327,6 +327,11 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 //                        context.intentFor<PassEligibleActivity>(PASS_CAN_BACK_EXTRA to data as Boolean)
 //                    }
 
+                    ///// Settings
+                    SCREENS.SOCIAL_CHANNELS -> {
+                        context.intentFor<SocialChannelActivity>()
+                    }
+
                     SCREENS.ACTIVE_PLAN -> {
                         val extras = data as ActivePlanExtras
                         context.intentFor<ActivePlanActivity>(CAN_BACK_EXTRA to extras.canGoBack, BILLING_TOKEN_EXTRA to extras.billingTokenInfo)
@@ -337,6 +342,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.SETTINGS ->
                         context.intentFor<SettingsActivity>(com.square.android.ui.activity.settings.USER_EXTRA to data as Profile.User)
+                    ////
 
                     SCREENS.CAMPAIGN_FINISHED ->
                         context.intentFor<CampaignDetailsActivity>(CAMPAIGN_EXTRA_ID to data as Long)

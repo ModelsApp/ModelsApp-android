@@ -216,7 +216,8 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
     }
 
     private fun changeMobileVerified(isVerified: Boolean){
-        mobileVerified = isVerified
+         mobileVerified = isVerified
+//        mobileVerified = true
 
         verifyDivider.visibility = if(mobileVerified) View.GONE else View.VISIBLE
         mobileVerifyText.visibility = if(mobileVerified) View.GONE else View.VISIBLE

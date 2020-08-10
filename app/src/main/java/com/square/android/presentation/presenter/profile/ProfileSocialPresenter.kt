@@ -19,6 +19,10 @@ class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTok
         router.navigateTo(SCREENS.EDIT_PROFILE)
     }
 
+    fun navigateToSocialChannels(){
+        router.navigateTo(SCREENS.SOCIAL_CHANNELS)
+    }
+
     fun navigateToActivePlan(){
         router.navigateTo(SCREENS.ACTIVE_PLAN, ActivePlanExtras(true, actualTokenInfo))
     }
