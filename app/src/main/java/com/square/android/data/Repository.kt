@@ -49,9 +49,11 @@ interface Repository {
 
     fun deleteUserSocialChannel(socialChannelId: String): Deferred<MessageResponse>
 
-    fun addUserSpecialities(userSpecialitiesData: UserSpecialitiesData): Deferred<MessageResponse>
+    fun getUserCapabilities(): Deferred<List<Capability>>
 
-    fun getUserSpecialities(): Deferred<List<UserSpeciality>>
+    fun addUserSpecialities(specialitiesData: SpecialitiesData): Deferred<MessageResponse>
+
+    fun getUserSpecialities(): Deferred<SpecialitiesResult>
 
     fun postUserPlan(userPlanData: UserPlanData): Deferred<MessageResponse>
 

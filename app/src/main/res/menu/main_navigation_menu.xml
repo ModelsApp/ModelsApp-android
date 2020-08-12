@@ -14,11 +14,11 @@
         android:icon="@drawable/r_calendar_clock"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action_chat"
-        android:title="@string/chat"
-        android:icon="@drawable/ic_message"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/action_chat"-->
+<!--        android:title="@string/chat"-->
+<!--        android:icon="@drawable/ic_message"-->
+<!--        app:showAsAction="ifRoom" />-->
 
     <item
         android:id="@+id/action_profile"

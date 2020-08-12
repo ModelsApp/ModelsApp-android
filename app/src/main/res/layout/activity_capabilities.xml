@@ -31,7 +31,7 @@
             android:textSize="@dimen/text_16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/social_channels"
+            android:text="@string/capabilities"
             android:textColor="@android:color/black"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="@+id/arrowBack"
@@ -81,7 +81,7 @@
             android:layout_marginTop="@dimen/v_12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/connect_social_account"
+            android:text="@string/social_media_skills"
             android:textSize="@dimen/text_15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/v_4dp"
-            android:text="@string/social_channels_text"
+            android:text="@string/capabilities_description"
             android:textSize="@dimen/text_15"
             android:textColor="@color/text_gray"
             android:gravity="center"
@@ -124,17 +124,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSocialChannels"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:paddingStart="@dimen/v_20dp"
-            android:paddingEnd="@dimen/v_20dp"
-            tools:listitem="@layout/item_social_channel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCapabilities"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/v_20dp"
+        android:paddingEnd="@dimen/v_20dp"
+        tools:listitem="@layout/item_social_channel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

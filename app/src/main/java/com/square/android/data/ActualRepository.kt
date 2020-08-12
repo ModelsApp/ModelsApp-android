@@ -139,16 +139,21 @@ class ActualRepository(private val api: ApiService,
     }
 
     override fun deleteUserSocialChannel(socialChannelId: String): Deferred<MessageResponse> = GlobalScope.async {
-        val data = performRequest {api.deleteUserSocialChannel(localManager.getAuthToken(), getUserId(), socialChannelId)}
+        val data = performRequest {api.deleteUserSocialChannel(localManager.getAuthToken(), socialChannelId)}
         data
     }
 
-    override fun addUserSpecialities(userSpecialitiesData: UserSpecialitiesData): Deferred<MessageResponse> = GlobalScope.async {
-        val data = performRequest {api.addUserSpecialities(localManager.getAuthToken(), getUserId(), userSpecialitiesData)}
+    override fun getUserCapabilities(): Deferred<List<Capability>> = GlobalScope.async {
+        val data = performRequest {api.getUserCapabilities(localManager.getAuthToken(), getUserId())}
         data
     }
 
-    override fun getUserSpecialities(): Deferred<List<UserSpeciality>> = GlobalScope.async {
+    override fun addUserSpecialities(specialitiesData: SpecialitiesData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.addUserSpecialities(localManager.getAuthToken(), getUserId(), specialitiesData)}
+        data
+    }
+
+    override fun getUserSpecialities(): Deferred<SpecialitiesResult> = GlobalScope.async {
         val data = performRequest {api.getUserSpecialities(localManager.getAuthToken(), getUserId())}
         data
     }

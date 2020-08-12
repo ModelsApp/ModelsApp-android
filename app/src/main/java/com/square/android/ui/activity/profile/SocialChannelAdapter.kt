@@ -64,7 +64,6 @@ class SocialChannelsAdapter(data: List<UserSocialChannel>, private val handler: 
 
             itemLabel.text = item.name.replace("TicTok", "TikTok")
 
-            //TODO why not just leave account name in UserSocialChannel?
             val accountName = item.userChannel?.accountName ?: ""
 
             itemTv.text = if(accountName.textIsEmpty()) "" else "@${accountName}"

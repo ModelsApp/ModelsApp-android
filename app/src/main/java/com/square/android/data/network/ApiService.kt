@@ -21,7 +21,6 @@ interface ApiService {
                        @Path("userId") userId: Long,
                        @Body userSkillsData: UserSkillsData): Call<MessageResponse>
 
-    // Get user skills ??and list of all skills??
     @GET("users/{userId}/skills")
     fun getUserSkills(@Header("Authorization") authorization: String,
                       @Path("userId") userId: Long): Call<List<UserSkill>>
@@ -31,7 +30,6 @@ interface ApiService {
                          @Path("userId") userId: Long,
                          @Body userFeaturesData: UserFeaturesData): Call<MessageResponse>
 
-    // Get user features ??and the list of all features??
     @GET("users/{userId}/features")
     fun getUserFeatures(@Header("Authorization") authorization: String,
                         @Path("userId") userId: Long): Call<UserFeatures>
@@ -91,19 +89,28 @@ interface ApiService {
     fun getUserSocialChannels(@Header("Authorization") authorization: String,
                               @Path("userId") userId: Long): Call<UserSocialChannelResult>
 
-    @DELETE("users/{userId}/removeUserChanel/{socialChannelId}")
+    @POST("users/removeUserChanel/{socialChannelId}")
     fun deleteUserSocialChannel(@Header("Authorization") authorization: String,
-                                @Path("userId") userId: Long,
                                 @Path("socialChannelId") socialChannelId: String): Call<MessageResponse>
+
+    @POST("users/{userId}/chanels")
+    fun addUserCapability(@Header("Authorization") authorization: String,
+                             @Path("userId") userId: Long,
+                             @Body userSocialChannelData: UserSocialChannelData): Call<MessageResponse>
+
+    @GET("users/{userId}/capabilities")
+    fun getUserCapabilities(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long): Call<List<Capability>>
+
 
     @POST("users/{userId}/specialities")
     fun addUserSpecialities(@Header("Authorization") authorization: String,
                             @Path("userId") userId: Long,
-                            @Body userSpecialitiesData: UserSpecialitiesData): Call<MessageResponse>
+                            @Body specialitiesData: SpecialitiesData): Call<MessageResponse>
 
     @GET("users/{userId}/specialities")
     fun getUserSpecialities(@Header("Authorization") authorization: String,
-                            @Path("userId") userId: Long): Call<List<UserSpeciality>>
+                            @Path("userId") userId: Long): Call<SpecialitiesResult>
 
     @POST("users/{userId}/plan")
     fun postUserPlan(@Header("Authorization") authorization: String,

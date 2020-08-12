@@ -8,11 +8,25 @@ import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.profile.ProfileSocialView
 import com.square.android.ui.activity.profile.ActivePlanExtras
 
+data class ProfileListData(val socialChannels: List<String>, val profession: List<String>, val specialities: List<String>, val capabilities: List<String>)
+
 @InjectViewState
 class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTokenInfo): BasePresenter<ProfileSocialView>(){
 
     init {
-        viewState.showData(user, actualTokenInfo)
+        // load and pass social channels, profession, specialities, capabilities
+
+        //TODO loading progress bar?
+        launch {
+            val socialChannels = repository.getUserSocialChannels().await().map { it.name }
+            val specialities = repository.getUserSpecialities().await().userSpecialities.map { it.name }
+
+            val capabilities = repository.getUserCapabilities().await()
+
+//            val professions = repository.getUserProfessions().await().map { it.name }
+
+//            viewState.showData(user, ProfileListData(socialChannels, specialities, professions, capabilities), actualTokenInfo)
+        }
     }
 
     fun openEditProfile() {

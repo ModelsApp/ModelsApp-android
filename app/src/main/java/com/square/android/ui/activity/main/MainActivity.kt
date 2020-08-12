@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -26,9 +25,9 @@ import com.square.android.data.network.fcm.NotificationType
 import com.square.android.data.pojo.Place
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
-import com.square.android.extensions.drawableFromRes
-import com.square.android.extensions.loadImage
-import com.square.android.extensions.tintFromRes
+import com.square.android.extensions.*
+import com.square.android.presentation.presenter.explore.EventSelectedEvent
+import com.square.android.presentation.presenter.explore.PlaceSelectedEvent
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.main.MainView
@@ -72,16 +71,9 @@ import java.util.*
 
 private const val REDEMPTIONS_POSITION = 1
 
-const val BOTTOM_CARD_TYPE_PLACE = 0
-const val BOTTOM_CARD_TYPE_EVENT = 1
-
 class MainFabClickedEvent()
 
 class NavFabClickedEvent()
-
-@Parcelize
-class BottomMapViewInfo(val type: Int, val images: List<String>, val title: String, val rating: String, val eventPlaceName: String,
-                        val address: String, val distance: String, val date: String, val iconText: String): Parcelable
 
 class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -160,52 +152,66 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         bottomViewMapLl.visibility = View.GONE
     }
 
-    fun setMapBottomBarContent(info: BottomMapViewInfo){
+    fun setMapBottomBarContent(place: Place){
         val view = bottomViewMapLl.mapInfo
 
-        //TODO change to rv with adapter(images)
-        view.mapPlaceInfoImage.loadImage(info.images[0])
-        view.title.text = info.title
+        val isEvent = place.event != null
 
-        when(info.type){
-            BOTTOM_CARD_TYPE_PLACE -> {
-                view.placeRatingLl.placeRatingTv.text = info.rating
-                view.placeRatingLl.visibility = View.VISIBLE
+        //TODO change to rv with adapter(images) later
+        view.mapPlaceInfoImage.loadImage(place.mainImage ?: (place.photos?.firstOrNull() ?: ""))
+        view.title.text = place.name
 
-                //TODO change ic drawable
-                view.iconLl.setPadding(0, 0, 0, 0)
-                view.icText.visibility = View.GONE
-
-                view.eventPlaceNameLl.visibility = View.GONE
-
-                view.addressTv.text = info.address
-                view.addressLl.visibility = View.VISIBLE
-
-                view.distanceTv.text = info.distance
-                view.distanceLl.visibility = View.VISIBLE
-
-                view.dateLl.visibility = View.GONE
+        view.mainContent.setOnClickListener {
+            if(isEvent){
+                eventBus.post(EventSelectedEvent(place))
+            } else{
+                eventBus.post(PlaceSelectedEvent(place))
             }
+        }
 
-            BOTTOM_CARD_TYPE_EVENT ->{
-                view.placeRatingLl.visibility = View.GONE
+        if(isEvent) {
+            view.placeRatingLl.visibility = View.GONE
 
-                //TODO change ic drawable
-                view.iconLl.setPadding(0, Math.round(resources.getDimension(R.dimen.v_12dp)), 0, 0)
-                view.icText.text = info.iconText
-                view.icText.visibility = View.VISIBLE
+            view.space.setVisible(true)
 
-                view.eventPlaceNameTv.text = info.eventPlaceName
-                view.eventPlaceNameLl.visibility = View.VISIBLE
+            //TODO change ic drawable
+            view.iconLl.setPadding(0, Math.round(resources.getDimension(R.dimen.v_12dp)), 0, 0)
+            //TODO where to get it?
+            view.icText.text = if(isEvent) "Icon text" else ""
+            view.icText.visibility = View.VISIBLE
 
-                view.addressTv.text = info.address
-                view.addressLl.visibility = View.VISIBLE
+            view.eventPlaceNameTv.text = place.name
+            view.eventPlaceNameLl.visibility = View.VISIBLE
 
-                view.distanceLl.visibility = View.GONE
+            view.addressTv.text = place.address
+            view.addressLl.visibility = View.VISIBLE
 
-                view.dateTv.text = info.date
-                view.dateLl.visibility = View.VISIBLE
-            }
+            view.distanceLl.visibility = View.GONE
+
+            //TODO where to get it?
+            view.dateTv.text = if(isEvent) "Date" else ""
+            view.dateLl.visibility = View.VISIBLE
+
+        } else {
+            //TODO where to get it?
+            view.placeRatingLl.placeRatingTv.text = if(!isEvent) "4.1" else ""
+            view.placeRatingLl.visibility = View.VISIBLE
+
+            view.space.setVisible(false)
+
+            //TODO change ic drawable
+            view.iconLl.setPadding(0, 0, 0, 0)
+            view.icText.visibility = View.GONE
+
+            view.eventPlaceNameLl.visibility = View.GONE
+
+            view.addressTv.text = place.address
+            view.addressLl.visibility = View.VISIBLE
+
+            view.distanceTv.text = place.distance.asDistance()
+            view.distanceLl.visibility = View.VISIBLE
+
+            view.dateLl.visibility = View.GONE
         }
 
         bottomViewMapLl.visibility = View.VISIBLE

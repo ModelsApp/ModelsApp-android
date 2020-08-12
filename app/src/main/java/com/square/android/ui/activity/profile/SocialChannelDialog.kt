@@ -48,7 +48,6 @@ class SocialChannelDialog(private val context: Context) {
 
         view.label.text = context.getString(R.string.add_social_format, item.name.replace("TicTok", "TikTok"))
 
-        //TODO why not just leave account name in UserSocialChannel?
         val accountName = item.userChannel?.accountName ?: ""
 
         view.et_link.setText(accountName)

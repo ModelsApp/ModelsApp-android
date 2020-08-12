@@ -1,8 +1,10 @@
 package com.square.android.presentation.presenter.profile
 
 import com.arellomobile.mvp.InjectViewState
+import com.square.android.data.pojo.ModelSocialChannel
 import com.square.android.data.pojo.UserSocialChannel
 import com.square.android.data.pojo.UserSocialChannelData
+import com.square.android.extensions.textIsEmpty
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.profile.SocialChannelsView
 
@@ -19,7 +21,7 @@ class SocialChannelsPresenter(): BasePresenter<SocialChannelsView>(){
         }
     }
 
-    fun loadSocialChannels() = launch{
+    private fun loadSocialChannels() = launch{
         data = repository.getUserSocialChannels().await()
 
         viewState.showData(data!!)
@@ -34,7 +36,8 @@ class SocialChannelsPresenter(): BasePresenter<SocialChannelsView>(){
     fun deleteSocialAccount(item: UserSocialChannel) = launch {
         viewState.showLoadingDialog()
 
-        repository.deleteUserSocialChannel(item.id).await()
+        //TODO delete doesn't work
+        repository.deleteUserSocialChannel(item.userChannel!!.id).await()
 
         loadSocialChannels()
 
@@ -44,7 +47,20 @@ class SocialChannelsPresenter(): BasePresenter<SocialChannelsView>(){
     fun addSocialAccount(item: UserSocialChannel, newAccountName: String) = launch {
         viewState.showLoadingDialog()
 
-        repository.addUserSocialChannel(UserSocialChannelData(item.copy(accountName = newAccountName))).await()
+        if(!item.userChannel?.accountName.textIsEmpty()){
+            //TODO delete doesn't work
+            repository.deleteUserSocialChannel(item.userChannel!!.id).await()
+        }
+
+        val userId = repository.getUserId()
+
+        repository.addUserSocialChannel(UserSocialChannelData( ModelSocialChannel(
+                id = item.id,
+                name = item.name,
+                accountName = newAccountName,
+                userId = userId
+        )
+        )).await()
 
         loadSocialChannels()
 

@@ -44,7 +44,9 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView {
         return inflater.inflate(R.layout.page_profile_social, container, false)
     }
 
-    override fun showData(user: Profile.User, actualTokenInfo: BillingTokenInfo) {
+    //TODO reload all data when coming back from nested ac/fragments()
+    // event bus - ProfileDataUpdatedEvent (like ProfileUpdatedEvent)
+    override fun showData(user: Profile.User, profileListData: ProfileListData, actualTokenInfo: BillingTokenInfo) {
 
         val subTextSubscription = when(actualTokenInfo.subscriptionType){
             SUBSCRIPTION_NORMAL -> getString(R.string.basic)

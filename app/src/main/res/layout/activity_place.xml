@@ -170,7 +170,7 @@
                             android:layout_marginEnd="@dimen/v_24dp"
                             android:layout_marginStart="@dimen/v_8dp"
                             style="@style/Models15Text"
-                            tools:text="Via Vigenavo 13, Milan iiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii"
+                            tools:text="Via Vigenavo 13, Milan"
                             android:maxLines="1"
                             android:ellipsize="end"
                             app:layout_constraintTop_toTopOf="@+id/imvAddress"
@@ -243,7 +243,7 @@
                             android:id="@+id/placeAboutCl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:visibility="visible"
+                            tools:visibility="gone"
                             android:clipChildren="false"
                             android:clipToPadding="false" >
 
@@ -321,7 +321,7 @@
                             android:id="@+id/detailsCl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:visibility="gone"
+                            tools:visibility="visible"
                             android:clipChildren="false"
                             android:clipToPadding="false" >
 
@@ -443,7 +443,7 @@
                             android:id="@+id/additionalInfoCl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:visibility="gone"
+                            tools:visibility="visible"
                             android:clipChildren="false"
                             android:clipToPadding="false" >
 
@@ -783,8 +783,9 @@
 
             <Button
                 android:id="@+id/placeBookingBtn"
-                style="@style/Models15Text"
-                android:layout_width="@dimen/v_128dp"
+                style="@style/Models14Text"
+                android:textSize="@dimen/text_14"
+                android:layout_width="@dimen/v_152dp"
                 android:layout_height="@dimen/v_48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="@dimen/ac_place_default_margin"

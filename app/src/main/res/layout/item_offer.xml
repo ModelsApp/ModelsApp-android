@@ -36,7 +36,7 @@
     <TextView
         android:id="@+id/itemOfferCredits"
         style="@style/Models14SemiBoldText"
-        android:textColor="@color/nice_pink"
+        android:textColor="@color/text_gray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"

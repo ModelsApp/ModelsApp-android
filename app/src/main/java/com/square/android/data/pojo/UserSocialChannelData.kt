@@ -9,5 +9,18 @@ import kotlinx.android.parcel.Parcelize
 @JsonClass(generateAdapter = true)
 data class UserSocialChannelData(
         @Json(name = "chanel")
-        var channel: UserSocialChannel
+        var channel: ModelSocialChannel
+): Parcelable
+
+@Parcelize
+@JsonClass(generateAdapter = true)
+data class ModelSocialChannel(
+        @Json(name = "_id")
+        var id: String = "",
+        var name: String = "",
+
+        @Json(name = "accountname")
+        var accountName: String = "",
+
+        var userId: Long = 0
 ): Parcelable

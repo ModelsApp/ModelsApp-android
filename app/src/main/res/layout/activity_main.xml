@@ -97,7 +97,6 @@
                 layout="@layout/bottom_view_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 tools:visibility="visible"
                 android:layout_marginBottom="@dimen/v_minus_24dp" />
 

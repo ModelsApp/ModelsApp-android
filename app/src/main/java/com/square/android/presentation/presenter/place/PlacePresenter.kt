@@ -128,6 +128,9 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
             val allExtras: List<PlaceExtra> = repository.getPlaceExtras().await().toMutableList()
             var placeExtras: List<PlaceExtra> = mutableListOf()
 
+            println("DSFDSFDFFDFFF allExtras: ${allExtras.toString()}")
+            println("DSFDSFDFFDFFF placeExtras: ${placeExtras.toString()}")
+
             data!!.icons?.let { icons ->
                 if(!icons.extras.isNullOrEmpty()){
                     placeExtras = allExtras.filter { it.image in icons.extras }

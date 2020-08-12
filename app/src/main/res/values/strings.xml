@@ -169,6 +169,10 @@
 
     <string name="archive">Archive</string>
 
+    <string name="social_media_skills">Social media skills</string>
+    <string name="capabilities_description">You got skills… what are you good at?\nSelect yours from the list below</string>
+    <string name="primary">Primary</string>
+
     <string name="photo_remember_1">Be creative</string>
     <string name="photo_remember_2">Create a high quality content</string>
 

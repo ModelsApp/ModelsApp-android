@@ -12,8 +12,6 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.square.android.R
 import com.square.android.data.pojo.Place
-import com.square.android.extensions.asDistance
-import com.square.android.extensions.loadImage
 import com.square.android.presentation.presenter.place.PlacePresenter
 import com.square.android.presentation.view.place.PlaceView
 import com.square.android.ui.activity.LocationActivity
@@ -33,7 +31,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.square.android.data.pojo.Day
 import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.PlaceExtra
-import com.square.android.extensions.loadImageForIcon
+import com.square.android.extensions.*
 import com.square.android.ui.fragment.map.MarginItemDecorator
 import com.square.android.ui.fragment.explore.GridItemDecoration
 import kotlinx.android.synthetic.main.activity_place.roundedView
@@ -240,7 +238,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
         val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
-        val m = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
+        val m = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()).capitalize()
 
         placeBookingDate.text = d + ", " + m + " " + dayToString(calendar.get(Calendar.DAY_OF_MONTH))
     }
@@ -284,7 +282,12 @@ class PlaceActivity : LocationActivity(), PlaceView {
 
         placeMainImage.loadImage(place.mainImage ?: (place.photos?.firstOrNull() ?: ""))
 
-        placeAbout.text = place.description
+        if(place.description.textIsEmpty()){
+            placeAboutCl.setVisible(false)
+        } else{
+            placeAbout.text = place.description
+            placeAboutCl.setVisible(true)
+        }
 
         //TODO change later - waiting for API
 //        val aboutItems = listOf("www", "insta")

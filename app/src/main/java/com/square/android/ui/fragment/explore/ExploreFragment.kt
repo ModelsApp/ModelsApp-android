@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager
 import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
+import com.square.android.extensions.setVisible
 import com.square.android.presentation.presenter.explore.*
 import com.square.android.ui.activity.main.MainActivity
 import com.square.android.ui.activity.main.MainFabClickedEvent
@@ -76,7 +77,11 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
             mainListsFiltersDaysRv.layoutManager = LinearLayoutManager(mainListsFiltersDaysRv.context, RecyclerView.HORIZONTAL, false)
             daysAdapter!!.setSelectedItem(presenter.selectedDayPosition)
 
+            //TODO hidden for now
+            mainListsTabs.setVisible(false)
+
             setUpPager(data)
+
             presenter.dayClicked(0)
         }
     }
@@ -265,13 +270,17 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
     }
 
     override fun showProgress() {
-        mainListsPager.visibility = View.INVISIBLE
+        //TODO hidden for now
+        //mainListsPager.visibility = View.INVISIBLE
+
         mainListsProgress.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
         mainListsProgress.visibility = View.GONE
-        mainListsPager.visibility = View.VISIBLE
+
+        //TODO hidden for now
+//        mainListsPager.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

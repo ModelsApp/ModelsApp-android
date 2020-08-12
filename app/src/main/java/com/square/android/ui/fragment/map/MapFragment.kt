@@ -18,10 +18,10 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.R
 import com.square.android.data.pojo.Place
 import com.square.android.data.pojo.latLng
+import com.square.android.extensions.asDistance
 import com.square.android.presentation.presenter.map.MapPresenter
 import com.square.android.presentation.view.map.MapView
-import com.square.android.ui.activity.main.MainActivity
-import com.square.android.ui.activity.main.MainFabClickedEvent
+import com.square.android.ui.activity.main.*
 import com.square.android.ui.fragment.BaseMapFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_map.*
@@ -158,6 +158,9 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
     override fun showInfo(place: Place) {
         updateCurrentInfoDistance(place.distance)
 
+        //TODO get missing data from api
+        (activity as MainActivity).setMapBottomBarContent(place)
+
 //        mapPlaceInfo.mapPlaceAvailableValue.text = if(place.freeSpots > 0) place.freeSpots.toString() else mapPlaceInfo.mapPlaceAvailableValue.context.getString(R.string.no)
 //        mapPlaceInfo.mapPlaceTitle.text = place.name
 //        mapPlaceInfo.mapPlaceAddress.text = place.address
@@ -187,9 +190,9 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
     }
 
     override fun hideInfo() {
-//        mapPlaceInfo.visibility = View.GONE
-//
-//        previousMarker?.let { it.icon = markerIconGray }
+        (activity as MainActivity).hideMapBottomView()
+
+        previousMarker?.let { it.icon = markerIconGray }
     }
 
     private fun loadMapData() {

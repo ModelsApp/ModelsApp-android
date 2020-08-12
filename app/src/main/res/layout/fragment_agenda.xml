@@ -41,27 +41,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/agendaDate" />
 
-        <ImageView
-            android:id="@+id/icCalendar"
-            android:layout_width="@dimen/v_24dp"
-            android:layout_height="@dimen/v_24dp"
-            android:layout_marginEnd="@dimen/v_16dp"
-            android:src="@drawable/b_calendar"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="@+id/icInfo"
-            app:layout_constraintEnd_toStartOf="@+id/icInfo"
-            app:layout_constraintTop_toTopOf="@+id/icInfo" />
+<!--        <ImageView-->
+<!--            android:id="@+id/icCalendar"-->
+<!--            android:layout_width="@dimen/v_24dp"-->
+<!--            android:layout_height="@dimen/v_24dp"-->
+<!--            android:layout_marginEnd="@dimen/v_16dp"-->
+<!--            android:src="@drawable/b_calendar"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/icInfo"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/icInfo"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/icInfo" />-->
 
-        <ImageView
-            android:id="@+id/icSearch"
-            android:layout_width="@dimen/v_24dp"
-            android:layout_height="@dimen/v_24dp"
-            android:layout_marginEnd="@dimen/v_16dp"
-            android:src="@drawable/ic_search"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="@+id/icInfo"
-            app:layout_constraintEnd_toStartOf="@+id/icCalendar"
-            app:layout_constraintTop_toTopOf="@+id/icInfo" />
+<!--        <ImageView-->
+<!--            android:id="@+id/icSearch"-->
+<!--            android:layout_width="@dimen/v_24dp"-->
+<!--            android:layout_height="@dimen/v_24dp"-->
+<!--            android:layout_marginEnd="@dimen/v_16dp"-->
+<!--            android:src="@drawable/ic_search"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/icInfo"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/icCalendar"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/icInfo" />-->
 
         <com.square.android.utils.widget.PoppinsTabLayout
             android:id="@+id/agendaTabs"

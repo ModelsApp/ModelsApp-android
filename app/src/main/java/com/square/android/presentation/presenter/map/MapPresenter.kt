@@ -6,7 +6,6 @@ import com.square.android.SCREENS
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.explore.PlaceSelectedEvent
-import com.square.android.presentation.presenter.explore.PlacesUpdatedEvent
 import com.square.android.presentation.view.map.MapView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -15,7 +14,7 @@ import org.koin.standalone.inject
 
 class CityLocateEvent(val data: LatLng)
 
-class MapUpdateEvent(val type: Int, val data: Any)
+class MapUpdateEvent(val type: Int, val data: MutableList<Place>)
 
 @InjectViewState
 class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
@@ -25,7 +24,6 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
     private var currentInfo: Place? = null
 
     private val eventBus: EventBus by inject()
-
 
     var initialized = false
 
@@ -44,25 +42,20 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
         viewState.locateCity(event.data)
     }
 
-
     fun backToExplore(){
         println("GDFDFFDFFDF backToExplore")
 
         router.backTo(SCREENS.EXPLORE)
     }
 
-
+    //TODO fire when new data
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMapUpdateEvent(event: MapUpdateEvent) {
 
+        data = event.data
 
-
-
-//
-//        data = event.data
-//
-//        mapClicked()
-//        viewState.updatePlaces(data)
+        mapClicked()
+        viewState.updatePlaces(data)
 //
 //        currentInfo?.let {
 //            if (it.id !in data.map { place -> place.id }) {
@@ -87,17 +80,17 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
         viewState.hideInfo()
     }
 
-    fun infoClicked() {
-        currentInfo?.let {
-            eventBus.post(PlaceSelectedEvent(it, true))
-        }
-    }
+//    fun infoClicked() {
+//        currentInfo?.let {
+//            eventBus.post(PlaceSelectedEvent(it, true))
+//        }
+//    }
 
-    fun locateClicked() {
-        locationPoint?.let {
-            viewState.locate(it)
-        }
-    }
+//    fun locateClicked() {
+//        locationPoint?.let {
+//            viewState.locate(it)
+//        }
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

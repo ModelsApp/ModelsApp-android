@@ -43,8 +43,8 @@
 
             <TextView
                 android:id="@+id/title"
-                style="@style/Models18BoldText"
-                android:textSize="@dimen/text_18"
+                style="@style/Models22SemiBoldText"
+                android:textSize="@dimen/text_24"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/v_20dp"
@@ -141,6 +141,7 @@
                     android:id="@+id/eventPlaceNameLl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/v_16dp"
                     android:orientation="horizontal"
                     tools:visibility="visible"
                     android:gravity="center_vertical"
@@ -169,7 +170,7 @@
                     android:orientation="horizontal"
                     tools:visibility="visible"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/v_16dp"
+                    android:layout_marginBottom="@dimen/v_16dp"
                     android:visibility="gone" >
                     <ImageView
                         android:layout_width="@dimen/v_20dp"
@@ -195,7 +196,6 @@
                     android:orientation="horizontal"
                     tools:visibility="visible"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/v_16dp"
                     android:visibility="gone" >
                     <ImageView
                         android:layout_width="@dimen/v_20dp"
@@ -214,6 +214,13 @@
                         android:layout_weight="1" />
                 </LinearLayout>
 
+                <View
+                    android:id="@+id/space"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/v_16dp"/>
+
                 <LinearLayout
                     android:id="@+id/dateLl"
                     android:layout_width="match_parent"
@@ -221,7 +228,6 @@
                     android:orientation="horizontal"
                     tools:visibility="visible"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/v_16dp"
                     android:visibility="gone" >
                     <ImageView
                         android:layout_width="@dimen/v_20dp"

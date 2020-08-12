@@ -59,10 +59,10 @@ class SocialChannelActivity: BaseActivity(), SocialChannelsView {
 
     override fun showSocialDialog(item: UserSocialChannel){
         socialDialog?.show(item) { newName ->
-            //TODO why not just leave account name in UserSocialChannel?
+
             val accountName = item.userChannel?.accountName ?: ""
 
-            if(newName.textIsEmpty() && accountName.textIsEmpty()){
+            if(newName.textIsEmpty() && !accountName.textIsEmpty()){
                 presenter.deleteSocialAccount(item)
             } else if(newName != accountName){
                 presenter.addSocialAccount(item, newName)
