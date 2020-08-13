@@ -17,47 +17,19 @@
         android:src="@drawable/r_address"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/itemLabel"
+        style="@style/Models16Text"
+        android:textSize="@dimen/text_16"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:text="Graphic design"
+        android:layout_marginStart="@dimen/v_12dp"
         android:layout_marginEnd="@dimen/v_16dp"
         app:layout_constraintTop_toTopOf="@id/itemImg"
         app:layout_constraintBottom_toBottomOf="@id/itemImg"
-        app:layout_constraintStart_toEndOf="@id/itemImg"
-        app:layout_constraintEnd_toStartOf="@+id/itemIc" >
-
-        <TextView
-            android:id="@+id/itemLabel"
-            style="@style/Models16Text"
-            android:textSize="@dimen/text_16"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Entertainment"
-            android:layout_marginStart="@dimen/v_24dp"
-            app:layout_constraintTop_toTopOf="@id/itemImg"
-            app:layout_constraintBottom_toBottomOf="@id/itemImg"
-            app:layout_constraintStart_toEndOf="@id/itemImg" />
-
-        <TextView
-            android:id="@+id/itemPrimaryLabel"
-            style="@style/Models13Text"
-            android:textSize="@dimen/text_13"
-            android:layout_marginTop="@dimen/v_4dp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/primary"
-            android:textColor="@color/text_gray"
-            android:layout_marginStart="@dimen/v_24dp"
-            app:layout_constraintTop_toTopOf="@id/itemImg"
-            app:layout_constraintBottom_toBottomOf="@id/itemImg"
-            app:layout_constraintStart_toEndOf="@id/itemImg" />
-
-    </LinearLayout>
+        app:layout_constraintStart_toEndOf="@+id/itemImg"
+        app:layout_constraintEnd_toStartOf="@+id/itemIc"/>
 
     <ImageView
         android:id="@+id/itemIc"

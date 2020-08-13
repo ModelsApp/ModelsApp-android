@@ -46,7 +46,8 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView {
 
     //TODO reload all data when coming back from nested ac/fragments()
     // event bus - ProfileDataUpdatedEvent (like ProfileUpdatedEvent)
-    override fun showData(user: Profile.User, profileListData: ProfileListData, actualTokenInfo: BillingTokenInfo) {
+//    override fun showData(user: Profile.User, profileListData: ProfileListData, actualTokenInfo: BillingTokenInfo) {
+    override fun showData(user: Profile.User, actualTokenInfo: BillingTokenInfo) {
 
         val subTextSubscription = when(actualTokenInfo.subscriptionType){
             SUBSCRIPTION_NORMAL -> getString(R.string.basic)
@@ -64,7 +65,7 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView {
 
         val socialChannels = ProfileItem(title = getString(R.string.social_channels), iconRes = R.drawable.r_shop, subText = "Instagram, +1 more", onClick = { presenter.navigateToSocialChannels() })
         val myProfession = ProfileItem(title = getString(R.string.my_profession), iconRes = R.drawable.r_shop, subText = "Content creator")
-        val specialities = ProfileItem(title = getString(R.string.specialities), iconRes = R.drawable.r_shop, subText = "Fashion, +3 more")
+        val specialities = ProfileItem(title = getString(R.string.specialities), iconRes = R.drawable.r_shop, subText = "Fashion, +3 more", onClick = { presenter.navigateToSpecialities() })
         val capabilities = ProfileItem(title = getString(R.string.capabilities), iconRes = R.drawable.r_shop, subText = "Writing, +2 more", dividerVisible = true)
 
         val earnMoreCredits = ProfileItem(title = getString(R.string.earn_more_credits), iconRes = R.drawable.r_shop, onClick = { presenter.navigateToEarnMoreCredits() })

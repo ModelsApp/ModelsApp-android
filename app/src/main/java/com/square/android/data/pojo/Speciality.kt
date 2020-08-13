@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @JsonClass(generateAdapter = true)
 data class Speciality(
         @Json(name = "_id")
-        var id: String = "",
+        var id: String? = "",
         var main: Boolean = false,
         var name: String = ""
 ): Parcelable

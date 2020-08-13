@@ -13,19 +13,28 @@ data class ProfileListData(val socialChannels: List<String>, val profession: Lis
 @InjectViewState
 class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTokenInfo): BasePresenter<ProfileSocialView>(){
 
+
+    //TODO waiting for api
+
+
     init {
         // load and pass social channels, profession, specialities, capabilities
 
         //TODO loading progress bar?
         launch {
-            val socialChannels = repository.getUserSocialChannels().await().map { it.name }
-            val specialities = repository.getUserSpecialities().await().userSpecialities.map { it.name }
-
+//            val socialChannels = repository.getUserSocialChannels().await().map { it.name }
+//            val specialities = repository.getUserSpecialities().await().userSpecialities.map { it.name }
+//
             val capabilities = repository.getUserCapabilities().await()
 
 //            val professions = repository.getUserProfessions().await().map { it.name }
 
+            //TODO
 //            viewState.showData(user, ProfileListData(socialChannels, specialities, professions, capabilities), actualTokenInfo)
+
+
+
+            viewState.showData(user, actualTokenInfo)
         }
     }
 
@@ -35,6 +44,10 @@ class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTok
 
     fun navigateToSocialChannels(){
         router.navigateTo(SCREENS.SOCIAL_CHANNELS)
+    }
+
+    fun navigateToSpecialities(){
+        router.navigateTo(SCREENS.SPECIALITIES)
     }
 
     fun navigateToActivePlan(){

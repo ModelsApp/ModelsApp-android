@@ -478,6 +478,8 @@
     <string name="your_activity">Your activity</string>
 
     <string name="specialities">Specialities</string>
+    <string name="specialities_title">Which are your interests?</string>
+    <string name="specialities_description">Select the main subject + 3 additional ones from the list below</string>
 
     <string name="capabilities">Capabilities</string>
 

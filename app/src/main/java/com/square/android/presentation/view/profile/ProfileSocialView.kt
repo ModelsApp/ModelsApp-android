@@ -6,5 +6,6 @@ import com.square.android.presentation.presenter.profile.ProfileListData
 import com.square.android.presentation.view.BaseView
 
 interface ProfileSocialView : BaseView {
-    fun showData(user: Profile.User, listData: ProfileListData, actualTokenInfo: BillingTokenInfo)
+    fun showData(user: Profile.User, actualTokenInfo: BillingTokenInfo)
+//    fun showData(user: Profile.User, listData: ProfileListData, actualTokenInfo: BillingTokenInfo)
 }

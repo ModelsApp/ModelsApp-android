@@ -338,6 +338,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<SocialChannelActivity>()
                     }
 
+                    SCREENS.SPECIALITIES -> {
+                        context.intentFor<SpecialitiesActivity>()
+                    }
+
                     SCREENS.ACTIVE_PLAN -> {
                         val extras = data as ActivePlanExtras
                         context.intentFor<ActivePlanActivity>(CAN_BACK_EXTRA to extras.canGoBack, BILLING_TOKEN_EXTRA to extras.billingTokenInfo)
