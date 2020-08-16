@@ -481,6 +481,9 @@
     <string name="specialities_title">Which are your interests?</string>
     <string name="specialities_description">Select the main subject + 3 additional ones from the list below</string>
 
+    <string name="profession_title">Choose your profession(s)</string>
+    <string name="profession_description">Select the categories that best represent your business. Your first pick will be the primary one</string>
+
     <string name="capabilities">Capabilities</string>
 
     <string name="ambassador_program">Ambassador program</string>

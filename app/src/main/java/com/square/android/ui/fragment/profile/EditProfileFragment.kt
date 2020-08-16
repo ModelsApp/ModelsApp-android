@@ -1,6 +1,7 @@
 package com.square.android.ui.fragment.profile
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.square.android.R
@@ -29,6 +30,8 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
     private var loadingDialog: LoadingDialog? = null
 
     private var userHasPhoto = false
+
+    private var dataLoaded = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -149,12 +152,13 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        changeSaveBtn(false)
-
+        Handler().postDelayed({ dataLoaded = true }, 200)
     }
 
     override fun changeSaveBtn(enabled: Boolean){
-        saveTv.isEnabled = enabled
+        if(enabled && dataLoaded || !enabled){
+            saveTv.isEnabled = enabled
+        }
     }
 
     private fun collectInfo(): ProfileInfo {

@@ -61,6 +61,7 @@ object SCREENS {
     const val EARN_MORE_CREDITS = "EARN_MORE_CREDITS"
     const val SOCIAL_CHANNELS = "SOCIAL_CHANNELS"
     const val SPECIALITIES = "SPECIALITIES"
+    const val PROFESSIONS = "PROFESSIONS"
 
     const val SETTINGS = "SETTINGS"
     const val SETTINGS_MAIN = "SETTINGS_MAIN"

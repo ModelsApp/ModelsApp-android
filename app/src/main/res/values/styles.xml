@@ -163,13 +163,9 @@
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
         <item name="android:descendantFocusability">beforeDescendants</item>
-        <item name="popupTheme">@style/RedesignedSpinnerPopupTheme</item>
-        <item name="android:popupBackground">@drawable/spinner_popup_rounded_stroke</item>
-    </style>
-
-    <style name="RedesignedSpinnerPopupTheme">
         <item name="android:overScrollMode">never</item>
         <item name="overlapAnchor">false</item>
+        <item name="android:popupBackground">@drawable/spinner_popup_rounded_stroke</item>
     </style>
 
     <style name="RedesignedSpinnerError" parent="Models13Text">

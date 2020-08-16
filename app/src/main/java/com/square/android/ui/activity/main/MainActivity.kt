@@ -342,6 +342,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<SpecialitiesActivity>()
                     }
 
+                    SCREENS.PROFESSIONS -> {
+                        context.intentFor<ProfessionActivity>()
+                    }
+
                     SCREENS.ACTIVE_PLAN -> {
                         val extras = data as ActivePlanExtras
                         context.intentFor<ActivePlanActivity>(CAN_BACK_EXTRA to extras.canGoBack, BILLING_TOKEN_EXTRA to extras.billingTokenInfo)

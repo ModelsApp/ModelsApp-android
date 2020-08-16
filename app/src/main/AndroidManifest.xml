@@ -44,6 +44,11 @@
         </activity>
 
         <activity
+            android:name=".ui.activity.profile.ProfessionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranscActivityFull" />
+
+        <activity
             android:name=".ui.activity.profile.SpecialitiesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranscActivityFull" />

@@ -64,7 +64,7 @@ class ProfileSocialFragment: BaseFragment(), ProfileSocialView {
         val experiencePoints = ProfileItem(title = getString(R.string.experience_points),iconRes =  R.drawable.r_shop, subText = "435", subTextColor = android.R.color.black, dividerVisible = true)
 
         val socialChannels = ProfileItem(title = getString(R.string.social_channels), iconRes = R.drawable.r_shop, subText = "Instagram, +1 more", onClick = { presenter.navigateToSocialChannels() })
-        val myProfession = ProfileItem(title = getString(R.string.my_profession), iconRes = R.drawable.r_shop, subText = "Content creator")
+        val myProfession = ProfileItem(title = getString(R.string.my_profession), iconRes = R.drawable.r_shop, subText = "Content creator", onClick = { presenter.navigateToProfessions() })
         val specialities = ProfileItem(title = getString(R.string.specialities), iconRes = R.drawable.r_shop, subText = "Fashion, +3 more", onClick = { presenter.navigateToSpecialities() })
         val capabilities = ProfileItem(title = getString(R.string.capabilities), iconRes = R.drawable.r_shop, subText = "Writing, +2 more", dividerVisible = true)
 

@@ -50,6 +50,10 @@ class ProfileSocialPresenter(user: Profile.User, var actualTokenInfo: BillingTok
         router.navigateTo(SCREENS.SPECIALITIES)
     }
 
+    fun navigateToProfessions(){
+        router.navigateTo(SCREENS.PROFESSIONS)
+    }
+
     fun navigateToActivePlan(){
         router.navigateTo(SCREENS.ACTIVE_PLAN, ActivePlanExtras(true, actualTokenInfo))
     }
