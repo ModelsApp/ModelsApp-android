@@ -6,17 +6,13 @@ import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.*
-import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.explore.ExploreView
+import com.square.android.ui.activity.place.PlaceBottomSheetEvent
 import com.square.android.ui.fragment.explore.filters.BaseFilter
 import com.square.android.ui.fragment.explore.filters.CampaignsFilter
 import com.square.android.ui.fragment.explore.filters.EventsFilter
 import com.square.android.ui.fragment.explore.filters.PlacesFilter
-import com.square.android.utils.AnalyticsEvent
-import com.square.android.utils.AnalyticsEvents
-import com.square.android.utils.AnalyticsManager
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -123,7 +119,6 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onPlaceSelectedEvent(event: PlaceSelectedEvent) {
         val place = event.place
-        val id = place.id
 
         if (actualDataLoaded[actualTabSelected]) {
 //            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_WITHOUT_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
@@ -131,7 +126,7 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
 //            AnalyticsManager.logEvent(AnalyticsEvent(AnalyticsEvents.RESTAURANT_OPENED_USING_FILTERS.apply { venueName = place.name }, hashMapOf("id" to id.toString())), repository)
         }
 
-        router.navigateTo(SCREENS.PLACE, PlaceExtras(place.id, selectedDayPosition))
+        eventBus.post(PlaceBottomSheetEvent(event.fromMap, place.id, selectedDayPosition))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -25,7 +25,6 @@ import com.square.android.extensions.setHighLightedText
 import org.greenrobot.eventbus.EventBus
 import org.koin.android.ext.android.inject
 
-
 class BackFromSearchEvent()
 
 class SearchFragment(private var searchType: Int): BaseFragment(), SearchView{

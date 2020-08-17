@@ -8,7 +8,10 @@ import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.explore.SearchView
+import com.square.android.ui.activity.place.PlaceBottomSheetEvent
 import kotlinx.android.parcel.Parcelize
+import org.greenrobot.eventbus.EventBus
+import org.koin.standalone.inject
 
 @Parcelize
 class SearchItem(var text: String, var secondText: String, var idString: String): Parcelable
@@ -27,6 +30,8 @@ class SearchPresenter(private var searchType: Int): BasePresenter<SearchView>(){
     var latestSearches: SparseArray<LatestSearch> = SparseArray(LIST_ITEMS_SIZE)
 
     var searchData: SearchResult? = null
+
+    private val eventBus: EventBus by inject()
 
     init {
         loadData()
@@ -110,7 +115,7 @@ class SearchPresenter(private var searchType: Int): BasePresenter<SearchView>(){
     fun onPlaceClicked(fromResult: Boolean, item: SearchItem){
         if(fromResult){saveLatestSearches(item)}
 
-        router.navigateTo(SCREENS.PLACE, PlaceExtras(item.idString.toLong()))
+        eventBus.post(PlaceBottomSheetEvent(false, item.idString.toLong()))
     }
 
     fun onEventClicked(fromResult: Boolean, item: SearchItem){

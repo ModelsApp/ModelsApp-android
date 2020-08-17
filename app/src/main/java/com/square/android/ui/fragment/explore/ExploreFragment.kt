@@ -191,8 +191,7 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
     }
 
     fun initWithMap(){
-
-        (activity as MainActivity).hideMapBottomView()
+        (activity as MainActivity).hidePlaceBottomSheetDialog()
 
         if(presenter.actualTabSelected != POSITION_CAMPAIGNS){
 

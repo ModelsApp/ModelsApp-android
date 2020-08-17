@@ -184,11 +184,25 @@
     <dimen name="v_05dp">0.375dp</dimen>
     <dimen name="v_minus_4dp">-3dp</dimen>
     <dimen name="v_minus_8dp">-6dp</dimen>
+    <dimen name="v_minus_16dp">-12dp</dimen>
     <dimen name="v_minus_24dp">-18dp</dimen>
     <dimen name="v_minus_48dp">-36dp</dimen>
 
     <dimen name="rb_scale_24dp">0.8625</dimen>
     <dimen name="rb_scale_padding_20dp">12dp</dimen>
+
+
+
+    <dimen name="customBtnPaddingStart">60dp</dimen>
+    <dimen name="customBtnPaddingEnd">58.5dp</dimen>
+    <dimen name="ac_place_default_margin">15dp</dimen>
+    <dimen name="toolbar_image_height">172.5dp</dimen>
+    <dimen name="toolbar_extra_space">21dp</dimen>
+    <dimen name="toolbarHeight">31.5dp</dimen>
+    <dimen name="statusMargin">24dp</dimen>
+    <dimen name="backArrowSize">18dp</dimen>
+    <dimen name="backArrowMarginStart">15dp</dimen>
+
 
     <dimen name="text_12">9sp</dimen>
     <dimen name="text_13">9sp</dimen>
@@ -201,6 +215,8 @@
     <dimen name="text_24">18sp</dimen>
     <dimen name="text_26">20sp</dimen>
 
+
+    <dimen name="bottomContainerHeight">54dp</dimen>
 
     <dimen name="error_text_size">9sp</dimen>
 

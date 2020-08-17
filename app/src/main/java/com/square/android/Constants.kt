@@ -19,8 +19,6 @@ object SCREENS {
     const val EXPLORE = "EXPLORE"
     const val PROFILE = "PROFILE"
 
-    const val PLACE= "PLACE"
-
     const val EDIT_PROFILE = "EDIT_PROFILE"
     const val GALLERY = "GALLERY"
 

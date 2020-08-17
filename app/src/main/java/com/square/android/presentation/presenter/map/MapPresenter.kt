@@ -5,7 +5,6 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
-import com.square.android.presentation.presenter.explore.PlaceSelectedEvent
 import com.square.android.presentation.view.map.MapView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -43,8 +42,6 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
     }
 
     fun backToExplore(){
-        println("GDFDFFDFFDF backToExplore")
-
         router.backTo(SCREENS.EXPLORE)
     }
 
@@ -79,12 +76,6 @@ class MapPresenter(var data: MutableList<Place>) : BasePresenter<MapView>() {
 
         viewState.hideInfo()
     }
-
-//    fun infoClicked() {
-//        currentInfo?.let {
-//            eventBus.post(PlaceSelectedEvent(it, true))
-//        }
-//    }
 
 //    fun locateClicked() {
 //        locationPoint?.let {

@@ -14,8 +14,8 @@ import com.square.android.extensions.toDate
 import com.square.android.extensions.toDateBooking
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
-import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.agenda.ScheduleView
+import com.square.android.ui.activity.place.PlaceBottomSheetEvent
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
@@ -228,7 +228,7 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
     }
 
     fun redemptionDetailsClicked(placeId: Long){
-        router.navigateTo(SCREENS.PLACE, PlaceExtras(placeId))
+        eventBus.post(PlaceBottomSheetEvent(false, placeId))
     }
 
     fun claimedInfoClicked(id: Long) {

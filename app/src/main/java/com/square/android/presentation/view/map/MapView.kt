@@ -12,7 +12,6 @@ interface MapView : BaseView {
     fun showPlaces(data: List<Place>)
     fun updatePlaces(data: List<Place>)
     fun showInfo(place: Place)
-    fun updateCurrentInfoDistance(distance: Int?)
     fun hideInfo()
     fun locate(location: LatLng)
     fun locateCity(location: LatLng)

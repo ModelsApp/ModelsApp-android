@@ -17,11 +17,10 @@ import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.R
 import com.square.android.data.pojo.Place
-import com.square.android.data.pojo.latLng
-import com.square.android.extensions.asDistance
 import com.square.android.presentation.presenter.map.MapPresenter
 import com.square.android.presentation.view.map.MapView
 import com.square.android.ui.activity.main.*
+import com.square.android.ui.activity.place.PlaceBottomSheetEvent
 import com.square.android.ui.fragment.BaseMapFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_map.*
@@ -85,7 +84,7 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
         (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
         (activity as MainActivity).navFab.hide()
 
-        (activity as MainActivity).hideMapBottomView()
+        (activity as MainActivity).hidePlaceBottomSheetDialog()
 
         presenter.backToExplore()
     }
@@ -112,8 +111,6 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
 //        mapMyLocation.setOnClickListener {
 //            presenter.locateClicked()
 //        }
-//
-//        mapPlaceInfo.setOnClickListener { presenter.infoClicked() }
 
         loadMapData()
     }
@@ -156,41 +153,17 @@ class MapFragment(var data: MutableList<Place>) : BaseMapFragment(), MapView, Pe
     }
 
     override fun showInfo(place: Place) {
-        updateCurrentInfoDistance(place.distance)
+        val isEvent = place.event != null
 
-        //TODO get missing data from api
-        (activity as MainActivity).setMapBottomBarContent(place)
-
-//        mapPlaceInfo.mapPlaceAvailableValue.text = if(place.freeSpots > 0) place.freeSpots.toString() else mapPlaceInfo.mapPlaceAvailableValue.context.getString(R.string.no)
-//        mapPlaceInfo.mapPlaceTitle.text = place.name
-//        mapPlaceInfo.mapPlaceAddress.text = place.address
-//
-//        mapPlaceInfo.visibility = View.VISIBLE
-
-        place.icons?.let {
-//            mapPlaceInfo.mapPlaceExtrasRv.visibility = View.VISIBLE
-//            mapPlaceInfo.mapPlaceExtrasRv.adapter = PlaceExtrasAdapter(it.extras)
-//            mapPlaceInfo.mapPlaceExtrasRv.layoutManager = LinearLayoutManager(mapPlaceInfo.mapPlaceExtrasRv.context, RecyclerView.HORIZONTAL,false)
-//            mapPlaceInfo.mapPlaceExtrasRv.addItemDecoration(MarginItemDecorator(mapPlaceInfo.mapPlaceExtrasRv.context.resources.getDimension(R.dimen.rv_item_decorator_minus_1).toInt(), false))
+        if(!isEvent){
+            eventBus.post(PlaceBottomSheetEvent(true, place.id))
+        } else{
+            //TODO
         }
-
-//        if (place.mainImage != null) {
-//            mapPlaceInfo.mapPlaceInfoImage.loadImage(place.mainImage!!, R.color.placeholder)
-//        } else {
-//            mapPlaceInfo.mapPlaceInfoImage.loadFirstOrPlaceholder(place.photos)
-//        }
-    }
-    override fun updateCurrentInfoDistance(distance: Int?) {
-//        if (distance != null) {
-//            mapPlaceInfo.mapPlaceDistance.text = distance.asDistance()
-//            mapPlaceInfo.mapPlaceDistance.visibility = View.VISIBLE
-//        } else {
-//            mapPlaceInfo.mapPlaceDistance.visibility = View.GONE
-//        }
     }
 
     override fun hideInfo() {
-        (activity as MainActivity).hideMapBottomView()
+        (activity as MainActivity).hidePlaceBottomSheetDialog()
 
         previousMarker?.let { it.icon = markerIconGray }
     }

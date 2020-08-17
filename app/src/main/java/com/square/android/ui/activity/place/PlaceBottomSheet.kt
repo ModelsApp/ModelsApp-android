@@ -1,48 +1,44 @@
 package com.square.android.ui.activity.place
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.location.Location
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.ViewTreeObserver
+import android.text.TextUtils
+import android.view.*
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.square.android.R
-import com.square.android.data.pojo.Place
-import com.square.android.presentation.presenter.place.PlacePresenter
-import com.square.android.presentation.view.place.PlaceView
-import com.square.android.ui.activity.LocationActivity
-import com.square.android.ui.base.SimpleNavigator
-import kotlinx.android.synthetic.main.activity_place.*
-import ru.terrakok.cicerone.Navigator
-import android.os.Build
-import android.app.Activity
-import android.content.Intent
-import android.content.res.Resources
-import android.net.Uri
-import android.text.TextUtils
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.square.android.data.pojo.Day
 import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.pojo.Place
 import com.square.android.data.pojo.PlaceExtra
-import com.square.android.extensions.*
-import com.square.android.ui.fragment.map.MarginItemDecorator
+import com.square.android.extensions.asDistance
+import com.square.android.extensions.loadImage
+import com.square.android.extensions.setVisible
+import com.square.android.extensions.textIsEmpty
+import com.square.android.presentation.presenter.place.PlacePresenter
+import com.square.android.presentation.view.place.PlaceView
+import com.square.android.ui.fragment.LocationBottomSheetFragment
 import com.square.android.ui.fragment.explore.GridItemDecoration
-import kotlinx.android.synthetic.main.activity_place.roundedView
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.bottom_sheet_place.*
 import java.util.*
 import kotlin.math.roundToInt
 
-const val PLACE_EXTRA_ID = "EXTRA_ID"
-const val PLACE_EXTRA_DAY_SELECTED = "PLACE_EXTRA_DAY_SELECTED"
+class PlaceBottomSheetEvent(var calledFromMap: Boolean, var placeId: Long, var daySelected: Int = -1)
 
-class PlaceActivity : LocationActivity(), PlaceView {
+class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySelected: Int) : LocationBottomSheetFragment(), PlaceView {
     @InjectPresenter
     lateinit var presenter: PlacePresenter
 
@@ -72,18 +68,76 @@ class PlaceActivity : LocationActivity(), PlaceView {
 
     private var requirementsAdapter: RequirementsAdapter? = null
 
-    var placeAboutSize = 0
-
     @ProvidePresenter
-    fun providePresenter() = PlacePresenter(getId(), getDaySelected())
+    fun providePresenter() = PlacePresenter(placeId, daySelected)
 
-    override fun provideNavigator(): Navigator = object : SimpleNavigator {}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.bottom_sheet_place, container, false)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_place)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val d = super.onCreateDialog(savedInstanceState)
 
-        placeArrowBack.setOnClickListener { onBackPressed() }
+        d.setOnShowListener {
+            val bottomSheetDialog = it as BottomSheetDialog
+            val parentLayout =
+                    bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+
+            parentLayout?.let { parent ->
+                val behaviour = BottomSheetBehavior.from(parent)
+
+                setupFullHeight(parent)
+
+                behaviour.state = if(calledFromMap) BottomSheetBehavior.STATE_HALF_EXPANDED else BottomSheetBehavior.STATE_EXPANDED
+
+                behaviour.setBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback(){
+                    override fun onSlide(p0: View, p1: Float) {}
+
+                    override fun onStateChanged(bottomSheet: View, newState: Int) {
+                        if(newState == BottomSheetBehavior.STATE_EXPANDED){
+                            placeNested.isScrollable = true
+                        } else{
+                            placeNested.isScrollable = false
+
+                            if(newState == BottomSheetBehavior.STATE_HIDDEN){
+                                dismiss()
+                            }
+                        }
+                    }
+                })
+
+                //TODO bottom sheet height is wrong when opened for the first time - its just half of the screen(STATE_HALF_EXPANDED) instead of peek height
+                behaviour.peekHeight = placeCollapsing.measuredHeight + placeAddressCl.measuredHeight
+
+                if(calledFromMap){
+                    //TODO make something to enable clicks outside bottom sheet - is it possible?
+                }
+            }
+        }
+
+        if(calledFromMap){
+            isCancelable = false
+            d.window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        } else{
+            isCancelable = true
+        }
+
+        return d
+    }
+
+    private fun setupFullHeight(bottomSheet: View) {
+        val layoutParams = bottomSheet.layoutParams
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+        bottomSheet.layoutParams = layoutParams
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        placeArrowCollapse.setOnClickListener {
+            dismiss()
+        }
 
         placeAppBar.addOnOffsetChangedListener(
                 AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
@@ -93,7 +147,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
                         isCalculated = true
                     }
                     updateViews(Math.abs(i / appBarLayout.totalScrollRange.toFloat()))
-        })
+                })
 
         aboutMore.setOnClickListener {
             aboutMore.visibility = View.GONE
@@ -115,6 +169,8 @@ class PlaceActivity : LocationActivity(), PlaceView {
         }
 
         placeBookingBtn.setOnClickListener { presenter.bookClicked() }
+
+        placeNested.isScrollable = false
     }
 
     private fun updateViews(offset: Float){
@@ -123,41 +179,19 @@ class PlaceActivity : LocationActivity(), PlaceView {
 
                 if(!isStatusBarLight){
                     isStatusBarLight = true
-                    setLightStatusBar(this)
+                    setLightStatusBar(requireActivity())
                 }
 
-                placeArrowBack.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.black))
+                placeArrowCollapse.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), android.R.color.black))
             }
             in 0F..0.555F -> {
 
                 if(isStatusBarLight){
                     isStatusBarLight = false
-                    clearLightStatusBar(this)
+                    clearLightStatusBar(requireActivity())
                 }
 
-                placeArrowBack.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white))
-            }
-        }
-
-        roundedView.apply {
-            when {
-                offset > titleMovePoint -> {
-                    val titleAnimationOffset = (offset - titleMovePoint) * titleAnimationWeight
-
-                    val roundedMeasuredHeight = Math.round(resources.getDimension(R.dimen.v_44dp) - Math.round(resources.getDimension(R.dimen.v_44dp) * (titleAnimationOffset * 2)))
-
-                    if(roundedMeasuredHeight >= 0){
-                        this.layoutParams.also {
-                            it.height = roundedMeasuredHeight
-                        }
-                    }
-                }
-
-                else -> {
-                    this.layoutParams.also {
-                        it.height = Math.round(resources.getDimension(R.dimen.v_44dp))
-                    }
-                }
+                placeArrowCollapse.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), android.R.color.white))
             }
         }
 
@@ -188,6 +222,36 @@ class PlaceActivity : LocationActivity(), PlaceView {
                 }
             }
         }
+
+        roundedView.apply {
+            val mHeight = Math.round(resources.getDimension(R.dimen.v_20dp) + placeName.height)
+
+            when {
+                offset > titleMovePoint -> {
+                    val titleAnimationOffset = (offset - titleMovePoint) * titleAnimationWeight
+
+                    val roundedMeasuredHeight = Math.round(mHeight - (mHeight * (titleAnimationOffset * 1.5f)))
+
+                    if(offset == 1f){
+                        this.layoutParams.also {
+                            it.height = 0
+                        }
+                    } else{
+                        if(roundedMeasuredHeight >= 0) {
+                            this.layoutParams.also {
+                                it.height = roundedMeasuredHeight
+                            }
+                        }
+                    }
+                }
+
+                else -> {
+                    this.layoutParams.also {
+                        it.height = mHeight
+                    }
+                }
+            }
+        }
     }
 
     override fun showProgress() {
@@ -212,7 +276,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
     override fun showIntervals(data: List<Place.Interval>) {
         intervalsAdapter = IntervalMatchParentAdapter(data, intervalHandler)
 
-        placeIntervalsRv.layoutManager = GridLayoutManager(this, 2)
+        placeIntervalsRv.layoutManager = GridLayoutManager(requireActivity(), 2)
         placeIntervalsRv.adapter = intervalsAdapter
 
         if(!decorationAdded){
@@ -271,7 +335,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
     }
 
     override fun showOfferDialog(offer: OfferInfo, place: Place?) {
-        dialog = OfferDialog(this)
+        dialog = OfferDialog(requireActivity())
         dialog!!.show(offer, place)
     }
 
@@ -315,7 +379,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
                 }
             })
 
-            placeOffersRv.layoutManager = GridLayoutManager(this, 3)
+            placeOffersRv.layoutManager = GridLayoutManager(requireActivity(), 3)
             placeOffersRv.adapter = offerAdapter
             placeOffersRv.addItemDecoration(GridItemDecoration(3,placeOffersRv.context.resources.getDimension(R.dimen.rv_item_decorator_12).toInt(), false))
         }
@@ -355,10 +419,6 @@ class PlaceActivity : LocationActivity(), PlaceView {
         //TODO get from api
         rating.text = "4.5"
 
-        //TODO DELETE
-//        placeName.text = "Cjdjdas Ckdfkdsa Ckfksdfk Ckdkdfsdk Ckfskfk fsdfs"
-
-        //TODO uncomment
         placeName.text = place.name
 
         placeName.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
@@ -369,6 +429,10 @@ class PlaceActivity : LocationActivity(), PlaceView {
                         placeName.height = titleMinHeight
 
                         it.height = Math.round(titleMinHeight + resources.getDimension(R.dimen.toolbar_extra_space))
+
+                        roundedView.layoutParams.apply {
+                            this.height = Math.round(resources.getDimension(R.dimen.v_20dp) + placeName.height)
+                        }
 
                         placeCollapsing.layoutParams.apply {
                             this.height = Math.round(resources.getDimension(R.dimen.toolbar_image_height))
@@ -455,9 +519,9 @@ class PlaceActivity : LocationActivity(), PlaceView {
         super.onStart()
 
         if(isStatusBarLight){
-            setLightStatusBar(this)
+            setLightStatusBar(requireActivity())
         } else{
-            clearLightStatusBar(this)
+            clearLightStatusBar(requireActivity())
         }
     }
 
@@ -465,7 +529,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         super.onStop()
 
         if(!isStatusBarLight){
-            setLightStatusBar(this)
+            setLightStatusBar(requireActivity())
         }
     }
 
@@ -485,6 +549,7 @@ class PlaceActivity : LocationActivity(), PlaceView {
         }
     }
 
-    private fun getId() = intent.getLongExtra(PLACE_EXTRA_ID, 0)
-    private fun getDaySelected() = intent.getIntExtra(PLACE_EXTRA_DAY_SELECTED, -1)
+    companion object {
+        const val TAG = "PlaceBottomSheet"
+    }
 }

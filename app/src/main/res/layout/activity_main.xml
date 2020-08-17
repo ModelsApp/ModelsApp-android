@@ -31,7 +31,7 @@
             <com.square.android.utils.widget.ExtendedBottomNavigationView
                 android:id="@+id/bottomNavigation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/v_56dp"
                 app:itemBackground="@color/white"
                 app:itemIconTint="@drawable/navigation_color_set"
                 app:itemTextColor="@drawable/navigation_color_set"
@@ -65,9 +65,8 @@
             android:layout_width="@dimen/v_48dp"
             android:layout_height="@dimen/v_48dp"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:layout_marginBottom="@dimen/v_20dp"
             android:layout_marginEnd="@dimen/v_16dp"
-            app:layout_goneMarginBottom="@dimen/v_72dp"
+            android:layout_marginBottom="@dimen/v_72dp"
             app:elevation="@dimen/v_3dp"
             android:foregroundTint="@null"
             app:borderWidth="0dp"
@@ -80,27 +79,7 @@
             android:visibility="gone"
             tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottomViewMapLl" />
-
-        <LinearLayout
-            android:id="@+id/bottomViewMapLl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <include
-                android:id="@+id/mapInfo"
-                layout="@layout/bottom_view_map"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:visibility="visible"
-                android:layout_marginBottom="@dimen/v_minus_24dp" />
-
-        </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

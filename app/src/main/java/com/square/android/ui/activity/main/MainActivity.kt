@@ -26,10 +26,7 @@ import com.square.android.data.pojo.Place
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.extensions.*
-import com.square.android.presentation.presenter.explore.EventSelectedEvent
-import com.square.android.presentation.presenter.explore.PlaceSelectedEvent
 import com.square.android.presentation.presenter.main.MainPresenter
-import com.square.android.presentation.presenter.place.PlaceExtras
 import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
@@ -39,9 +36,8 @@ import com.square.android.ui.activity.gallery.GalleryActivity
 import com.square.android.ui.activity.gallery.USER_EXTRA
 import com.square.android.ui.fragment.explore.campaignsList.CAMPAIGN_EXTRA_ID
 import com.square.android.ui.activity.noConnection.NoConnectionActivity
-import com.square.android.ui.activity.place.PLACE_EXTRA_DAY_SELECTED
-import com.square.android.ui.activity.place.PLACE_EXTRA_ID
-import com.square.android.ui.activity.place.PlaceActivity
+import com.square.android.ui.activity.place.PlaceBottomSheet
+import com.square.android.ui.activity.place.PlaceBottomSheetEvent
 import com.square.android.ui.activity.profile.*
 import com.square.android.ui.activity.selectOffer.SelectOfferActivity
 import com.square.android.ui.activity.settings.SettingsActivity
@@ -56,13 +52,12 @@ import com.square.android.ui.fragment.profile.ProfileFragment
 import com.square.android.ui.fragment.review.EXTRA_REDEMPTION
 import com.square.android.utils.ActivityUtils
 import com.square.android.utils.DialogDepository
-import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.bottom_view_map.view.*
 import kotlinx.android.synthetic.main.notifications_badge.*
 import kotlinx.android.synthetic.main.pending_congratulations.view.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
@@ -86,10 +81,16 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
     private val eventBus: EventBus by inject()
 
+    private var placeBottomSheet: PlaceBottomSheet? = null
+
     override fun provideNavigator(): Navigator = MainNavigator(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
 
         ActivityUtils.setTransparentStatusAndDrawBehind(this)
 
@@ -148,73 +149,8 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         }
     }
 
-    fun hideMapBottomView(){
-        bottomViewMapLl.visibility = View.GONE
-    }
-
-    fun setMapBottomBarContent(place: Place){
-        val view = bottomViewMapLl.mapInfo
-
-        val isEvent = place.event != null
-
-        //TODO change to rv with adapter(images) later
-        view.mapPlaceInfoImage.loadImage(place.mainImage ?: (place.photos?.firstOrNull() ?: ""))
-        view.title.text = place.name
-
-        view.mainContent.setOnClickListener {
-            if(isEvent){
-                eventBus.post(EventSelectedEvent(place))
-            } else{
-                eventBus.post(PlaceSelectedEvent(place))
-            }
-        }
-
-        if(isEvent) {
-            view.placeRatingLl.visibility = View.GONE
-
-            view.space.setVisible(true)
-
-            //TODO change ic drawable
-            view.iconLl.setPadding(0, Math.round(resources.getDimension(R.dimen.v_12dp)), 0, 0)
-            //TODO where to get it?
-            view.icText.text = if(isEvent) "Icon text" else ""
-            view.icText.visibility = View.VISIBLE
-
-            view.eventPlaceNameTv.text = place.name
-            view.eventPlaceNameLl.visibility = View.VISIBLE
-
-            view.addressTv.text = place.address
-            view.addressLl.visibility = View.VISIBLE
-
-            view.distanceLl.visibility = View.GONE
-
-            //TODO where to get it?
-            view.dateTv.text = if(isEvent) "Date" else ""
-            view.dateLl.visibility = View.VISIBLE
-
-        } else {
-            //TODO where to get it?
-            view.placeRatingLl.placeRatingTv.text = if(!isEvent) "4.1" else ""
-            view.placeRatingLl.visibility = View.VISIBLE
-
-            view.space.setVisible(false)
-
-            //TODO change ic drawable
-            view.iconLl.setPadding(0, 0, 0, 0)
-            view.icText.visibility = View.GONE
-
-            view.eventPlaceNameLl.visibility = View.GONE
-
-            view.addressTv.text = place.address
-            view.addressLl.visibility = View.VISIBLE
-
-            view.distanceTv.text = place.distance.asDistance()
-            view.distanceLl.visibility = View.VISIBLE
-
-            view.dateLl.visibility = View.GONE
-        }
-
-        bottomViewMapLl.visibility = View.VISIBLE
+    fun hidePlaceBottomSheetDialog(){
+        placeBottomSheet?.dismiss()
     }
 
     fun setUpMainFabImage(@DrawableRes iconRes: Int){
@@ -280,6 +216,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     }
 
     override fun onDestroy() {
+        eventBus.unregister(this)
         App.INSTANCE.mixpanel.flush()
         super.onDestroy()
     }
@@ -294,6 +231,19 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         inflater.inflate(R.layout.notifications_badge, itemView, true)
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onPlaceBottomSheetEvent(event: PlaceBottomSheetEvent){
+        showPlaceBottomSheet(event.calledFromMap, event.placeId, event.daySelected)
+    }
+
+    private fun showPlaceBottomSheet(calledFromMap: Boolean, placeId: Long, daySelected: Int = -1){
+        placeBottomSheet?.let {placeBottomSheet!!.dismiss()}
+
+        placeBottomSheet = PlaceBottomSheet(calledFromMap, placeId, daySelected)
+
+        placeBottomSheet!!.show(supportFragmentManager, PlaceBottomSheet.TAG)
+    }
+
     private class MainNavigator(var activity: FragmentActivity) : AppNavigator(activity, R.id.main_container) {
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?) =
                 when (screenKey) {
@@ -303,11 +253,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.EVENT ->{
                         context.intentFor<EventActivity>(EXTRA_EVENT_ID to data as String)
-                    }
-
-                    SCREENS.PLACE ->{
-                        val extras = data as PlaceExtras
-                        context.intentFor<PlaceActivity>(PLACE_EXTRA_ID to extras.placeId, PLACE_EXTRA_DAY_SELECTED to extras.daySelectedPosition)
                     }
 
                     SCREENS.CAMPAIGN_DETAILS ->
@@ -369,7 +314,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 (activity as MainActivity).setUpMainFabImage(R.drawable.r_pin)
                 (activity as MainActivity).mainFab.show()
 
-                (activity as MainActivity).hideMapBottomView()
+                (activity as MainActivity).hidePlaceBottomSheetDialog()
 
                 ExploreFragment()
             }
@@ -377,28 +322,28 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
             SCREENS.AGENDA -> {
                 (activity as MainActivity).mainFab.hide()
                 (activity as MainActivity).navFab.hide()
-                (activity as MainActivity).hideMapBottomView()
+                (activity as MainActivity).hidePlaceBottomSheetDialog()
                 AgendaFragment()
             }
 
             SCREENS.PROFILE -> {
                 (activity as MainActivity).mainFab.hide()
                 (activity as MainActivity).navFab.hide()
-                (activity as MainActivity).hideMapBottomView()
+                (activity as MainActivity).hidePlaceBottomSheetDialog()
                 ProfileFragment()
             }
 
             SCREENS.EDIT_PROFILE -> {
                 (activity as MainActivity).mainFab.hide()
                 (activity as MainActivity).navFab.hide()
-                (activity as MainActivity).hideMapBottomView()
+                (activity as MainActivity).hidePlaceBottomSheetDialog()
                 EditProfileFragment()
             }
 
             SCREENS.SEARCH -> {
                 (activity as MainActivity).mainFab.hide()
                 (activity as MainActivity).navFab.hide()
-                (activity as MainActivity).hideMapBottomView()
+                (activity as MainActivity).hidePlaceBottomSheetDialog()
                 SearchFragment(data as Int)
             }
 
