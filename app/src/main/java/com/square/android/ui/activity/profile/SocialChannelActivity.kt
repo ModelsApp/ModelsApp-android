@@ -38,11 +38,13 @@ class SocialChannelActivity: BaseActivity(), SocialChannelsView {
         super.onCreate(savedInstanceState)
         ActivityUtils.setTransparentStatusAndDrawBehind(this)
 
+        setContentView(R.layout.activity_social_channels)
+
         socialDialog = SocialChannelDialog(this)
 
         loadingDialog = LoadingDialog(this)
 
-        setContentView(R.layout.activity_social_channels)
+        socialArrowBack.setOnClickListener { onBackPressed() }
     }
 
     override fun showData(data: List<UserSocialChannel>){

@@ -16,7 +16,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/professionError"
+            android:id="@+id/imAError"
             style="@style/RedesignedSpinnerError"
             tools:visibility="visible"
             android:text="@string/select_profession" />
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_rl_height" >
         <LinearLayout
-            android:id="@+id/professionLl"
+            android:id="@+id/imALl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -34,7 +34,7 @@
             android:layout_alignParentBottom="true" >
             <androidx.appcompat.widget.AppCompatSpinner
                 style="@style/RedesignedSpinner"
-                android:id="@+id/spinnerProfession"
+                android:id="@+id/spinnerimA"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

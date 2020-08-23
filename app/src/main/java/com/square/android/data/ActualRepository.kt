@@ -21,6 +21,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.HttpException
+import retrofit2.http.*
 
 private const val TOKEN_PREFIX = "Bearer "
 
@@ -143,10 +144,51 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
-    override fun getUserCapabilities(): Deferred<List<Capability>> = GlobalScope.async {
+    override fun getUserCapabilities(): Deferred<List<UserCapability>> = GlobalScope.async {
         val data = performRequest {api.getUserCapabilities(localManager.getAuthToken(), getUserId())}
         data
     }
+
+    override fun addUserCapabilities(userCapabilitiesData: UserCapabilitiesData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.addUserCapabilities(localManager.getAuthToken(), getUserId(), userCapabilitiesData)}
+        data
+    }
+
+    override fun addUserProfession(professionData: ProfessionData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.addUserProfession(localManager.getAuthToken(), getUserId(), professionData)}
+        data
+    }
+
+    override fun getUserProfessions(): Deferred<ProfessionsResult>  = GlobalScope.async {
+        val data = performRequest {api.getUserProfessions(localManager.getAuthToken(), getUserId())}
+        data
+    }
+
+
+    override fun deleteUserProfession1(professionId: Int): Deferred<MessageResponse>  = GlobalScope.async {
+        val data = performRequest {api.deleteUserProfession1(localManager.getAuthToken(), getUserId(), professionId)}
+        data
+    }
+
+    override fun deleteUserProfession2(professionId: String): Deferred<MessageResponse>  = GlobalScope.async {
+        val data = performRequest {api.deleteUserProfession2(localManager.getAuthToken(), getUserId(), professionId)}
+        data
+    }
+
+    override fun deleteUserProfession3(professionDelete1Data: ProfessionDelete1Data): Deferred<MessageResponse>  = GlobalScope.async {
+        val data = performRequest {api.deleteUserProfession3(localManager.getAuthToken(), getUserId(), professionDelete1Data)}
+        data
+    }
+    override fun deleteUserProfession4(professionDelete2Data: ProfessionDelete2Data): Deferred<MessageResponse>  = GlobalScope.async {
+        val data = performRequest {api.deleteUserProfession4(localManager.getAuthToken(), getUserId(), professionDelete2Data)}
+        data
+    }
+
+
+
+
+
+
 
     override fun addUserSpecialities(specialitiesData: SpecialitiesData): Deferred<MessageResponse> = GlobalScope.async {
         val data = performRequest {api.addUserSpecialities(localManager.getAuthToken(), getUserId(), specialitiesData)}
@@ -157,6 +199,18 @@ class ActualRepository(private val api: ApiService,
         val data = performRequest {api.getUserSpecialities(localManager.getAuthToken(), getUserId())}
         data
     }
+
+    override fun getRegisterSpecialitiesAndProfessions(): Deferred<RegisterSpecialitiesAndProfessionsData> = GlobalScope.async {
+        val data = performRequest {api.getRegisterSpecialitiesAndProfessions()}
+        data
+    }
+
+    override fun getRegisterCapabilities(): Deferred<RegisterCapabilitiesData> = GlobalScope.async {
+        val data = performRequest {api.getRegisterCapabilities()}
+        data
+    }
+
+
 
     override fun postUserPlan(userPlanData: UserPlanData): Deferred<MessageResponse> = GlobalScope.async {
         val data = performRequest {api.postUserPlan(localManager.getAuthToken(), getUserId(), userPlanData)}

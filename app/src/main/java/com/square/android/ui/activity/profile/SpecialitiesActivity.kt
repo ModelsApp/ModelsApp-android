@@ -42,6 +42,8 @@ class SpecialitiesActivity: BaseActivity(), SpecialitiesView {
             presenter.saveData()
         }
 
+        specialitiesArrowBack.setOnClickListener { onBackPressed() }
+
         loadingDialog = LoadingDialog(this)
     }
 

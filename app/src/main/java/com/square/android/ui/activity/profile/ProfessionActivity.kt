@@ -42,6 +42,8 @@ class ProfessionActivity: BaseActivity(), ProfessionView {
             presenter.saveData()
         }
 
+        professionsArrowBack.setOnClickListener { onBackPressed() }
+
         loadingDialog = LoadingDialog(this)
     }
 

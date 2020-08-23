@@ -8,6 +8,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.google.firebase.iid.FirebaseInstanceId
 import com.square.android.App
 import com.square.android.R
+import com.square.android.extensions.setVisible
 import com.square.android.presentation.presenter.signUp.SignUpMainPresenter
 import com.square.android.presentation.view.signUp.SignUpMainView
 import com.square.android.ui.dialogs.LoadingDialog
@@ -49,7 +50,6 @@ class SignUpMainFragment: BaseFragment(), SignUpMainView {
         if(!eventBus.isRegistered(this)){
             eventBus.register(this)
         }
-
 
         setupFragmentAdapter()
 

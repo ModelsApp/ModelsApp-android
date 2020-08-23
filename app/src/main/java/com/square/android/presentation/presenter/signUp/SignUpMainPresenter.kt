@@ -16,8 +16,6 @@ class SignUpMainPresenter: BasePresenter<SignUpMainView>(){
     fun register() = launch({
         viewState.showLoadingDialog()
 
-        //TODO:F change to SignUpData from ProfileInfo in signUp fragments and HERE
-
         //TODO:F no name and surname in SignUpData FOR NOW?
         val response = repository.registerUser(signUpData).await()
 

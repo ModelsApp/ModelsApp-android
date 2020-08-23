@@ -15,7 +15,7 @@ class SignUpOnePresenter(val info: SignUpData) : BasePresenter<SignUpOneView>() 
     }
 
     fun birthSelected(birthday: String) {
-        info.birthDate = birthday
+        info.birthDate = birthday.replace(".", "-")
         viewState.showBirthday(birthday)
     }
 
@@ -45,4 +45,5 @@ class SignUpOnePresenter(val info: SignUpData) : BasePresenter<SignUpOneView>() 
     fun navigateVerify(phoneNumber: String){
         router.navigateTo(SCREENS.SIGN_UP_VERIFY_PHONE, phoneNumber)
     }
+
 }

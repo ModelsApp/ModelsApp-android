@@ -70,12 +70,21 @@
                             android:tint="@android:color/white" />
                     </androidx.appcompat.widget.Toolbar>
 
-                    <View
+                    <FrameLayout
                         android:id="@+id/roundedView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/v_44dp"
                         android:layout_gravity="bottom"
-                        android:background="@drawable/bg_rounded_top_24dp" />
+                        android:background="@drawable/bg_rounded_top_24dp" >
+                        <View
+                            android:id="@+id/topIcon"
+                            android:layout_width="@dimen/v_32dp"
+                            android:layout_height="@dimen/v_4dp"
+                            android:layout_marginTop="@dimen/v_12dp"
+                            android:layout_gravity="center_horizontal|top"
+                            android:background="@drawable/background_rounded_max"
+                            android:backgroundTint="@color/gray_btn_disabled"/>
+                    </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -752,7 +761,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
@@ -766,19 +775,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/ac_place_default_margin"
-                        android:layout_marginEnd="@dimen/v_28dp"
-                        android:orientation="vertical"
-                        app:layout_constraintTop_toTopOf="@+id/placeBookingBtn"
-                        app:layout_constraintBottom_toBottomOf="@+id/placeBookingBtn"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/placeBookingBtn" >
+                        android:layout_marginEnd="@dimen/v_16dp"
+                        android:orientation="vertical" >
 
                         <TextView
                             android:id="@+id/placeBookingDate"
                             style="@style/Models14SemiBoldText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
+                            android:gravity="center_horizontal|start"
                             android:ellipsize="end"
                             android:maxLines="2"
                             tools:text="Monday, May 7th" />
@@ -788,8 +793,8 @@
                             style="@style/Models14SemiBoldText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/v_4dp"
+                            android:gravity="center_horizontal|start"
+                            android:layout_marginTop="@dimen/v_3dp"
                             android:ellipsize="end"
                             android:hint="@string/make_your_selection"
                             android:maxLines="1"
@@ -799,9 +804,11 @@
                     <Button
                         android:id="@+id/placeBookingBtn"
                         style="@style/Models14Text"
+                        android:layout_weight="1"
                         android:textSize="@dimen/text_14"
-                        android:layout_width="@dimen/v_152dp"
-                        android:layout_height="@dimen/v_48dp"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="@dimen/v_16dp"
+                        android:layout_height="@dimen/v_50dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginEnd="@dimen/ac_place_default_margin"
                         android:background="@drawable/button_rounded_enabled_disabled"

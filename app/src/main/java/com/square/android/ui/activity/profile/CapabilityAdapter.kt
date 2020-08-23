@@ -2,12 +2,12 @@ package com.square.android.ui.activity.profile
 
 import android.view.View
 import com.square.android.R
-import com.square.android.data.pojo.Capability
+import com.square.android.data.pojo.UserCapability
 import com.square.android.extensions.drawableFromRes
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_capability.*
 
-class CapabilityAdapter(data: List<Capability>, var selectedItems: MutableList<String> = mutableListOf(), private val handler: Handler?): BaseAdapter<Capability, CapabilityAdapter.Holder>(data) {
+class CapabilityAdapter(data: List<UserCapability>, var selectedItems: MutableList<String> = mutableListOf(), private val handler: Handler?): BaseAdapter<UserCapability, CapabilityAdapter.Holder>(data) {
 
     override fun getLayoutId(viewType: Int) = R.layout.item_capability
 
@@ -15,14 +15,8 @@ class CapabilityAdapter(data: List<Capability>, var selectedItems: MutableList<S
         return Holder(view, handler, data, selectedItems)
     }
 
-    fun changeSelection(name: String) {
-        if(name in selectedItems){
-            selectedItems.remove(name)
-        } else{
-            selectedItems.add(name)
-        }
-
-        notifyItemChanged(data.indexOf(data.first{it.name == name}), SelectedPayload)
+    fun notifyChanged(position: Int) {
+        notifyItemChanged(position, SelectedPayload)
     }
 
     @Suppress("ForEachParameterNotUsed")
@@ -43,9 +37,9 @@ class CapabilityAdapter(data: List<Capability>, var selectedItems: MutableList<S
         holder.bind(data[position])
     }
 
-    class Holder(view: View, private val handler: Handler?, var data: List<Capability>, var selectedItems: MutableList<String>) : BaseAdapter.BaseHolder<Capability>(view) {
+    class Holder(view: View, private val handler: Handler?, var data: List<UserCapability>, var selectedItems: MutableList<String>) : BaseAdapter.BaseHolder<UserCapability>(view) {
 
-        override fun bind(item: Capability, vararg extras: Any?) {
+        override fun bind(item: UserCapability, vararg extras: Any?) {
             itemContainer.setOnClickListener { handler?.itemClicked(adapterPosition) }
 
             itemImg.drawableFromRes(when(item.name){

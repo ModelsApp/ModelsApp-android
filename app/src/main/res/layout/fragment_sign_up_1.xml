@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:inputType="phone"
-                android:digits="0123456789" />
+                android:digits="0123456789-" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -30,7 +30,9 @@ data class SignUpData(
         var referral: String = "",
         @Json(name = "terms_of_use")
         var termsOfUse: Boolean = true,
-        var profession: String = "",
+
+        @Json(name = "profession")
+        var imA: String = "",
         @Json(name = "main_specialty")
         var mainSpeciality: String = "",
         @Json(name = "addition_specialities")
@@ -50,6 +52,14 @@ data class SignUpData(
 
         @Transient
         @JsonIgnore
-        var fbToken: String? = null
+        var fbToken: String? = null,
+
+        @Transient
+        @JsonIgnore
+        var specialitiesAndProfessionsLists: RegisterSpecialitiesAndProfessionsData? = null,
+
+        @Transient
+        @JsonIgnore
+        var capabilitiesList: RegisterCapabilitiesData? = null
 
 ): Parcelable

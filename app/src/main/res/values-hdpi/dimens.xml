@@ -216,7 +216,7 @@
     <dimen name="text_26">20sp</dimen>
 
 
-    <dimen name="bottomContainerHeight">54dp</dimen>
+    <dimen name="bottomContainerHeight">60dp</dimen>
 
     <dimen name="error_text_size">9sp</dimen>
 

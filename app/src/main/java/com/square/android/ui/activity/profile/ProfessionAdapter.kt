@@ -103,7 +103,7 @@ class ProfessionAdapter(data: List<Profession>, var selectedItems: MutableList<P
             } else{
                 itemPrimaryLabel.setVisible(false)
 
-                val isChecked = selectedItems.contains(data[adapterPosition])
+                val isChecked = selectedItems.map { it.id }.contains(data[adapterPosition].id)
 
                 itemIc.drawableFromRes(if(isChecked) R.drawable.radio_btn_checked else R.drawable.radio_btn_unchecked)
             }

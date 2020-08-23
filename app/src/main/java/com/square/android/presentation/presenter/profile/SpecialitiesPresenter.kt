@@ -1,9 +1,7 @@
 package com.square.android.presentation.presenter.profile
 
 import com.arellomobile.mvp.InjectViewState
-import com.square.android.data.pojo.SpecialitiesData
-import com.square.android.data.pojo.SpecialitiesResult
-import com.square.android.data.pojo.Speciality
+import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.profile.SpecialitiesView
 
@@ -75,7 +73,7 @@ class SpecialitiesPresenter(): BasePresenter<SpecialitiesView>(){
     fun saveData() = launch{
         viewState.showLoadingDialog()
 
-        repository.addUserSpecialities(SpecialitiesData(selectedList)).await()
+        repository.addUserSpecialities(SpecialitiesData(selectedList.map {UserPostSpeciality(specialityId = it.id, name = it.name, main = it.main) })).await()
 
         viewState.hideLoadingDialog()
     }

@@ -70,6 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--   TODO hidden for now     -->
         <com.square.android.utils.widget.PoppinsTabLayout
             android:id="@+id/mainListsTabs"
             android:layout_width="wrap_content"
@@ -77,6 +78,7 @@
             android:layout_marginStart="@dimen/v_12dp"
             app:layout_goneMarginTop="@dimen/v_40dp"
             android:layout_marginTop="@dimen/v_8dp"
+            android:visibility="gone"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@+id/icSearch"
             app:layout_constraintStart_toStartOf="parent"

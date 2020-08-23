@@ -287,6 +287,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                         context.intentFor<SpecialitiesActivity>()
                     }
 
+                    SCREENS.CAPABILITIES -> {
+                        context.intentFor<CapabilitiesActivity>()
+                    }
+
                     SCREENS.PROFESSIONS -> {
                         context.intentFor<ProfessionActivity>()
                     }

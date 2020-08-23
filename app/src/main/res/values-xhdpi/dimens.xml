@@ -214,7 +214,7 @@
     <dimen name="text_24">24sp</dimen>
     <dimen name="text_26">26sp</dimen>
 
-    <dimen name="bottomContainerHeight">72dp</dimen>
+    <dimen name="bottomContainerHeight">80dp</dimen>
 
 
     <dimen name="error_text_size">13sp</dimen>

@@ -93,14 +93,62 @@ interface ApiService {
     fun deleteUserSocialChannel(@Header("Authorization") authorization: String,
                                 @Path("socialChannelId") socialChannelId: String): Call<MessageResponse>
 
-    @POST("users/{userId}/chanels")
-    fun addUserCapability(@Header("Authorization") authorization: String,
+    @POST("users/{userId}/capabilities")
+    fun addUserCapabilities(@Header("Authorization") authorization: String,
                              @Path("userId") userId: Long,
-                             @Body userSocialChannelData: UserSocialChannelData): Call<MessageResponse>
+                             @Body userCapabilitiesData: UserCapabilitiesData): Call<MessageResponse>
 
     @GET("users/{userId}/capabilities")
     fun getUserCapabilities(@Header("Authorization") authorization: String,
-                              @Path("userId") userId: Long): Call<List<Capability>>
+                              @Path("userId") userId: Long): Call<List<UserCapability>>
+
+    @GET("users/getUserCategoriesAndInterests")
+    fun getRegisterSpecialitiesAndProfessions(): Call<RegisterSpecialitiesAndProfessionsData>
+
+    @GET("users/capabilities")
+    fun getRegisterCapabilities(): Call<RegisterCapabilitiesData>
+
+    @POST("users/{userId}/saveProfession")
+    fun addUserProfession(@Header("Authorization") authorization: String,
+                            @Path("userId") userId: Long,
+                            @Body professionsData: ProfessionData): Call<MessageResponse>
+
+    @GET("user/{userId}/professions")
+    fun getUserProfessions(@Header("Authorization") authorization: String,
+                            @Path("userId") userId: Long): Call<ProfessionsResult>
+
+
+
+
+
+
+//    @DELETE("users/{userId}/deleteUserProfession")
+//    fun deleteUserProfession(@Header("Authorization") authorization: String,
+//                             @Path("userId") userId: Long,
+//                             @Query("professionId") professionId: String): Call<MessageResponse>
+
+    @DELETE("users/{userId}/deleteUserProfession")
+    fun deleteUserProfession1(@Header("Authorization") authorization: String,
+                             @Path("userId") userId: Long,
+                             @Query("professionId") professionId: Int): Call<MessageResponse>
+
+    @DELETE("users/{userId}/deleteUserProfession")
+    fun deleteUserProfession2(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long,
+                              @Query("professionId") professionId: String): Call<MessageResponse>
+
+    @HTTP(method = "DELETE", path = "/users/{userId}/deleteUserProfession", hasBody = true)
+    fun deleteUserProfession3(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long,
+                              @Body professionDeleteData: ProfessionDelete1Data): Call<MessageResponse>
+
+    @HTTP(method = "DELETE", path = "/users/{userId}/deleteUserProfession", hasBody = true)
+    fun deleteUserProfession4(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long,
+                              @Body professionDeleteData: ProfessionDelete2Data): Call<MessageResponse>
+
+
+
 
 
     @POST("users/{userId}/specialities")

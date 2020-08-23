@@ -35,7 +35,7 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
     @ProvidePresenter
     fun providePresenter(): SignUpTwoPresenter = SignUpTwoPresenter(getModel())
 
-    var professionItems: List<String> = listOf()
+    var imAitems: List<String> = listOf()
 
     var specialityItems: List<String> = listOf()
 
@@ -50,7 +50,7 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
 
     var multipleSelectionDialog: MultipleSelectionDialog? = null
 
-    var selectedProfession: String = ""
+    var selectedimA: String = ""
     var selectedSpeciality: String = ""
 
     var initialLoad1 = true
@@ -63,12 +63,6 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        professionItems = resources.getStringArray(R.array.profession_array).toList()
-        specialityItems = resources.getStringArray(R.array.speciality_array).toList()
-        additionalSpecialitiesItems = specialityItems.toMutableList()
-        capabilitiesItems = resources.getStringArray(R.array.capabilities_array).toList()
-        preferencesItems = resources.getStringArray(R.array.preferences_array).toList()
 
         switchVat.setOnCheckedChangeListener { buttonView, isChecked ->
             vatNumberRl.visibility = if(isChecked) View.VISIBLE else View.GONE
@@ -84,28 +78,13 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
             }
         }
 
-        professionLl.setOnClickListener {
-            spinnerProfession.visibility = View.VISIBLE
-            spinnerProfession.isClickable = true
-            spinnerProfession.isFocusable = true
+        imALl.setOnClickListener {
+            spinnerimA.visibility = View.VISIBLE
+            spinnerimA.isClickable = true
+            spinnerimA.isFocusable = true
 
-            spinnerProfession.performClick()
-            selectedProfession = spinnerProfession.selectedItem.toString()
-        }
-        spinnerProfession.adapter = SimpleSpinnerAdapter(activity!!, DROPDOWN_ITEM_TYPE_CHECKMARK, professionItems)
-        spinnerProfession.visibility = View.INVISIBLE
-        spinnerProfession.isClickable = false
-        spinnerProfession.isFocusable = false
-        spinnerProfession.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) { }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(initialLoad1){
-                    initialLoad1 = false
-                } else{
-                    selectedProfession = professionItems[position]
-                }
-            }
+            spinnerimA.performClick()
+            selectedimA = spinnerimA.selectedItem.toString()
         }
 
         mainSpecialityLl.setOnClickListener {
@@ -119,26 +98,6 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
             tvAdditionalSpecialities.text = ""
             additionalSpecialitiesItems = specialityItems.toMutableList()
             additionalSpecialitiesItems.removeAt(0)
-        }
-        spinnerMainSpeciality.adapter = SimpleSpinnerAdapter(activity!!, DROPDOWN_ITEM_TYPE_CHECKMARK, specialityItems)
-        spinnerMainSpeciality.visibility = View.INVISIBLE
-        spinnerMainSpeciality.isClickable = false
-        spinnerMainSpeciality.isFocusable = false
-        spinnerMainSpeciality.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) { }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(initialLoad2){
-                    initialLoad2 = false
-                } else{
-                    selectedSpeciality = specialityItems[position]
-
-                    selectedAdditionalSpecialities = listOf()
-                    tvAdditionalSpecialities.text = ""
-                    additionalSpecialitiesItems = specialityItems.toMutableList()
-                    additionalSpecialitiesItems.removeAt(position)
-                }
-            }
         }
 
         additionalSpecialitiesLl.setOnClickListener {
@@ -193,17 +152,63 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
         }
     }
 
-    override fun showData(signUpData: SignUpData) { }
+    override fun showData(signUpData: SignUpData) {
+
+        //TODO get from api
+        imAitems = resources.getStringArray(R.array.im_a_array).toList()
+
+        specialityItems = presenter.info.specialitiesAndProfessionsLists!!.specialities.map { it.name }
+        additionalSpecialitiesItems = specialityItems.toMutableList()
+        capabilitiesItems = presenter.info.capabilitiesList!!.capabilities.map { it.name }
+        preferencesItems = presenter.info.specialitiesAndProfessionsLists!!.professions.map { it.name }
+
+        spinnerimA.adapter = SimpleSpinnerAdapter(activity!!, DROPDOWN_ITEM_TYPE_CHECKMARK, imAitems)
+        spinnerimA.visibility = View.INVISIBLE
+        spinnerimA.isClickable = false
+        spinnerimA.isFocusable = false
+        spinnerimA.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(initialLoad1){
+                    initialLoad1 = false
+                } else{
+                    selectedimA = imAitems[position]
+                }
+            }
+        }
+
+        spinnerMainSpeciality.adapter = SimpleSpinnerAdapter(activity!!, DROPDOWN_ITEM_TYPE_CHECKMARK, specialityItems)
+        spinnerMainSpeciality.visibility = View.INVISIBLE
+        spinnerMainSpeciality.isClickable = false
+        spinnerMainSpeciality.isFocusable = false
+        spinnerMainSpeciality.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(initialLoad2){
+                    initialLoad2 = false
+                } else{
+                    selectedSpeciality = specialityItems[position]
+
+                    selectedAdditionalSpecialities = listOf()
+                    tvAdditionalSpecialities.text = ""
+                    additionalSpecialitiesItems = specialityItems.toMutableList()
+                    additionalSpecialitiesItems.removeAt(position)
+                }
+            }
+        }
+    }
 
     override fun validate(): Boolean {
         var allOk = true
 
-        if(!isValid(selectedProfession)){
-            professionError.visibility = View.VISIBLE
+        if(!isValid(selectedimA)){
+            imAError.visibility = View.VISIBLE
 
             allOk = false
         } else{
-            professionError.visibility = View.GONE
+            imAError.visibility = View.GONE
         }
 
         if(!isValid(selectedSpeciality)){
@@ -255,7 +260,7 @@ class SignUpTwoFragment: BaseFragment(), SignUpTwoView {
         }
 
         if(allOk){
-            presenter.info.profession = selectedProfession
+            presenter.info.imA = selectedimA
             presenter.info.mainSpeciality = selectedSpeciality
 
             presenter.info.additionalSpecialities = selectedAdditionalSpecialities

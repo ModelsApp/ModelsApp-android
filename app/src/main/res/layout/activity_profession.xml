@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <ImageView
-            android:id="@+id/arrowBack"
+            android:id="@+id/professionsArrowBack"
             android:layout_width="@dimen/v_40dp"
             android:layout_height="@dimen/v_40dp"
             android:src="@drawable/chevron_left"

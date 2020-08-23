@@ -7,15 +7,18 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-data class SpecialitiesData(
-        var specialities: List<UserPostSpeciality>
+data class ProfessionsResult(
+        var professions: List<Profession>,
+        var userProfessions: List<UserProfession>
 ): Parcelable
-
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-data class UserPostSpeciality(
-        var specialityId: String? = "",
+data class UserProfession(
+        @Json(name = "_id")
+        var id: String? = "",
+        var professionId: String? = "",
+        var userId: Long = 0,
         var main: Boolean = false,
         var name: String = ""
 ): Parcelable

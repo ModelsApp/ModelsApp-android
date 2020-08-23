@@ -10,6 +10,8 @@ import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LatestSearch
 import com.square.android.ui.base.tutorial.TutorialService
 import kotlinx.coroutines.Deferred
+import retrofit2.Call
+import retrofit2.http.*
 
 interface Repository {
 
@@ -49,11 +51,26 @@ interface Repository {
 
     fun deleteUserSocialChannel(socialChannelId: String): Deferred<MessageResponse>
 
-    fun getUserCapabilities(): Deferred<List<Capability>>
+    fun getUserCapabilities(): Deferred<List<UserCapability>>
+
+    fun addUserCapabilities(userCapabilitiesData: UserCapabilitiesData): Deferred<MessageResponse>
+
+    fun addUserProfession(professionsData: ProfessionData): Deferred<MessageResponse>
+
+    fun getUserProfessions(): Deferred<ProfessionsResult>
+
+    fun deleteUserProfession1(professionId: Int): Deferred<MessageResponse>
+    fun deleteUserProfession2(professionId: String): Deferred<MessageResponse>
+    fun deleteUserProfession3(professionDelete1Data: ProfessionDelete1Data): Deferred<MessageResponse>
+    fun deleteUserProfession4(professionDelete2Data: ProfessionDelete2Data): Deferred<MessageResponse>
+
 
     fun addUserSpecialities(specialitiesData: SpecialitiesData): Deferred<MessageResponse>
 
     fun getUserSpecialities(): Deferred<SpecialitiesResult>
+
+    fun getRegisterSpecialitiesAndProfessions(): Deferred<RegisterSpecialitiesAndProfessionsData>
+    fun getRegisterCapabilities(): Deferred<RegisterCapabilitiesData>
 
     fun postUserPlan(userPlanData: UserPlanData): Deferred<MessageResponse>
 

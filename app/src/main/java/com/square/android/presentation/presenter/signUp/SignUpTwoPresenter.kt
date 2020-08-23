@@ -9,6 +9,17 @@ import com.square.android.presentation.view.signUp.SignUpTwoView
 class SignUpTwoPresenter(val info: SignUpData): BasePresenter<SignUpTwoView>(){
 
     init {
+        loadItems()
+    }
+
+
+    private fun loadItems() = launch {
+        val specialitiesAndProfessions = repository.getRegisterSpecialitiesAndProfessions().await()
+        val capabilities = repository.getRegisterCapabilities().await()
+
+        info.specialitiesAndProfessionsLists = specialitiesAndProfessions
+        info.capabilitiesList = capabilities
+
         viewState.showData(info)
     }
 }

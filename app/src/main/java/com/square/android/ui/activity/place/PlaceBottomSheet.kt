@@ -109,18 +109,13 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
 
                 //TODO bottom sheet height is wrong when opened for the first time - its just half of the screen(STATE_HALF_EXPANDED) instead of peek height
                 behaviour.peekHeight = placeCollapsing.measuredHeight + placeAddressCl.measuredHeight
-
-                if(calledFromMap){
-                    //TODO make something to enable clicks outside bottom sheet - is it possible?
-                }
             }
         }
 
+        isCancelable = true
+
         if(calledFromMap){
-            isCancelable = false
             d.window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        } else{
-            isCancelable = true
         }
 
         return d
@@ -198,7 +193,7 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
         placeName.apply {
             when {
                 offset > titleMovePoint -> {
-
+                    topIcon.visibility = View.GONE
                     ratingLl.visibility = View.GONE
 
                     val titleAnimationOffset = (offset - titleMovePoint) * titleAnimationWeight
@@ -214,6 +209,7 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
                 }
                 else ->{
                     ratingLl.visibility = View.VISIBLE
+                    topIcon.visibility = View.VISIBLE
 
                     this.layoutParams.also {
                         translationX = 0f

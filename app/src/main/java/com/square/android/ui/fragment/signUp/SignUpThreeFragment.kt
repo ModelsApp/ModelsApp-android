@@ -57,6 +57,9 @@ class SignUpThreeFragment: BaseFragment(), SignUpThreeView {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onRegisterFacebookEvent(event: RegisterFacebookEvent) {
+
+        println("http facebook event: ${event.toString()}")
+
         fbAdded = true
 
         fbIc.setImageDrawable(fbIc.context.getDrawable(R.drawable.checkmark))

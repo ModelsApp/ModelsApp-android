@@ -275,7 +275,7 @@ class SignUpOneFragment: BaseFragment(), SignUpOneView, OnCountryPickerListener 
                     val month = if ((calendar.get(Calendar.MONTH) + 1) < 10) "0" + (calendar.get(Calendar.MONTH) + 1).toString() else (calendar.get(Calendar.MONTH) + 1).toString()
                     val year = calendar.get(Calendar.YEAR).toString()
 
-                    val birthday = activity!!.getString(R.string.birthday_display_format, day, month, year)
+                    val birthday = activity!!.getString(R.string.birthday_display_format, month, day, year)
 
                     presenter.birthSelected(birthday)
                 }
