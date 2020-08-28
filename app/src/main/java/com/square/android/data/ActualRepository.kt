@@ -8,6 +8,7 @@ import com.square.android.data.local.LocalDataManager
 import com.square.android.data.network.ApiService
 import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.*
+import com.square.android.data.newPojo.CoordinatesData
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
@@ -184,12 +185,6 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
-
-
-
-
-
-
     override fun addUserSpecialities(specialitiesData: SpecialitiesData): Deferred<MessageResponse> = GlobalScope.async {
         val data = performRequest {api.addUserSpecialities(localManager.getAuthToken(), getUserId(), specialitiesData)}
         data
@@ -209,6 +204,15 @@ class ActualRepository(private val api: ApiService,
         val data = performRequest {api.getRegisterCapabilities()}
         data
     }
+
+    override fun getOffersByUserLocation(coordinatesData: CoordinatesData): Deferred<String> = GlobalScope.async {
+        val data = performRequest {api.getOffersByUserLocation(localManager.getAuthToken(), getUserId(), coordinatesData.coordinates, coordinatesData.radius, coordinatesData.search)}
+        data
+    }
+
+
+
+
 
 
 

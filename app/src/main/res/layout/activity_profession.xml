@@ -34,8 +34,8 @@
             android:text="@string/my_profession"
             android:textColor="@android:color/black"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="@+id/arrowBack"
-            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintTop_toTopOf="@+id/professionsArrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/professionsArrowBack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -51,8 +51,8 @@
             android:textColor="@color/enabled_gray"
             android:textSize="@dimen/text_16"
             android:gravity="center_vertical"
-            app:layout_constraintTop_toTopOf="@+id/arrowBack"
-            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintTop_toTopOf="@+id/professionsArrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/professionsArrowBack"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

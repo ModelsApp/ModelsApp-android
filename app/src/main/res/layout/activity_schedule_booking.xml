@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scheduleBookingRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navContainer"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/v_40dp"
+        android:paddingBottom="@dimen/v_4dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greyish_app_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/arrowBack"
+            android:layout_width="@dimen/v_40dp"
+            android:layout_height="@dimen/v_40dp"
+            android:src="@drawable/chevron_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/v_56dp"
+            android:layout_marginEnd="@dimen/v_56dp"
+            app:layout_constraintTop_toTopOf="@+id/arrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:id="@+id/placeName"
+                style="@style/Models16SemiBoldText"
+                android:textSize="@dimen/text_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="La Perla d'Oro"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/placeAddress"
+                style="@style/Models15Text"
+                android:textSize="@dimen/text_15"
+                android:layout_marginTop="@dimen/v_2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="2456 Robinson Rd undefined"
+                android:textColor="@color/text_gray"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iconTop"
+            android:layout_width="@dimen/v_32dp"
+            android:layout_height="@dimen/v_32dp"
+            android:padding="@dimen/v_4dp"
+            android:layout_marginEnd="@dimen/v_8dp"
+            android:tint="@android:color/black"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            tools:src="@drawable/ic_notifications"
+            app:layout_constraintTop_toTopOf="@+id/arrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white" >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/placeAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/placeCollapsing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:contentScrim="@android:color/white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax" >
+
+                    <View
+                        android:id="@+id/backView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/scheduleBookingTopContainerHeight"
+                        android:background="@color/placeholder" />
+                </FrameLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/placeToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:title="@null"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+                </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="bottom" >
+
+    <!--  TODO  jak przewijanie przejdzie, ze ma zniknac gorny layput to ten ll dawac na invisible  a jak widoczny to visible   -->
+                <LinearLayout
+                    android:id="@+id/topLayoutsLl"
+                    android:layout_width="match_parent"
+                    android:visibility="invisible"
+                    tools:visibility="visible"
+                    android:orientation="vertical"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+
+<!--        option 1 - map            -->
+                    <com.mapbox.mapboxsdk.maps.MapView
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:mapbox_renderTextureMode="true"
+                        android:visibility="gone"
+                        tools:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@color/placeholder"/>
+
+<!--        option 2 - geolocation turned off
+            +
+            option 3 - can't redeem this offer right now      -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        tools:visibility="gone"
+                        android:paddingStart="@dimen/v_16dp"
+                        android:paddingEnd="@dimen/v_16dp"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/topImg"
+                            android:layout_width="@dimen/v_36dp"
+                            android:layout_height="@dimen/v_36dp"
+                            android:layout_marginBottom="@dimen/v_16dp"
+                            android:src="@drawable/r_address" />
+
+                        <TextView
+                            android:id="@+id/topText"
+                            style="@style/Models15SemiBoldText"
+                            android:textSize="@dimen/text_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="@string/geolocation_turned_off"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <!-- in 3(can't redeem) - spannable black "only" -->
+                        <TextView
+                            android:id="@+id/middleText"
+                            style="@style/Models15Text"
+                            android:textSize="@dimen/text_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/v_8dp"
+                            tools:text="@string/switch_on_geolocation"
+                            android:gravity="center"
+                            android:textColor="@color/text_gray"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <Button
+                            android:id="@+id/btnDone"
+                            android:textSize="@dimen/text_13"
+                            style="@style/Models13Text"
+                            android:layout_height="@dimen/v_36dp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/v_20dp"
+                            android:paddingStart="@dimen/v_16dp"
+                            android:paddingEnd="@dimen/v_16dp"
+                            android:stateListAnimator="@null"
+                            android:elevation="0dp"
+                            android:background="@drawable/button_black_alpha_8dp"
+                            tools:text="@string/go_to_settings"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white" />
+
+                    </LinearLayout>
+
+<!--        option 4 - redeem, option 5 - checked-in            -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5"/>
+
+                        <com.square.android.ui.view.CircleImageView
+                            android:id="@+id/placeImg"
+                            android:layout_width="@dimen/v_112dp"
+                            android:layout_height="@dimen/v_112dp"
+                            android:layout_marginTop="@dimen/v_24dp"
+                            android:layout_marginStart="@dimen/v_80dp"
+                            android:background="@drawable/round_background"
+                            android:backgroundTint="@android:color/white"
+                            android:cropToPadding="false"
+                            android:padding="@dimen/v_3dp"
+                            android:scaleType="centerCrop"
+                            android:tint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/round_background"
+                            tools:tint="@color/nice_pink" />
+
+                        <!-- TODO load image like
+                            userImg.loadImage(this,
+                            placeholder = android.R.color.transparent,
+                            roundedCornersRadiusPx = 360,
+                            whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.ALL))  -->
+                        <com.square.android.ui.view.CircleImageView
+                            android:id="@+id/userImg"
+                            android:layout_width="@dimen/v_112dp"
+                            android:layout_height="@dimen/v_112dp"
+                            android:layout_marginEnd="@dimen/v_80dp"
+                            android:background="@drawable/round_background"
+                            android:backgroundTint="@android:color/white"
+                            android:cropToPadding="false"
+                            android:padding="@dimen/v_3dp"
+                            android:scaleType="centerCrop"
+                            android:tint="@color/white"
+                            app:layout_constraintTop_toTopOf="@id/placeImg"
+                            app:layout_constraintBottom_toBottomOf="@id/placeImg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:src="@drawable/round_background"
+                            tools:tint="@color/nice_blue" />
+
+                        <TextView
+                            style="@style/Models15Text"
+                            android:textSize="@dimen/text_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/v_16dp"
+                            android:layout_marginEnd="@dimen/v_16dp"
+                            android:layout_marginBottom="@dimen/v_4dp"
+                            android:layout_marginTop="@dimen/v_8dp"
+                            tools:text="@string/check_in_mr"
+                            android:gravity="center"
+                            android:textColor="@color/text_gray"
+                            app:layout_constraintBottom_toTopOf="@+id/topUserName"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/topUserName"
+                            style="@style/Models16SemiBoldText"
+                            android:textSize="@dimen/text_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/v_16dp"
+                            android:layout_marginEnd="@dimen/v_16dp"
+                            android:layout_marginBottom="@dimen/v_16dp"
+                            android:layout_marginTop="@dimen/v_8dp"
+                            tools:text="Rosemary Edwards"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/roundedView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/v_24dp"
+                    android:background="@drawable/bg_rounded_top_24dp" >
+                    <View
+                        android:id="@+id/topIcon"
+                        android:layout_width="@dimen/v_42dp"
+                        android:layout_height="@dimen/v_4dp"
+                        android:layout_marginTop="@dimen/v_12dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:background="@drawable/background_rounded_max"
+                        android:backgroundTint="@color/gray_btn_disabled"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--  app:layout_behavior="@string/appbar_scrolling_view_behavior"  -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/placeNested"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:background="@android:color/white"
+            android:paddingBottom="@dimen/scheduleBookingContainerHeight"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+<!-- Icons with text -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/iconsCl"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/v_20dp" >
+
+                <!-- top -->
+                    <LinearLayout
+                        android:id="@+id/one"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/v_20dp"
+                        android:layout_marginEnd="@dimen/v_20dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" >
+
+                        <LinearLayout
+                            android:id="@+id/llDate"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" >
+                            <ImageView
+                                android:layout_width="@dimen/v_24dp"
+                                android:layout_height="@dimen/v_24dp"
+                                android:src="@drawable/r_address" />
+                            <TextView
+                                android:id="@+id/tvDate"
+                                style="@style/Models16SemiBoldText"
+                                android:textSize="@dimen/text_16"
+                                android:layout_marginStart="@dimen/v_8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="Dec, 14th"
+                                android:textColor="@android:color/black"
+                                android:gravity="center_vertical|start"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llCode"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" >
+                            <ImageView
+                                android:layout_width="@dimen/v_24dp"
+                                android:layout_height="@dimen/v_24dp"
+                                android:src="@drawable/r_address" />
+                            <TextView
+                                android:id="@+id/tvCode"
+                                style="@style/Models16SemiBoldText"
+                                android:textSize="@dimen/text_16"
+                                android:layout_marginStart="@dimen/v_8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="6456456h4fhgfh45"
+                                android:textColor="@android:color/black"
+                                android:gravity="center_vertical|start"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                <!-- bottom -->
+                    <LinearLayout
+                        android:id="@+id/llBottom"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/v_20dp"
+                        android:layout_marginEnd="@dimen/v_20dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/v_20dp"
+                        app:layout_constraintTop_toBottomOf="@id/one"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" >
+
+                        <LinearLayout
+                            android:id="@+id/llTimeframe"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" >
+                            <ImageView
+                                android:layout_width="@dimen/v_24dp"
+                                android:layout_height="@dimen/v_24dp"
+                                android:src="@drawable/r_address" />
+                            <TextView
+                                android:id="@+id/tvTimeframe"
+                                style="@style/Models16SemiBoldText"
+                                android:textSize="@dimen/text_16"
+                                android:layout_marginStart="@dimen/v_8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="14:00 - 18:00"
+                                android:textColor="@android:color/black"
+                                android:gravity="center_vertical|start"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llType"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" >
+                            <ImageView
+                                android:layout_width="@dimen/v_24dp"
+                                android:layout_height="@dimen/v_24dp"
+                                android:src="@drawable/r_address" />
+                            <TextView
+                                android:id="@+id/tvType"
+                                style="@style/Models16SemiBoldText"
+                                android:textSize="@dimen/text_16"
+                                android:layout_marginStart="@dimen/v_8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="Complimentary"
+                                android:textColor="@android:color/black"
+                                android:gravity="center_vertical|start"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/separatorOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/v_1_5dp"
+                        android:layout_marginStart="@dimen/v_16dp"
+                        android:layout_marginEnd="@dimen/v_16dp"
+                        android:layout_marginTop="@dimen/v_21dp"
+                        android:background="@color/divider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/llBottom" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!-- Details -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detailsCl"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/v_20dp" >
+
+             <!-- imv.loadImage(url, roundedCornersRadiusPx = dimens.v12dp) -->
+                    <ImageView
+                        android:id="@+id/img"
+                        app:srcCompat="@drawable/background_rounded_12dp"
+                        tools:tint="@color/black_trans_30"
+                        android:layout_width="@dimen/v_60dp"
+                        android:layout_height="@dimen/v_60dp"
+                        android:layout_marginTop="@dimen/v_4dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/v_16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="@+id/img"
+                        app:layout_constraintBottom_toBottomOf="@+id/img"
+                        app:layout_constraintStart_toEndOf="@+id/img"
+                        app:layout_constraintEnd_toEndOf="parent" >
+
+                        <TextView
+                            android:id="@+id/tvOfferName"
+                            style="@style/Models15SemiBoldText"
+                            android:textSize="@dimen/text_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Breakfast"
+                            android:textColor="@android:color/black"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/v_4dp"
+                            android:orientation="horizontal" >
+                            <TextView
+                                style="@style/Models14Text"
+                                android:textSize="@dimen/text_14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/minimal_tip"
+                                android:textColor="@color/text_gray"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                            <TextView
+                                android:id="@+id/tvTipValue"
+                                style="@style/Models14SemiBoldText"
+                                android:textSize="@dimen/text_14"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/v_3dp"
+                                tools:text="$14.99"
+                                android:textColor="@android:color/black"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/v_4dp"
+                            android:orientation="horizontal" >
+                            <TextView
+                                style="@style/Models14Text"
+                                android:textSize="@dimen/text_14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/takeaway_"
+                                android:textColor="@color/text_gray"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                            <TextView
+                                android:id="@+id/tvTakeaway"
+                                style="@style/Models14SemiBoldText"
+                                android:textSize="@dimen/text_14"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/v_3dp"
+                                tools:text="Available"
+                                android:textColor="@android:color/black"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/v_20dp"
+                        android:lineSpacingExtra="@dimen/v_3dp"
+                        tools:text="Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc "
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintTop_toBottomOf="@+id/img"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- TODO in ac: black spanned text "Notes:" at the beginning -->
+                    <TextView
+                        android:id="@+id/tvNotes"
+                        style="@style/Models15SemiBoldText"
+                        android:textSize="@dimen/text_15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="@dimen/v_1dp"
+                        android:layout_marginTop="@dimen/v_20dp"
+                        tools:text="Notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes "
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+<!--            TODO show if visible lines of text in tvNotes > 3  -->
+                    <LinearLayout
+                        android:id="@+id/readMoreLl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/v_4dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvNotes"
+                        app:layout_constraintEnd_toEndOf="@id/tvNotes">
+
+                        <View
+                            android:layout_width="@dimen/v_24dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shadow_horizontal" />
+
+                        <TextView
+                            android:id="@+id/readMoreTv"
+                            style="@style/Models15SemiBoldText"
+                            android:textSize="@dimen/text_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/v_18dp"
+                            android:paddingStart="@dimen/v_8dp"
+                            android:gravity="bottom"
+                            android:background="@android:color/white"
+                            tools:text="@string/read_more_lowercase"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!-- Checklist -->
+                <LinearLayout
+                    android:id="@+id/checklistLl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:visibility="gone"
+                    android:paddingStart="@dimen/v_20dp"
+                    android:paddingEnd="@dimen/v_20dp"
+                    android:paddingBottom="@dimen/v_20dp"
+                    android:paddingTop="@dimen/v_6dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        style="@style/Models16SemiBoldText"
+                        android:textSize="@dimen/text_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/checklist"
+                        android:textColor="@android:color/black"
+                        android:maxLines="1"
+                        android:ellipsize="end" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/v_16dp"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/et_bg_rounded_stroke_8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" >
+
+                        <ImageView
+                            android:layout_width="@dimen/v_40dp"
+                            android:layout_height="@dimen/v_40dp"
+                            android:src="@drawable/r_address" />
+
+                        <TextView
+                            style="@style/Models15Text"
+                            android:textSize="@dimen/text_15"
+                            android:lineSpacingExtra="@dimen/v_2dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/v_16dp"
+                            android:layout_marginEnd="@dimen/v_12dp"
+                            android:text="@string/checklist_text1"
+                            android:textColor="@android:color/black" />
+
+                        <ImageView
+                            android:layout_width="@dimen/v_24dp"
+                            android:layout_height="@dimen/v_24dp"
+                            android:src="@drawable/chevron_right"
+                            android:tint="@android:color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/v_16dp"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/et_bg_rounded_stroke_8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" >
+
+                        <ImageView
+                            android:layout_width="@dimen/v_40dp"
+                            android:layout_height="@dimen/v_40dp"
+                            android:src="@drawable/r_address" />
+
+                        <TextView
+                            style="@style/Models15Text"
+                            android:textSize="@dimen/text_15"
+                            android:lineSpacingExtra="@dimen/v_2dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/v_16dp"
+                            android:layout_marginEnd="@dimen/v_12dp"
+                            android:text="@string/checklist_text2"
+                            android:textColor="@android:color/black" />
+
+                        <ImageView
+                            android:layout_width="@dimen/v_24dp"
+                            android:layout_height="@dimen/v_24dp"
+                            android:src="@drawable/chevron_right"
+                            android:tint="@android:color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/v_16dp"
+                        android:layout_marginTop="@dimen/v_16dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/et_bg_rounded_stroke_8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" >
+
+                        <ImageView
+                            android:layout_width="@dimen/v_40dp"
+                            android:layout_height="@dimen/v_40dp"
+                            android:src="@drawable/r_address" />
+
+                        <TextView
+                            style="@style/Models15Text"
+                            android:textSize="@dimen/text_15"
+                            android:lineSpacingExtra="@dimen/v_2dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/v_16dp"
+                            android:layout_marginEnd="@dimen/v_12dp"
+                            android:text="@string/checklist_text3"
+                            android:textColor="@android:color/black" />
+
+                        <ImageView
+                            android:layout_width="@dimen/v_24dp"
+                            android:layout_height="@dimen/v_24dp"
+                            android:src="@drawable/chevron_right"
+                            android:tint="@android:color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/placeBookingCl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scheduleBookingContainerHeight"
+            android:layout_gravity="bottom"
+            android:clipChildren="false"
+            android:background="@color/gray_bg"
+            app:layout_anchorGravity="bottom"
+            android:clipToPadding="false" >
+
+            <View
+                android:id="@+id/separatorBooking"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/v_1_5dp"
+                android:alpha="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/divider"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.square.android.utils.widget.CheckableConstraintLayout
+                android:id="@+id/bottomBtnCl"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/v_20dp"
+                android:layout_marginEnd="@dimen/v_20dp"
+                android:layout_marginTop="@dimen/v_16dp"
+                android:layout_marginBottom="@dimen/v_24dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                tools:backgroundTint="@color/gray_btn_disabled_light"
+                tools:background="@drawable/background_rounded_12dp"
+                android:background="@drawable/button_rounded_enabled_disabled" >
+
+            <!-- TODO show when: 3 not available now(disabled, bg tint placeholder) , 4 swipe to redeem(enabled bg tint white) -->
+                <FrameLayout
+                    android:id="@+id/swipeFr"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/v_4dp"
+                    android:layout_marginTop="@dimen/v_4dp"
+                    android:layout_marginBottom="@dimen/v_4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:background="@drawable/background_rounded_8dp"
+                    android:backgroundTint="@color/placeholder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" >
+            <!-- TODO tint when: 3 not available now(tint black_trans_30_no_alpha) , 4 swipe to redeem(tint black) -->
+                    <ImageView
+                        android:layout_width="@dimen/v_30dp"
+                        android:layout_height="@dimen/v_30dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:src="@drawable/chevron_right"
+                        android:tint="@color/black_trans_30_no_alpha" />
+                </FrameLayout>
+
+
+                <com.square.android.utils.widget.CheckableLinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constrainedWidth="true"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/v_20dp"
+                    android:layout_marginEnd="@dimen/v_20dp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" >
+
+                    <TextView
+                        android:id="@+id/bottomText"
+                        style="@style/Models15Text"
+                        android:textSize="@dimen/text_15"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/checked_white_black_trans"
+                        tools:text="@string/im_done_here" />
+
+                <!-- TODO show only when checked-in confirmed -->
+                    <ImageView
+                        android:layout_width="@dimen/v_18dp"
+                        android:layout_height="@dimen/v_18dp"
+                        android:layout_marginStart="@dimen/v_8dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:src="@drawable/checkmark"
+                        android:tint="@color/black_trans_30_no_alpha" />
+
+                </com.square.android.utils.widget.CheckableLinearLayout>
+
+            </com.square.android.utils.widget.CheckableConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>

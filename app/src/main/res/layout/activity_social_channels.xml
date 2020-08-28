@@ -34,8 +34,8 @@
             android:text="@string/social_channels"
             android:textColor="@android:color/black"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="@+id/arrowBack"
-            app:layout_constraintBottom_toBottomOf="@id/arrowBack"
+            app:layout_constraintTop_toTopOf="@+id/socialArrowBack"
+            app:layout_constraintBottom_toBottomOf="@id/socialArrowBack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

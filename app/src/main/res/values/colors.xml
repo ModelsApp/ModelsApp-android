@@ -27,6 +27,8 @@
     <color name="gray_switch">#ECEBF0</color>
 
 
+    <color name="gray_bg">#FBFBFB</color>
+
     <color name="white_20_alpha">#33FFFFFF</color>
     <color name="white_50_alpha">#80FFFFFF</color>
     <color name="white_75_alpha">#BFFFFFFF</color>
@@ -78,6 +80,8 @@
     <color name="black_trans_50">#80000000</color>
 
     <color name="black_trans_30">#4D000000</color>
+    <color name="black_trans_30_no_alpha">#B2B2B2</color>
+
     <color name="black_trans_15">#26000000</color>
     <color name="black_trans_8">#14000000</color>
 

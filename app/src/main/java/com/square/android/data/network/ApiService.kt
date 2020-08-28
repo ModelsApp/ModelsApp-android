@@ -3,6 +3,7 @@ package com.square.android.data.network
 import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
+import com.square.android.data.newPojo.Coordinates
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import okhttp3.MultipartBody
@@ -117,11 +118,7 @@ interface ApiService {
     fun getUserProfessions(@Header("Authorization") authorization: String,
                             @Path("userId") userId: Long): Call<ProfessionsResult>
 
-
-
-
-
-
+//////////////////////////////////////////////////////////////
 //    @DELETE("users/{userId}/deleteUserProfession")
 //    fun deleteUserProfession(@Header("Authorization") authorization: String,
 //                             @Path("userId") userId: Long,
@@ -146,10 +143,7 @@ interface ApiService {
     fun deleteUserProfession4(@Header("Authorization") authorization: String,
                               @Path("userId") userId: Long,
                               @Body professionDeleteData: ProfessionDelete2Data): Call<MessageResponse>
-
-
-
-
+/////////////////////////////////////////////////////////////
 
     @POST("users/{userId}/specialities")
     fun addUserSpecialities(@Header("Authorization") authorization: String,
@@ -168,6 +162,34 @@ interface ApiService {
     @GET("users/{userId}/profilePlans")
     fun getUserPlans(@Header("Authorization") authorization: String,
                      @Path("userId") userId: Long): Call<List<UserPlanData>>
+
+
+    ///// Need models - not working right now
+    @GET("userOffers/{userId}/getLocal")
+    fun getOffersByUserLocation(@Header("Authorization") authorization: String,
+                                @Path("userId") userId: Long,
+                                @Query("coordinates") coordinate: Coordinates,
+                                @Query("radius") radius: Int,
+                                @Query("search") search: String
+                                ): Call<String>
+
+                           // offerId or userId?
+    @GET("userOffers/{offerId}/offerDetails")
+    fun getPlaceDetails(@Header("Authorization") authorization: String,
+                        @Path("offerId") placeId: Long): Call<List<Place>>
+
+    @POST("userOffers/{userId}/bookOffer/{offerId}")
+    fun bookOffer(@Header("Authorization") authorization: String,
+                     @Path("userId") userId: Long,
+                     @Path("offerId") placeId: String,
+                     @Body userPlanData: UserPlanData): Call<MessageResponse>
+
+    //////
+
+
+
+
+////////////////////////// End of new endpoints
 
     //TODO doesn't work, API returns: "\"driverRideId\" is required" even when driverRideId is defined
     //TODO or maybe all id's are checked and they must match

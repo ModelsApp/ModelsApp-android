@@ -199,6 +199,6 @@ abstract class BaseMapActivity: LocationActivity(){
     }
 }
 
-private fun MapboxMap.animateCamera(update: CameraUpdate, animationDuration: Long) {
+fun MapboxMap.animateCamera(update: CameraUpdate, animationDuration: Long) {
     animateCamera(update, animationDuration.toInt())
 }

@@ -11,6 +11,12 @@
     <string name="intro_content_2">Surf through the multiple tailored\noffers available everyday, book your\nspot and promote them.</string>
     <string name="intro_content_3">Raise your ranking, gain credits and\nunlock new features to claim\nawesome rewards.</string>
 
+    <string name="checklist">Checklist</string>
+
+    <string name="checklist_text1">Check-in and present this coupon to the staff members</string>
+    <string name="checklist_text2">Take action! Fulfil your duty and gain extra credits</string>
+    <string name="checklist_text3">Just a moment to quick rate your experience</string>
+
     <string name="next">Next</string>
     <string name="next_step">Next &#8594;</string>
     <string name="lets_start">LET\'S START</string>
@@ -527,6 +533,20 @@
 
     <string name="show_more">Show more</string>
 
+    <string name="read_more_lowercase">read more</string>
+    <string name="im_done_here">All right. I\'m done here</string>
+
+    <string name="geolocation_turned_off">Your geolocation is turned off</string>
+    <string name="switch_on_geolocation">Switch on geolocation into your settings page to activate offers automatic check-in</string>
+    <string name="go_to_settings">Go to settings</string>
+
+    <string name="cant_redeem_this_offer_now">You can\'t redeem this offer now</string>
+    <string name="schedule_booking_coupons_text">Coupons can be activated only while in location and during the confirmed timeframe</string>
+    <string name="manual_check_in">Manual check in</string>
+
+    <string name="check_in_mr">Check in Mr.</string>
+    <string name="check_in_ms">Check in Ms.</string>
+
     <string name="read_more">Read more</string>
     <string name="products">Products</string>
     <string name="see_all">See all</string>
@@ -683,6 +703,8 @@
     <string name="booking_type">Booking type</string>
     <string name="takeaway_option">Takeaway option</string>
     <string name="reservation_timeslot">Reservation timeslot</string>
+
+    <string name="takeaway_">Takeaway:</string>
 
     <string name="category_1">Fitness &amp; Health</string>
     <string name="category_2">Hair &amp; Beauty</string>

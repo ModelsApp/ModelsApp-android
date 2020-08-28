@@ -148,6 +148,7 @@
     <dimen name="v_88dp">88dp</dimen>
     <dimen name="v_80dp">80dp</dimen>
     <dimen name="v_72dp">72dp</dimen>
+    <dimen name="v_70dp">70dp</dimen>
     <dimen name="v_64dp">64dp</dimen>
     <dimen name="v_60dp">60dp</dimen>
     <dimen name="v_56dp">56dp</dimen>
@@ -158,6 +159,7 @@
     <dimen name="v_42dp">42dp</dimen>
     <dimen name="v_40dp">40dp</dimen>
     <dimen name="v_39dp">39dp</dimen>
+    <dimen name="v_36dp">36dp</dimen>
     <dimen name="v_32dp">32dp</dimen>
     <dimen name="v_30dp">30dp</dimen>
     <dimen name="v_28dp">28dp</dimen>
@@ -165,6 +167,7 @@
     <dimen name="v_22dp">22dp</dimen>
     <dimen name="v_21dp">21dp</dimen>
     <dimen name="v_20dp">20dp</dimen>
+    <dimen name="v_18dp">18dp</dimen>
     <dimen name="v_17dp">17dp</dimen>
     <dimen name="v_16dp">16dp</dimen>
     <dimen name="v_15dp">15dp</dimen>
@@ -215,6 +218,10 @@
     <dimen name="text_26">26sp</dimen>
 
     <dimen name="bottomContainerHeight">80dp</dimen>
+
+
+    <dimen name="scheduleBookingContainerHeight">96dp</dimen>
+    <dimen name="scheduleBookingTopContainerHeight">250dp</dimen>
 
 
     <dimen name="error_text_size">13sp</dimen>
