@@ -5,6 +5,8 @@ import android.util.SparseArray
 import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.SCREENS
+import com.square.android.data.newPojo.Coordinates
+import com.square.android.data.newPojo.CoordinatesData
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.explore.ExploreView
@@ -78,6 +80,9 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
 
     fun loadData() = launch {
         if(!dataLoaded){
+
+//            repository.getOffersByUserLocation(CoordinatesData(Coordinates(45.436781, 9.213215), 1000000, "")).await()
+
             dataLoaded = true
 
             viewState.showProgress()

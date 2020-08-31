@@ -32,14 +32,14 @@ fun processHttp(exception: HttpException): String {
 
     val resp = exception.response()
 
-    return resp.errorBody()?.string() ?: exception.message()
+    return resp?.errorBody()?.string() ?: exception.message()
 }
 
 fun tryParseMessage(exception: HttpException): MessageResponse? {
     val mapper  = ObjectMapper()
 
     return try {
-        val error = exception.response().errorBody()!!.string()
+        val error = exception.response()?.errorBody()!!.string()
 
         mapper.readValue(error, MessageResponse::class.java)
     } catch (e: Exception) {

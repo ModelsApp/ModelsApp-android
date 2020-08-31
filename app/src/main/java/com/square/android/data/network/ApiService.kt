@@ -4,6 +4,7 @@ import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
 import com.square.android.data.newPojo.Coordinates
+import com.square.android.data.newPojo.CoordinatesData
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import okhttp3.MultipartBody
@@ -164,14 +165,23 @@ interface ApiService {
                      @Path("userId") userId: Long): Call<List<UserPlanData>>
 
 
-    ///// Need models - not working right now
-    @GET("userOffers/{userId}/getLocal")
+///// Need models - not working right now
+//    @GET("userOffers/{userId}/getLocal")
+//    fun getOffersByUserLocation(@Header("Authorization") authorization: String,
+//                                @Path("userId") userId: Long,
+//                                @Query("coordinates") coordinate: Coordinates,
+//                                @Query("radius") radius: Int,
+//                                @Query("search") search: String
+//                                ): Call<String>
+//
+
+    @POST("userOffers/{userId}/getLocal")
     fun getOffersByUserLocation(@Header("Authorization") authorization: String,
                                 @Path("userId") userId: Long,
-                                @Query("coordinates") coordinate: Coordinates,
-                                @Query("radius") radius: Int,
-                                @Query("search") search: String
-                                ): Call<String>
+                                @Body coordinatesData: CoordinatesData
+    ): Call<String>
+
+
 
                            // offerId or userId?
     @GET("userOffers/{offerId}/offerDetails")

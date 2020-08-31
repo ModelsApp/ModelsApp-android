@@ -29,6 +29,7 @@ import com.square.android.extensions.*
 import com.square.android.presentation.presenter.main.MainPresenter
 import com.square.android.presentation.view.main.MainView
 import com.square.android.ui.activity.BaseActivity
+import com.square.android.ui.activity.agenda.ScheduleBookingActivity
 import com.square.android.ui.activity.campaignDetails.CampaignDetailsActivity
 import com.square.android.ui.activity.event.*
 import com.square.android.ui.fragment.profile.EditProfileFragment
@@ -293,6 +294,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
 
                     SCREENS.PROFESSIONS -> {
                         context.intentFor<ProfessionActivity>()
+                    }
+
+                    SCREENS.SCHEDULE_BOOKING -> {
+                        context.intentFor<ScheduleBookingActivity>()
                     }
 
                     SCREENS.ACTIVE_PLAN -> {

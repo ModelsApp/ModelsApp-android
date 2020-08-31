@@ -23,6 +23,8 @@ object SCREENS {
     const val GALLERY = "GALLERY"
 
     const val AGENDA = "AGENDA"
+    const val SCHEDULE_BOOKING = "SCHEDULE_BOOKING"
+
 
     const val SELECT_OFFER = "SELECT_OFFER"
     const val REVIEW = "REVIEW"

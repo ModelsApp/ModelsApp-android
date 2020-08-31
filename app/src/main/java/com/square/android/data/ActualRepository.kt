@@ -206,7 +206,8 @@ class ActualRepository(private val api: ApiService,
     }
 
     override fun getOffersByUserLocation(coordinatesData: CoordinatesData): Deferred<String> = GlobalScope.async {
-        val data = performRequest {api.getOffersByUserLocation(localManager.getAuthToken(), getUserId(), coordinatesData.coordinates, coordinatesData.radius, coordinatesData.search)}
+//        val data = performRequest {api.getOffersByUserLocation(localManager.getAuthToken(), getUserId(), coordinatesData.coordinates, coordinatesData.radius, coordinatesData.search)}
+        val data = performRequest {api.getOffersByUserLocation(localManager.getAuthToken(), getUserId(), coordinatesData)}
         data
     }
 

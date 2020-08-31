@@ -23,6 +23,7 @@
             android:id="@+id/arrowBack"
             android:layout_width="@dimen/v_40dp"
             android:layout_height="@dimen/v_40dp"
+            android:tint="@android:color/black"
             android:src="@drawable/chevron_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -156,6 +157,7 @@
             +
             option 3 - can't redeem this offer right now      -->
                     <LinearLayout
+                        android:id="@+id/view_2_3_container"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:visibility="gone"
@@ -222,6 +224,7 @@
 
 <!--        option 4 - redeem, option 5 - checked-in            -->
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/view_4_5_container"
                         android:visibility="gone"
                         tools:visibility="visible"
                         android:layout_width="match_parent"
@@ -252,11 +255,6 @@
                             tools:src="@drawable/round_background"
                             tools:tint="@color/nice_pink" />
 
-                        <!-- TODO load image like
-                            userImg.loadImage(this,
-                            placeholder = android.R.color.transparent,
-                            roundedCornersRadiusPx = 360,
-                            whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.ALL))  -->
                         <com.square.android.ui.view.CircleImageView
                             android:id="@+id/userImg"
                             android:layout_width="@dimen/v_112dp"
@@ -276,6 +274,7 @@
                             tools:tint="@color/nice_blue" />
 
                         <TextView
+                            android:id="@+id/checkingInTv"
                             style="@style/Models15Text"
                             android:textSize="@dimen/text_15"
                             android:layout_width="match_parent"
@@ -299,7 +298,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/v_16dp"
                             android:layout_marginEnd="@dimen/v_16dp"
-                            android:layout_marginBottom="@dimen/v_16dp"
+                            android:layout_marginBottom="@dimen/v_24dp"
                             android:layout_marginTop="@dimen/v_8dp"
                             tools:text="Rosemary Edwards"
                             android:gravity="center"
@@ -312,20 +311,6 @@
 
                 </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/roundedView"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/v_24dp"
-                    android:background="@drawable/bg_rounded_top_24dp" >
-                    <View
-                        android:id="@+id/topIcon"
-                        android:layout_width="@dimen/v_42dp"
-                        android:layout_height="@dimen/v_4dp"
-                        android:layout_marginTop="@dimen/v_12dp"
-                        android:layout_gravity="center_horizontal|top"
-                        android:background="@drawable/background_rounded_max"
-                        android:backgroundTint="@color/gray_btn_disabled"/>
-                </FrameLayout>
             </LinearLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -352,7 +337,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iconsCl"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    tools:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/v_20dp" >
@@ -504,7 +489,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/detailsCl"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    tools:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/v_20dp" >
@@ -626,7 +611,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
-<!--            TODO show if visible lines of text in tvNotes > 3  -->
                     <LinearLayout
                         android:id="@+id/readMoreLl"
                         android:layout_width="wrap_content"
@@ -665,11 +649,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    tools:visibility="gone"
+                    tools:visibility="visible"
                     android:paddingStart="@dimen/v_20dp"
                     android:paddingEnd="@dimen/v_20dp"
                     android:paddingBottom="@dimen/v_20dp"
-                    android:paddingTop="@dimen/v_6dp"
+                    android:paddingTop="@dimen/v_20dp"
                     android:orientation="vertical" >
 
                     <TextView
@@ -677,7 +661,7 @@
                         android:textSize="@dimen/text_16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="@string/checklist"
+                        android:text="@string/checklist"
                         android:textColor="@android:color/black"
                         android:maxLines="1"
                         android:ellipsize="end" />
@@ -900,6 +884,24 @@
             </com.square.android.utils.widget.CheckableConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/roundedView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/v_24dp"
+            android:background="@drawable/bg_rounded_top_24dp"
+            app:layout_anchor="@+id/placeAppBar"
+            app:layout_anchorGravity="bottom|center">
+
+            <View
+                android:id="@+id/topIcon"
+                android:layout_width="@dimen/v_42dp"
+                android:layout_height="@dimen/v_4dp"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginTop="@dimen/v_12dp"
+                android:background="@drawable/background_rounded_max"
+                android:backgroundTint="@color/gray_btn_disabled" />
+        </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

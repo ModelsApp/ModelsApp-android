@@ -45,6 +45,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -179,6 +184,8 @@ dependencies {
     implementation 'jp.wasabeef:picasso-transformations:2.2.1'
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.0.1'
+    // mapbox direction sevices
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-services:5.4.1'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
 

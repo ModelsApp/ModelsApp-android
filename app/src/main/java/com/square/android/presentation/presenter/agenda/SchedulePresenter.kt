@@ -222,19 +222,28 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
     }
 
     fun campaignClicked(id: Long){
-        val item = data!!.filterIsInstance<CampaignBooking>().firstOrNull { it.campaignId == id } ?: return
+        //TODO JUST FOR TESTS
+        router.navigateTo(SCREENS.SCHEDULE_BOOKING)
 
-        router.navigateTo(SCREENS.CAMPAIGN_DETAILS, item.campaignId)
+//        val item = data!!.filterIsInstance<CampaignBooking>().firstOrNull { it.campaignId == id } ?: return
+//
+//        router.navigateTo(SCREENS.CAMPAIGN_DETAILS, item.campaignId)
     }
 
     fun redemptionDetailsClicked(placeId: Long){
-        eventBus.post(PlaceBottomSheetEvent(false, placeId))
+        //TODO JUST FOR TESTS
+        router.navigateTo(SCREENS.SCHEDULE_BOOKING)
+
+//        eventBus.post(PlaceBottomSheetEvent(false, placeId))
     }
 
     fun claimedInfoClicked(id: Long) {
-        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
+        //TODO JUST FOR TESTS
+        router.navigateTo(SCREENS.SCHEDULE_BOOKING)
 
-        router.navigateTo(SCREENS.SELECT_OFFER, item)
+//        val item = data!!.filterIsInstance<RedemptionInfo>().firstOrNull { it.id == id } ?: return
+//
+//        router.navigateTo(SCREENS.SELECT_OFFER, item)
     }
 
 
