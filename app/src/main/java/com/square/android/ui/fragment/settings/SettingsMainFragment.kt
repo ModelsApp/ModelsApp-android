@@ -20,6 +20,7 @@ import com.square.android.presentation.presenter.settings.SettingsMainPresenter
 import com.square.android.presentation.view.settings.SettingsMainView
 import com.square.android.ui.activity.BaseTabActivity
 import com.square.android.ui.activity.TabData
+import com.square.android.ui.activity.agenda.LocationTurnedOnEvent
 import com.square.android.ui.activity.settings.USER_EXTRA
 import com.square.android.ui.dialogs.DialogHiddenMood
 import com.square.android.ui.dialogs.LoadingDialog
@@ -27,8 +28,10 @@ import com.square.android.ui.dialogs.LogOutDialog
 import com.square.android.ui.fragment.BaseTabFragment
 import com.square.android.utils.PermissionsManager
 import kotlinx.android.synthetic.main.fragment_settings_main.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.bundleOf
 import org.koin.android.ext.android.inject
+import org.koin.standalone.inject
 
 class SettingsMainFragment: BaseTabFragment(), SettingsMainView, PermissionsListener {
     companion object {
@@ -51,6 +54,8 @@ class SettingsMainFragment: BaseTabFragment(), SettingsMainView, PermissionsList
     private var loadingDialog: LoadingDialog? = null
 
     private var permissionsManager: PermissionsManager? = null
+
+    private val eventBus: EventBus by inject()
 
     @ProvidePresenter
     fun providePresenter() = SettingsMainPresenter(arguments?.getParcelable(USER_EXTRA) as Profile.User)
@@ -80,6 +85,11 @@ class SettingsMainFragment: BaseTabFragment(), SettingsMainView, PermissionsList
 
         allowGeoLl.setOnClickListener {
             if(PermissionsManager.areLocationPermissionsGranted(activity!!)){
+
+                if(repository.getGeolocationAllowed().not()){
+                    eventBus.post(LocationTurnedOnEvent())
+                }
+
                 switchAllowGeo.isChecked = repository.getGeolocationAllowed().not()
                 repository.setGeolocationAllowed(repository.getGeolocationAllowed().not())
             } else{
@@ -126,6 +136,10 @@ class SettingsMainFragment: BaseTabFragment(), SettingsMainView, PermissionsList
 
     override fun onPermissionResult(granted: Boolean) {
         switchAllowGeo.isChecked = granted
+
+        if(granted){
+            eventBus.post(LocationTurnedOnEvent())
+        }
     }
 
     override fun showLoadingDialog() {

@@ -4,18 +4,15 @@ import android.os.Parcelable
 import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.R
-import com.square.android.SCREENS
+import com.square.android.data.pojo.Profile
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.agenda.ScheduleBookingView
 import kotlinx.android.parcel.Parcelize
-import java.util.*
 
 //TODO change when actual model is known and move to newPojo folder
 @Parcelize
 data class ScheduleBooking(
-        var timeframe: String = "",
-        // in: 51.9335342, 15.4780203
-        // out: 51.9455313, 15.4879493
+        var timeframe: String = "14:00 - 18:00",
         var latlng: LatLng = LatLng(51.9455313, 15.4879493),
         var placeName: String = "La Perla dOro",
         var placeAddress: String = "2875 Robinson Rd",
@@ -28,17 +25,20 @@ data class ScheduleBooking(
         var userImg: String = "",
         var offerName: String = "Breakfast",
         var offerTip: String = "$14.99",
-        var ofeferTakeaway: String = "Available",
+        var offerTakeaway: String = "Available",
         var offerDescription: String = "Desc desc desc desc desc desc desc desc desc",
         var notes: String = "Notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes" +
-                " notes notes notes notes notes notes notes notes notes notes notes notes",
-        var userCheckedIn: Boolean = false
+                " notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes",
+        var userCheckedIn: Boolean = false,
+        var checkedInAt: String = "1:12 pm"
         ): Parcelable
 
 @InjectViewState
 class ScheduleBookingPresenter(): BasePresenter<ScheduleBookingView>() {
 
     var data: ScheduleBooking? = null
+
+    var user: Profile.User? = null
 
     var lastUserLocation: LatLng? = null
 
@@ -51,7 +51,7 @@ class ScheduleBookingPresenter(): BasePresenter<ScheduleBookingView>() {
     var offerDate: String = ""
 
     //TODO change when timeframe model is known
-    //TODO pass and check date too
+    //TODO pass and validate date too
     fun doTimeFrameMatchActualTime(timeframe: String): Boolean{
                  try {
                      //TODO uncomment and change when timeframe model is known
@@ -89,13 +89,13 @@ class ScheduleBookingPresenter(): BasePresenter<ScheduleBookingView>() {
         return false
     }
 
-
-
     init {
         loadData()
     }
 
     fun loadData() = launch{
+
+        user = repository.getCurrentUser().await()
 
         //TODO get data from api
         data = ScheduleBooking()

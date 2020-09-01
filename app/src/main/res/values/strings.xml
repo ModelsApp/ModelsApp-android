@@ -544,8 +544,13 @@
     <string name="schedule_booking_coupons_text">Coupons can be activated only while in location and during the confirmed timeframe</string>
     <string name="manual_check_in">Manual check in</string>
 
-    <string name="check_in_mr">Check in Mr.</string>
-    <string name="check_in_ms">Check in Ms.</string>
+    <string name="not_available_now">Not available now</string>
+    <string name="swipe_to_redeem">Swipe to redeem</string>
+
+    <string name="checked_in_confirmed_at">Checked-in confirmed at %s</string>
+
+    <string name="checking_in_mr">Checking in Mr.</string>
+    <string name="checking_in_ms">Checking in Ms.</string>
 
     <string name="read_more">Read more</string>
     <string name="products">Products</string>

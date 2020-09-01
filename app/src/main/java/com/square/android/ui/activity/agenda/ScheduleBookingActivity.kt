@@ -1,10 +1,10 @@
 package com.square.android.ui.activity.agenda
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.location.Location
-import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -13,10 +13,12 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.annotation.NonNull
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
 import com.mapbox.android.core.location.*
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.api.directions.v5.DirectionsCriteria
@@ -48,36 +50,41 @@ import com.square.android.BuildConfig
 import com.square.android.R
 import com.square.android.data.Repository
 import com.square.android.extensions.getBitmap
+import com.square.android.extensions.getColorFromRes
 import com.square.android.extensions.loadImage
 import com.square.android.extensions.setVisible
 import com.square.android.presentation.presenter.agenda.ScheduleBooking
 import com.square.android.presentation.presenter.agenda.ScheduleBookingPresenter
 import com.square.android.presentation.view.agenda.ScheduleBookingView
 import com.square.android.ui.activity.BaseActivity
+import com.square.android.ui.activity.settings.SettingsActivity
+import com.square.android.ui.activity.settings.USER_EXTRA
 import com.square.android.ui.base.SimpleNavigator
 import com.square.android.ui.dialogs.LoadingDialog
 import com.square.android.utils.ActivityUtils
 import com.square.android.utils.PermissionsManager
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.activity_schedule_booking.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.terrakok.cicerone.Navigator
 
-
 private const val DEFAULT_INTERVAL_IN_MILLISECONDS = 1_000L
 private const val DEFAULT_MAX_WAIT_TIME = 30_000L
 
-private const val LOCATION_ZOOM_LEVEL = 14.0
+private const val LOCATION_ZOOM_LEVEL = 11.0
 private const val LOCATION_ZOOM_ANIMATION = 3000L
 
-
-//TODO change later when known
+//TODO change later
 private const val MIN_DISTANCE = 500
 
-//TODO this will be changed to new map ac? Map should be loaded only if "allow geolocation is turned on" and if not, project view 2
+class LocationTurnedOnEvent()
+
 class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsListener, LocationEngineCallback<LocationEngineResult> {
 
     @InjectPresenter
@@ -94,7 +101,7 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
 
     protected val markerBackground by lazy { getDefaultMarkerBackground() }
 
-    protected val markerIconGray by lazy { getGrayMarker() }
+    protected val markerIconBlack by lazy { getBlackMarker() }
 
     protected val markerIconPink by lazy { getPinkMarker() }
 
@@ -116,9 +123,15 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
 
     private var animationWeight: Float = 0F
 
-    private var isStatusBarLight: Boolean = true
-
     var readMoreAlreadyClicked = false
+
+    var bottomActionEnabled = false
+
+    var shouldReloadData: Boolean = false
+
+    var behavior : AppBarLayout.Behavior? = null
+
+    private val eventBus: EventBus by inject()
 
     private val DIRECTIONS_LAYER_ID = "DIRECTIONS_LAYER_ID"
     private val LAYER_BELOW_ID = "road-label-small"
@@ -131,6 +144,10 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
         ActivityUtils.setTransparentStatusAndDrawBehind(this)
 
         setContentView(R.layout.activity_schedule_booking)
+
+        if(!eventBus.isRegistered(this)){
+            eventBus.register(this)
+        }
 
         mapView = map
         mapView.onCreate(savedInstanceState)
@@ -173,28 +190,20 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
     }
 
     private fun updateViews(offset: Float){
-        when (offset) {
-            in 0.555F..1F -> {
-                if(!isStatusBarLight){
-                    isStatusBarLight = true
-                    setLightStatusBar(this)
-                }
-            }
-            in 0F..0.555F -> {
-                if(isStatusBarLight){
-                    isStatusBarLight = false
-                    clearLightStatusBar(this)
-                }
-            }
-        }
 
         if(offset > movePoint) {
             topLayoutsLl.visibility = View.INVISIBLE
+
             topIcon.setVisible(false)
         }
         else {
             topLayoutsLl.visibility = View.VISIBLE
-            topIcon.setVisible(true)
+
+            if(placeNested.isScrollable){
+                topIcon.setVisible(true)
+            } else{
+                topIcon.setVisible(false)
+            }
         }
 
         roundedView.apply {
@@ -239,7 +248,7 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
 
         tvOfferName.text = data.offerName
         tvTipValue.text = data.offerTip
-        tvTakeaway.text = data.ofeferTakeaway
+        tvTakeaway.text = data.offerTakeaway
         tvDescription.text = data.offerDescription
         val ss = SpannableString(getString(R.string.notes_)+" "+data.notes)
         ss.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, android.R.color.black)), 0 , getString(R.string.notes_).length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -252,6 +261,8 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
             }
         })
 
+        //TODO load image to img(that's imageView id in xml)
+
         placeImg.loadImage(data.placeImg,
                 placeholder = android.R.color.transparent,
                 roundedCornersRadiusPx = 360,
@@ -262,7 +273,7 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
                 roundedCornersRadiusPx = 360,
                 whichCornersToRound = listOf(RoundedCornersTransformation.CornerType.ALL))
 
-        checkingInTv.text = if(data.userGender == 0 ) getString(R.string.check_in_ms) else getString(R.string.check_in_mr)
+        checkingInTv.text = if(data.userGender == 0 ) getString(R.string.checking_in_ms) else getString(R.string.checking_in_mr)
         topUserName.text = data.userName
 
         locationEngine = null
@@ -276,16 +287,14 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
 
         if(geolocationOn){
             mapboxMap?.clear()
-            val key = data.placeName.trim().split(" ").first()
-            val markerOption = MarkerOptions().title(key).position(data.latlng).icon(markerIconGray)
+            val key = data.placeName
+            val markerOption = MarkerOptions().title(key).position(data.latlng).icon(markerIconBlack)
             mapboxMap?.addMarkers(listOf(markerOption))
 
             locationEngine = LocationEngineProvider.getBestLocationEngine(this)
             locationEngine?.getLastLocation(this)
 
             requestLocationUpdates()
-
-            setupScreen(1)
         } else{
             setupScreen(2)
         }
@@ -368,41 +377,77 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
 
         nonNullComponent.isLocationComponentEnabled = true
 
-        nonNullComponent.cameraMode = CameraMode.TRACKING
+        nonNullComponent.cameraMode = CameraMode.NONE
         nonNullComponent.renderMode = RenderMode.COMPASS
         nonNullComponent.zoomWhileTracking(LOCATION_ZOOM_LEVEL, LOCATION_ZOOM_ANIMATION)
     }
 
     private fun mapReady() {
         mapboxMap!!.uiSettings.setAllGesturesEnabled(false)
+        mapboxMap!!.uiSettings.isZoomGesturesEnabled = true
+        mapboxMap!!.uiSettings.isRotateGesturesEnabled = true
+        mapboxMap!!.uiSettings.isScrollGesturesEnabled = true
 
         presenter.loadData()
     }
 
     private fun setupScreen(screenType: Int){
-        // screen 1 - ktos nie jest w lokacji
-        // screen 2 - geolocation turned off
-        // screen 3 - ktos jest w lokacji ale nie zgadza sie timeframe
-        // screen 4 - ktos jest w lokacji i zgadza sie timeframe && jeszcze nie zrobil check-in
-        // screen 5 - ktos jest w lokacji i zgadza sie timeframe && zrobil juz check-in
 
-        //TODO hide all remaining views, if any.
+        try {
+            behavior = ((placeAppBar.layoutParams as CoordinatorLayout.LayoutParams).behavior as AppBarLayout.Behavior)
+        } catch (e: Exception){ }
+        behavior?.setDragCallback(object : DragCallback() {
+            override fun canDrag(appBarLayout: AppBarLayout): Boolean {
+                return true
+            }
+        })
+        placeNested.isScrollable = true
+
         map.setVisible(false)
         view_2_3_container.setVisible(false)
         view_4_5_container.setVisible(false)
         checklistLl.setVisible(false)
         detailsCl.setVisible(false)
+        iconsCl.setVisible(false)
 
+        swipeFr.setVisible(false)
+        btnRightImg.setVisible(false)
+        bottomText.setTextColor(getColorFromRes(R.color.black_trans_30))
+        bottomBtnCl.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray_btn_disabled_light))
 
+        bottomActionEnabled = false
 
-        //TODO show proper views
-        // + setup bottom buttons
+        if(screenType == 1 || screenType == 2){
+            //TODO change iconTop
+
+            iconTop.setOnClickListener {
+                //TODO
+            }
+        } else{
+            //TODO change iconTop
+
+            iconTop.setOnClickListener {
+                //TODO
+            }
+        }
+
         when(screenType){
             1 -> {
+                // screen 1 - not in location
+
+                placeNested.isScrollable = false
+
+                behavior?.setDragCallback(object : DragCallback() {
+                    override fun canDrag(appBarLayout: AppBarLayout): Boolean {
+                        return false
+                    }
+                })
+                placeAppBar.setExpanded(true, false)
+
+                topIcon.setVisible(false)
 
                 map.setVisible(true)
                 checklistLl.setVisible(true)
-
 
                 presenter.lastUserLocation?.let {
                     val userLocationPoint: Point = Point.fromLngLat(
@@ -410,33 +455,104 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
                             it.latitude)
                     getRoute(userLocationPoint)
 
-                    //TODO center and zoom camera
+                    bottomText.setText(R.string.im_done_here)
                 }
-
-
-
-
-
             }
 
             2 -> {
+                // screen 2 - geolocation turned off
 
+                topText.setText(R.string.geolocation_turned_off)
+                middleText.setText(R.string.switch_on_geolocation)
+                btnDone.setText(R.string.go_to_settings)
+
+                btnDone.setOnClickListener {
+                    presenter.user?.let {
+                        val intent = Intent(this, SettingsActivity::class.java)
+
+                        intent.putExtra(USER_EXTRA, it)
+
+                        startActivity(intent)
+                    }
+                }
+
+                //TODO change topImg
+
+                swipeFr.setVisible(true)
+                bottomText.setText(R.string.im_done_here)
+
+                checklistLl.setVisible(true)
+
+                view_2_3_container.setVisible(true)
             }
 
             3 -> {
+                // screen 3 - in location && timeframes don't match
 
+                topText.setText(R.string.cant_redeem_this_offer_now)
+
+                val ss = SpannableString(getString(R.string.schedule_booking_coupons_text))
+                ss.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, android.R.color.black)), 24 , 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                middleText.text = ss
+                btnDone.setText(R.string.manual_check_in)
+
+                btnDone.setOnClickListener {
+                    //TODO
+                }
+
+                //TODO change topImg
+
+                bottomText.setText(R.string.not_available_now)
+
+                swipeFr.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.placeholder))
+                swipeIcon.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.black_trans_30_no_alpha))
+                swipeFr.setVisible(true)
+
+                iconsCl.setVisible(true)
+                detailsCl.setVisible(true)
+
+                view_2_3_container.setVisible(true)
             }
 
             4 -> {
+                // screen 4 - in location && timeframes match && not checked in
 
+                //TODO swipe action
+                bottomActionEnabled = true
+
+                bottomBtnCl.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.black))
+                bottomText.setTextColor(getColorFromRes(android.R.color.white))
+                bottomText.setText(R.string.swipe_to_redeem)
+
+                swipeFr.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white))
+                swipeIcon.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.black))
+                swipeFr.setVisible(true)
+
+                iconsCl.setVisible(true)
+                detailsCl.setVisible(true)
+
+                view_4_5_container.setVisible(true)
             }
 
             5 -> {
+                // screen 5 - in location && timeframes match && checked in
 
+                bottomText.text = getString(R.string.checked_in_confirmed_at, presenter.data!!.checkedInAt)
+                btnRightImg.setVisible(true)
+
+                iconsCl.setVisible(true)
+                detailsCl.setVisible(true)
+
+                view_4_5_container.setVisible(true)
             }
 
         }
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onLocationTurnedOnEvent(event: LocationTurnedOnEvent){
+        shouldReloadData = true
     }
 
     private fun initDottedLineSourceAndLayer(@NonNull loadedMapStyle: Style) {
@@ -503,14 +619,22 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
                 if (source != null) {
                     source.setGeoJson(dashedLineDirectionsFeatureCollection)
                 }
+
+                if(coordinates.size > 1){
+                    val point: Point = coordinates[(coordinates.size / 2).toInt()]
+
+                    centerOn(LatLng(point.latitude(), point.longitude()))
+                } else if(coordinates.isNotEmpty()){
+                    val point: Point = coordinates[0]
+
+                    centerOn(LatLng(point.latitude(), point.longitude()))
+                } else{
+                    presenter.lastUserLocation?.let {
+                        centerOn(LatLng(presenter.lastUserLocation!!.latitude, presenter.lastUserLocation!!.longitude))
+                    }
+                }
             }
         }
-    }
-
-    //TODO make it eventBus event
-    // used when this was "your geolocation is turned off" case and user navigates to settings and turns on "allow geolocation" and goes back(automatically) to this ac
-    fun locationTurnedOn(){
-        presenter.loadData()
     }
 
     fun locationGotten(lastLocation: Location?) {
@@ -518,7 +642,7 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
             presenter.lastUserLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
 
             if(presenter.placeLocationPoint!!.distanceTo(LatLng(lastLocation.latitude, lastLocation.longitude)) <= MIN_DISTANCE){
-               if(presenter.doTimeFrameMatchActualTime(presenter.placeTimeframe!!)){
+               if(!presenter.doTimeFrameMatchActualTime(presenter.placeTimeframe!!)){
                    setupScreen(3)
                } else{
                    if(!presenter.isUserCheckedIn){
@@ -566,8 +690,8 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
         return iconFactory.fromBitmap(bitmap)
     }
 
-    private fun getGrayMarker(): Icon {
-        val bitmap = getBitmap(R.drawable.ic_marker_gray)
+    private fun getBlackMarker(): Icon {
+        val bitmap = getBitmap(R.drawable.ic_marker_black)
 
         val iconFactory = IconFactory.getInstance(this)
 
@@ -617,11 +741,9 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
             locationEngine = null
         }
 
-
-        if(isStatusBarLight){
-            setLightStatusBar(this)
-        } else{
-            clearLightStatusBar(this)
+        if(shouldReloadData){
+            shouldReloadData = false
+            presenter.loadData()
         }
 
     }
@@ -630,26 +752,6 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
         super.onStop()
 
         locationEngine?.removeLocationUpdates(this)
-
-        if(!isStatusBarLight){
-            setLightStatusBar(this)
-        }
-    }
-
-    private fun setLightStatusBar(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var flags = activity.window.decorView.systemUiVisibility
-            flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            activity.window.decorView.systemUiVisibility = flags
-        }
-    }
-
-    private fun clearLightStatusBar(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var flags = activity.window.decorView.systemUiVisibility
-            flags = flags xor View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            activity.window.decorView.systemUiVisibility = flags
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -657,5 +759,11 @@ class ScheduleBookingActivity: BaseActivity(), ScheduleBookingView, PermissionsL
 
         mapView?.onSaveInstanceState(outState)
     }
+
+    override fun onDestroy() {
+        eventBus.unregister(this)
+        super.onDestroy()
+    }
+
 
 }

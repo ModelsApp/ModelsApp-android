@@ -75,7 +75,7 @@
             android:layout_marginEnd="@dimen/v_8dp"
             android:tint="@android:color/black"
             android:background="?attr/selectableItemBackgroundBorderless"
-            tools:src="@drawable/ic_notifications"
+            android:src="@drawable/ic_notifications"
             app:layout_constraintTop_toTopOf="@+id/arrowBack"
             app:layout_constraintBottom_toBottomOf="@id/arrowBack"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -129,7 +129,6 @@
                 android:orientation="vertical"
                 android:layout_gravity="bottom" >
 
-    <!--  TODO  jak przewijanie przejdzie, ze ma zniknac gorny layput to ten ll dawac na invisible  a jak widoczny to visible   -->
                 <LinearLayout
                     android:id="@+id/topLayoutsLl"
                     android:layout_width="match_parent"
@@ -161,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:visibility="gone"
-                        tools:visibility="gone"
+                        tools:visibility="visible"
                         android:paddingStart="@dimen/v_16dp"
                         android:paddingEnd="@dimen/v_16dp"
                         android:gravity="center"
@@ -213,7 +212,6 @@
                             android:layout_marginTop="@dimen/v_20dp"
                             android:paddingStart="@dimen/v_16dp"
                             android:paddingEnd="@dimen/v_16dp"
-                            android:stateListAnimator="@null"
                             android:elevation="0dp"
                             android:background="@drawable/button_black_alpha_8dp"
                             tools:text="@string/go_to_settings"
@@ -226,7 +224,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/view_4_5_container"
                         android:visibility="gone"
-                        tools:visibility="visible"
+                        tools:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -283,7 +281,7 @@
                             android:layout_marginEnd="@dimen/v_16dp"
                             android:layout_marginBottom="@dimen/v_4dp"
                             android:layout_marginTop="@dimen/v_8dp"
-                            tools:text="@string/check_in_mr"
+                            tools:text="@string/checking_in_mr"
                             android:gravity="center"
                             android:textColor="@color/text_gray"
                             app:layout_constraintBottom_toTopOf="@+id/topUserName"
@@ -311,13 +309,30 @@
 
                 </LinearLayout>
 
+                <FrameLayout
+                    android:id="@+id/roundedView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/v_24dp"
+                    android:background="@drawable/bg_rounded_top_24dp"
+                    app:layout_anchor="@+id/placeAppBar"
+                    app:layout_anchorGravity="bottom|center">
+
+                    <View
+                        android:id="@+id/topIcon"
+                        android:layout_width="@dimen/v_42dp"
+                        android:layout_height="@dimen/v_4dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:layout_marginTop="@dimen/v_12dp"
+                        android:background="@drawable/background_rounded_max"
+                        android:backgroundTint="@color/gray_btn_disabled" />
+                </FrameLayout>
+
             </LinearLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <!--  app:layout_behavior="@string/appbar_scrolling_view_behavior"  -->
-        <androidx.core.widget.NestedScrollView
+        <com.square.android.utils.widget.LockableScrollView
             android:id="@+id/placeNested"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -337,7 +352,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iconsCl"
                     android:visibility="gone"
-                    tools:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/v_20dp" >
@@ -489,12 +504,12 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/detailsCl"
                     android:visibility="gone"
-                    tools:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/v_20dp" >
 
-             <!-- imv.loadImage(url, roundedCornersRadiusPx = dimens.v12dp) -->
+             <!-- TODO imv.loadImage(url, roundedCornersRadiusPx = dimens.v12dp) -->
                     <ImageView
                         android:id="@+id/img"
                         app:srcCompat="@drawable/background_rounded_12dp"
@@ -546,7 +561,7 @@
                                 android:textSize="@dimen/text_14"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/v_3dp"
+                                android:layout_marginStart="@dimen/v_4dp"
                                 tools:text="$14.99"
                                 android:textColor="@android:color/black"
                                 android:maxLines="1"
@@ -573,7 +588,7 @@
                                 android:textSize="@dimen/text_14"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/v_3dp"
+                                android:layout_marginStart="@dimen/v_4dp"
                                 tools:text="Available"
                                 android:textColor="@android:color/black"
                                 android:maxLines="1"
@@ -596,7 +611,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
-                    <!-- TODO in ac: black spanned text "Notes:" at the beginning -->
                     <TextView
                         android:id="@+id/tvNotes"
                         style="@style/Models15SemiBoldText"
@@ -637,7 +651,7 @@
                             android:paddingStart="@dimen/v_8dp"
                             android:gravity="bottom"
                             android:background="@android:color/white"
-                            tools:text="@string/read_more_lowercase"
+                            android:text="@string/read_more_lowercase"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
 
@@ -649,11 +663,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    tools:visibility="gone"
                     android:paddingStart="@dimen/v_20dp"
                     android:paddingEnd="@dimen/v_20dp"
                     android:paddingBottom="@dimen/v_20dp"
-                    android:paddingTop="@dimen/v_20dp"
+                    android:paddingTop="@dimen/v_16dp"
                     android:orientation="vertical" >
 
                     <TextView
@@ -781,7 +795,7 @@
 
             </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+        </com.square.android.utils.widget.LockableScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/placeBookingCl"
@@ -815,12 +829,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 tools:backgroundTint="@color/gray_btn_disabled_light"
                 tools:background="@drawable/background_rounded_12dp"
                 android:background="@drawable/button_rounded_enabled_disabled" >
 
-            <!-- TODO show when: 3 not available now(disabled, bg tint placeholder) , 4 swipe to redeem(enabled bg tint white) -->
                 <FrameLayout
                     android:id="@+id/swipeFr"
                     android:layout_width="0dp"
@@ -834,13 +846,12 @@
                     android:backgroundTint="@color/placeholder"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" >
-            <!-- TODO tint when: 3 not available now(tint black_trans_30_no_alpha) , 4 swipe to redeem(tint black) -->
+
                     <ImageView
+                        android:id="@+id/swipeIcon"
                         android:layout_width="@dimen/v_30dp"
                         android:layout_height="@dimen/v_30dp"
                         android:layout_gravity="center"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:src="@drawable/chevron_right"
                         android:tint="@color/black_trans_30_no_alpha" />
                 </FrameLayout>
@@ -869,8 +880,8 @@
                         android:textColor="@color/checked_white_black_trans"
                         tools:text="@string/im_done_here" />
 
-                <!-- TODO show only when checked-in confirmed -->
                     <ImageView
+                        android:id="@+id/btnRightImg"
                         android:layout_width="@dimen/v_18dp"
                         android:layout_height="@dimen/v_18dp"
                         android:layout_marginStart="@dimen/v_8dp"
@@ -884,24 +895,6 @@
             </com.square.android.utils.widget.CheckableConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <FrameLayout
-            android:id="@+id/roundedView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/v_24dp"
-            android:background="@drawable/bg_rounded_top_24dp"
-            app:layout_anchor="@+id/placeAppBar"
-            app:layout_anchorGravity="bottom|center">
-
-            <View
-                android:id="@+id/topIcon"
-                android:layout_width="@dimen/v_42dp"
-                android:layout_height="@dimen/v_4dp"
-                android:layout_gravity="center_horizontal|top"
-                android:layout_marginTop="@dimen/v_12dp"
-                android:background="@drawable/background_rounded_max"
-                android:backgroundTint="@color/gray_btn_disabled" />
-        </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
