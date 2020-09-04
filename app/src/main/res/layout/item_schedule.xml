@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/scheduleContainer"
+    android:paddingTop="@dimen/v_16dp"
     xmlns:tools="http://schemas.android.com/tools" >
 
     <ImageView
@@ -14,7 +15,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/scheduleBottomDivider"
+        app:layout_constraintBottom_toTopOf="@+id/bottomContainer"
         android:layout_marginBottom="@dimen/v_16dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic[6]" />
 
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/v_16dp"
         android:layout_marginEnd="@dimen/v_8dp"
+        app:layout_goneMarginEnd="@dimen/v_24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/scheduleImg"
         app:layout_constraintEnd_toStartOf="@+id/scheduleMoreIcon"
@@ -112,20 +114,52 @@
         android:src="@drawable/more_vertical"
         android:layout_marginEnd="@dimen/v_4dp"
         android:tint="@color/text_gray"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/scheduleImg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scheduleImg" />
 
-    <View
-        android:id="@+id/scheduleBottomDivider"
+    <LinearLayout
+        android:id="@+id/bottomContainer"
         android:layout_width="0dp"
-        android:layout_height="@dimen/v_1dp"
-        android:layout_marginBottom="@dimen/v_16dp"
-        android:visibility="gone"
-        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/scheduleLl"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/gray_divider" />
+        app:layout_constraintStart_toEndOf="@+id/scheduleImg"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <Button
+            android:id="@+id/btnReview"
+            style="@style/Models14Text"
+            android:layout_width="wrap_content"
+            android:paddingStart="@dimen/v_16dp"
+            android:paddingEnd="@dimen/v_16dp"
+            android:layout_marginTop="@dimen/v_2dp"
+            android:layout_height="@dimen/v_36dp"
+            android:layout_marginBottom="@dimen/v_16dp"
+            android:layout_marginStart="@dimen/v_16dp"
+            android:elevation="0dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:background="@drawable/button_black_alpha_8dp"
+            android:text="@string/review_proposal"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/scheduleLl"/>
+
+        <View
+            android:id="@+id/scheduleBottomDivider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/v_1dp"
+            android:layout_marginStart="@dimen/v_16dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:background="@color/gray_divider" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

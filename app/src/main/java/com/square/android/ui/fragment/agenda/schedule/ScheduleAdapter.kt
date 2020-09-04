@@ -1,13 +1,14 @@
 package com.square.android.ui.fragment.agenda.schedule
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.square.android.R
 import com.square.android.data.pojo.RedemptionInfo
 import com.square.android.ui.base.BaseAdapter
-import com.square.android.App
 import com.square.android.data.pojo.CampaignBooking
 import com.square.android.extensions.*
 import com.square.android.presentation.presenter.agenda.ScheduleHeader
+import com.square.android.ui.dialogs.SchedulePendingActionDialog
 import kotlinx.android.synthetic.main.item_schedule.*
 import kotlinx.android.synthetic.main.item_schedule_header.*
 import java.lang.Exception
@@ -60,7 +61,7 @@ class ScheduleAdapter(data: List<Any>, private val handler: Handler)
         }
 
         private fun bindRedemption(redemptionInfo: RedemptionInfo) {
-                //            redemption_btn_top.text = redemption_btn_bottom.resources.getString(R.string.details)
+            //            redemption_btn_top.text = redemption_btn_bottom.resources.getString(R.string.details)
 //            redemption_btn_top.setTextColor(Color.BLACK)
 //            redemption_btn_top.setOnClickListener { handler.redemptionDetailsClicked(redemptionInfo.place.id)}
 
@@ -74,55 +75,38 @@ class ScheduleAdapter(data: List<Any>, private val handler: Handler)
 //                redemption_btn_bottom.alpha = 0.3f
             } else {
                 scheduleImg.removeFilters()
-
-                //                redemption_place_name.alpha = 1f
-//                redemption_address.alpha = 1f
-//                redemption_hours.alpha = 1f
-//                redemption_btn_top.alpha = 1f
-//                redemption_btn_bottom.alpha = 1f
-//
-//                redemption_btn_bottom.visibility = View.VISIBLE
-//                redemption_btn_bottom.text = redemption_btn_bottom.resources.getString(R.string.cancel)
-//                redemption_btn_bottom.setTextColor(ContextCompat.getColor(redemption_btn_bottom.context, R.color.status_red))
-//                redemption_btn_bottom.setOnClickListener {
-//                    if (!isDialogVisible) {
-//                        isDialogVisible = true
-//
-//                        val dialog: MaterialDialog = MaterialDialog.Builder(redemption_btn_bottom.context)
-//                                .title(R.string.remove_item_title)
-//                                .content(R.string.remove_item_content)
-//                                .contentColorRes(android.R.color.black)
-//                                .itemsColor(ContextCompat.getColor(redemption_btn_bottom.context, R.color.nice_pink))
-//                                .positiveText(R.string.yes)
-//                                .negativeText(R.string.no)
-//                                .negativeColorRes(R.color.nice_pink)
-//                                .positiveColorRes(R.color.nice_pink)
-//                                .cancelable(true)
-//                                .onPositive { dialog, action ->
-//                                    dialog.cancel()
-//
-//                                    handler.cancelRedemptionClicked(redemptionInfo.id)
-//                                }
-//                                .onNegative { dialog, action ->
-//                                    dialog.cancel()
-//                                }
-//                                .cancelListener {
-//                                    isDialogVisible = false
-//                                }
-//                                .build()
-//
-//                        val titleTv = dialog.titleView
-//                        val contentTv = dialog.contentView
-//
-//                        titleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19f)
-//                        contentTv?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
-//
-//                        dialog.show()
-//                    }
-//                }
             }
 
-            scheduleBottomDivider.visibility = if(redemptionInfo.dividerVisible) View.VISIBLE else View.GONE
+            if (redemptionInfo.hasPendingAction) {
+                scheduleBottomDivider.visibility = View.GONE
+                btnReview.visibility = View.VISIBLE
+                scheduleMoreIcon.visibility = View.GONE
+
+                scheduleContainer.setBackgroundColor(ContextCompat.getColor(scheduleContainer.context, R.color.gray_btn_disabled_light))
+
+                btnReview.setOnClickListener {
+                    if(!isDialogVisible){
+                        isDialogVisible = true
+
+                        SchedulePendingActionDialog(btnReview.context)
+                                .show(redemptionInfo,
+                                        onAction = {
+
+                                            //TODO
+                                            // Confirm reservation if it != getString(R.string.i_wont_go_anymore), cancel reservation otherwise.
+
+                                        },
+                                        onDismiss = {
+                                            isDialogVisible = false
+                                        })
+                    }
+                }
+
+            } else{
+                scheduleMoreIcon.visibility = View.VISIBLE
+                scheduleBottomDivider.visibility = if(redemptionInfo.dividerVisible) View.VISIBLE else View.GONE
+                scheduleContainer.setBackgroundColor(ContextCompat.getColor(scheduleContainer.context, android.R.color.white))
+            }
 
             //TODO scheduleStatusCircle color, what value defines it?
             scheduleStatusCircle.tintFromRes(R.color.status_green)

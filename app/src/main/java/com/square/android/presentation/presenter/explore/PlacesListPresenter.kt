@@ -1,7 +1,7 @@
 package com.square.android.presentation.presenter.explore
 
 import com.arellomobile.mvp.InjectViewState
-import com.square.android.data.pojo.Place
+import com.square.android.data.newPojo.NewPlace
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.explore.PlacesListView
 import org.greenrobot.eventbus.EventBus
@@ -9,10 +9,10 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.koin.standalone.inject
 
-class PlacesUpdatedEvent(val data: MutableList<Place>)
+class PlacesUpdatedEvent(val data: MutableList<NewPlace>)
 
 @InjectViewState
-class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesListView>() {
+class PlacesListPresenter(var data: MutableList<NewPlace>) : BasePresenter<PlacesListView>() {
 
     private val eventBus: EventBus by inject()
 
@@ -29,7 +29,7 @@ class PlacesListPresenter(var data: MutableList<Place>) : BasePresenter<PlacesLi
         viewState.showData(data.toList())
     }
 
-    fun itemClicked(place: Place) {
+    fun itemClicked(place: NewPlace) {
         eventBus.post(PlaceSelectedEvent(place))
     }
 

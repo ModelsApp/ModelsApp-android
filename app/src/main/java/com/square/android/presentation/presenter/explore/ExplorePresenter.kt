@@ -4,9 +4,13 @@ import android.location.Location
 import android.util.SparseArray
 import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.square.android.App.Companion.getString
+import com.square.android.R
 import com.square.android.SCREENS
-import com.square.android.data.newPojo.Coordinates
-import com.square.android.data.newPojo.CoordinatesData
+import com.square.android.data.newPojo.NewPlace
+import com.square.android.data.newPojo.PlacesFiltersAvailability
+import com.square.android.data.newPojo.PlacesFiltersData
+import com.square.android.data.newPojo.PlacesFiltersTimeSlots
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.explore.ExploreView
@@ -30,12 +34,12 @@ const val POSITION_CAMPAIGNS = 2
 
 const val LIST_ITEMS_SIZE = 3
 
-class PlaceSelectedEvent(val place: Place, val fromMap: Boolean = false)
+class PlaceSelectedEvent(val place: NewPlace, val fromMap: Boolean = false)
 class EventSelectedEvent(val place: Place)
 class CampaignSelectedEvent(val campaignInfo: CampaignInfo)
 
 class MainData(
-        var placesData: MutableList<Place> = mutableListOf(),
+        var placesData: MutableList<NewPlace> = mutableListOf(),
         var eventsData: MutableList<Place> = mutableListOf(),
         var campaignsData: MutableList<CampaignInfo> = mutableListOf()
 )
@@ -79,9 +83,8 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
     fun getFilter(): BaseFilter = filters[actualTabSelected]
 
     fun loadData() = launch {
-        if(!dataLoaded){
 
-//            repository.getOffersByUserLocation(CoordinatesData(Coordinates(45.436781, 9.213215), 1000000, "")).await()
+        if(!dataLoaded){
 
             dataLoaded = true
 
@@ -196,6 +199,20 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         checkFilters()
     }
 
+    //TODO delete later
+    fun latLngGotten(latLng: LatLng?) = launch {
+        latLng?.let {
+            if (!locationInitialized) {
+                locationInitialized = true
+
+                locationPoint = LatLng(it.latitude, it.longitude)
+
+                sendData(listOf(POSITION_EVENTS, POSITION_PLACES)).await()
+            }
+        }
+    }
+
+
     fun locationGotten(lastLocation: Location?) = launch {
         lastLocation?.let {
             if (!locationInitialized) {
@@ -262,13 +279,57 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
             viewState.showProgress()
 
             if (whichTabsToLoad.contains(POSITION_PLACES)) {
-                //TODO filter by new filters too
-                data.placesData = repository.getPlacesByFilters(PlaceData().apply {
-                    selectedCity?.let {
-                        date = actualDates[selectedDayPosition]
-                        city = selectedCity!!.name
+                val calendar = Calendar.getInstance()
+                val month = (calendar.get(Calendar.MONTH) +1)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+                val yearStr = calendar.get(Calendar.YEAR)
+                val monthStr = if (month < 10) {"0${month}"} else month
+                val dayStr = if (day < 10) {"0${day}"} else day
+
+                val filter = filters[POSITION_PLACES] as PlacesFilter
+
+                val categoriesList = listOf(getString(R.string.category_1), getString(R.string.category_2), getString(R.string.category_3), getString(R.string.category_4), getString(R.string.category_5))
+                val offersTypologyList = listOf(getString(R.string.complimentary), getString(R.string.discounted))
+
+                val availability = when(filter.availability ){
+                    1 -> PlacesFiltersAvailability(false, true)
+                    2 -> PlacesFiltersAvailability(true, false)
+                    else -> PlacesFiltersAvailability(true, true)
+                }
+
+                var walkIn = false
+                var reservationApprove = false
+
+                when(filter.bookingType){
+                    1 -> {
+                        reservationApprove = true
                     }
-                }).await().toMutableList()
+                    2 -> {
+                        walkIn = true
+                    }
+                    else -> {
+                        walkIn = true
+                        reservationApprove = true
+                    }
+                }
+
+                val startStr = if (filter.timeSlot.start < 10) {"0${filter.timeSlot.start}"} else filter.timeSlot.start.toString()
+                val endStr = if (filter.timeSlot.end < 10) {"0${filter.timeSlot.end}"} else filter.timeSlot.end.toString()
+
+                val timeSlot = PlacesFiltersTimeSlots(startStr, endStr)
+
+                data.placesData = repository.getNearbyPlaces(45.4896221, 9.1890265, 1000, "$yearStr-$monthStr-$dayStr", PlacesFiltersData(
+                        city = selectedCity!!.name,
+                        mainCategory = if(filter.selectedCategories.isEmpty()) "" else filter.selectedCategories.map{categoriesList[it]}.first() ,
+                        availability = availability,
+                        typology = offersTypologyList[filter.offersTypology],
+                        walkIn = walkIn,
+                        reservationApprove = reservationApprove,
+                        timeSlots = timeSlot
+
+                )).await().toMutableList()
+
             }
 
             if (whichTabsToLoad.contains(POSITION_EVENTS)) {
@@ -300,20 +361,12 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         }
     }
 
-    // dla https://square-app-new-api.herokuapp.com/api/v2/place?tf=&typology=&date=29-7-2020&city=Milan
-    // :[-8.663777,115.146573]
-    //
-    // dla
-
-
-
     private fun fillDistances(whichTabsToFillDistances: List<Int> = listOf(POSITION_PLACES, POSITION_EVENTS)): Deferred<Unit?> = GlobalScope.async {
         locationPoint?.let {
             if (whichTabsToFillDistances.contains(POSITION_PLACES)) {
                 data.placesData.forEach { place ->
                     //TODO:A
-//                    val placePoint = place.location.latLng()
-                    val placePoint = place.location()
+                    val placePoint = if(place.location != null) LatLng(place.location!!.coordinates[0], place.location!!.coordinates[1]) else null
 
                     val distance = placePoint?.distanceTo(locationPoint!!)?.toInt()
 

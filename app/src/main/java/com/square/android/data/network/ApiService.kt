@@ -3,8 +3,10 @@ package com.square.android.data.network
 import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
-import com.square.android.data.newPojo.Coordinates
-import com.square.android.data.newPojo.CoordinatesData
+import com.square.android.data.newPojo.CompleteUserOfferDutyData
+import com.square.android.data.newPojo.NewPlace
+import com.square.android.data.newPojo.PlacesFiltersData
+import com.square.android.data.newPojo.RemoveOfferEventData
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import okhttp3.MultipartBody
@@ -166,37 +168,73 @@ interface ApiService {
 
 
 ///// Need models - not working right now
-//    @GET("userOffers/{userId}/getLocal")
+
+//    @POST("userOffers/{userId}/getLocal")
 //    fun getOffersByUserLocation(@Header("Authorization") authorization: String,
 //                                @Path("userId") userId: Long,
-//                                @Query("coordinates") coordinate: Coordinates,
-//                                @Query("radius") radius: Int,
-//                                @Query("search") search: String
-//                                ): Call<String>
-//
-
-    @POST("userOffers/{userId}/getLocal")
-    fun getOffersByUserLocation(@Header("Authorization") authorization: String,
-                                @Path("userId") userId: Long,
-                                @Body coordinatesData: CoordinatesData
-    ): Call<String>
-
-
+//                                @Body coordinatesData: CoordinatesData
+//    ): Call<String>
 
                            // offerId or userId?
     @GET("userOffers/{offerId}/offerDetails")
-    fun getPlaceDetails(@Header("Authorization") authorization: String,
-                        @Path("offerId") placeId: Long): Call<List<Place>>
+    fun getOfferDetails(@Header("Authorization") authorization: String,
+                        @Path("offerId") offerId: Long): Call<List<String>>
 
-    @POST("userOffers/{userId}/bookOffer/{offerId}")
+    @POST("userOffers/{userId}/bookOffer/{couponId}")
     fun bookOffer(@Header("Authorization") authorization: String,
                      @Path("userId") userId: Long,
-                     @Path("offerId") placeId: String,
+                     @Path("couponId") couponId: String,
                      @Body userPlanData: UserPlanData): Call<MessageResponse>
 
-    //////
+//////
+
+    // skipped:
+    // (save offer) http://localhost:8000/api/offer/create, (Confirm offer booking) http://localhost:8000/api/userOffer/confirm/5ee60f84230bcc2
+    // (Cancel offer prebooking) http://localhost:8000/api/userOffer/prebooking/5ee38ed2702b011b9029d3a2/cancel, (Cancel Offer) http://localhost:8000/api/userOffer/5ee3bde44798b31b3dde7023/cancel,
+
+    @POST("agenda/removeEvent")
+    fun removeOfferEventFromSchedule(@Header("Authorization") authorization: String,
+                                @Body removeOfferEventData: RemoveOfferEventData
+    ): Call<MessageResponse>
+
+    @POST("agenda/{userId}/completeOfferDuty")
+    fun completeUserOfferDuty(@Header("Authorization") authorization: String,
+                              @Path("userId") userId: Long,
+                              @Body completeUserOfferDutyData: CompleteUserOfferDutyData
+    ): Call<MessageResponse>
+
+    @GET("agenda/{userId}/dutiesList/{offerId}")
+    fun getUserOfferDuties(@Header("Authorization") authorization: String,
+                           @Path("userId") userId: Long,
+                           @Path("offerId") offerId: Long): Call<List<String>>
 
 
+    @POST("userOffer/{userOfferId}")
+    fun rejectOfferProposal(@Header("Authorization") authorization: String,
+                            @Path("userOfferId") userOfferId: String
+    ): Call<MessageResponse>
+
+
+    @POST("userOffer/{bookingId}/cancel")
+    fun cancelUserOfferBooking(@Header("Authorization") authorization: String,
+                               @Path("bookingId") bookingId: Long
+    ): Call<MessageResponse>
+
+
+    @POST("place/near")
+    fun getNearbyPlaces(@Header("Authorization") authorization: String,
+                        @Query("lat") lat: Double,
+                        @Query("long") lng: Double,
+                        @Query("radius") radius: Int,
+                        @Query("date") date: String,
+                        @Body placesFiltersData: PlacesFiltersData
+    ): Call<List<NewPlace>>
+
+
+    @GET("place/{placeId}/offers")
+    fun getPlaceOffersNew(@Header("Authorization") authorization: String,
+                       @Path("placeId") placeId: Long
+    ): Call<String>
 
 
 ////////////////////////// End of new endpoints

@@ -125,7 +125,7 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
         val data2: List<Any> = listOf(
                 RedemptionInfo().apply { date = "2019-11-22"; claimed = true; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking },
                 RedemptionInfo().apply { date = "2019-11-22"; closed = true; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking },
-                RedemptionInfo().apply { date = "2019-12-01"; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking },
+                RedemptionInfo().apply { date = "2019-12-01"; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking; hasPendingAction = true; availabilityItems = listOf("12:00 - 15:00", "16:00 - 17:00"); topList = listOf("Classical manicure and pedicure"); bottomList = listOf("Complimentary") },
                 RedemptionInfo().apply { date = "2020-02-14"; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking },
                 RedemptionInfo().apply { date = "2020-02-15"; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking },
                 RedemptionInfo().apply { date = "2020-02-16"; startTime ="14.00"; endTime="15.00"; place.name = "Test Place booking"; place.address = "Via Giorgio 2, 324 Milano"; place.mainImage = imgPlaceBooking },
@@ -142,6 +142,8 @@ class SchedulePresenter(): BasePresenter<ScheduleView>() {
         )
 
         //TODO change to: groups = data.groupByTo(mutableMapOf()) {
+
+        //TODO new group: PPENDING ACTIONS
         groups = data2.groupByTo(mutableMapOf()) {
             if(it is RedemptionInfo) {
                 if (it.closed) {

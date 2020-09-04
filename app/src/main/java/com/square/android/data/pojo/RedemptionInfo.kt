@@ -17,5 +17,10 @@ class RedemptionInfo(
         var place: PlaceInfo = PlaceInfo(),
         var claimed: Boolean = false,
         var startTime: String = "",
-        var user: Int = 0
+        var user: Int = 0,
+
+        var topList: List<String> = listOf(),
+        var bottomList: List<String> = listOf(),
+        var hasPendingAction: Boolean = false,
+        var availabilityItems: List<String> = listOf()
 ): ScheduleDivider()

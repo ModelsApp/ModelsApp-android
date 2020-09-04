@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/v_16dp"
+    android:paddingBottom="@dimen/v_16dp" >
+
+    <TextView
+        android:id="@+id/itemLabel"
+        style="@style/Models16Text"
+        android:textSize="@dimen/text_16"
+        android:gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/v_16dp"
+        tools:text="12:00 - 15:00"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/itemIc"/>
+
+    <ImageView
+        android:id="@+id/itemIc"
+        android:layout_width="@dimen/v_28dp"
+        android:layout_height="@dimen/v_28dp"
+        android:src="@drawable/radio_btn_unchecked"
+        app:layout_constraintTop_toTopOf="@id/itemLabel"
+        app:layout_constraintBottom_toBottomOf="@id/itemLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
-import com.square.android.data.pojo.Place
+import com.square.android.data.newPojo.NewPlace
 import com.square.android.presentation.presenter.explore.PlacesListPresenter
 import com.square.android.presentation.view.explore.PlacesListView
 import com.square.android.ui.fragment.BaseFragment
 import com.square.android.ui.fragment.map.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_places_list.*
 
-class PlacesListFragment(var data: MutableList<Place>): BaseFragment(), PlacesListView, PlacesAdapter.Handler{
+class PlacesListFragment(var data: MutableList<NewPlace>): BaseFragment(), PlacesListView, PlacesAdapter.Handler{
 
     @InjectPresenter
     lateinit var presenter: PlacesListPresenter
@@ -52,19 +52,19 @@ class PlacesListFragment(var data: MutableList<Place>): BaseFragment(), PlacesLi
         adapter?.updateDistances()
     }
 
-    override fun showData(data: List<Place>) {
+    override fun showData(data: List<NewPlace>) {
         adapter = PlacesAdapter(data, this)
         placesList.adapter = adapter
         placesList.layoutManager = LinearLayoutManager(placesList.context, RecyclerView.VERTICAL,false)
         placesList.addItemDecoration(MarginItemDecorator(placesList.context.resources.getDimension(R.dimen.v_12dp).toInt(), true))
     }
 
-    override fun updatePlaces(data: List<Place>) {
+    override fun updatePlaces(data: List<NewPlace>) {
         adapter = PlacesAdapter(data, this)
         placesList.adapter = adapter
     }
 
-    override fun itemClicked(place: Place) {
+    override fun itemClicked(place: NewPlace) {
         presenter.itemClicked(place)
     }
 }

@@ -13,6 +13,7 @@ import com.arellomobile.mvp.presenter.PresenterType
 import com.square.android.presentation.view.explore.ExploreView
 import com.square.android.ui.fragment.LocationFragment
 import androidx.viewpager.widget.ViewPager
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.pojo.City
 import com.square.android.R
 import com.square.android.data.pojo.Day
@@ -104,7 +105,11 @@ class ExploreFragment: LocationFragment(), ExploreView, DaysAdapter.Handler, Bas
     }
 
     override fun locationGotten(lastLocation: Location?) {
-        presenter.locationGotten(lastLocation)
+        //TODO uncomment
+//        presenter.locationGotten(lastLocation)
+
+        //TODO remove later
+        presenter.latLngGotten(LatLng(45.4896221, 9.1890265))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

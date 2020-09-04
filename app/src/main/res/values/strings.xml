@@ -52,6 +52,11 @@
 
     <string name="accept">Accept</string>
 
+    <string name="review_proposal">Review proposal</string>
+    <string name="confirm_reservation">Confirm reservation</string>
+    <string name="cancel_reservation">Cancel reservation</string>
+    <string name="i_wont_go_anymore">I won\'t go anymore</string>
+
     <string name="profession_1">Video creator</string>
     <string name="profession_2">Music creator</string>
     <string name="profession_3">Other</string>

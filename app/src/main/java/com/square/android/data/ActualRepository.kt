@@ -8,7 +8,10 @@ import com.square.android.data.local.LocalDataManager
 import com.square.android.data.network.ApiService
 import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.*
-import com.square.android.data.newPojo.CoordinatesData
+import com.square.android.data.newPojo.CompleteUserOfferDutyData
+import com.square.android.data.newPojo.NewPlace
+import com.square.android.data.newPojo.PlacesFiltersData
+import com.square.android.data.newPojo.RemoveOfferEventData
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
@@ -22,7 +25,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.HttpException
-import retrofit2.http.*
 
 private const val TOKEN_PREFIX = "Bearer "
 
@@ -205,18 +207,6 @@ class ActualRepository(private val api: ApiService,
         data
     }
 
-    override fun getOffersByUserLocation(coordinatesData: CoordinatesData): Deferred<String> = GlobalScope.async {
-//        val data = performRequest {api.getOffersByUserLocation(localManager.getAuthToken(), getUserId(), coordinatesData.coordinates, coordinatesData.radius, coordinatesData.search)}
-        val data = performRequest {api.getOffersByUserLocation(localManager.getAuthToken(), getUserId(), coordinatesData)}
-        data
-    }
-
-
-
-
-
-
-
     override fun postUserPlan(userPlanData: UserPlanData): Deferred<MessageResponse> = GlobalScope.async {
         val data = performRequest {api.postUserPlan(localManager.getAuthToken(), getUserId(), userPlanData)}
         data
@@ -226,6 +216,55 @@ class ActualRepository(private val api: ApiService,
         val data = performRequest {api.getUserPlans(localManager.getAuthToken(), getUserId())}
         data
     }
+
+
+//////// TODO need models
+
+    override fun removeOfferEventFromSchedule(removeOfferEventData: RemoveOfferEventData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.removeOfferEventFromSchedule(localManager.getAuthToken(), removeOfferEventData)}
+        data
+    }
+
+    override fun completeUserOfferDuty(completeUserOfferDutyData: CompleteUserOfferDutyData): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.completeUserOfferDuty(localManager.getAuthToken(), getUserId(), completeUserOfferDutyData)}
+        data
+    }
+
+    override fun getUserOfferDuties(offerId: Long): Deferred<List<String>> = GlobalScope.async {
+        val data = performRequest {api.getUserOfferDuties(localManager.getAuthToken(), getUserId(), offerId)}
+        data
+    }
+
+    override fun rejectOfferProposal(userOfferId: String): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.rejectOfferProposal(localManager.getAuthToken(), userOfferId)}
+        data
+    }
+
+    override fun cancelUserOfferBooking(bookingId: Long): Deferred<MessageResponse> = GlobalScope.async {
+        val data = performRequest {api.cancelUserOfferBooking(localManager.getAuthToken(), bookingId)}
+        data
+    }
+
+    override fun getNearbyPlaces(lat: Double, lng: Double, radius: Int, date: String, placesFiltersData: PlacesFiltersData): Deferred<List<NewPlace>> = GlobalScope.async {
+        val data = performRequest {api.getNearbyPlaces(localManager.getAuthToken(), lat, lng, radius, date, placesFiltersData)}
+        data
+    }
+
+    override fun getPlaceOffersNew(placeId: Long): Deferred<String> = GlobalScope.async {
+        val data = performRequest {api.getPlaceOffersNew(localManager.getAuthToken(), placeId)}
+        data
+    }
+
+////////////////////////////
+
+
+
+
+
+
+
+
+
 
     override fun getIntervalSlots(placeId: Long, date: String): Deferred<List<Place.Interval>> = GlobalScope.async {
         val data = performRequest {api.getIntervalSlots(placeId, date)}
