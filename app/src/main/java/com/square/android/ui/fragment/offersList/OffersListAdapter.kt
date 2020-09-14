@@ -2,7 +2,7 @@ package com.square.android.ui.fragment.offersList
 
 import android.view.View
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.data.pojo.RedemptionFull
 import com.square.android.extensions.loadImage
 import com.square.android.ui.base.BaseAdapter
@@ -54,27 +54,28 @@ class OffersListAdapter(data: List<OfferInfo>,
 
             bindSelected(selectedPosition)
 
-            containerView.setOnClickListener {
-                if(item.isAvailable){
-                    handler?.itemClicked(adapterPosition)
-                }
-            }
-
-            item.isAvailable.run {
-
-                redemptionFull?.let {
-                    offerAvailableText.text = if (!this)
-                        offerAvailableText.context.getString(R.string.not_available_from_to, it.redemption.startTime, it.redemption.endTime)
-                    else null
-                }
-
-                notAvailableRl.visibility = if(!this) View.VISIBLE else View.GONE
-            }
-
-            offerTitle.text = item.name
-            offerPrice.text = item.price.toString()
-
-            offerImage.loadImage(url = (item.mainImage ?: item.photo)?: "", roundedCornersRadiusPx = 10)
+            //TODO OI
+//            containerView.setOnClickListener {
+//                if(item.isAvailable){
+//                    handler?.itemClicked(adapterPosition)
+//                }
+//            }
+//
+//            item.isAvailable.run {
+//
+//                redemptionFull?.let {
+//                    offerAvailableText.text = if (!this)
+//                        offerAvailableText.context.getString(R.string.not_available_from_to, it.redemption.startTime, it.redemption.endTime)
+//                    else null
+//                }
+//
+//                notAvailableRl.visibility = if(!this) View.VISIBLE else View.GONE
+//            }
+//
+//            offerTitle.text = item.name
+//            offerPrice.text = item.price.toString()
+//
+//            offerImage.loadImage(url = (item.mainImage ?: item.photo)?: "", roundedCornersRadiusPx = 10)
         }
 
         fun bindSelected(selectedPosition: Int?) {

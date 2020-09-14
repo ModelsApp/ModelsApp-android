@@ -67,16 +67,30 @@ class SettingsPresenter(var user: Profile.User): BaseTabPresenter<SettingsView>(
 
             val timeSlot = PlacesFiltersTimeSlots(startStr, endStr)
 
-            repository.getNearbyPlaces(45.4896221, 9.1890265, 1000, "$yearStr-$monthStr-$dayStr", PlacesFiltersData(
-                    city = "Milan",
-                    mainCategory = if(filter.selectedCategories.isEmpty()) "" else filter.selectedCategories.map{categoriesList[it]}.first() ,
-                    availability = availability,
-                    typology = offersTypologyList[filter.offersTypology],
-                    walkIn = walkIn,
-                    reservationApprove = reservationApprove,
-                    timeSlots = timeSlot
 
-            )).await()
+          val list = repository.getNearbyPlaces(45.4896221, 9.1890265, 5000, "2020-09-02", PlacesFiltersData(
+                    city = "Milano",
+                    mainCategory = "Bar Cafes & Restaurant",
+                    availability = availability,
+                    typology = "Set Price",
+                    walkIn = false,
+                    reservationApprove = false,
+                    timeSlots = PlacesFiltersTimeSlots("07:00", "09:00")
+
+            )).await().toMutableList()
+
+            println("http EOEOEOEOEOEOEOEOE ${list.toString()}")
+
+//            repository.getNearbyPlaces(45.4896221, 9.1890265, 5000, "$yearStr-$monthStr-$dayStr", PlacesFiltersData(
+//                    city = "Milan",
+//                    mainCategory = if(filter.selectedCategories.isEmpty()) "" else filter.selectedCategories.map{categoriesList[it]}.first() ,
+//                    availability = availability,
+//                    typology = offersTypologyList[filter.offersTypology],
+//                    walkIn = walkIn,
+//                    reservationApprove = reservationApprove,
+//                    timeSlots = timeSlot
+//
+//            )).await()
         }
     }
 

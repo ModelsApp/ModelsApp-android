@@ -332,7 +332,7 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.square.android.utils.widget.LockableScrollView
+        <com.square.android.utils.widget.LockableNestedScrollView
             android:id="@+id/placeNested"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -795,7 +795,7 @@
 
             </LinearLayout>
 
-        </com.square.android.utils.widget.LockableScrollView>
+        </com.square.android.utils.widget.LockableNestedScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/placeBookingCl"

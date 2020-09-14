@@ -8,13 +8,12 @@ import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionFull
 import com.square.android.extensions.loadImage
 import kotlinx.android.synthetic.main.dialog_coupon.view.*
 import java.util.*
-import java.util.regex.Pattern
 
 class CouponDialog(private val context: Context, var cancelable: Boolean = true) {
 

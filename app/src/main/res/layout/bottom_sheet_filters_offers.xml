@@ -220,57 +220,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/offersTypologyRv" />
 
             <TextView
-                android:id="@+id/offersLevelLabel"
-                style="@style/Models15SemiBoldText"
-                android:textSize="@dimen/text_15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/v_20dp"
-                android:layout_marginTop="@dimen/v_20dp"
-                android:text="@string/offers_level"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/offersLevelRv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:orientation="vertical"
-                android:overScrollMode="never"
-                android:nestedScrollingEnabled="false"
-                android:paddingStart="@dimen/v_20dp"
-                android:paddingEnd="@dimen/v_20dp"
-                android:layout_marginTop="@dimen/v_12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/offersLevelLabel"
-                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_rounded_checkable_value"
-                tools:itemCount="1" />
-
-            <View
-                android:id="@+id/divider5"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/v_1dp"
-                android:layout_marginTop="@dimen/v_20dp"
-                android:layout_marginStart="@dimen/v_24dp"
-                android:background="@color/gray_divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/offersLevelRv" />
-
-            <TextView
                 android:id="@+id/bookingTypeLabel"
                 style="@style/Models15SemiBoldText"
-                android:textSize="@dimen/text_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/v_20dp"
                 android:layout_marginTop="@dimen/v_20dp"
+                android:layout_marginStart="@dimen/v_20dp"
                 android:text="@string/booking_type"
+                android:textSize="@dimen/text_15"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider5" />
+                app:layout_constraintTop_toBottomOf="@+id/divider4"
+                tools:layout_editor_absoluteY="565dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bookingTypeRv"

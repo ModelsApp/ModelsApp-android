@@ -9,7 +9,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.data.pojo.Place
 import com.square.android.extensions.loadImage
 import kotlinx.android.synthetic.main.offer_dialog.view.*
@@ -32,30 +32,35 @@ class OfferDialog(private val context: Context, var cancelable: Boolean = true) 
 
         dialog.window?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(context, android.R.color.transparent)))
 
-        view.offerDialogImg.loadImage((offer.mainImage ?: offer.photo) ?: "")
+        view.offerDialogImg.loadImage(offer.coverImage)
         view.offerDialogName.text = offer.name
-        view.offerDialogCredits.text = offer.price.toString()
+        view.offerDialogCredits.text = offer.valueWorth.toString()
+
+
+        println("DSDSDSDS offer: ${offer.toString()}")
 
         //TODO change later
         //TODO separate values for numbers and names will be added in API later
-        if(!offer.composition.isNullOrEmpty()){
-            view.scrollViewMaxHeight.visibility = View.VISIBLE
-            view.offerDialogDetails.visibility = View.VISIBLE
-            view.offerDialogQt.visibility = View.VISIBLE
 
-            val numberList: MutableList<Int> = mutableListOf()
-            val names = offer.compositionAsStr()
-
-            val p = Pattern.compile("\\d+")
-            val m = p.matcher(offer.compositionAsString())
-            while (m.find()) {
-                numberList.add(m.group().toInt())
-            }
-
-            view.offerNames.text = names
-
-            view.offerNumbers.text = numberList.joinToString(separator = "\n")
-        }
+        //TODO OI
+//        if(!offer.composition.isNullOrEmpty()){
+//            view.scrollViewMaxHeight.visibility = View.VISIBLE
+//            view.offerDialogDetails.visibility = View.VISIBLE
+//            view.offerDialogQt.visibility = View.VISIBLE
+//
+//            val numberList: MutableList<Int> = mutableListOf()
+//            val names = offer.compositionAsStr()
+//
+//            val p = Pattern.compile("\\d+")
+//            val m = p.matcher(offer.compositionAsString())
+//            while (m.find()) {
+//                numberList.add(m.group().toInt())
+//            }
+//
+//            view.offerNames.text = names
+//
+//            view.offerNumbers.text = numberList.joinToString(separator = "\n")
+//        }
 
         view.offerClose.setOnClickListener { close() }
 

@@ -20,8 +20,9 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.square.android.R
+import com.square.android.data.newPojo.OfferInfo
+import com.square.android.data.newPojo.PlaceOffer
 import com.square.android.data.pojo.Day
-import com.square.android.data.pojo.OfferInfo
 import com.square.android.data.pojo.Place
 import com.square.android.data.pojo.PlaceExtra
 import com.square.android.extensions.asDistance
@@ -33,6 +34,8 @@ import com.square.android.presentation.view.place.PlaceView
 import com.square.android.ui.fragment.LocationBottomSheetFragment
 import com.square.android.ui.fragment.explore.GridItemDecoration
 import kotlinx.android.synthetic.main.bottom_sheet_place.*
+import kotlinx.android.synthetic.main.item_offer.*
+import org.jetbrains.anko.dimen
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -54,19 +57,21 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
 
     private var isStatusBarLight: Boolean = true
 
-    private var adapter: AboutAdapter? = null
-
-    private var offerAdapter: OfferAdapter? = null
-
     private var dialog: OfferDialog? = null
 
     private var daysAdapter: DaysAdapter? = null
 
-    private var decorationAdded = false
 
-    private var intervalsAdapter: IntervalMatchParentAdapter? = null
 
-    private var requirementsAdapter: RequirementsAdapter? = null
+//    private var decorationAdded = false
+//
+//    private var intervalsAdapter: IntervalMatchParentAdapter? = null
+//
+//    private var requirementsAdapter: RequirementsAdapter? = null
+//
+//    private var offerAdapter: OfferAdapter? = null
+
+
 
     @ProvidePresenter
     fun providePresenter() = PlacePresenter(placeId, daySelected)
@@ -251,56 +256,65 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
     }
 
     override fun showProgress() {
-        placeIntervalsRv.visibility = View.GONE
-        placeIntervalsEmpty.visibility = View.GONE
-        placeProgress.visibility = View.VISIBLE
-
         placeBookingText.text = ""
     }
 
     override fun hideProgress() {
-        placeProgress.visibility = View.GONE
-        placeIntervalsRv.visibility = View.VISIBLE
-
         placeBookingText.text = ""
     }
 
+
+
+
+
+
+
+
     override fun setSelectedIntervalItem(position: Int) {
-        intervalsAdapter?.setSelectedItem(position)
+        //TODO uzyc w itemach z ll offers
+//        intervalsAdapter?.setSelectedItem(position)
     }
 
     override fun showIntervals(data: List<Place.Interval>) {
-        intervalsAdapter = IntervalMatchParentAdapter(data, intervalHandler)
 
-        placeIntervalsRv.layoutManager = GridLayoutManager(requireActivity(), 2)
-        placeIntervalsRv.adapter = intervalsAdapter
+        //TODO reload intervals for currently selected offer IF ANY
 
-        if(!decorationAdded){
-            decorationAdded = true
-            placeIntervalsRv.addItemDecoration(GridItemDecoration(2,placeIntervalsRv.context.resources.getDimension(R.dimen.rv_item_decorator_8).toInt(), false))
-        }
 
-        placeIntervalsEmpty.visibility = if(data.isNullOrEmpty()) View.VISIBLE else View.GONE
+        //TODO uzyc w itemach z ll offers
+//        intervalsAdapter = IntervalMatchParentAdapter(data, intervalHandler)
+
+//        placeIntervalsRv.layoutManager = GridLayoutManager(requireActivity(), 2)
+//        placeIntervalsRv.adapter = intervalsAdapter
+//
+//        if(!decorationAdded){
+//            decorationAdded = true
+//            placeIntervalsRv.addItemDecoration(GridItemDecoration(2,placeIntervalsRv.context.resources.getDimension(R.dimen.rv_item_decorator_8).toInt(), false))
+//        }
+//
+//        placeIntervalsEmpty.visibility = if(data.isNullOrEmpty()) View.VISIBLE else View.GONE
     }
 
-    var intervalHandler = object : IntervalMatchParentAdapter.Handler{
-        override fun itemClicked(position: Int, text: String, offers: List<Long>) {
-            presenter.intervalItemClicked(position)
-            placeBookingBtn.isEnabled = true
-            placeBookingText.text = text
+    //TODO uzyc w itemach z ll offers
+//    var intervalHandler = object : IntervalMatchParentAdapter.Handler{
+//        override fun itemClicked(position: Int, text: String, offers: List<Long>) {
+//            presenter.intervalItemClicked(position)
+//            placeBookingBtn.isEnabled = true
+//            placeBookingText.text = text
+//
+//            updateOffersEnabled(offers)
+//        }
+//    }
 
-            offerAdapter?.updateAlpha(offers)
-        }
+
+
+    private fun updateOffersEnabled(){
+
     }
 
-    override fun updateMonthName(calendar: Calendar) {
-        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
-        placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
-        val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).capitalize()
-        val m = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()).capitalize()
 
-        placeBookingDate.text = d + ", " + m + " " + dayToString(calendar.get(Calendar.DAY_OF_MONTH))
+    private fun showOffers(offers: List<PlaceOffer>){
+
     }
 
     override fun setSelectedDayItem(position: Int) {
@@ -311,7 +325,9 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
         override fun dayItemClicked(position: Int) {
             presenter.dayItemClicked(position)
             placeBookingBtn.isEnabled = false
-            offerAdapter?.updateAlpha(null)
+
+            //TODO disable all initially
+            updateOffersEnabled()
         }
     }
 
@@ -335,10 +351,8 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
         dialog!!.show(offer, place)
     }
 
-    override fun showData(place: Place, offers: List<OfferInfo>, calendar: Calendar, typeImage: String?, extras: List<PlaceExtra>) {
+    override fun showData(place: Place, offers: List<PlaceOffer>, calendar: Calendar, typeImage: String?, extras: List<PlaceExtra>) {
         this.place = place
-
-//        typeImage?.let { placeAboutImage.loadImageForIcon(it) }
 
         placeMainImage.loadImage(place.mainImage ?: (place.photos?.firstOrNull() ?: ""))
 
@@ -349,39 +363,15 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
             placeAboutCl.setVisible(true)
         }
 
-        //TODO change later - waiting for API
-//        val aboutItems = listOf("www", "insta")
-//        placeAboutSize = aboutItems.size
-//        adapter = AboutAdapter(aboutItems)
-//        placeAboutRv.adapter = adapter
-//        placeAboutRv.layoutManager = LinearLayoutManager(placeAboutRv.context, RecyclerView.HORIZONTAL, false)
-//        placeAboutRv.addItemDecoration(MarginItemDecorator(placeAboutRv.context.resources.getDimension(R.dimen.rv_item_decorator_4).toInt(), vertical = false))
-//
-//        if(!extras.isEmpty()){
-//            placeRequirementsCl.visibility = View.VISIBLE
-//
-//            requirementsAdapter = RequirementsAdapter(extras, null)
-//            placeRequirementsRv.layoutManager = GridLayoutManager(this, 2)
-//            placeRequirementsRv.adapter = requirementsAdapter
-//            placeRequirementsRv.addItemDecoration(GridItemDecoration(2,placeRequirementsRv.context.resources.getDimension(R.dimen.rv_item_decorator_8).toInt(), false))
-//        }
-
         if(!offers.isNullOrEmpty()){
-            placeOffersCl.visibility = View.VISIBLE
-
-            offerAdapter = OfferAdapter(offers, object: OfferAdapter.Handler {
-                override fun itemClicked(position: Int) {
-                    presenter.offersItemClicked(position, place)
-                }
-            })
-
-            placeOffersRv.layoutManager = GridLayoutManager(requireActivity(), 3)
-            placeOffersRv.adapter = offerAdapter
-            placeOffersRv.addItemDecoration(GridItemDecoration(3,placeOffersRv.context.resources.getDimension(R.dimen.rv_item_decorator_12).toInt(), false))
+            llOffers.visibility = View.VISIBLE
         }
 
+
+
+        showOffers(offers)
+
         val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
-        placeBookingMonth.text = getString(R.string.calendar_format, month, calendar.get(Calendar.YEAR))
 
         val d = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()).capitalize()
         val m =  calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()).capitalize()
@@ -450,7 +440,7 @@ class PlaceBottomSheet(var calledFromMap: Boolean, var placeId: Long, var daySel
         placeAddress.text = place.address
     }
 
-    private fun dayToString(day: Int): String{
+    private fun dayToString(day: Int): String {
        val s = when(day){
            1, 21, 31 -> "st"
            2, 22 -> "nd"

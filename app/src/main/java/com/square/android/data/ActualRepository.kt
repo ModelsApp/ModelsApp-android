@@ -8,10 +8,7 @@ import com.square.android.data.local.LocalDataManager
 import com.square.android.data.network.ApiService
 import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.*
-import com.square.android.data.newPojo.CompleteUserOfferDutyData
-import com.square.android.data.newPojo.NewPlace
-import com.square.android.data.newPojo.PlacesFiltersData
-import com.square.android.data.newPojo.RemoveOfferEventData
+import com.square.android.data.newPojo.*
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LIST_ITEMS_SIZE
@@ -244,22 +241,25 @@ class ActualRepository(private val api: ApiService,
         val data = performRequest {api.cancelUserOfferBooking(localManager.getAuthToken(), bookingId)}
         data
     }
+////////////////////////////
+
+
+                                                   //TODO change to just PlaceOffer when API done
+    override fun getOfferDetails(offerId: Long): Deferred<List<PlaceOffer>> = GlobalScope.async {
+        val data = performRequest {api.getOfferDetails(localManager.getAuthToken(), offerId)}
+        data
+    }
+
 
     override fun getNearbyPlaces(lat: Double, lng: Double, radius: Int, date: String, placesFiltersData: PlacesFiltersData): Deferred<List<NewPlace>> = GlobalScope.async {
         val data = performRequest {api.getNearbyPlaces(localManager.getAuthToken(), lat, lng, radius, date, placesFiltersData)}
         data
     }
 
-    override fun getPlaceOffersNew(placeId: Long): Deferred<String> = GlobalScope.async {
+    override fun getPlaceOffersNew(placeId: Long): Deferred<List<OfferInfo>> = GlobalScope.async {
         val data = performRequest {api.getPlaceOffersNew(localManager.getAuthToken(), placeId)}
-        data
+        data.offers
     }
-
-////////////////////////////
-
-
-
-
 
 
 
@@ -524,12 +524,12 @@ class ActualRepository(private val api: ApiService,
 
     override fun getPlaces(): Deferred<List<Place>> = GlobalScope.async {
         val places = performRequest { api.getPlaces() }
-
-        places.forEach { place ->
-            val prices = place.offers.map { it.price }
-
-            place.award = prices.min() ?: 0
-        }
+        //TODO
+//        places.forEach { place ->
+//            val prices = place.offers.map { it.price }
+//
+//            place.award = prices.min() ?: 0
+//        }
 
         places
     }

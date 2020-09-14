@@ -278,6 +278,17 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
         launch {
             viewState.showProgress()
 
+
+            // {
+            //    "city": "Milano",
+            //    "mainCategory": "Bar Cafes & Restaurant",
+            //    "availability":  {"male": true, "female": true},
+            //    "typology": "Set Price",
+            //    "reservationApprove": false,
+            //    "walkIn": false,
+            //    "timeSlots": {"from": "07:00", "to": "09:00"}
+            //}
+
             if (whichTabsToLoad.contains(POSITION_PLACES)) {
                 val calendar = Calendar.getInstance()
                 val month = (calendar.get(Calendar.MONTH) +1)
@@ -319,16 +330,27 @@ class ExplorePresenter: BasePresenter<ExploreView>() {
 
                 val timeSlot = PlacesFiltersTimeSlots(startStr, endStr)
 
-                data.placesData = repository.getNearbyPlaces(45.4896221, 9.1890265, 1000, "$yearStr-$monthStr-$dayStr", PlacesFiltersData(
-                        city = selectedCity!!.name,
-                        mainCategory = if(filter.selectedCategories.isEmpty()) "" else filter.selectedCategories.map{categoriesList[it]}.first() ,
+                data.placesData =  repository.getNearbyPlaces(45.4896221, 9.1890265, 5000, "2020-09-02", PlacesFiltersData(
+                        city = "Milano",
+                        mainCategory = "Bar Cafes & Restaurant",
                         availability = availability,
-                        typology = offersTypologyList[filter.offersTypology],
-                        walkIn = walkIn,
-                        reservationApprove = reservationApprove,
-                        timeSlots = timeSlot
+                        typology = "Set Price",
+                        walkIn = false,
+                        reservationApprove = false,
+                        timeSlots = PlacesFiltersTimeSlots("07:00", "09:00")
 
                 )).await().toMutableList()
+
+//                data.placesData = repository.getNearbyPlaces(45.4896221, 9.1890265, 5000, "$yearStr-$monthStr-$dayStr", PlacesFiltersData(
+//                        city = selectedCity!!.name,
+//                        mainCategory = if(filter.selectedCategories.isEmpty()) "" else filter.selectedCategories.map{categoriesList[it]}.first() ,
+//                        availability = availability,
+//                        typology = offersTypologyList[filter.offersTypology],
+//                        walkIn = walkIn,
+//                        reservationApprove = reservationApprove,
+//                        timeSlots = timeSlot
+//
+//                )).await().toMutableList()
 
             }
 

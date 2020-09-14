@@ -7,7 +7,7 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.ui.fragment.dOfferInfo.DinnerBackClickedEvent
 import com.square.android.ui.fragment.dOffer.DinnerInfoClickedEvent
 import com.square.android.ui.fragment.dOffer.DinnerInfoCloseEvent

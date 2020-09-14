@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.data.pojo.Profile
 import com.square.android.data.pojo.RedemptionFull
 import com.square.android.data.pojo.RedemptionInfo

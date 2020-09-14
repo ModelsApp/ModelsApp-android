@@ -1,6 +1,6 @@
 package com.square.android.ui.fragment.offersList
 
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.ui.fragment.dOfferInfo.DInfoFragment
 import com.square.android.ui.fragment.dOffer.DOfferFragment
 

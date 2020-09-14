@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.core.widget.NestedScrollView
 
-class LockableScrollView: NestedScrollView {
+class LockableNestedScrollView: NestedScrollView {
 
     constructor(context: Context) : super(context) {}
 

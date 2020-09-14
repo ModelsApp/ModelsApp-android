@@ -1,7 +1,7 @@
 package com.square.android.presentation.presenter.offer
 
 import com.arellomobile.mvp.InjectViewState
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.data.pojo.Place
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.view.offer.OfferView

@@ -5,10 +5,7 @@ import com.square.android.data.network.PhotoId
 import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
-import com.square.android.data.newPojo.CompleteUserOfferDutyData
-import com.square.android.data.newPojo.NewPlace
-import com.square.android.data.newPojo.PlacesFiltersData
-import com.square.android.data.newPojo.RemoveOfferEventData
+import com.square.android.data.newPojo.*
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import com.square.android.presentation.presenter.explore.LatestSearch
@@ -93,11 +90,14 @@ interface Repository {
 
     fun cancelUserOfferBooking(bookingId: Long): Deferred<MessageResponse>
 
+////////////////////////////
+
     fun getNearbyPlaces(lat: Double, lng: Double, radius: Int, date: String, placesFiltersData: PlacesFiltersData): Deferred<List<NewPlace>>
 
-    fun getPlaceOffersNew(placeId: Long): Deferred<String>
+    fun getPlaceOffersNew(placeId: Long): Deferred<List<OfferInfo>>
 
-////////////////////////////
+                                      //TODO change to just PlaceOffer when API done
+    fun getOfferDetails(offerId: Long): Deferred<List<PlaceOffer>>
 
 
     fun createRide(rideData: RideData): Deferred<MessageResponse>

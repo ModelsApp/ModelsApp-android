@@ -3,10 +3,7 @@ package com.square.android.data.network
 import com.square.android.data.network.response.AuthResponse
 import com.square.android.data.network.response.SendPhoneCodeRespose
 import com.square.android.data.network.response.MessageResponse
-import com.square.android.data.newPojo.CompleteUserOfferDutyData
-import com.square.android.data.newPojo.NewPlace
-import com.square.android.data.newPojo.PlacesFiltersData
-import com.square.android.data.newPojo.RemoveOfferEventData
+import com.square.android.data.newPojo.*
 import com.square.android.data.pojo.*
 import com.square.android.presentation.presenter.auth.LoginData
 import okhttp3.MultipartBody
@@ -167,7 +164,7 @@ interface ApiService {
                      @Path("userId") userId: Long): Call<List<UserPlanData>>
 
 
-///// Need models - not working right now
+///// Need models - not working right now ---------------------
 
 //    @POST("userOffers/{userId}/getLocal")
 //    fun getOffersByUserLocation(@Header("Authorization") authorization: String,
@@ -175,10 +172,11 @@ interface ApiService {
 //                                @Body coordinatesData: CoordinatesData
 //    ): Call<String>
 
-                           // offerId or userId?
+
     @GET("userOffers/{offerId}/offerDetails")
     fun getOfferDetails(@Header("Authorization") authorization: String,
-                        @Path("offerId") offerId: Long): Call<List<String>>
+                                                               //TODO change to just PlaceOffer when API done
+                        @Path("offerId") offerId: Long): Call<List<PlaceOffer>>
 
     @POST("userOffers/{userId}/bookOffer/{couponId}")
     fun bookOffer(@Header("Authorization") authorization: String,
@@ -234,10 +232,10 @@ interface ApiService {
     @GET("place/{placeId}/offers")
     fun getPlaceOffersNew(@Header("Authorization") authorization: String,
                        @Path("placeId") placeId: Long
-    ): Call<String>
+    ): Call<OfferInfoResult>
 
 
-////////////////////////// End of new endpoints
+////////////////////////// End of new endpoints -------------------
 
     //TODO doesn't work, API returns: "\"driverRideId\" is required" even when driverRideId is defined
     //TODO or maybe all id's are checked and they must match

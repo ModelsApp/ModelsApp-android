@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.ui.fragment.BaseNoMvpFragment
 import kotlinx.android.synthetic.main.fragment_d_info.*
 

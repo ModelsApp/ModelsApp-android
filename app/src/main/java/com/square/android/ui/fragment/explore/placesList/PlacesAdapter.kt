@@ -55,10 +55,10 @@ class PlacesAdapter(data: List<NewPlace>,
             if (item.getMainImage() != null) {
                 placeImg.loadImage(item.getMainImage()!!, R.color.placeholder, placeImg.context.dimen(R.dimen.v_24dp))
             } else {
-                if (item.getNotMainPhotos().isEmpty()) {
+                if (item.photos.isEmpty()) {
                     placeImg.setImageResource(R.color.placeholder)
                 } else {
-                    item.getNotMainPhotos().run {
+                    item.photos.run {
                         placeImg.loadImage(first(), R.color.placeholder, placeImg.context.dimen(R.dimen.v_24dp) )
                     }
                 }

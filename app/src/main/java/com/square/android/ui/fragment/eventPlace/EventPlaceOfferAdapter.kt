@@ -2,7 +2,7 @@ package com.square.android.ui.fragment.eventPlace
 
 import android.view.View
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.extensions.loadImage
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_offer.*
@@ -70,10 +70,11 @@ class EventPlaceOfferAdapter(data: List<OfferInfo>,
 
             itemOfferName.text = item.name
 
-            itemOfferCredits.text = itemOfferCredits.context.getString(R.string.credits_format_lowercase, item.price)
-
-            itemOfferImv.loadImage((item.mainImage ?: item.photo)
-                    ?: "", roundedCornersRadiusPx = itemOfferImv.context.dimen(R.dimen.value_4dp))
+            //TODO OI
+//            itemOfferCredits.text = itemOfferCredits.context.getString(R.string.credits_format_lowercase, item.price)
+//
+//            itemOfferImv.loadImage((item.mainImage ?: item.photo)
+//                    ?: "", roundedCornersRadiusPx = itemOfferImv.context.dimen(R.dimen.value_4dp))
 
             bindAlpha(selectedPosition)
         }

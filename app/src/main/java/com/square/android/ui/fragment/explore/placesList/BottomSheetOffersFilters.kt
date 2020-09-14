@@ -30,8 +30,6 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
 
     lateinit var offersTypologyList: List<String>
 
-    lateinit var offersLevelList: List<IconItem>
-
     lateinit var bookingTypeList: List<String>
 
     lateinit var takeawayList: List<String>
@@ -46,9 +44,6 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
         showMePlacesList = listOf(getString(R.string.all), getString(R.string.not_full))
 
         offersTypologyList = listOf(getString(R.string.complimentary), getString(R.string.discounted))
-
-        //TODO change to strings from res
-        offersLevelList = listOf(IconItem(getString(R.string.all), null), IconItem("Welcome", "25"), IconItem("Basic", "100"), IconItem("Premium", "250"))
 
         bookingTypeList = listOf(getString(R.string.all), getString(R.string.reservation_needed), getString(R.string.walk_in))
 
@@ -150,16 +145,6 @@ class BottomSheetOffersFilters(var placeFilter: PlacesFilter, private val handle
         } )
         offersTypologyRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
         offersTypologyRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
-
-        offersLevelRv.adapter = IconCheckableAdapter(offersLevelList, mFilter!!.selectedOffersLevel, object:IconCheckableAdapter.Handler{
-            override fun itemClicked(position: Int) {
-                (offersLevelRv.adapter as IconCheckableAdapter).setSelectedItem(position)
-                mFilter!!.selectedOffersLevel = position
-                checkIfDefault()
-            }
-        } )
-        offersLevelRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
-        offersLevelRv.addItemDecoration(MarginItemDecorator(context!!.resources.getDimension(R.dimen.v_8dp).toInt(), false))
 
         bookingTypeRv.adapter = SimpleCheckableAdapter(bookingTypeList.toMutableList(), mFilter!!.bookingType, object:SimpleCheckableAdapter.Handler{
             override fun itemLongClicked(position: Int) { }

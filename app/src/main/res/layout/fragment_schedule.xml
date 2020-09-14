@@ -10,7 +10,7 @@
         android:id="@+id/scheduleList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingTop="@dimen/v_24dp"
+        android:paddingTop="@dimen/v_12dp"
         android:paddingBottom="@dimen/v_24dp"
         android:clipToPadding="false"
         android:orientation="vertical"

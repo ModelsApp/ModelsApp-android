@@ -9,9 +9,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.data.pojo.Place
-import com.square.android.data.pojo.latLng
 import com.square.android.presentation.presenter.eventPlace.EventPlacePresenter
 import com.square.android.presentation.view.eventPlace.EventPlaceView
 import com.square.android.ui.activity.event.EXTRA_EVENT_PLACE

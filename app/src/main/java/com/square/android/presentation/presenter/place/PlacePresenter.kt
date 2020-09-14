@@ -4,16 +4,14 @@ import android.location.Location
 import android.text.TextUtils
 import com.arellomobile.mvp.InjectViewState
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.square.android.data.newPojo.OfferInfo
+import com.square.android.data.newPojo.PlaceOffer
 import com.square.android.data.pojo.*
 import com.square.android.extensions.getStringDate
-import com.square.android.extensions.toLatLng
 import com.square.android.presentation.presenter.BasePresenter
 import com.square.android.presentation.presenter.agenda.RedemptionsUpdatedEvent
 import com.square.android.presentation.presenter.main.BadgeStateChangedEvent
 import com.square.android.presentation.view.place.PlaceView
-import com.square.android.utils.AnalyticsEvent
-import com.square.android.utils.AnalyticsEvents
-import com.square.android.utils.AnalyticsManager
 import org.greenrobot.eventbus.EventBus
 import org.koin.standalone.inject
 import java.lang.Exception
@@ -81,9 +79,13 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
         calendar2.timeInMillis = calendar.timeInMillis
         calendar2.add(Calendar.DAY_OF_YEAR, position)
 
-        viewState.updateMonthName(calendar2)
 
-        loadIntervals()
+        // TODO update offers - enabled/disabled
+        // TODO j
+
+
+        //TODO if any offer is expanded
+//        loadIntervals()
     }
 
     fun intervalItemClicked(position: Int){
@@ -92,11 +94,25 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
         viewState.setSelectedIntervalItem(position)
     }
 
+
+    //TODO load for offer when clicked
     private fun loadIntervals() {
         launch {
             viewState.showProgress()
 
-            intervalSlots = repository.getIntervalSlots(data!!.id, getStringDate()).await()
+            //TODO remove
+            calendar2.set(Calendar.MONTH, 8)
+            calendar2.set(Calendar.DAY_OF_MONTH, 2)
+
+
+
+
+            //TODO add intervals - new endpoint?
+
+            //TODO change to data.id
+            intervalSlots = repository.getIntervalSlots(238, getStringDate()).await()
+
+            println("http fFDFDFD intervals: ${intervalSlots.toString()}")
 
             viewState.hideProgress()
 
@@ -121,9 +137,23 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
 
     private fun loadData() {
         launch {
-            data = repository.getPlace(placeId).await()
 
-            offers = data!!.offers
+            //TODO change to data.id
+            offers = repository.getPlaceOffersNew(238).await()
+
+            val offersWithDetails: MutableList<PlaceOffer> = mutableListOf()
+
+            offers.forEach {
+                val item = repository.getOfferDetails(it.id).await()
+
+                if(item.isNotEmpty()){
+                    offersWithDetails.add(item.first())
+                }
+            }
+
+            println("http EOEOEOEOE ${offersWithDetails.toString()}")
+
+            data = repository.getPlace(placeId).await()
 
             val allExtras: List<PlaceExtra> = repository.getPlaceExtras().await().toMutableList()
             var placeExtras: List<PlaceExtra> = mutableListOf()
@@ -139,7 +169,7 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
 
             val typeImage: String? = data!!.icons?.typology?.firstOrNull()
 
-            viewState.showData(data!!, offers, calendar, typeImage, placeExtras)
+            viewState.showData(data!!, offersWithDetails, calendar, typeImage, placeExtras)
 
             if (locationPoint != null) {
                 updateLocationInfo()
@@ -151,22 +181,30 @@ class PlacePresenter(private val placeId: Long, val daySelectedPosition: Int) : 
                     dayItemClicked(daySelectedPosition)
                 }
             }
-
-            loadIntervals()
         }
     }
 
+
+
     fun offersItemClicked(position: Int, place: Place?) {
-        try{
-            currentPositionOffers = position
+        //TODO Collapse previous offer if any and expand this
 
-            val offer = offers!![currentPositionOffers]
+        //TODO load offer intervals
 
-            viewState.showOfferDialog(offer, place)
 
-        } catch (e: Exception){
 
-        }
+
+
+//        try{
+//            currentPositionOffers = position
+//
+//            val offer = offers!![currentPositionOffers]
+//
+//            viewState.showOfferDialog(offer, place)
+//
+//        } catch (e: Exception){
+//
+//        }
     }
 
     private fun updateLocationInfo() {

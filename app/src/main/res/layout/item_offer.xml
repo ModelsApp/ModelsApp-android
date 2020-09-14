@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:adjustViewBounds="true"
         app:layout_constraintDimensionRatio="1:1"
-        tools:src="@drawable/auth_background"
+        tools:src="@color/divider"
         tools:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

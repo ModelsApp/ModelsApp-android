@@ -2,7 +2,7 @@ package com.square.android.ui.activity.place
 
 import android.view.View
 import com.square.android.R
-import com.square.android.data.pojo.OfferInfo
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.extensions.loadImage
 import com.square.android.ui.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_offer.*
@@ -55,11 +55,10 @@ class OfferAdapter(data: List<OfferInfo>,
             if(hideCredits){
                 itemOfferCredits.visibility = View.GONE
             } else{
-                itemOfferCredits.text = itemOfferCredits.context.getString(R.string.credits_format_lowercase, item.price)
+                itemOfferCredits.text = itemOfferCredits.context.getString(R.string.credits_format_lowercase, item.valueWorth)
             }
 
-            itemOfferImv.loadImage((item.mainImage ?: item.photo)
-                    ?: "", roundedCornersRadiusPx = itemOfferImv.context.dimen(R.dimen.value_4dp))
+            itemOfferImv.loadImage((item.coverImage), roundedCornersRadiusPx = itemOfferImv.context.dimen(R.dimen.value_4dp))
 
             bindAlpha(item, offers)
         }

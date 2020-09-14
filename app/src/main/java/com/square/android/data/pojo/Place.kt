@@ -3,6 +3,7 @@ package com.square.android.data.pojo
 import android.os.Parcelable
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.square.android.data.network.IgnoreObjectIfIncorrect
+import com.square.android.data.newPojo.OfferInfo
 import com.square.android.utils.SingleToArray
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

@@ -22,7 +22,7 @@
             android:textSize="@dimen/text_22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/v_24dp"
+            android:layout_marginStart="@dimen/v_16dp"
             android:layout_marginTop="@dimen/v_44dp"
             android:ellipsize="end"
             android:maxLines="1"

@@ -885,6 +885,9 @@
 
     <string name="all">All</string>
 
+    <string name="select_timeframes">Select timeframes</string>
+    <string name="availabilities">Availabilities</string>
+
     <string name="you_have_x_followers">You have 4000\-5000 followers!</string>
     <string name="slash_week">/ week</string>
     <string name="slash_month">/ month</string>

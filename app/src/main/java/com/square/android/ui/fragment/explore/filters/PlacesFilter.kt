@@ -7,7 +7,6 @@ class PlacesFilter(
         var availability: Int = 0,
         var showPlacesType: Int = 0,
         var offersTypology: Int = 0,
-        var selectedOffersLevel: Int = 0,
         var bookingType: Int = 0,
         var takeawayOption: Int = 0,
         var timeSlot: TimeSlot = TimeSlot(start = actualMinHour)
@@ -19,7 +18,6 @@ class PlacesFilter(
                     availability == filter.availability &&
                     showPlacesType == filter.showPlacesType &&
                     offersTypology == filter.offersTypology &&
-                    selectedOffersLevel == filter.selectedOffersLevel &&
                     bookingType == filter.bookingType &&
                     takeawayOption == filter.takeawayOption &&
                     timeSlot.start == filter.timeSlot.start &&
@@ -41,7 +39,6 @@ class PlacesFilter(
             availability = filter.availability
             showPlacesType = filter.showPlacesType
             offersTypology = filter.offersTypology
-            selectedOffersLevel = filter.selectedOffersLevel
             bookingType = filter.bookingType
             takeawayOption = filter.takeawayOption
             setTimeSlotStartHour(filter.timeSlot.start)
@@ -52,7 +49,7 @@ class PlacesFilter(
     }
 
     override fun isDefault(): Boolean = selectedCategories.isEmpty() && availability == 0 && showPlacesType == 0  &&
-            offersTypology == 0 && selectedOffersLevel == 0 && bookingType == 0 && takeawayOption == 0 && timeSlot.isDefault(actualMinHour)
+            offersTypology == 0 && bookingType == 0 && takeawayOption == 0 && timeSlot.isDefault(actualMinHour)
 
     override fun clear() {
         setTimeSlotStartHour(actualMinHour)
@@ -61,7 +58,6 @@ class PlacesFilter(
         availability = 0
         showPlacesType = 0
         offersTypology = 0
-        selectedOffersLevel = 0
         bookingType = 0
         takeawayOption = 0
     }

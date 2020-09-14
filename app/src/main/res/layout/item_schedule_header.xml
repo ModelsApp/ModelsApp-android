@@ -10,15 +10,15 @@
         android:id="@+id/scheduleDivider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/v_1dp"
-        android:layout_marginBottom="@dimen/v_12dp"
+        android:layout_marginBottom="@dimen/v_8dp"
         android:visibility="gone"
         tools:visibility="visible"
         android:background="@color/gray_divider" />
 
     <TextView
         android:id="@+id/scheduleHeader"
-        style="@style/Models16SemiBoldText"
-        android:textSize="@dimen/text_16"
+        style="@style/Models15SemiBoldText"
+        android:textSize="@dimen/text_15"
         android:textColor="@color/text_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:paddingStart="@dimen/v_24dp"
         android:paddingEnd="@dimen/v_24dp"
         android:paddingTop="@dimen/v_8dp"
-        android:paddingBottom="@dimen/v_20dp" />
+        android:paddingBottom="@dimen/v_8dp" />
 
 </LinearLayout>
 

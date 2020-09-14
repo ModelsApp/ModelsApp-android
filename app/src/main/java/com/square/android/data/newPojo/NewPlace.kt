@@ -22,21 +22,61 @@ data class NewPlace(
         var slots: Int = 0,
         var credits: Int = 0,
         var offers: List<Long> = listOf(),
-        var images: List<PlaceImage> = listOf(),
+        var photos: List<String> = listOf(),
         var instapage: String? = null,
         // need model
 //        var daysOffs
-        var phone: String,
-        var isActive: Boolean = true
+        var phone: String = "",
+        var isActive: Boolean = true,
+
+        var mainCategory: String = "",
+        var genderAvailability: PlacesFiltersAvailability = PlacesFiltersAvailability(),
+        var secondaryType: String = "",
+        var country: String = "",
+        var state: String = "",
+        var city: String = "",
+        var zip: String = "",
+        var street: String = "",
+        var houseNum: Int = 0,
+        @Json(name = "referalCode")
+        var referralCode: String = "",
+        @Json(name = "offerDeal")
+        var offerDeals: List<OfferDeal> = listOf()
+
 ): Parcelable {
 
     var distance: Int? = null
 
 
-    fun getMainImage() = images.firstOrNull { it.isMainImage }?.url
-    fun getAllPhotos() = images.map { it.url }
-    fun getNotMainPhotos() = images.filter { !it.isMainImage }.map { it.url }
+    fun getMainImage() = photos.firstOrNull()
 }
+
+@Parcelize
+@JsonClass(generateAdapter = true)
+data class OfferDeal(
+        @Json(name="_id")
+        var id: String = "",
+        @Json(name="chanelCreditId")
+        var channelCreditId: String = "",
+        var offerId: Long = 0,
+        var activeInApp: Boolean = true,
+        var currencyId: Long = 0,
+        var dealOptions: List<DealOption> = listOf(),
+        var price: Int = 0,
+        var quantity: Int = 0,
+        var requiresConfirmation: Boolean = true,
+        var type: String = "",
+        var userLevelId: Int = 0
+): Parcelable
+
+@Parcelize
+@JsonClass(generateAdapter = true)
+data class DealOption(
+        @Json(name="chanelCreditId")
+        var channelCreditId: String = "",
+        var quantity: Int = 0
+): Parcelable
+
 
 @Parcelize
 @JsonClass(generateAdapter = true)
